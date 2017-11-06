@@ -1,6 +1,6 @@
 #' warbleR: Exchange data and open sound files in Raven from R
 #' 
-#' Rraven is a package designed to faciliate the exchange of data between R 
+#' Rraven is a package designed to facilitate the exchange of data between R 
 #' and the Raven bioacoustics analysis software.
 #' 
 #'  Functions:
