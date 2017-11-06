@@ -1,0 +1,21 @@
+Package: Rraven
+Type: Package
+Title: an R interface for Raven
+Version: 1.0.0
+Date: 2017-04-28
+Author: Marcelo Araya-Salas
+Maintainer: Marcelo Araya-Salas <araya-salas@cornell.edu>
+Description: Exchange data and open sound files in Raven from R.
+License: GPL (>= 2)
+Imports: warbleR, pbapply
+Depends: R (>= 3.2.1)
+LazyData: TRUE
+URL: https://github.com/maRce10/Rraven 
+BugReports: https://github.com/maRce10/Rraven/issues
+NeedsCompilation: no
+Suggests: knitr
+VignetteBuilder: knitr
+RoxygenNote: 5.0.1
+Packaged: 2017-11-06 23:45:31 UTC; m
+Repository: CRAN
+Date/Publication: 2017-11-10 08:12:11
