@@ -1,16 +1,16 @@
 #' Import Raven selections
 #' 
-#' \code{imp_raven} imports Raven selection data from many files simultaneously. Files must be in .txt format.
+#' \code{imp_raven} imports Raven selection files simultaneously from many files. Files must be in .txt format.
 #' @usage imp_raven(path = NULL, sound.file.col = NULL, all.data = FALSE, recursive = FALSE,
 #'  name.from.file = FALSE, ext.case = NULL, freq.cols = TRUE, waveform = FALSE)  
-#' @param path A character string indicating the path of the directory in which to look for the text files. 
+#' @param path A character string indicating the path of the directory in which to look for the Raven selection (text) files. 
 #' If not provided (default) the function searches into the current working directory. Default is \code{NULL}).
 #' @param sound.file.col A character string with the name of the column listing the sound files in 
-#' the selection text files. Default is \code{NULL}). If provided, the output data
-#' frame will contained all columns needed for subsequent analysis in the \code{\link{warbleR}} R package. 
+#' the selection text files. Default is \code{NULL}. If provided, the output data
+#' frame will contained all columns needed for subsequent analysis in the acoustic analysis package \code{\link{warbleR}}. 
 #' Duplicated rows, as when "waveform" and "spectrogram" information are included for the same selection, will be removed.
 #' All selection files must contain "Selection", "Begin.Time" and "End.Time" columns.
-#' @param all.data Logical. If \code{TRUE}) all columns in text files are returned, 
+#' @param all.data Logical. If \code{TRUE} all columns in the selection files are returned, 
 #' keeping the name columns as in the raven files (not in a format that can be read in \code{\link{warbleR}}). Default is \code{FALSE}. Columns absent in some selection files will be filled with NA's.
 #' @param recursive Logical. If \code{TRUE}) the listing recurse into sub-directories.
 #' @param name.from.file Logical. If \code{TRUE}) the sound file names are extracted from the selection text file name. 
@@ -30,7 +30,7 @@
 #' @details The function import raven selection data from many files simultaneously. Files must be in .txt format. Note that selection 
 #' files including data from mulitple recordings cannot be imported. Make sure that NO OTHER TEXT FILES are found
 #' in the working directory, only raven generated selections files.
-#' @seealso \code{\link{imp.syrinx}} 
+#' @seealso \code{\link{imp_syrinx}} 
 #' @export
 #' @name imp_raven
 #' @examples

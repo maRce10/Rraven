@@ -27,7 +27,7 @@
 #' selection table once in Raven. Note that selection labels must be numeric and unduplicated 
 #' when exporting them to Raven. If that is not the case the function will
 #' relabeled the selections and the previous selection labels will be retained in a new ('old.selec') column.
-#' @seealso \code{\link{imp.raven}}; \code{\link{imp.syrinx}} 
+#' @seealso \code{\link{imp.raven}}; \code{\link{imp_syrinx}} 
 #' @export
 #' @name exp_raven
 #' @examples

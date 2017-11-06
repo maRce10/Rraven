@@ -22,7 +22,7 @@
 #' how selections are imported (ignored if \code{import = FALSE}).
 #' @return If \code{import = TRUE} a data frame with the selections produced during the analysis will be return as an data frame. See \code{\link{imp.raven}} for more details on how selections are imported.
 #' @details The function runs Raven interactive analysis software (Cornell Lab of Ornithology), opening many files simultaneously. Raven will still run if no sound files are provided (i.e. \code{sound.files = NULL}). At the end of the analysis the data can be automatically imported back into R using the 'import' argument. 
-#' @seealso \code{\link{imp.raven}} \code{\link{imp.syrinx}} 
+#' @seealso \code{\link{imp.raven}} \code{\link{imp_syrinx}} 
 #' @export
 #' @name run_raven
 #' @examples

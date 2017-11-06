@@ -1,19 +1,20 @@
-#' warbleR: Exchange data and open sound files in Raven from R
+#' Rraven: Exchange data and open sound files in Raven from R
 #' 
 #' Rraven is a package designed to faciliate the exchange of data between R 
 #' and the Raven bioacoustics analysis software.
+
+#' @details License: GPL (>= 2)  
 #' 
-#'  Functions:
+#'  @section Functions:
 #'   
-#' @section Obtaining avian vocalization data:
-#'   
-#'   \code{\link{imp.raven}}: Importing Raven selections
+#'   \code{\link{imp_raven}}: Importing Raven selections
 #'   
 #'   \code{\link{exp_raven}}: Export R selection tables into Raven selection file format
 #'
 #'   \code{\link{run_raven}}: Open sound files in Raven
 #'
 #'   \code{\link{imp_syrinx}}: Importing Syrinx selections
+#'      
 #'      
 #' @import warbleR 
 #' @importFrom pbapply pblapply
@@ -24,7 +25,5 @@
 #'   
 #' @docType package
 #' @name Rraven
-#' @details License: GPL (>= 2)  
-NULL
 #> NULL 
 #'
