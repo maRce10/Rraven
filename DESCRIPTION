@@ -5,7 +5,7 @@ Version: 1.0.0
 Date: 2017-04-28
 Author: Marcelo Araya-Salas
 Maintainer: Marcelo Araya-Salas <araya-salas@cornell.edu>
-Description: Exchange data and open sound files in Raven from R.
+Description: Integrating R with Raven Bioacoustics Software
 License: GPL (>= 2)
 Imports: warbleR, pbapply
 Depends: R (>= 3.2.1)
