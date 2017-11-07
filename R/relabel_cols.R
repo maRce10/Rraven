@@ -21,15 +21,23 @@
 #' \dontrun{
 #'  data("selection_file_ts")
 #' 
+#' names(selection_file_ts)
+#' 
 #' # Select data for a single sound file
-#' rcdf1 <- relabel_cols()
+#' rc1 <- relabel_cols(selection_file_ts)
+#' 
+#' names(rc1)
 #' 
 #' # plus 1 additional column
-#' rcdf2 <- relabel_cols(selection_file_ts, extra.cols.name = "selec.file", "Raven selection file")
+#' rc2 <- relabel_cols(selection_file_ts, extra.cols.name = "selec.file", "Raven selection file")
 #'
+#' names(rc2)
+#' 
 #' # plus 2 additional column 
-#' rcdf3 <- relabel_cols(selection_file_ts, extra.cols.name = c("selec.file", "View"),
+#' rc3 <- relabel_cols(selection_file_ts, extra.cols.name = c("selec.file", "View"),
 #'  c("Raven selection file", "Raven view"))
+
+#' names(rc3)
 #'   }
 #' 
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})

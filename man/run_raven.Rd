@@ -27,7 +27,7 @@ data frame into the R environment. This only works if the selections are saved i
 internally. Additional arguments can be passed to \code{\link{imp_raven}} to control the way the data is imported.}
 
 \item{redo}{Logical. Controls whether only the subset of files with no Raven selections (.txt file) in the Raven 'selections' folder
-are analyzed. Useful when resuming the analysis. Default is \code{FALSE}.}
+are analyzed (if \code{FALSE}). Useful when resuming the analysis. Default is \code{FALSE}.}
 
 \item{...}{Additional arguments to be passed to \code{\link{imp_raven}} for customizing
 how selections are imported (ignored if \code{import = FALSE}).}
@@ -47,23 +47,29 @@ The function runs Raven bioacoustics analysis software (Cornell Lab of Ornitholo
 setwd(tempdir())
 
 # save sound files 
-data(list = c("Phae.long1", "Phae.long2"))
+data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4"))
 writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE)
 writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
 
+# here replace with the path where Raven is install in your computer
 raven.path <- "PATH_TO_RAVEN_DIRECTORY_HERE" 
 
 # run function 
 run_raven(raven.path = raven.path, sound.files = c("Phae.long1.wav", "Phae.long2.wav"),
- at.the.time = 2, import = T, name.from.file = T, ext.case = "upper", all.data = T)  
+ at.the.time = 2, import = T, name.from.file = T, ext.case = "upper", 
+ all.data = TRUE, path = tempdir())  
  
 #getting all the data
-rav.dat<-run_raven(all.data = TRUE)
+rav.dat<-run_raven(all.data = TRUE, raven.path = raven.path)
 View(rav.dat)
 
-# run function on all the wav files in the working directory 
-run_raven(raven.path = raven.path, sound.files = list.files(pattern = "\\.wav$", 
-ignore.case = TRUE), at.the.time = 4, import = FALSE)
+writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
+writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
+
+# run function on all the wav files in the working directory 3 at the time
+run_raven(raven.path = raven.path, sound.files = list.files(pattern = "\\\\.wav$", 
+ignore.case = TRUE, path = tempdir()), at.the.time = 3, import = FALSE, 
+path = tempdir())
   
 }
 

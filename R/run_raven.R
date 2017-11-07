@@ -17,7 +17,7 @@
 #' "Selections" folder in the Raven directory. This argument calls the \code{\link{imp_raven}}
 #' internally. Additional arguments can be passed to \code{\link{imp_raven}} to control the way the data is imported.
 #' @param redo Logical. Controls whether only the subset of files with no Raven selections (.txt file) in the Raven 'selections' folder
-#' are analyzed. Useful when resuming the analysis. Default is \code{FALSE}.
+#' are analyzed (if \code{FALSE}). Useful when resuming the analysis. Default is \code{FALSE}.
 #' @param ... Additional arguments to be passed to \code{\link{imp_raven}} for customizing
 #' how selections are imported (ignored if \code{import = FALSE}).
 #' @return If \code{import = TRUE} a data frame with the selections produced during the analysis will be return as an data frame. See \code{\link{imp_raven}} for more details on how selections are imported.
@@ -31,23 +31,29 @@
 #' setwd(tempdir())
 #' 
 #'# save sound files 
-#' data(list = c("Phae.long1", "Phae.long2"))
+#' data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4"))
 #' writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE)
 #' writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
 #' 
+#' # here replace with the path where Raven is install in your computer
 #' raven.path <- "PATH_TO_RAVEN_DIRECTORY_HERE" 
 #' 
 #' # run function 
 #' run_raven(raven.path = raven.path, sound.files = c("Phae.long1.wav", "Phae.long2.wav"),
-#'  at.the.time = 2, import = T, name.from.file = T, ext.case = "upper", all.data = T)  
+#'  at.the.time = 2, import = T, name.from.file = T, ext.case = "upper", 
+#'  all.data = TRUE, path = tempdir())  
 #'  
 #' #getting all the data
-#' rav.dat<-run_raven(all.data = TRUE)
+#' rav.dat<-run_raven(all.data = TRUE, raven.path = raven.path)
 #' View(rav.dat)
 #' 
-#' # run function on all the wav files in the working directory 
-#' run_raven(raven.path = raven.path, sound.files = list.files(pattern = "\.wav$", 
-#' ignore.case = TRUE), at.the.time = 4, import = FALSE)
+#' writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
+#' writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
+#' 
+#' # run function on all the wav files in the working directory 3 at the time
+#' run_raven(raven.path = raven.path, sound.files = list.files(pattern = "\\.wav$", 
+#' ignore.case = TRUE, path = tempdir()), at.the.time = 3, import = FALSE, 
+#' path = tempdir())
 #'   
 #' }
 #' 
@@ -58,12 +64,6 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
                       import = FALSE, redo = FALSE, ...)
   {
   
-  wd <- getwd()
-  
-  # reset working directory 
-  on.exit(setwd(wd))
-  
-  
   #check path to working directory
   if(is.null(path)) path <- getwd() else if(!file.exists(path)) stop("'path' provided does not exist") 
   
@@ -72,7 +72,7 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
     stop("Path to 'Raven' folder must be provided")  else
       if(!file.exists(raven.path)) stop("'raven.path' provided does not exist")
     
-  setwd(raven.path)
+  # setwd(raven.path)
     
 if(is.null(sound.files))
 {
@@ -81,6 +81,7 @@ if(is.null(sound.files))
       system(file.path(raven.path, "Raven"), ignore.stderr = TRUE)
 } else {
   sound.files <- as.character(sound.files)
+  
   if(!is.vector(sound.files))
     stop("'sound.files' must be a character vector")
   
@@ -122,7 +123,7 @@ if(is.null(sound.files))
   sq <- unique(c(seq(1, length(sound.files), by = at.the.time)))
   
   # run loop over files
-  out <- pbapply::pblapply(sq, function(x)
+  out <- pbapply::pblapply(seq_along(sq), function(x)
     {
  
     fls <- sound.files[x:(x + at.the.time - 1)]
@@ -132,10 +133,12 @@ if(is.null(sound.files))
     
     if(Sys.info()[1] == "Windows")
       comnd <- paste(shQuote(file.path(raven.path, "Raven"), type = "cmd"), fls) else
-        comnd <- paste(file.path(raven.path, "Raven"), fls)
-  
+        comnd <- paste(paste("cd", raven.path, ";"), paste(file.path(raven.path, "Raven"), fls))
+    
+    # comnd <- paste(paste("cd", raven.path, ";"), paste("Raven", fls))
+    # comnd <- paste(file.path(raven.path, "Raven"), fls)
     # set working directory in Linux
-    if(Sys.info()[1] == "Linux")    system(command = paste("cd", raven.path), ignore.stderr = TRUE)
+    # if(Sys.info()[1] == "Linux") system(command = paste("cd", raven.path), ignore.stderr = TRUE)
   
     # run raven
     system(command = comnd, ignore.stderr = TRUE)

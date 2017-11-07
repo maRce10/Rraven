@@ -94,7 +94,7 @@ clist <- lapply(seq_len(length(sel.txt)), function(i)
  {   if(!all.data) { 
       if(!is.null(sound.file.col)) 
     {  
-      if(length(grep(sound.file.col, colnames(a))) == 0) stop(paste0("'",sound.file.col , "' column provided in 'sound.file.col' not found")) 
+      if(length(grep(sound.file.col, colnames(a))) == 0) stop(paste0("'",sound.file.col , "' column provided in 'sound.file.col' not found (make sure no other '.txt' files are found in that directory")) 
     c <- try(data.frame(sound.files = a[, grep(sound.file.col, colnames(a), ignore.case = TRUE)], channel = a[, grep("channel", colnames(a), ignore.case = TRUE)],
                                             selec = a[,grep("Selection",colnames(a), ignore.case = TRUE)],
              start = a[,grep("Begin.Time",colnames(a), ignore.case = TRUE)],

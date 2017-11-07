@@ -4,7 +4,8 @@
 \alias{extract_ts}
 \title{Extract time series parameters from data imported from Raven}
 \usage{
-extract_ts(X, ts.column, equal.length = FALSE, as.time.series = FALSE)
+extract_ts(X, ts.column, equal.length = FALSE, as.time.series = FALSE, 
+length.out = 30)
 }
 \arguments{
 \item{X}{Data frame imported from Raven. It should include at least columns for: sound file names, selection labels,
@@ -17,6 +18,9 @@ Default is \code{NULL}.}
 time with unequal lengths) or numbers are interpolated to equalize series length (using the \code{\link[stats]{approx}} function). All series will be interpolated to match the length of the longest series in the data. Default is \code{FALSE}.}
 
 \item{as.time.series}{Logical. Controls if data is converted to the time series format (using the \code{\link[stats]{as.ts}} function). Default is \code{FALSE}.}
+
+\item{length.out}{A numeric vector of length 1 giving the number of measurements to be
+interpolated (the length of the time series). default is 30. Ignored if equal.length is \code{FALSE}.}
 }
 \value{
 A data frame with columns for sound file name (sound.files), selection label (selec) and the time series for each selection.
@@ -32,14 +36,20 @@ The function extracts parameters enconded as time series in Raven selection file
 # Load data
 data("selection_file_ts")
 
-# freq contour 95 dif lengths
+# freq contour 95 dif length
 extract_ts(X = selection_file_ts, ts.column = "Freq.Contour.95...Hz.")
 
-# freq contour 95 equal lengths
-extract_ts(X = selection_file_ts, ts.column = "Freq.Contour.95...Hz.", equal.length = T)
+# freq contour 95 equal length
+extract_ts(X = selection_file_ts, ts.column = "Freq.Contour.95...Hz.",
+ equal.length = T)
 
-# freq contour 95 equal lengths
-extract_ts(X = selection_file_ts, ts.column = "Peak.Freq.Contour..Hz.", equal.length = T)   
+# freq contour 95 equal length
+extract_ts(X = selection_file_ts, ts.column = "Peak.Freq.Contour..Hz.",
+ equal.length = T)
+ 
+# freq contour 95 equal length 10 measurements
+extract_ts(X = selection_file_ts, ts.column = "Peak.Freq.Contour..Hz.", 
+equal.length = T, length.out = 10)     
 }
 
 }

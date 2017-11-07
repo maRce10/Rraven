@@ -59,14 +59,14 @@ data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.tab
 st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav",]
 
 # Export data of a single sound file
-exp_raven(st1, file.name = "Phaethornis Rraven examples")
+exp_raven(st1, file.name = "Phaethornis 1")
 
-writeWave(Phae.long1, "Phae.long1.wav") #save sound files 
-writeWave(Phae.long2, "Phae.long2.wav")
-writeWave(Phae.long3, "Phae.long3.wav")
-writeWave(Phae.long4, "Phae.long4.wav")
+writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE) #save sound files 
+writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
+writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
+writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
 
-exp_raven(X = selec.table, file.name = "Phaethornis warbleR examples", 
+exp_raven(X = selec.table, file.name = "Phaethornis multiple sound files", 
 sound.file.path = tempdir(), single.file = T)
 }
 
