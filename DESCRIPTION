@@ -1,6 +1,6 @@
 Package: Rraven
 Type: Package
-Title: connecting R and Raven for bioacoustic analysis
+Title: connecting between R and Raven bioacoustic software
 Version: 1.0.0
 Date: 2017-04-28
 Author: Marcelo Araya-Salas
