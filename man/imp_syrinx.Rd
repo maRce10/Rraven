@@ -59,6 +59,6 @@ View(syr.dat)
 Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
 }
 \seealso{
-\code{\link{imp.raven}}
+\code{\link{imp_raven}}
 }
 

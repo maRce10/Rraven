@@ -91,7 +91,7 @@ imp_raven<-function(path = NULL, sound.file.col = NULL, all.data = FALSE,
 #run loop for getting data of each selection file  
 clist <- lapply(seq_len(length(sel.txt)), function(i)
       {  
-      a <- try(read.table(sel.txt[i], header = TRUE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE), silent = TRUE)
+      a <- try(utils::read.table(sel.txt[i], header = TRUE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE), silent = TRUE)
       if(class(a) != "try-error")
  {   if(!all.data) { 
       if(!is.null(sound.file.col)) 

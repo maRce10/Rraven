@@ -16,7 +16,7 @@
 #' will also contain a 'sound.files' column. In addition, all rows with duplicated data are removed. This is useful when 
 #' both spectrogram and waveform views are included in the Syrinx selection files. If all.data is set to \code{TRUE} then all 
 #' columns in selection files are returned.
-#' @seealso \code{\link{imp.raven}}
+#' @seealso \code{\link{imp_raven}}
 #' @export
 #' @name imp_syrinx
 #' @examples
@@ -74,7 +74,7 @@ clist<-lapply(1:length(sel.txt), function(i)
   {    
   if(field)  {
     
-    a <- try(read.table(sel.txt[i], header = TRUE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE), silent = TRUE) 
+    a <- try(utils::read.table(sel.txt[i], header = TRUE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE), silent = TRUE) 
     if(!exclude & class(a) == "try-error") stop(paste("The selection file",sel.txt[i], "cannot be read"))
     
   if(!class(a) == "try-error" & !all.data) { c <- data.frame(selec.file = sel.txt2[i], sound.files = a[, grep("soundfile",colnames(a))],
@@ -86,7 +86,7 @@ clist<-lapply(1:length(sel.txt), function(i)
   for(i in 2:nrow(c)) if(c$selec.file[i] == c$selec.file[i-1]) c$selec[i]<-c$selec[i-1] + 1
   } else c<-a 
                                 } else {
-            a <- try(read.table(sel.txt[i], header = FALSE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE), silent = TRUE) 
+            a <- try(utils::read.table(sel.txt[i], header = FALSE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE), silent = TRUE) 
             if(!exclude & class(a) == "try-error") stop(paste("The selection file",sel.txt[i], "cannot be read"))
             
             if(!class(a) == "try-error") 

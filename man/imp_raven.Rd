@@ -8,16 +8,16 @@ imp_raven(path = NULL, sound.file.col = NULL, all.data = FALSE, recursive = FALS
  name.from.file = FALSE, ext.case = NULL, freq.cols = TRUE, waveform = FALSE)
 }
 \arguments{
-\item{path}{A character string indicating the path of the directory in which to look for the text files. 
+\item{path}{A character string indicating the path of the directory in which to look for the Raven selection (text) files. 
 If not provided (default) the function searches into the current working directory. Default is \code{NULL}).}
 
 \item{sound.file.col}{A character string with the name of the column listing the sound files in 
-the selection text files. Default is \code{NULL}). If provided, the output data
-frame will contained all columns needed for subsequent analysis in the \code{\link{warbleR}} R package. 
+the selection text files. Default is \code{NULL}. If provided, the output data
+frame will contained all columns needed for subsequent analysis in the acoustic analysis package \code{\link{warbleR}}. 
 Duplicated rows, as when "waveform" and "spectrogram" information are included for the same selection, will be removed.
 All selection files must contain "Selection", "Begin.Time" and "End.Time" columns.}
 
-\item{all.data}{Logical. If \code{TRUE}) all columns in text files are returned, 
+\item{all.data}{Logical. If \code{TRUE} all columns in the selection files are returned, 
 keeping the name columns as in the raven files (not in a format that can be read in \code{\link{warbleR}}). Default is \code{FALSE}. Columns absent in some selection files will be filled with NA's.}
 
 \item{recursive}{Logical. If \code{TRUE}) the listing recurse into sub-directories.}
@@ -43,7 +43,7 @@ both spectrogram and waveform views are included in the Raven selection files. I
 columns in selection files are returned.
 }
 \description{
-\code{imp_raven} imports Raven selection data from many files simultaneously. Files must be in .txt format.
+\code{imp_raven} imports Raven selection files simultaneously from many files. Files must be in .txt format.
 }
 \details{
 The function import raven selection data from many files simultaneously. Files must be in .txt format. Note that selection 
@@ -79,6 +79,6 @@ View(rav.dat)
 Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
 }
 \seealso{
-\code{\link{imp.syrinx}}
+\code{\link{imp_syrinx}}
 }
 

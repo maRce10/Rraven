@@ -14,15 +14,15 @@
 #'  batch is opened. Default is 10.
 #' @param import Logical. Controls if the selection tables generated should be returned as a 
 #' data frame into the R environment. This only works if the selections are saved in the 
-#' "Selections" folder in the Raven directory. This argument calls the \code{\link{imp.raven}}
-#' internally. Additional arguments can be passed to \code{\link{imp.raven}} to control the way the data is imported.
+#' "Selections" folder in the Raven directory. This argument calls the \code{\link{imp_raven}}
+#' internally. Additional arguments can be passed to \code{\link{imp_raven}} to control the way the data is imported.
 #' @param redo Logical. Controls whether only the subset of files with no Raven selections (.txt file) in the Raven 'selections' folder
 #' are analyzed. Useful when resuming the analysis. Default is \code{FALSE}.
-#' @param ... Additional arguments to be passed to \code{\link{imp.raven}} for customizing
+#' @param ... Additional arguments to be passed to \code{\link{imp_raven}} for customizing
 #' how selections are imported (ignored if \code{import = FALSE}).
-#' @return If \code{import = TRUE} a data frame with the selections produced during the analysis will be return as an data frame. See \code{\link{imp.raven}} for more details on how selections are imported.
+#' @return If \code{import = TRUE} a data frame with the selections produced during the analysis will be return as an data frame. See \code{\link{imp_raven}} for more details on how selections are imported.
 #' @details The function runs Raven interactive analysis software (Cornell Lab of Ornithology), opening many files simultaneously. Raven will still run if no sound files are provided (i.e. \code{sound.files = NULL}). At the end of the analysis the data can be automatically imported back into R using the 'import' argument. 
-#' @seealso \code{\link{imp.raven}} \code{\link{imp_syrinx}} 
+#' @seealso \code{\link{imp_raven}} \code{\link{imp_syrinx}} 
 #' @export
 #' @name run_raven
 #' @examples
@@ -102,7 +102,7 @@ if(is.null(sound.files))
   if(!redo) {
     # get names of files from selections
     sls <- NULL
-    try(sls <- imp.raven(path = file.path(raven.path, "Selections"), all.data = TRUE), silent = TRUE)
+    try(sls <- imp_raven(path = file.path(raven.path, "Selections"), all.data = TRUE), silent = TRUE)
     
     # remove those that have a selection table
     if(!is.null(sls))
@@ -144,7 +144,7 @@ if(is.null(sound.files))
 }
   
   if(import){
-    sels <- imp.raven(path = file.path(raven.path, "Selections"), ...)
+    sels <- imp_raven(path = file.path(raven.path, "Selections"), ...)
     
     # extract recording names from selec.file column
     rec.nms <- sapply(1:nrow(sels), function(x){

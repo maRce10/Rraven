@@ -65,6 +65,6 @@ exp_raven(st1, file.name = "Phaethornis Rraven examples")
 Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
 }
 \seealso{
-\code{\link{imp.raven}}; \code{\link{imp.syrinx}}
+\code{\link{imp_raven}}; \code{\link{imp_syrinx}}
 }
 

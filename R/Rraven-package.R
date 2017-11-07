@@ -1,7 +1,7 @@
 #' Rraven: Exchange data and open sound files in Raven from R
 #' 
-#' Rraven is a package designed to facilitate the exchange of data between R 
-#' and the Raven bioacoustics analysis software.
+#' @description Rraven is a package designed to facilitate the exchange of data
+#' between R and the Raven bioacoustics analysis software.
 
 #' @details License: GPL (>= 2)  
 #' 
@@ -15,8 +15,7 @@
 #'
 #'   \code{\link{imp_syrinx}}: Importing Syrinx selections
 #'      
-#'      
-#' @import warbleR 
+#' @importFrom warbleR wavdur 
 #' @importFrom pbapply pblapply
 #' @importFrom utils read.table write.table
 #' @author Marcelo Araya-Salas

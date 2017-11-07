@@ -23,17 +23,17 @@ batch is opened. Default is 10.}
 
 \item{import}{Logical. Controls if the selection tables generated should be returned as a 
 data frame into the R environment. This only works if the selections are saved in the 
-"Selections" folder in the Raven directory. This argument calls the \code{\link{imp.raven}}
-internally. Additional arguments can be passed to \code{\link{imp.raven}} to control the way the data is imported.}
+"Selections" folder in the Raven directory. This argument calls the \code{\link{imp_raven}}
+internally. Additional arguments can be passed to \code{\link{imp_raven}} to control the way the data is imported.}
 
 \item{redo}{Logical. Controls whether only the subset of files with no Raven selections (.txt file) in the Raven 'selections' folder
 are analyzed. Useful when resuming the analysis. Default is \code{FALSE}.}
 
-\item{...}{Additional arguments to be passed to \code{\link{imp.raven}} for customizing
+\item{...}{Additional arguments to be passed to \code{\link{imp_raven}} for customizing
 how selections are imported (ignored if \code{import = FALSE}).}
 }
 \value{
-If \code{import = TRUE} a data frame with the selections produced during the analysis will be return as an data frame. See \code{\link{imp.raven}} for more details on how selections are imported.
+If \code{import = TRUE} a data frame with the selections produced during the analysis will be return as an data frame. See \code{\link{imp_raven}} for more details on how selections are imported.
 }
 \description{
 \code{run_raven} opens several sound files in Raven sound analysis software
@@ -72,6 +72,6 @@ ignore.case = TRUE), at.the.time = 4, import = FALSE)
 Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
 }
 \seealso{
-\code{\link{imp.raven}} \code{\link{imp.syrinx}}
+\code{\link{imp_raven}} \code{\link{imp_syrinx}}
 }
 

@@ -27,7 +27,7 @@
 #' selection table once in Raven. Note that selection labels must be numeric and unduplicated 
 #' when exporting them to Raven. If that is not the case the function will
 #' relabeled the selections and the previous selection labels will be retained in a new ('old.selec') column.
-#' @seealso \code{\link{imp.raven}}; \code{\link{imp_syrinx}} 
+#' @seealso \code{\link{imp_raven}}; \code{\link{imp_syrinx}} 
 #' @export
 #' @name exp_raven
 #' @examples
@@ -105,7 +105,7 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
     
     if(length(unique(X$'Begin File')) > 1 & single.file)
     {
-      durs <- wavdur(path = sound.file.path)
+      durs <- warbleR::wavdur(path = sound.file.path)
     durs$cumdur <- cumsum(durs$duration)
     durs <- durs[durs$sound.files %in% X$'Begin File', ]
     
@@ -156,7 +156,7 @@ out <-  lapply(seq_len(nrow(row.list)), function(x){
   if(substr(file.name, start = nchar(file.name)- 3, nchar(file.name)) != ".txt")
     file.name <- paste0(file.name, ".txt")
   
-  write.table(x = X[c(row.list[x, 1] : row.list[x, 2]),], sep = "\t", file = file.name, row.names = FALSE, quote = FALSE)  
+  utils::write.table(x = X[c(row.list[x, 1] : row.list[x, 2]),], sep = "\t", file = file.name, row.names = FALSE, quote = FALSE)  
 })
   
  
