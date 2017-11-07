@@ -3,7 +3,7 @@
 #' \code{exp_raven} exports selection tables as Raven selection data in .txt format.
 #' @usage exp_raven(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, 
 #' sound.file.path = NULL, single.file = TRUE)
-#' @param X Data frame with containing columns for sound file (sound.files), selection (selec), start and end time of signals ('start' and 'end') and low and high frequency ('low.freq' and 'high.freq', optional). See example data 'selec.table'.
+#' @param X Data frame containing columns for sound file (sound.files), selection (selec), start and end time of signals ('start' and 'end') and low and high frequency ('low.freq' and 'high.freq', optional). See example data 'selec.table'.
 #' @param path A character string indicating the path of the directory in which to save the selection files. 
 #' If not provided (default) the function saves the file into the current working directory.
 #' @param file.name Name of the output .txt file. If \code{NULL} then the sound file names are used instead.
