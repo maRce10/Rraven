@@ -5,16 +5,15 @@
 #' @usage imp_syrinx(path = NULL, all.data = FALSE, recursive = FALSE, 
 #' exclude = FALSE, hz.to.khz = TRUE)  
 #' @param path A character string indicating the path of the directory in which to look for the text files. 
-#' If not provided (default) the function searches into the current working directory. Default is \code{NULL}).
-#' @param all.data Logical. If \code{TRUE}) all columns in text files are returned. Default is \code{FALSE}). Note 
+#' If not provided (default) the function searches into the current working directory. Default is \code{NULL}.
+#' @param all.data Logical. If \code{TRUE} all columns in text files are returned. Default is \code{FALSE}. Note 
 #' that all files should contain exactly the same columns in the same order. 
-#' @param recursive Logical. If \code{TRUE}) the listing recurse into sub-directories.
+#' @param recursive Logical. If \code{TRUE} the listing recurse into sub-directories.
 #' @param exclude Logical. Controls whether files that cannot be read are ignored (\code{TRUE}). Default is \code{FALSE}.
 #' @param hz.to.khz Logical. Controls if frequency variables should be converted from  Hz (the unit used by Syrinx) to kHz (the unit used by warbleR and other bioacoustic analyssis packages in R). Default if \code{TRUE}. Ignored if all.data is \code{TRUE}.
-#' @return A single data frame with information of the selection files. If all.data argument is set to \code{FALSE}) the data 
+#' @return A single data frame with information of the selection files. If all.data argument is set to \code{FALSE} the data 
 #' frame contains the following columns: selec, start, end, and selec.file. If sound.file.col is provided the data frame
-#' will also contain a 'sound.files' column. In addition, all rows with duplicated data are removed. This is useful when 
-#' both spectrogram and waveform views are included in the Syrinx selection files. If all.data is set to \code{TRUE} then all 
+#' will also contain a 'sound.files' column. If all.data is set to \code{TRUE} then all 
 #' columns in selection files are returned.
 #' @seealso \code{\link{imp_raven}}
 #' @export
@@ -33,17 +32,17 @@
 #' write.table(selection.files[[4]],file = "Phae.long4.wav.txt",row.names = FALSE, 
 #' col.names = FALSE, sep= "\t")
 #' 
-#' syr.dat<-imp_syrinx(all.data = FALSE)
+#' syr.dat <- imp_syrinx(all.data = FALSE)
 #' 
 #' View(syr.dat)
 #' 
 #' #getting all the data
-#' syr.dat<-imp_syrinx(all.data = TRUE)
+#' syr.dat <- imp_syrinx(all.data = TRUE)
 #' 
 #' View(syr.dat)
 #' }
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
-#last modification on jul-5-2016 (MAS)
+#last modification on nov-7-2017
 
 imp_syrinx <- function(path = NULL, all.data = FALSE, recursive = FALSE,
                        exclude = FALSE, hz.to.khz = TRUE) 

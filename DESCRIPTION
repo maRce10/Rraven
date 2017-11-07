@@ -5,9 +5,9 @@ Version: 1.0.0
 Date: 2017-04-28
 Author: Marcelo Araya-Salas
 Maintainer: Marcelo Araya-Salas <araya-salas@cornell.edu>
-Description: A tool to exchange data between R and Raven bioacoustic software. Functions work on data formats compatible with the R package warbleR.
+Description: A tool to exchange data between R and Raven bioacoustic software (Cornell Lab of Ornithology). Functions work on data formats compatible with the R package warbleR.
 License: GPL (>= 2)
-Imports: pbapply, warbleR, utils
+Imports: pbapply, warbleR, utils, stats
 Depends: R (>= 3.2.1)
 LazyData: TRUE
 URL: https://github.com/maRce10/Rraven 

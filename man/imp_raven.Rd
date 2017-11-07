@@ -9,46 +9,45 @@ imp_raven(path = NULL, sound.file.col = NULL, all.data = FALSE, recursive = FALS
 }
 \arguments{
 \item{path}{A character string indicating the path of the directory in which to look for the Raven selection (text) files. 
-If not provided (default) the function searches into the current working directory. Default is \code{NULL}).}
+If not provided (default) the function searches into the current working directory.}
 
-\item{sound.file.col}{A character string with the name of the column listing the sound files in 
+\item{sound.file.col}{A character string with the name of the column containing the sound files in 
 the selection text files. Default is \code{NULL}. If provided, the output data
 frame will contained all columns needed for subsequent analysis in the acoustic analysis package \code{\link{warbleR}}. 
 Duplicated rows, as when "waveform" and "spectrogram" information are included for the same selection, will be removed.
 All selection files must contain "Selection", "Begin.Time" and "End.Time" columns.}
 
 \item{all.data}{Logical. If \code{TRUE} all columns in the selection files are returned, 
-keeping the name columns as in the raven files (not in a format that can be read in \code{\link{warbleR}}). Default is \code{FALSE}. Columns absent in some selection files will be filled with NA's.}
+keeping the name columns as in the raven files. Default is \code{FALSE}. Columns absent in some selection files will be filled with NA's.}
 
-\item{recursive}{Logical. If \code{TRUE}) the listing recurse into sub-directories.}
+\item{recursive}{Logical. If \code{TRUE} the listing recurse into sub-directories.}
 
-\item{name.from.file}{Logical. If \code{TRUE}) the sound file names are extracted from the selection text file name. 
+\item{name.from.file}{Logical. If \code{TRUE} the sound file names are extracted from the selection text file name. 
 It asssumes that selections files contained the suffix "Table.1.selections.txt" or "selections.txt". 
 Note that by default it will assume that the extension file name is ".wav". This can be control using the
 argumet 'ext.wav'. Default is \code{FALSE}). Ignored if sound.file.col' is provided and/or all.data is \code{TRUE}).}
 
 \item{ext.case}{Character string of length 1 to specify whether sound file extensions are in upper or lower case. This should match the extension of the
-of the .wav files from which the selection were made. It must be either 'upper' or 'lower'. Only needed when 'name.from.file' is \code{TRUE}). 
-Ignored if 'sound.file.col' is provided and/or all.data is \code{TRUE}).}
+of the .wav files from which the selection were made. It must be either 'upper' or 'lower'. Only needed when 'name.from.file' is \code{TRUE}. 
+Ignored if 'sound.file.col' is provided and/or all.data is \code{TRUE}.}
 
-\item{freq.cols}{Logical. If \code{TRUE}) 'Low Freq' and 'High Freq' columns are also imported. Ignored if all.data is \code{TRUE}.}
+\item{freq.cols}{Logical. If \code{TRUE} 'Low Freq' and 'High Freq' columns are also imported. Ignored if all.data is \code{TRUE}.}
 
-\item{waveform}{Logical to control if 'waveform' related data should be included (this data is typically duplicated in 'spectrogram' data).  Default is \code{FALSE} (not to include it).}
+\item{waveform}{Logical to control if waveform view data should be included (this data is typically duplicated in spectrogram view data).  Default is \code{FALSE} (not to include it).}
 }
 \value{
-A single data frame with information of the selection files. If all.data argument is set to \code{FALSE}) the data 
+A single data frame with information of the selection files. If 'all.data' argument is set to \code{FALSE} the data 
 frame contains the following columns: selec, start, end, and selec.file. If sound.file.col is provided the data frame
 will also contain a 'sound.files' column. In addition, all rows with duplicated data are removed. This is useful when 
 both spectrogram and waveform views are included in the Raven selection files. If all.data is set to \code{TRUE} then all 
-columns in selection files are returned.
+columns in the Raven selection files are returned.
 }
 \description{
-\code{imp_raven} imports Raven selection files simultaneously from many files. Files must be in .txt format.
+\code{imp_raven} imports Raven selection files simultaneously from many files. Files must be in '.txt' format.
 }
 \details{
-The function import raven selection data from many files simultaneously. Files must be in .txt format. Note that selection 
-files including data from mulitple recordings cannot be imported. Make sure that NO OTHER TEXT FILES are found
-in the working directory, only raven generated selections files.
+The function import raven selection data from many files simultaneously. Files must be in .txt format. Selection 
+files including data from mulitple recordings can also be imported.
 }
 \examples{
 \dontrun{
@@ -63,15 +62,14 @@ row.names = FALSE, sep= '\\t')
 write.table(selection.files[[2]],file = "1023-Arremonops rufivirgatus.selections.txt",
 row.names = FALSE, sep= '\\t')
 
-## MAKE SURE THERE ARE NO OTHER .txt FILES IN THE WORKING DIRECTORY
  #providing the name of the column with the sound file names
-rav.dat<-imp_raven(sound.file.col = "End.File", all.data = FALSE)
+rav.dat <- imp_raven(sound.file.col = "End.File", all.data = FALSE)
 
 View(rav.dat)
 
 #getting all the data
-rav.dat<-imp_raven(all.data = TRUE)
-View(rav.dat)
+rav.dat2 <- imp_raven(all.data = TRUE)
+View(rav.dat2)
 }
 
 }
