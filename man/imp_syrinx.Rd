@@ -36,6 +36,7 @@ All files must be have the same columns.
 setwd(tempdir())
 
 #load data 
+library(warbleR)
 data(selection.files)
 
 write.table(selection.files[[3]],file = "harpyeagle.wav.txt",row.names = FALSE,

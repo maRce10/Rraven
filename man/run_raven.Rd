@@ -39,7 +39,11 @@ If \code{import = TRUE} a data frame with the selections produced during the ana
 \code{run_raven} opens several sound files in Raven sound analysis software
 }
 \details{
-The function runs Raven bioacoustics analysis software (Cornell Lab of Ornithology), opening many files simultaneously. Raven will still run if no sound files are provided (i.e. \code{sound.files = NULL}). At the end of the analysis the data can be automatically imported back into R using the 'import' argument.
+The function runs Raven bioacoustics analysis software (Cornell Lab of
+Ornithology), opening many files simultaneously. Raven will still run if no
+sound files are provided (i.e. \code{sound.files = NULL}). At the end of the
+analysis the data can be automatically imported back into R using the 'import'
+argument. Raven Pro must be installed.
 }
 \examples{
 \dontrun{

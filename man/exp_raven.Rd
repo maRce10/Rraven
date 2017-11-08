@@ -41,7 +41,9 @@ No objects are returned in the R environment.
 \code{exp_raven} exports selection tables as Raven selection data in .txt format.
 }
 \details{
-The function exports selection tables as the ones used by the bioacoustic analysis R package \code{\link{warbleR}} to Raven selection files in '.txt' format. This can be useful to obtain additional Raven
+The function exports selection tables (as the ones used in the R 
+package \code{\link{warbleR}}) into the Raven selection file format ('.txt').
+ This can be useful to obtain additional Raven
 measurements on existing selections by adding new measurements to the 
 selection table once in Raven. Note that selection labels must be numeric and unduplicated 
 when exporting them to Raven. If that is not the case the function will
