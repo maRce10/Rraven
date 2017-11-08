@@ -21,7 +21,11 @@
 #' @param ... Additional arguments to be passed to \code{\link{imp_raven}} for customizing
 #' how selections are imported (ignored if \code{import = FALSE}).
 #' @return If \code{import = TRUE} a data frame with the selections produced during the analysis will be return as an data frame. See \code{\link{imp_raven}} for more details on how selections are imported.
-#' @details The function runs Raven bioacoustics analysis software (Cornell Lab of Ornithology), opening many files simultaneously. Raven will still run if no sound files are provided (i.e. \code{sound.files = NULL}). At the end of the analysis the data can be automatically imported back into R using the 'import' argument. 
+#' @details The function runs Raven bioacoustics analysis software (Cornell Lab of
+#' Ornithology), opening many files simultaneously. Raven will still run if no
+#' sound files are provided (i.e. \code{sound.files = NULL}). At the end of the
+#' analysis the data can be automatically imported back into R using the 'import'
+#' argument. Raven Pro must be installed.
 #' @seealso \code{\link{imp_raven}}; \code{\link{imp_syrinx}};  \code{\link{run_raven}}  
 #' @export
 #' @name run_raven

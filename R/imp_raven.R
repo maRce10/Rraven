@@ -37,6 +37,8 @@
 #' # First set temporary folder
 #' setwd(tempdir())
 #' 
+#' #load data 
+#' library(warbleR)
 #' data(selection.files)
 #' 
 #' write.table(selection.files[[1]],file = "100889-Garrulax monileger.selections.txt",

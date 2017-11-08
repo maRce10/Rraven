@@ -18,7 +18,7 @@
 #'   
 #'   \code{\link{run_raven}}: Open sound files in Raven
 #'      
-#' @importFrom warbleR wavdur 
+#' @import warbleR 
 #' @importFrom pbapply pblapply
 #' @importFrom stats approx as.ts
 #' @importFrom utils read.table write.table
