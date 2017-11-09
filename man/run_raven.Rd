@@ -8,7 +8,7 @@ run_raven(raven.path = NULL, sound.files = NULL, path = NULL, at.the.time = 10,
 import = FALSE, redo = FALSE, ...)
 }
 \arguments{
-\item{raven.path}{A character string indicating the path of the directory in which to look for the raven executable file (where Raven was installed).}
+\item{raven.path}{A character string indicating the path of the directory in which to look for the Raven executable file (where Raven was installed).}
 
 \item{sound.files}{character vector indicating the files that will be analyzed. If  \code{NULL} (default) then Raven will be run without opening any file.}
 
@@ -50,7 +50,8 @@ argument. Raven Pro must be installed.
 # First set temporary folder
 setwd(tempdir())
 
-# save sound files 
+# save sound files
+library(warbleR) 
 data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4"))
 writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE)
 writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)

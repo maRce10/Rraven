@@ -2,7 +2,8 @@
 
 export(exp_raven)
 export(extract_ts)
+export(imp_corr_mat)
 export(imp_raven)
 export(imp_syrinx)
-export(relabel_cols)
+export(relabel_colms)
 export(run_raven)

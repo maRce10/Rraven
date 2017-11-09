@@ -2,7 +2,7 @@
 % Please edit documentation in R/exp_raven.R
 \name{exp_raven}
 \alias{exp_raven}
-\title{Export raven selections}
+\title{Export Raven selections}
 \usage{
 exp_raven(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, 
 sound.file.path = NULL, single.file = TRUE)
@@ -55,6 +55,7 @@ relabeled the selections and the previous selection labels will be retained in a
 setwd(tempdir())
 
 # Load data
+library(warbleR)
 data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table"))
 
 # Select data for a single sound file

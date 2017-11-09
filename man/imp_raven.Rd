@@ -18,7 +18,7 @@ Duplicated rows, as when "waveform" and "spectrogram" information are included f
 All selection files must contain "Selection", "Begin.Time" and "End.Time" columns.}
 
 \item{all.data}{Logical. If \code{TRUE} all columns in the selection files are returned, 
-keeping the name columns as in the raven files. Default is \code{FALSE}. Columns absent in some selection files will be filled with NA's.}
+keeping the name columns as in the Raven files. Default is \code{FALSE}. Columns absent in some selection files will be filled with NA's.}
 
 \item{recursive}{Logical. If \code{TRUE} the listing recurse into sub-directories.}
 
@@ -46,7 +46,7 @@ columns in the Raven selection files are returned.
 \code{imp_raven} imports Raven selection files simultaneously from many files. Files must be in '.txt' format.
 }
 \details{
-The function import raven selection data from many files simultaneously. Files must be in .txt format. Selection 
+The function import Raven selection data from many files simultaneously. Files must be in .txt format. Selection 
 files including data from mulitple recordings can also be imported.
 }
 \examples{

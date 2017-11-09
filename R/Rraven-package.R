@@ -10,11 +10,13 @@
 #'   
 #'   \code{\link{exp_raven}}: Export R selection tables into Raven selection file format
 #'   
+#'   \code{\link{imp_corr_mat}}: Import Raven batch correlator output 
+#'   
 #'   \code{\link{imp_raven}}: Importing Raven selections
 #'   
 #'   \code{\link{imp_syrinx}}: Importing Syrinx selections
 #'   
-#'   \code{\link{relabel_cols}}: Relabel columns to match the selection table format
+#'   \code{\link{ relabel_colms}}: Relabel columns to match the selection table format
 #'   
 #'   \code{\link{run_raven}}: Open sound files in Raven
 #'      

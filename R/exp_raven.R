@@ -1,4 +1,4 @@
-#' Export raven selections
+#' Export Raven selections
 #' 
 #' \code{exp_raven} exports selection tables as Raven selection data in .txt format.
 #' @usage exp_raven(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, 
@@ -40,6 +40,7 @@
 #' setwd(tempdir())
 #' 
 #' # Load data
+#' library(warbleR)
 #' data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table"))
 #' 
 #' # Select data for a single sound file

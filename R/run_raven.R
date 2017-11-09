@@ -3,7 +3,7 @@
 #' \code{run_raven} opens several sound files in Raven sound analysis software
 #' @usage run_raven(raven.path = NULL, sound.files = NULL, path = NULL, at.the.time = 10,
 #' import = FALSE, redo = FALSE, ...)  
-#' @param raven.path A character string indicating the path of the directory in which to look for the raven executable file (where Raven was installed). 
+#' @param raven.path A character string indicating the path of the directory in which to look for the Raven executable file (where Raven was installed). 
 #' @param sound.files character vector indicating the files that will be analyzed. If  \code{NULL} (default) then Raven will be run without opening any file.
 #' @param path A character string indicating the path of the directory in which to look for
 #' the sound files. If not provided (default) the function searches into the current working 
@@ -34,7 +34,8 @@
 #' # First set temporary folder
 #' setwd(tempdir())
 #' 
-#'# save sound files 
+#'# save sound files
+#' library(warbleR) 
 #' data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4"))
 #' writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE)
 #' writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
@@ -71,12 +72,15 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
   #check path to working directory
   if(is.null(path)) path <- getwd() else if(!file.exists(path)) stop("'path' provided does not exist") 
   
+  # reset working directory 
+  wd <- getwd()
+  on.exit(setwd(wd))
   
-  if(is.null(raven.path))
+    if(is.null(raven.path))
     stop("Path to 'Raven' folder must be provided")  else
       if(!file.exists(raven.path)) stop("'raven.path' provided does not exist")
     
-  # setwd(raven.path)
+  
     
 if(is.null(sound.files))
 {
@@ -107,7 +111,7 @@ if(is.null(sound.files))
   if(!redo) {
     # get names of files from selections
     sls <- NULL
-    try(sls <- imp_raven(path = file.path(raven.path, "Selections"), all.data = TRUE), silent = TRUE)
+    try(sls <- imp_raven(path = file.path(raven.path, "Selections"), ...), silent = TRUE)
     
     # remove those that have a selection table
     if(!is.null(sls))

@@ -1,7 +1,7 @@
 #' Relabel columns to match the selection table format 
 #' 
-#' \code{relabel_cols} relabels columns to match the selection table format (as in the R package \code{\link{warbleR}})
-#' @usage relabel_cols(X, extra.cols.name = NULL, extra.cols.new.name = NULL, khz.to.hz = FALSE, 
+#' \code{ relabel_colms} relabels columns to match the selection table format (as in the R package \code{\link{warbleR}})
+#' @usage  relabel_colms(X, extra.cols.name = NULL, extra.cols.new.name = NULL, khz.to.hz = FALSE, 
 #' waveform = FALSE)
 #' @param X Data frame imported from Raven.
 #' @param extra.cols.name Character vector with the names of additional columns to be relabeled. Default is \code{NULL}.
@@ -16,7 +16,7 @@
 #' @details This function relabels columns to match the selection table format to match then ones used by other bioacoustic analysis R packages like \code{\link{warbleR}}. 
 #' @seealso \code{\link{imp_raven}}; \code{\link{exp_raven}} 
 #' @export
-#' @name relabel_cols
+#' @name  relabel_colms
 #' @examples
 #' \dontrun{
 #'  data("selection_file_ts")
@@ -24,17 +24,17 @@
 #' names(selection_file_ts)
 #' 
 #' # Select data for a single sound file
-#' rc1 <- relabel_cols(selection_file_ts)
+#' rc1 <-  relabel_colms(selection_file_ts)
 #' 
 #' names(rc1)
 #' 
 #' # plus 1 additional column
-#' rc2 <- relabel_cols(selection_file_ts, extra.cols.name = "selec.file", "Raven selection file")
+#' rc2 <-  relabel_colms(selection_file_ts, extra.cols.name = "selec.file", "Raven selection file")
 #'
 #' names(rc2)
 #' 
 #' # plus 2 additional column 
-#' rc3 <- relabel_cols(selection_file_ts, extra.cols.name = c("selec.file", "View"),
+#' rc3 <-  relabel_colms(selection_file_ts, extra.cols.name = c("selec.file", "View"),
 #'  c("Raven selection file", "Raven view"))
 
 #' names(rc3)
@@ -43,7 +43,7 @@
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
 #last modification on nov-7-2017
 
-relabel_cols <- function(X, extra.cols.name = NULL, extra.cols.new.name = NULL, khz.to.hz = FALSE,  waveform = FALSE){
+ relabel_colms <- function(X, extra.cols.name = NULL, extra.cols.new.name = NULL, khz.to.hz = FALSE,  waveform = FALSE){
   
   #if X is not a data frame
   if(!class(X) == "data.frame") stop("X is not a data frame")

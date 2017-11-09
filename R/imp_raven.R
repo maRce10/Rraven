@@ -11,7 +11,7 @@
 #' Duplicated rows, as when "waveform" and "spectrogram" information are included for the same selection, will be removed.
 #' All selection files must contain "Selection", "Begin.Time" and "End.Time" columns.
 #' @param all.data Logical. If \code{TRUE} all columns in the selection files are returned, 
-#' keeping the name columns as in the raven files. Default is \code{FALSE}. Columns absent in some selection files will be filled with NA's.
+#' keeping the name columns as in the Raven files. Default is \code{FALSE}. Columns absent in some selection files will be filled with NA's.
 #' @param recursive Logical. If \code{TRUE} the listing recurse into sub-directories.
 #' @param name.from.file Logical. If \code{TRUE} the sound file names are extracted from the selection text file name. 
 #' It asssumes that selections files contained the suffix "Table.1.selections.txt" or "selections.txt". 
@@ -27,7 +27,7 @@
 #' will also contain a 'sound.files' column. In addition, all rows with duplicated data are removed. This is useful when 
 #' both spectrogram and waveform views are included in the Raven selection files. If all.data is set to \code{TRUE} then all 
 #' columns in the Raven selection files are returned. 
-#' @details The function import raven selection data from many files simultaneously. Files must be in .txt format. Selection 
+#' @details The function import Raven selection data from many files simultaneously. Files must be in .txt format. Selection 
 #' files including data from mulitple recordings can also be imported. 
 #' @seealso \code{\link{imp_syrinx}} 
 #' @export
@@ -146,7 +146,7 @@ clist <- clist[sapply(clist, is.data.frame)]
 clist <- lapply(clist, function(X){
   
   if(!all.data)
-  sfcol <- "sound.files" else sfcol <- grep("\\.File$", names(X), value = TRUE)[1]
+  sfcol <- "sound.files" else sfcol <- grep("\\.File$|\\.Path$", names(X), value = TRUE)[1]
   
   if(length(unique(X[,sfcol])) > 1) 
   {
@@ -194,6 +194,9 @@ b <- b[, c(clm, setdiff(1:ncol(b), clm))]
 
 if(!waveform & all.data)
   b <- b[grep("Waveform", b$View, ignore.case = TRUE, invert = TRUE), ]
+
+if(!all.data)
+  b$sound.files <- basename(b$sound.files)
 
 if(length(error.files) > 0) cat(paste("some files could not be read:",paste(error.files, collapse = "/")))
 
