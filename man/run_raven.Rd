@@ -5,7 +5,7 @@
 \title{Open sound files in Raven sound analysis software}
 \usage{
 run_raven(raven.path = NULL, sound.files = NULL, path = NULL, at.the.time = 10,
-import = FALSE, redo = FALSE, ...)
+import = FALSE, redo = FALSE, view.preset = NULL, pb = TRUE, ...)
 }
 \arguments{
 \item{raven.path}{A character string indicating the path of the directory in which to look for the Raven executable file (where Raven was installed).}
@@ -29,6 +29,11 @@ internally. Additional arguments can be passed to \code{\link{imp_raven}} to con
 \item{redo}{Logical. Controls whether only the subset of files with no Raven selections (.txt file) in the Raven 'selections' folder
 are analyzed (if \code{FALSE}). Useful when resuming the analysis. Default is \code{FALSE}.}
 
+\item{view.preset}{Character string defining the Raven view preset to be used.
+It should match exactly the name of the present in the Raven folder 'Presets/Sound Window'. If not provided the default view preset is used.}
+
+\item{pb}{Logical argument to control progress bar. Default is \code{TRUE}.}
+
 \item{...}{Additional arguments to be passed to \code{\link{imp_raven}} for customizing
 how selections are imported (ignored if \code{import = FALSE}).}
 }
@@ -43,7 +48,8 @@ The function runs Raven bioacoustics analysis software (Cornell Lab of
 Ornithology), opening many files simultaneously. Raven will still run if no
 sound files are provided (i.e. \code{sound.files = NULL}). At the end of the
 analysis the data can be automatically imported back into R using the 'import'
-argument. Raven Pro must be installed.
+argument. Raven Pro must be installed. Note that Raven can also take sound files in 'mp3', 'flac' and
+'aif' format.
 }
 \examples{
 \dontrun{

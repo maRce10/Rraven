@@ -2,7 +2,7 @@
 #' 
 #' \code{run_raven} opens several sound files in Raven sound analysis software
 #' @usage run_raven(raven.path = NULL, sound.files = NULL, path = NULL, at.the.time = 10,
-#' import = FALSE, redo = FALSE, ...)  
+#' import = FALSE, redo = FALSE, view.preset = NULL, pb = TRUE, ...)  
 #' @param raven.path A character string indicating the path of the directory in which to look for the Raven executable file (where Raven was installed). 
 #' @param sound.files character vector indicating the files that will be analyzed. If  \code{NULL} (default) then Raven will be run without opening any file.
 #' @param path A character string indicating the path of the directory in which to look for
@@ -18,6 +18,9 @@
 #' internally. Additional arguments can be passed to \code{\link{imp_raven}} to control the way the data is imported.
 #' @param redo Logical. Controls whether only the subset of files with no Raven selections (.txt file) in the Raven 'selections' folder
 #' are analyzed (if \code{FALSE}). Useful when resuming the analysis. Default is \code{FALSE}.
+#' @param view.preset Character string defining the Raven view preset to be used.
+#' It should match exactly the name of the present in the Raven folder 'Presets/Sound Window'. If not provided the default view preset is used.
+#' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
 #' @param ... Additional arguments to be passed to \code{\link{imp_raven}} for customizing
 #' how selections are imported (ignored if \code{import = FALSE}).
 #' @return If \code{import = TRUE} a data frame with the selections produced during the analysis will be return as an data frame. See \code{\link{imp_raven}} for more details on how selections are imported.
@@ -25,7 +28,8 @@
 #' Ornithology), opening many files simultaneously. Raven will still run if no
 #' sound files are provided (i.e. \code{sound.files = NULL}). At the end of the
 #' analysis the data can be automatically imported back into R using the 'import'
-#' argument. Raven Pro must be installed.
+#' argument. Raven Pro must be installed. Note that Raven can also take sound files in 'mp3', 'flac' and
+#' 'aif' format.
 #' @seealso \code{\link{imp_raven}}; \code{\link{imp_syrinx}};  \code{\link{run_raven}}  
 #' @export
 #' @name run_raven
@@ -66,37 +70,43 @@
 #last modification on nov-7-2017
 
 run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the.time = 10,
-                      import = FALSE, redo = FALSE, ...)
+                      import = FALSE, redo = FALSE, view.preset = NULL, 
+                      pb = TRUE, ...)
   {
   
   #check path to working directory
   if(is.null(path)) path <- getwd() else if(!file.exists(path)) stop("'path' provided does not exist") 
   
-  # reset working directory 
-  wd <- getwd()
-  on.exit(setwd(wd))
-  
-    if(is.null(raven.path))
+  if(is.null(raven.path))
     stop("Path to 'Raven' folder must be provided")  else
       if(!file.exists(raven.path)) stop("'raven.path' provided does not exist")
+
+  # reset working directory 
+  wd <- getwd()
+  on.exit(setwd(wd), add = TRUE)
+  setwd(raven.path)
+      
+  if(!is.null(view.preset))
+   if(!any(view.preset %in% list.files(path = file.path(raven.path, "Presets/Sound Window")))) stop("'view.preset' provided not found")
     
+  def.view.p <- grep("^Default", value = TRUE,  list.files(path = file.path(raven.path, "Presets/Sound Window")))
+
+  out <- file.copy(from = file.path(raven.path, "Presets/Sound Window", def.view.p), to = file.path(raven.path, "Presets/Sound Window/temp.default"))
+
+  out <- file.copy(from =  file.path(raven.path, "Presets/Sound Window",view.preset), to =  file.path(raven.path, "Presets/Sound Window", def.view.p), overwrite = TRUE)
+    
+  on.exit(out <- file.copy(from =  file.path(raven.path, "Presets/Sound Window/temp.default"), to =  file.path(raven.path, "Presets/Sound Window", def.view.p), overwrite = TRUE), add = TRUE)
   
-    
-if(is.null(sound.files))
+  if(is.null(sound.files))
 {
   if(Sys.info()[1] == "Windows")
-    system(shQuote(file.path(raven.path, "Raven"), type = "cmd"), ignore.stderr = TRUE) else
-      system(file.path(raven.path, "Raven"), ignore.stderr = TRUE)
+    out <- system(shQuote(file.path(raven.path, "Raven"), type = "cmd"), ignore.stderr = TRUE, intern = TRUE) else
+      out <- system(file.path(raven.path, "Raven"), ignore.stderr = TRUE, intern = TRUE)
 } else {
-  sound.files <- as.character(sound.files)
-  
-  if(!is.vector(sound.files))
-    stop("'sound.files' must be a character vector")
-  
-  sf <- sound.files
+  sf <- sound.files <- as.character(sound.files)
   
   #return warning if not all sound files were found
-  recs.wd <- list.files(path = path, pattern = "\\.wav$", ignore.case = TRUE)
+  recs.wd <- list.files(path = path, pattern ="\\.wav$|\\.aif$|\\.flac$|\\.mp3$", ignore.case = TRUE)
   
   #count number of sound files in working directory and if 0 stop
   sound.files <- sound.files[sound.files %in% recs.wd]
@@ -106,7 +116,6 @@ if(is.null(sound.files))
   # remove sound files not found
   if(length(sound.files) != length(sf)) 
    cat(paste(length(sf) - length(sound.files), ".wav file(s) not found"))
-  
   
   if(!redo) {
     # get names of files from selections
@@ -130,8 +139,10 @@ if(is.null(sound.files))
   # subset by groups of sound files according to at the time
   sq <- unique(c(seq(1, length(sound.files), by = at.the.time)))
   
+  if(pb) lply <- pbapply::pblapply else lply <- lapply
+  
   # run loop over files
-  out <- pbapply::pblapply(seq_along(sq), function(x)
+  out <- lply(seq_along(sq), function(x)
     {
  
     fls <- sound.files[x:(x + at.the.time - 1)]
@@ -143,13 +154,8 @@ if(is.null(sound.files))
       comnd <- paste(shQuote(file.path(raven.path, "Raven"), type = "cmd"), fls) else
         comnd <- paste(paste("cd", raven.path, ";"), paste(file.path(raven.path, "Raven"), fls))
     
-    # comnd <- paste(paste("cd", raven.path, ";"), paste("Raven", fls))
-    # comnd <- paste(file.path(raven.path, "Raven"), fls)
-    # set working directory in Linux
-    # if(Sys.info()[1] == "Linux") system(command = paste("cd", raven.path), ignore.stderr = TRUE)
-  
     # run raven
-    system(command = comnd, ignore.stderr = TRUE)
+    system(command = comnd, ignore.stderr = TRUE, intern = TRUE)
     }
     )
 }
