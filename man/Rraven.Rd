@@ -7,7 +7,7 @@
 \title{Rraven: Exchange data and open sound files in Raven from R}
 \description{
 Rraven is a package designed to facilitate the exchange of data
-between R and the Raven sound analysis software (Cornell Lab of Ornithology)
+between R and Raven sound analysis software (Cornell Lab of Ornithology)
 }
 \details{
 License: GPL (>= 2)  
