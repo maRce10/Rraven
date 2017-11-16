@@ -35,13 +35,11 @@ options(width = 150, max.print = 100)
 
 <br>
 
-The `Rraven` package is designed to facilitate the exchange of data between R and  [Raven sound analysis software](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) ([Cornell Lab of Ornithology](http://www.birds.cornell.edu)). On one hand, [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) provides very  powerful tools for the analysis of (animal) sounds. R, on the other hand, can simplify the automatization of complex routines of analyses. Furthermore, R packages as [warbleR](https://cran.r-project.org/package=warbleR), [seewave](https://cran.r-project.org/package=seewave) and [monitoR](https://cran.r-project.org/package=monitoR) (among others) provide additional methods of analysis, working as a perfect complement for those found in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html). Hence, bridging these applications can largely expand the bioacoustician's toolkit.
+The `Rraven` package is designed to facilitate the exchange of data between R and  [Raven sound analysis software](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) ([Cornell Lab of Ornithology](http://www.birds.cornell.edu)). [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) provides very  powerful tools for the analysis of (animal) sounds. R can simplify the automatization of complex routines of analyses. Furthermore, R packages as [warbleR](https://cran.r-project.org/package=warbleR), [seewave](https://cran.r-project.org/package=seewave) and [monitoR](https://cran.r-project.org/package=monitoR) (among others) provide additional methods of analysis, working as a perfect complement for those found in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html). Hence, bridging these applications can largely expand the bioacoustician's toolkit.
 
-Currently, most analyses in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) cannot be run in the background from a command terminal. Thus, most `Rraven` functions are design to simplify the exchange of data between the two programs, and in some cases, export files to  [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) for further analysis. This vignette provides detail examples for each function in `Rraven`, including both the R code as well as the additional steps in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) required to fully accomplished the analyses. Raven Pro must be installed to be able to run some of the code. 
+Currently, most analyses in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) cannot be run in the background from a command terminal. Thus, most `Rraven` functions are design to simplify the exchange of data between the two programs, and in some cases, export files to  [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) for further analysis. This vignette provides detailed examples for each function in `Rraven`, including both the R code as well as the additional steps in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) required to fully accomplished the analyses. Raven Pro must be installed to be able to run some of the code. 
 
-Before getting into the functions, the packages must be installed and loaded. I recommend using the latest developmental version, which is found in [github](http://github.com/). To do so, you need the R pacakge [devtools](https://cran.r-project.org/package=devtools)' (which of course should be installed!). Some [warbleR](https://cran.r-project.org/package=warbleR) functions and example data sets will be used, so [warbleR](https://cran.r-project.org/package=warbleR) should be installed as well:
-
-![gif0](exp_raven1.gif)
+Before getting into the functions, the packages must be installed and loaded. I recommend using the latest developmental version, which is found in [github](http://github.com/). To do so, you need the R package [devtools](https://cran.r-project.org/package=devtools) (which of course should be installed!). Some [warbleR](https://cran.r-project.org/package=warbleR) functions and example data sets will be used, so [warbleR](https://cran.r-project.org/package=warbleR) should be installed as well:
 
 ```{r, eval = FALSE}
 
@@ -189,13 +187,13 @@ knitr::kable(head(rav.dat), align = "c", row.names = F)
 ```
  &nbsp; 
  
-The data frame contains the following columns: soundfiles, selec, start, end, and selec.file. You can also import the frequency range parameters in the 'selection.table' by setting 'freq.cols' tp `TRUE` (although this columns are not available in our example data). The data frame returned by "imp_raven" (when in the 'warbleR' format) can be input into several [warbleR](https://cran.r-project.org/package=warbleR) functions for further analysis. 
+The data frame contains the following columns: sound.files, channel, selec, start, end, and selec.file. You can also import the frequency range parameters in the 'selection.table' by setting 'freq.cols' tp `TRUE` (although this columns are not available in our example data). The data frame returned by "imp_raven" (when in the 'warbleR' format) can be input into several [warbleR](https://cran.r-project.org/package=warbleR) functions for further analysis. 
 
 ---
 
 ### *extract_ts*
 
-The function extracts parameters enconded as time series in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) selection tables. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as in the [warbleR](https://cran.r-project.org/package=warbleR) function `dfDTW`. The function needs an R data frame, so the data should have been previously imported using `imp_raven`. This example uses the `selection_file.ts` example data that comes with `Rraven`: 
+The function extracts parameters encoded as time series in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) selection tables. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as in the [warbleR](https://cran.r-project.org/package=warbleR) function `dfDTW`. The function needs an R data frame, so the data should have been previously imported using `imp_raven`. This example uses the `selection_file.ts` example data that comes with `Rraven`: 
 
 
 ```{r, eval=FALSE}
@@ -378,9 +376,9 @@ list.files(path = file.path(tempdir(), "cuts"))
 ```
  &nbsp; 
  
-Every selection is in it's own sound file (labeled as `paste(sound.files, selec)). Now open [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) and run the batch correlator on the 'cuts' folder as follows:
+Every selection is in its own sound file (labeled as `paste(sound.files, selec)`). Now open [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) and run the batch correlator on the 'cuts' folder as follows:
 
-![gif1](raven.correlator.gif)
+![gif1](https://raw.githubusercontent.com/maRce10/Rraven/master/raven.correlator.gif)
  &nbsp; 
 
 And then import the output file into R:
@@ -415,7 +413,7 @@ xcorr.rav$`lag (s)`[1:5, 1:5]
 ```
  &nbsp; 
  
-This ouput is ready for stats. For instance, the following code runs a mantel test between cross-correlation (converted to distances) and [warbleR](https://cran.r-project.org/package=warbleR) spectral parameter pairwise disimilarities:
+This output is ready for stats. For instance, the following code runs a mantel test between cross-correlation (converted to distances) and [warbleR](https://cran.r-project.org/package=warbleR) spectral parameter pairwise dissimilarities:
 
 ```{r}
 
@@ -459,7 +457,7 @@ exp_raven(st1, file.name = "Phaethornis 1", khz.to.hz = TRUE)
 ```
  &nbsp; 
  
-If the path to the sound file is provided the functions exports a 'sound selection table', which can be directly open by [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) (and which will also open the associated sound file):
+If the path to the sound file is provided, the functions exports a 'sound selection table' which can be directly open by [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) (and which will also open the associated sound file):
 
 ```{r, eval=FALSE, echo=T}
 # Select data for a single sound file
@@ -469,12 +467,12 @@ st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav",]
 exp_raven(st1, file.name = "Phaethornis 1", khz.to.hz = TRUE, sound.file.path = tempdir())
 
 ```
-![gif2](exp_raven1.gif)
+![gif2](https://raw.githubusercontent.com/maRce10/Rraven/master/exp_raven1.gif)
  &nbsp; 
 
 This is useful to add new selections or even new measurements:
 
-![gif3](exp_raven2.gif)
+![gif3](https://raw.githubusercontent.com/maRce10/Rraven/master/exp_raven2.gif)
  &nbsp; 
 
 If several sound files are available, users can either export them as a single selection file or as multiple selection files (one for each sound file). This example creates a multiple sound file selection:
@@ -488,7 +486,7 @@ sound.file.path = tempdir(), single.file = T)
 
 These type of tables can be opened as a multiple file display in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html):
 
-![gif4](exp_raven3.gif)
+![gif4](https://raw.githubusercontent.com/maRce10/Rraven/master/exp_raven3.gif)
  &nbsp; 
 
 ---
@@ -510,7 +508,7 @@ run_raven(raven.path = raven.path, sound.files = c("Phae.long1.wav", "Phae.long2
 
 ``` 
 
-![gif5](run_raven1.gif)
+![gif5](https://raw.githubusercontent.com/maRce10/Rraven/master/run_raven1.gif)
  &nbsp; 
  
 See `imp_raven` above for more details on additional settings when importing selections.
@@ -521,7 +519,7 @@ See `imp_raven` above for more details on additional settings when importing sel
 
 As the name suggests, *raven_batch_detec* runs [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) detector on multiple sound files (sequentially). Batch detection in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) can also take files in 'mp3', 'flac' and 'aif' format (although this could not be further analyzed in R!).
 
-This is example runs the detector on one of the example sound files that comes by defaullt with [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html):
+This is example runs the detector on one of the example sound files that comes by default with [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html):
 
 ```{r, eval=FALSE, echo=T}
 
@@ -530,7 +528,7 @@ sound.files = "BlackCappedVireo.aif", path = file.path(raven.path, "Examples"))
 
 ```
 
-![gif6](raven_batch_detec.gif)
+![gif6](https://raw.githubusercontent.com/maRce10/Rraven/master/raven_batch_detec.gif)
  &nbsp; 
  
 ---

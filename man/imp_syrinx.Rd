@@ -36,14 +36,11 @@ All files must be have the same columns.
 setwd(tempdir())
 
 #load data 
-library(warbleR)
-data(selection.files)
+data(selection_files)
 
-write.table(selection.files[[3]],file = "harpyeagle.wav.txt",row.names = FALSE,
- col.names = FALSE, sep= "\\t")
+#save Raven selection tables in the temporary directory 
+writeLines(selection_files[[6]], con = names(selection_files)[6])
 
-write.table(selection.files[[4]],file = "Phae.long4.wav.txt",row.names = FALSE, 
-col.names = FALSE, sep= "\\t")
 
 syr.dat <- imp_syrinx(all.data = FALSE)
 
