@@ -31,4 +31,4 @@ library(Rraven)
 
 ```
 
-Take a look at the package vignette which provides detailed examples for each function in `Rraven`, including both the R code as well as the additional steps in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) required to fully accomplished the analyses.
+The package vignette provides detailed examples for each function in `Rraven`, including both the R code as well as the additional steps in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) required to fully accomplished the analyses.
