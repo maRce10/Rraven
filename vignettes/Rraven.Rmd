@@ -378,7 +378,7 @@ list.files(path = file.path(tempdir(), "cuts"))
  
 Every selection is in its own sound file (labeled as `paste(sound.files, selec)`). Now open [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) and run the batch correlator on the 'cuts' folder as follows:
 
-![gif1](https://raw.githubusercontent.com/maRce10/Rraven/master/raven.correlator.gif)
+![gif1](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/raven.correlator.gif)
  &nbsp; 
 
 And then import the output file into R:
@@ -467,12 +467,12 @@ st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav",]
 exp_raven(st1, file.name = "Phaethornis 1", khz.to.hz = TRUE, sound.file.path = tempdir())
 
 ```
-![gif2](https://raw.githubusercontent.com/maRce10/Rraven/master/exp_raven1.gif)
+![gif2](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/exp_raven1.gif)
  &nbsp; 
 
 This is useful to add new selections or even new measurements:
 
-![gif3](https://raw.githubusercontent.com/maRce10/Rraven/master/exp_raven2.gif)
+![gif3](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/exp_raven2.gif)
  &nbsp; 
 
 If several sound files are available, users can either export them as a single selection file or as multiple selection files (one for each sound file). This example creates a multiple sound file selection:
@@ -486,7 +486,7 @@ sound.file.path = tempdir(), single.file = T)
 
 These type of tables can be opened as a multiple file display in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html):
 
-![gif4](https://raw.githubusercontent.com/maRce10/Rraven/master/exp_raven3.gif)
+![gif4](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/exp_raven3.gif)
  &nbsp; 
 
 ---
@@ -508,7 +508,7 @@ run_raven(raven.path = raven.path, sound.files = c("Phae.long1.wav", "Phae.long2
 
 ``` 
 
-![gif5](https://raw.githubusercontent.com/maRce10/Rraven/master/run_raven1.gif)
+![gif5](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/run_raven1.gif)
  &nbsp; 
  
 See `imp_raven` above for more details on additional settings when importing selections.
@@ -528,7 +528,7 @@ sound.files = "BlackCappedVireo.aif", path = file.path(raven.path, "Examples"))
 
 ```
 
-![gif6](https://raw.githubusercontent.com/maRce10/Rraven/master/raven_batch_detec.gif)
+![gif6](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/raven_batch_detec.gif)
  &nbsp; 
  
 ---
