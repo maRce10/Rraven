@@ -6,7 +6,7 @@ Currently, most analyses in [Raven](http://www.birds.cornell.edu/brp/raven/Raven
 
 Install/load the package from CRAN as follows:
 
-{% highlight r %}
+```r
 
 # From CRAN would be
 #install.packages("Rraven")
@@ -14,13 +14,11 @@ Install/load the package from CRAN as follows:
 #load package
 library(Rraven)
 
-{% endhighlight %}
-
+```
 
 To install the latest developmental version from [github](http://github.com/) you will need the R package [devtools](https://cran.r-project.org/package=devtools):
 
-{% highlight r %}
-
+```r
 # From CRAN would be
 #install.packages("Rraven")
 
@@ -31,6 +29,6 @@ devtools::install_github("maRce10/Rraven")
 #load package
 library(Rraven)
 
-{% endhighlight %}
+```
 
 Take a look at the package vignette which provides detailed examples for each function in `Rraven`, including both the R code as well as the additional steps in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) required to fully accomplished the analyses.
