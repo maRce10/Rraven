@@ -16,7 +16,7 @@ waveform = FALSE)
 \item{extra.cols.new.name}{Character vector with the new names for the additional columns to be relabeled. 
 Default is \code{NULL}. 'extra.cols.name' must be also provided.}
 
-\item{khz.to.hz}{Logical. Controls if frequency variables ('high.freq' and 'low.freq') should be converted from kHz 
+\item{khz.to.hz}{Logical. Controls if frequency variables ('top.freq' and 'bottom.freq') should be converted from kHz 
 (the unit used by other bioacoustic analysis R packages like \code{\link{warbleR}}) to Hz (the unit used by Raven). 
 Default is \code{TRUE}.}
 

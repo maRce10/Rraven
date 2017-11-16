@@ -81,8 +81,8 @@ clist<-lapply(1:length(sel.txt), function(i)
                                 selec = 1,
                                 start = a[, grep("lefttimesec",colnames(a))],
                                 end = a[, grep("righttimesec",colnames(a))],
-                                low.freq = a[, grep("bottomfreq",colnames(a))],
-                                high.freq = a[, grep("topfreq",colnames(a))])
+                                bottom.freq = a[, grep("bottomfreq",colnames(a))],
+                                top.freq = a[, grep("topfreq",colnames(a))])
   for(i in 2:nrow(c)) if(c$selec.file[i] == c$selec.file[i-1]) c$selec[i]<-c$selec[i-1] + 1
   } else c<-a 
                                 } else {
@@ -97,8 +97,8 @@ clist<-lapply(1:length(sel.txt), function(i)
                                        selec = 1,
                                        start = c[, grep("lefttime",colnames(c), ignore.case = TRUE)],
                                        end = c[, grep("righttime",colnames(c), ignore.case = TRUE)],
-                                       low.freq = c[, grep("bottomfreq",colnames(c), ignore.case = TRUE)],
-                                       high.freq = c[, grep("topfreq",colnames(c), ignore.case = TRUE)])
+                                       bottom.freq = c[, grep("bottomfreq",colnames(c), ignore.case = TRUE)],
+                                       top.freq = c[, grep("topfreq",colnames(c), ignore.case = TRUE)])
            for(i in 2:nrow(c)) if(c$sound.files[i] == c$sound.files[i-1]) c$selec[i] <- c$selec[i-1] + 1} 
            } else c <- a         
                                 }
@@ -124,9 +124,9 @@ if(!all.data)
 
 
 # convert to hz
-if(hz.to.khz & !all.data & all(c("low.freq", "high.freq") %in% names(b)))
-  {b$low.freq <- as.numeric(b$low.freq) / 1000 
-  b$high.freq <- as.numeric(b$high.freq) / 1000 
+if(hz.to.khz & !all.data & all(c("bottom.freq", "top.freq") %in% names(b)))
+  {b$bottom.freq <- as.numeric(b$bottom.freq) / 1000 
+  b$top.freq <- as.numeric(b$top.freq) / 1000 
 }
 
   return(b[!duplicated(b), ])

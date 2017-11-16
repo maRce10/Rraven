@@ -1,7 +1,7 @@
 #' Rraven: Exchange data and open sound files in Raven from R
 #' 
 #' @description Rraven is a package designed to facilitate the exchange of data
-#' between R and the Raven bioacoustics software (Cornell Lab of Ornithology)
+#' between R and the Raven sound analysis software (Cornell Lab of Ornithology)
 #' @details License: GPL (>= 2)  
 #' 
 #'  @section Functions:
@@ -16,7 +16,7 @@
 #'   
 #'   \code{\link{imp_syrinx}}: Importing Syrinx selections
 #'   
-#'   \code{\link{ relabel_colms}}: Relabel columns to match the selection table format
+#'   \code{\link{relabel_colms}}: Relabel columns to match the selection table format
 #'   
 #'   \code{\link{run_raven}}: Open sound files in Raven
 #'      
@@ -30,5 +30,6 @@
 #'   
 #' @docType package
 #' @name Rraven
+NULL
 #> NULL 
 #'

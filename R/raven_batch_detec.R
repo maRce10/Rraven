@@ -5,7 +5,9 @@
 #' detector = "Amplitude detector", 
 #' relabel_colms = TRUE, pb = TRUE)  
 #' @param raven.path A character string indicating the path of the directory in which to look for the Raven executable file (where Raven was installed). 
-#' @param sound.files character vector indicating the files that will be analyzed. If  \code{NULL} (default) then Raven will be run without opening any file.
+#' @param sound.files character vector indicating the files that will be analyzed.
+#' In OSX (mac) only one file at the time can be run (use loops instead!). If \code{NULL} (default) 
+#' then Raven will be run without opening any file.
 #' @param path A character string indicating the path of the directory in which to look for
 #' the sound files. If not provided (default) the function searches into the current working 
 #' directory. Default is \code{NULL}.
@@ -17,7 +19,7 @@
 #' match the selection table format from the acoustic analysis package \code{\link{warbleR}}
 #' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
 #' @return A data frame with the selections produced during the detection. See \code{\link{imp_raven}} for more details on how selections are imported.
-#' @details The function runs Raven bioacoustics analysis software (Cornell Lab of
+#' @details The function runs Raven sound analysis software (Cornell Lab of
 #' Ornithology), detector on  multiple sound files seuentially. Raven Pro must be 
 #' installed. Note that batch detection in Raven can also take 
 #' sound files in 'mp3', 'flac' and 'aif' format. 
@@ -75,7 +77,7 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
     #count number of sound files in working directory and if 0 stop
     sound.files <- sound.files[sound.files %in% recs.wd]
     if(length(sound.files) == 0)
-      stop("The .wav files are not in the working directory")
+      stop("The sound files are not in the working directory")
     
     # remove sound files not found
     if(length(sound.files) != length(sf)) 
@@ -91,9 +93,14 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
     out <- lply(sound.files, function(x) {
       
       if(Sys.info()[1] == "Windows")
-      {  comnd <- paste(shQuote(file.path(raven.path, "Raven"), type = "cmd"),  paste0("-detType:", detector), x, "-detTable:temp.bcv.txt -x")
+      {  
+        comnd <- paste(shQuote(file.path(raven.path, "Raven.exe"), type = "cmd"),  paste0("-detType:", detector), shQuote(x), "-detTable:temp.bcv.txt -x")
       } else
-          comnd <- paste(file.path(raven.path, "Raven"), paste0("-detType:", detector), x, "-detTable:temp.bcv.txt -x")
+      {
+        if(Sys.info()[1] == "Linux")
+        comnd <- paste(file.path(raven.path, "Raven"), paste0("-detType:", detector), x, "-detTable:temp.bcv.txt -x") else
+        comnd <- paste("open Raven.app --args", x, paste0("-detType:", detector), "-detTable:temp.bcv.txt -x") # OSX
+      }
         
         # run raven
         system(command = comnd, ignore.stderr = TRUE, intern = TRUE)

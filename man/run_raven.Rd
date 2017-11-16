@@ -19,7 +19,7 @@ directory. Default is \code{NULL}.}
 \item{at.the.time}{Numeric vector of length 1 controling how many files will be open in
 Raven at the same time. Note that opening too many files at once could make Raven run out
 of memory. You need to close Raven every time the batch of files is analyzed, so the next
-batch is opened. Default is 10.}
+batch is opened. Default is 10. Not available in OSX (mac).}
 
 \item{import}{Logical. Controls if the selection tables generated should be returned as a 
 data frame into the R environment. This only works if the selections are saved in the 
@@ -44,7 +44,7 @@ If \code{import = TRUE} a data frame with the selections produced during the ana
 \code{run_raven} opens several sound files in Raven sound analysis software
 }
 \details{
-The function runs Raven bioacoustics analysis software (Cornell Lab of
+The function runs Raven sound analysis software (Cornell Lab of
 Ornithology), opening many files simultaneously. Raven will still run if no
 sound files are provided (i.e. \code{sound.files = NULL}). At the end of the
 analysis the data can be automatically imported back into R using the 'import'

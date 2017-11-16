@@ -8,7 +8,7 @@ exp_raven(X, path = NULL, file.name = NULL, khz.to.hz = TRUE,
 sound.file.path = NULL, single.file = TRUE)
 }
 \arguments{
-\item{X}{Data frame containing columns for sound file (sound.files), selection (selec), start and end time of signals ('start' and 'end') and low and high frequency ('low.freq' and 'high.freq', optional). See example data 'selec.table' in the \code{\link{warbleR}}) package.}
+\item{X}{Data frame containing columns for sound file (sound.files), selection (selec), start and end time of signals ('start' and 'end') and low and high frequency ('bottom.freq' and 'top.freq', optional). See example data 'selec.table' in the \code{\link{warbleR}}) package.}
 
 \item{path}{A character string indicating the path of the directory in which to save the selection files. 
 If not provided (default) the function saves the file into the current working directory.}

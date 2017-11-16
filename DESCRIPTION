@@ -1,13 +1,13 @@
 Package: Rraven
 Type: Package
-Title: connecting R and Raven bioacoustic software
+Title: Connecting R and Raven Sound Analysis Software
 Version: 1.0.0
-Date: 2017-11-08
+Date: 2017-11-14
 Author: Marcelo Araya-Salas
 Maintainer: Marcelo Araya-Salas <araya-salas@cornell.edu>
-Description: A tool to exchange data between R and the Raven bioacoustic software (Cornell Lab of Ornithology). Functions work on data formats compatible with the R package warbleR.
+Description: A tool to exchange data between R and 'Raven' sound analysis software (Cornell Lab of Ornithology). Functions work on data formats compatible with the R package 'warbleR'.
 License: GPL (>= 2)
-Imports: pbapply, warbleR, utils, stats
+Imports: pbapply, warbleR, utils, stats, vegan
 Depends: R (>= 3.2.1)
 LazyData: TRUE
 URL: https://github.com/maRce10/Rraven 
@@ -16,6 +16,6 @@ NeedsCompilation: no
 Suggests: knitr
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1
-Packaged: 2017-11-09 23:45:31 UTC; m
+Packaged: 2017-11-14 23:45:31 UTC; m
 Repository: CRAN
-Date/Publication: 2017-11-08 08:12:11
+Date/Publication: 2017-14-08 08:12:11

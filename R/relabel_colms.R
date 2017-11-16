@@ -8,7 +8,7 @@
 #' 'extra.cols.new.name' must be also provided.
 #' @param extra.cols.new.name Character vector with the new names for the additional columns to be relabeled. 
 #' Default is \code{NULL}. 'extra.cols.name' must be also provided.
-#' @param khz.to.hz Logical. Controls if frequency variables ('high.freq' and 'low.freq') should be converted from kHz 
+#' @param khz.to.hz Logical. Controls if frequency variables ('top.freq' and 'bottom.freq') should be converted from kHz 
 #' (the unit used by other bioacoustic analysis R packages like \code{\link{warbleR}}) to Hz (the unit used by Raven). 
 #' Default is \code{TRUE}.
 #' @param waveform Logical to control if 'waveform' related data should be included (this data is typically duplicated in 'spectrogram' data).  Default is \code{FALSE} (not to include it).
@@ -61,14 +61,14 @@
   
   # change column names try 1
   rvn.nms <- c("Selection", "Begin Time (s)", "End Time (s)", "Low Freq (Hz)", "High Freq (Hz)")
-  wblr.nms <- c("selec", "start", "end", "low.freq", "high.freq")
+  wblr.nms <- c("selec", "start", "end", "bottom.freq", "top.freq")
   
   for(i in 1:length(rvn.nms))
     names(X)[names(X) == rvn.nms[i]] <- wblr.nms[i]
 
   # change column names try 1
   rvn.nms <- c("Selection", "Begin.Time..s.", "End.Time..s.", "Low.Freq..Hz.", "High.Freq..Hz.")
-  wblr.nms <- c("selec", "start", "end", "low.freq", "high.freq")
+  wblr.nms <- c("selec", "start", "end", "bottom.freq", "top.freq")
   
   for(i in 1:length(rvn.nms))
     names(X)[names(X) == rvn.nms[i]] <- wblr.nms[i]
@@ -83,12 +83,12 @@
   names(X)[grep("\\.File$", names(X))[1]] <- "sound.files"
   
   # convert to Hz
-  if("low.freq" %in% names(X) & khz.to.hz)
-    X$low.freq <- X$low.freq * 1000
+  if("bottom.freq" %in% names(X) & khz.to.hz)
+    X$bottom.freq <- X$bottom.freq * 1000
   
   # convert to Hz
-  if("high.freq" %in% names(X) & khz.to.hz)
-    X$high.freq <- X$high.freq * 1000
+  if("top.freq" %in% names(X) & khz.to.hz)
+    X$top.freq <- X$top.freq * 1000
   
 return(X)  
   

@@ -11,7 +11,7 @@
 #' @param at.the.time Numeric vector of length 1 controling how many files will be open in
 #'  Raven at the same time. Note that opening too many files at once could make Raven run out
 #'  of memory. You need to close Raven every time the batch of files is analyzed, so the next
-#'  batch is opened. Default is 10.
+#'  batch is opened. Default is 10. Not available in OSX (mac).
 #' @param import Logical. Controls if the selection tables generated should be returned as a 
 #' data frame into the R environment. This only works if the selections are saved in the 
 #' "Selections" folder in the Raven directory. This argument calls the \code{\link{imp_raven}}
@@ -24,7 +24,7 @@
 #' @param ... Additional arguments to be passed to \code{\link{imp_raven}} for customizing
 #' how selections are imported (ignored if \code{import = FALSE}).
 #' @return If \code{import = TRUE} a data frame with the selections produced during the analysis will be return as an data frame. See \code{\link{imp_raven}} for more details on how selections are imported.
-#' @details The function runs Raven bioacoustics analysis software (Cornell Lab of
+#' @details The function runs Raven sound analysis software (Cornell Lab of
 #' Ornithology), opening many files simultaneously. Raven will still run if no
 #' sound files are provided (i.e. \code{sound.files = NULL}). At the end of the
 #' analysis the data can be automatically imported back into R using the 'import'
@@ -87,21 +87,34 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
   setwd(raven.path)
       
   if(!is.null(view.preset))
-   if(!any(view.preset %in% list.files(path = file.path(raven.path, "Presets/Sound Window")))) stop("'view.preset' provided not found")
+   {
+    if(!any(view.preset %in% list.files(path = file.path(raven.path, "Presets/Sound Window")))) stop("'view.preset' provided not found")
     
   def.view.p <- grep("^Default", value = TRUE,  list.files(path = file.path(raven.path, "Presets/Sound Window")))
 
-  out <- file.copy(from = file.path(raven.path, "Presets/Sound Window", def.view.p), to = file.path(raven.path, "Presets/Sound Window/temp.default"))
+  for(i in def.view.p)
+{ 
+  out <- file.copy(from = file.path(raven.path, "Presets/Sound Window", i), to = file.path(raven.path, paste0("Presets/Sound Window/temp.", i)), overwrite = TRUE)
 
-  out <- file.copy(from =  file.path(raven.path, "Presets/Sound Window",view.preset), to =  file.path(raven.path, "Presets/Sound Window", def.view.p), overwrite = TRUE)
+  out <- file.copy(from =  file.path(raven.path, "Presets/Sound Window",view.preset), to =  file.path(raven.path, "Presets/Sound Window", i), overwrite = TRUE)
     
-  on.exit(out <- file.copy(from =  file.path(raven.path, "Presets/Sound Window/temp.default"), to =  file.path(raven.path, "Presets/Sound Window", def.view.p), overwrite = TRUE), add = TRUE)
+  on.exit(file.copy(from =  file.path(raven.path, paste0("Presets/Sound Window/temp.", i)), to =  file.path(raven.path, "Presets/Sound Window", i), overwrite = TRUE), add = TRUE)
+  }
+  
+on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default", value = TRUE,  list.files(path = file.path(raven.path, "Presets/Sound Window"))))), add = TRUE)
+  }
+  
   
   if(is.null(sound.files))
 {
   if(Sys.info()[1] == "Windows")
     out <- system(shQuote(file.path(raven.path, "Raven"), type = "cmd"), ignore.stderr = TRUE, intern = TRUE) else
-      out <- system(file.path(raven.path, "Raven"), ignore.stderr = TRUE, intern = TRUE)
+    { 
+      if(Sys.info()[1] == "Linux")
+           out <- system(file.path(raven.path, "Raven"), ignore.stderr = TRUE, intern = TRUE) else
+             out <- system("open Raven.app", ignore.stderr = TRUE, intern = TRUE) # OSX
+    }  
+     
 } else {
   sf <- sound.files <- as.character(sound.files)
   
@@ -136,13 +149,16 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
     if(basename(sound.files[1]) == sound.files[1])
     sound.files <- file.path(path, sound.files)
 
+  # if in OSX at the time not available
+      if(!Sys.info()[1] %in% c("Windows", "Linux")) at.the.time <- length(sound.files)
+
   # subset by groups of sound files according to at the time
   sq <- unique(c(seq(1, length(sound.files), by = at.the.time)))
   
   if(pb) lply <- pbapply::pblapply else lply <- lapply
   
   # run loop over files
-  out <- lply(seq_along(sq), function(x)
+  out <- lply(sq, function(x)
     {
  
     fls <- sound.files[x:(x + at.the.time - 1)]
@@ -152,10 +168,14 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
     
     if(Sys.info()[1] == "Windows")
       comnd <- paste(shQuote(file.path(raven.path, "Raven"), type = "cmd"), fls) else
-        comnd <- paste(paste("cd", raven.path, ";"), paste(file.path(raven.path, "Raven"), fls))
+        {
+          if(Sys.info()[1] == "Linux")
+        comnd <- paste(paste("cd", raven.path, ";"), paste(file.path(raven.path, "Raven"), fls)) else
+          comnd <- paste("Open Raven.app --args", fls)
+        }
     
     # run raven
-    system(command = comnd, ignore.stderr = TRUE, intern = TRUE)
+    out <- system(command = comnd, ignore.stderr = TRUE, intern = TRUE)
     }
     )
 }
@@ -178,6 +198,5 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
   return(sels)
 
   }
-    
   
 }

@@ -11,7 +11,9 @@ relabel_colms = TRUE, pb = TRUE)
 \arguments{
 \item{raven.path}{A character string indicating the path of the directory in which to look for the Raven executable file (where Raven was installed).}
 
-\item{sound.files}{character vector indicating the files that will be analyzed. If  \code{NULL} (default) then Raven will be run without opening any file.}
+\item{sound.files}{character vector indicating the files that will be analyzed.
+In OSX (mac) only one file at the time can be run (use loops instead!). If \code{NULL} (default) 
+then Raven will be run without opening any file.}
 
 \item{path}{A character string indicating the path of the directory in which to look for
 the sound files. If not provided (default) the function searches into the current working 
@@ -34,7 +36,7 @@ A data frame with the selections produced during the detection. See \code{\link{
 \code{raven_batch_detec} Runs Raven batch detector on multiple sound files sequentially
 }
 \details{
-The function runs Raven bioacoustics analysis software (Cornell Lab of
+The function runs Raven sound analysis software (Cornell Lab of
 Ornithology), detector on  multiple sound files seuentially. Raven Pro must be 
 installed. Note that batch detection in Raven can also take 
 sound files in 'mp3', 'flac' and 'aif' format.

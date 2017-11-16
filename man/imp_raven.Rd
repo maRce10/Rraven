@@ -46,7 +46,7 @@ columns in the Raven selection files are returned.
 \code{imp_raven} imports Raven selection files simultaneously from many files. Files must be in '.txt' format.
 }
 \details{
-The function import Raven selection data from many files simultaneously. Files must be in .txt format. Selection 
+The function import Raven selection data from many files simultaneously. Files must be in '.txt' format. Selection 
 files including data from mulitple recordings can also be imported.
 }
 \examples{

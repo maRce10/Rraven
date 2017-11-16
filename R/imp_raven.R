@@ -27,7 +27,7 @@
 #' will also contain a 'sound.files' column. In addition, all rows with duplicated data are removed. This is useful when 
 #' both spectrogram and waveform views are included in the Raven selection files. If all.data is set to \code{TRUE} then all 
 #' columns in the Raven selection files are returned. 
-#' @details The function import Raven selection data from many files simultaneously. Files must be in .txt format. Selection 
+#' @details The function import Raven selection data from many files simultaneously. Files must be in '.txt' format. Selection 
 #' files including data from mulitple recordings can also be imported. 
 #' @seealso \code{\link{imp_syrinx}} 
 #' @export
@@ -102,8 +102,8 @@ clist <- lapply(seq_len(length(sel.txt)), function(i)
              start = a[,grep("Begin.Time",colnames(a), ignore.case = TRUE)],
              end = a[, grep("End.Time",colnames(a), ignore.case = TRUE)], selec.file = sel.txt2[i], stringsAsFactors = FALSE), silent = TRUE)
     
-    try(c$low.freq <- a[, grep("Low.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
-    try(c$high.freq <- a[, grep("High.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
+    try(c$bottom.freq <- a[, grep("Low.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
+    try(c$top.freq <- a[, grep("High.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
     if(all(c("High.Freq", "Low.Freq") %in% names(c)))
     c <- c[c(1:(ncol(c) - 3), ncol(c):(ncol(c)-1), ncol(c) -2 )]
     } else
@@ -121,8 +121,8 @@ clist <- lapply(seq_len(length(sel.txt)), function(i)
                 c <- try(data.frame(selec.file = sel.txt2[i], channel = a[, grep("channel", colnames(a), ignore.case = TRUE)], selec = a[,grep("Selection",colnames(a), ignore.case = TRUE)], start = a[, grep("Begin.Time", colnames(a), ignore.case = TRUE)], end = a[, grep("End.Time", colnames(a), ignore.case = TRUE)], stringsAsFactors = FALSE), silent = TRUE)
            }
       if(freq.cols)    {    
-    try(c$low.freq <- a[, grep("Low.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
-        try(c$high.freq <- a[, grep("High.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
+    try(c$bottom.freq <- a[, grep("Low.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
+        try(c$top.freq <- a[, grep("High.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
     
         if(all(c("High.Freq", "Low.Freq") %in% names(c)))
           c <- c[c(1:(ncol(c) - 3), ncol(c):(ncol(c)-1), ncol(c) -2 )]
@@ -148,10 +148,14 @@ clist <- lapply(clist, function(X){
   if(!all.data)
   sfcol <- "sound.files" else sfcol <- grep("\\.File$|\\.Path$", names(X), value = TRUE)[1]
   
-  if(length(unique(X[,sfcol])) > 1) 
+  
+  if(any(grepl("\\.File$|\\.Path$", names(X)))){
+    if(length(unique(X[,sfcol])) > 1) 
   {
     if(!all.data) 
     {
+      if(!any(grepl("Offset", names(X)))) stop("selections files from multiple sound files must contain an 'Offset' column")
+      
       X$end <- X$end - X$start
       X$start <- X[ ,grep("Offset", names(X))]
       X$end <- X$end + X$start
@@ -161,13 +165,13 @@ clist <- lapply(clist, function(X){
         X[ ,grep("^End.Time", names(X))] <- X[ ,grep("^End.Time", names(X))] + X[ ,grep("^Begin.Time", names(X))]
       }
   }
-
+}
   return(X)
   })
 
 
 # determine all column names in all selection tables    
-cnms <- unique(unlist(sapply(clist, names)))    
+cnms <- unique(c(sapply(clist, names)))    
 
 # add columns that are missing to each selection table
 clist <- lapply(clist, function(X)
@@ -188,7 +192,7 @@ b <- b[!duplicated(b), ]
 
 rownames(b) <- 1:nrow(b)
 
-clm <- match(names(b), c("sound.files", "selec", "start", "end", "low.freq", "high.freq"))
+clm <- match(names(b), c("sound.files", "selec", "start", "end", "bottom.freq", "top.freq"))
 clm <- clm[!is.na(clm)]
 b <- b[, c(clm, setdiff(1:ncol(b), clm))]
 

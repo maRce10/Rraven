@@ -3,7 +3,7 @@
 #' \code{exp_raven} exports selection tables as Raven selection data in .txt format.
 #' @usage exp_raven(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, 
 #' sound.file.path = NULL, single.file = TRUE)
-#' @param X Data frame containing columns for sound file (sound.files), selection (selec), start and end time of signals ('start' and 'end') and low and high frequency ('low.freq' and 'high.freq', optional). See example data 'selec.table' in the \code{\link{warbleR}}) package.
+#' @param X Data frame containing columns for sound file (sound.files), selection (selec), start and end time of signals ('start' and 'end') and low and high frequency ('bottom.freq' and 'top.freq', optional). See example data 'selec.table' in the \code{\link{warbleR}}) package.
 #' @param path A character string indicating the path of the directory in which to save the selection files. 
 #' If not provided (default) the function saves the file into the current working directory.
 #' @param file.name Name of the output .txt file. If \code{NULL} then the sound file names are used instead. If multiple
@@ -85,16 +85,16 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
   }
   
   # convert to Hz
-  if("low.freq" %in% names(X) & khz.to.hz)
-  X$low.freq <- X$low.freq * 1000
+  if("bottom.freq" %in% names(X) & khz.to.hz)
+  X$bottom.freq <- X$bottom.freq * 1000
 
   # convert to Hz
-  if("high.freq" %in% names(X) & khz.to.hz)
-    X$high.freq <- X$high.freq * 1000
+  if("top.freq" %in% names(X) & khz.to.hz)
+    X$top.freq <- X$top.freq * 1000
   
   # change column names
   rvn.nms <- c("Begin File", "Selection", "Begin Time (s)", "End Time (s)", "Low Freq (Hz)", "High Freq (Hz)")
-  wblr.nms <- c("sound.files", "selec", "start", "end", "low.freq", "high.freq")
+  wblr.nms <- c("sound.files", "selec", "start", "end", "bottom.freq", "top.freq")
   
   for(i in 1:length(rvn.nms))
     names(X)[names(X) == wblr.nms[i]] <- rvn.nms[i]
