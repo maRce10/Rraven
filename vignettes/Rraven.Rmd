@@ -30,7 +30,7 @@ opts_knit$set(root.dir = tempdir())
 options(width = 150, max.print = 100)
 
 #website to fix gifs
-#https://ezgif.com/
+#https://ezgif.com/optimize
 ```
 
 <br>
@@ -40,6 +40,8 @@ The `Rraven` package is designed to facilitate the exchange of data between R an
 Currently, most analyses in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) cannot be run in the background from a command terminal. Thus, most `Rraven` functions are design to simplify the exchange of data between the two programs, and in some cases, export files to  [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) for further analysis. This vignette provides detail examples for each function in `Rraven`, including both the R code as well as the additional steps in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) required to fully accomplished the analyses. Raven Pro must be installed to be able to run some of the code. 
 
 Before getting into the functions, the packages must be installed and loaded. I recommend using the latest developmental version, which is found in [github](http://github.com/). To do so, you need the R pacakge [devtools](https://cran.r-project.org/package=devtools)' (which of course should be installed!). Some [warbleR](https://cran.r-project.org/package=warbleR) functions and example data sets will be used, so [warbleR](https://cran.r-project.org/package=warbleR) should be installed as well:
+
+![gif0](exp_raven1.gif)
 
 ```{r, eval = FALSE}
 
@@ -63,7 +65,7 @@ Let's also use a temporary folder as the working directory i which to save all s
 setwd(tempdir())
 
 #load example data
-data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table", "selection.files"))
+data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table", "selection_files"))
 
 #save sound files  in temporary directory
 writeWave(Phae.long1,"Phae.long1.wav")
@@ -71,13 +73,9 @@ writeWave(Phae.long2,"Phae.long2.wav")
 writeWave(Phae.long3,"Phae.long3.wav")
 writeWave(Phae.long4,"Phae.long4.wav")
 
-#save Raven selection tables in temporary directory
-write.table(selection.files[[1]],file = "100889-Garrulax monileger.selections.txt",
-row.names = FALSE, sep= '\t')
-
-write.table(selection.files[[2]],file = "1023-Arremonops rufivirgatus.selections.txt",
-row.names = FALSE, sep= '\t')
-
+#save Raven selection tables in the temporary directory
+out <- lapply(1:4, function(x)
+writeLines(selection_files[[x]], con = names(selection_files)[x]))
 
 #this is the temporary directory location (of course different each time is run)
 getwd() 
@@ -87,7 +85,10 @@ getwd()
 ```{r eval= T, echo=F}
 
 #load example data
-data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table", "selection.files", "selection_file_ts"))
+data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table"))
+
+"selection_files"
+load("~/Dropbox/Rraven/data/selection_files.rda")
 
 #save sound files  in temporary directory
 writeWave(Phae.long1,"Phae.long1.wav", extensible = FALSE)
@@ -96,12 +97,11 @@ writeWave(Phae.long3,"Phae.long3.wav", extensible = FALSE)
 writeWave(Phae.long4,"Phae.long4.wav", extensible = FALSE)
 
 #save Raven selection tables in temporary directory
-write.table(selection.files[[1]],file = "100889-Garrulax monileger.selections.txt",
-row.names = FALSE, sep= '\t')
+out <- lapply(1:4, function(x)
+writeLines(selection_files[[x]], con = names(selection_files)[x]))
 
-write.table(selection.files[[2]],file = "1023-Arremonops rufivirgatus.selections.txt",
-row.names = FALSE, sep= '\t')
-
+#providing the name of the column with the sound file names
+# rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE)
 
 #this is the temporary directory location (of course different each time is run)
 getwd() 
@@ -182,7 +182,7 @@ head(rav.dat)
 ```{r, eval=TRUE, echo=FALSE}
 
  #providing the name of the column with the sound file names
-rav.dat <- imp_raven(sound.file.col = "End.File", all.data = FALSE)
+rav.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE)
 
 knitr::kable(head(rav.dat), align = "c", row.names = F)
 

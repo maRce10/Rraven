@@ -55,23 +55,20 @@ files including data from mulitple recordings can also be imported.
 setwd(tempdir())
 
 #load data 
-library(warbleR)
-data(selection.files)
+data(selection_files)
 
-write.table(selection.files[[1]],file = "100889-Garrulax monileger.selections.txt",
-row.names = FALSE, sep= '\\t')
+#save Raven selection tables in the temporary directory 
+out <- lapply(1:2, function(x) 
+writeLines(selection_files[[x]], con = names(selection_files)[x]))
 
-write.table(selection.files[[2]],file = "1023-Arremonops rufivirgatus.selections.txt",
-row.names = FALSE, sep= '\\t')
+#providing the name of the column with the sound file names
+rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE)
 
- #providing the name of the column with the sound file names
-rav.dat <- imp_raven(sound.file.col = "End.File", all.data = FALSE)
-
-View(rav.dat)
+View(rvn.dat)
 
 #getting all the data
-rav.dat2 <- imp_raven(all.data = TRUE)
-View(rav.dat2)
+rvn.dat2 <- imp_raven(all.data = TRUE)
+View(rvn.dat2)
 }
 
 }

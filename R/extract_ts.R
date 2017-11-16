@@ -20,21 +20,22 @@
 #' @examples
 #' \dontrun{ 
 #' # Load data
-#' data("selection_file_ts")
+#' data(selection_files)
 #' 
-#' # freq contour 95 dif length
-#' extract_ts(X = selection_file_ts, ts.column = "Freq.Contour.95...Hz.")
+#' #save Raven selection tables in the temporary directory 
+#' writeLines(selection_files[[5]], con = names(selection_files)[5])
 #' 
-#' # freq contour 95 equal length
-#' extract_ts(X = selection_file_ts, ts.column = "Freq.Contour.95...Hz.",
-#'  equal.length = T)
+#'# import data to R
+#'rvn.dat <- imp_raven(all.data = TRUE) 
+#'
+#'# Peak freq dif length
+#'extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.")
 #' 
-#' # freq contour 95 equal length
-#' extract_ts(X = selection_file_ts, ts.column = "Peak.Freq.Contour..Hz.",
-#'  equal.length = T)
+#'# Peak freq equal length
+#'extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", equal.length = T)
 #'  
-#' # freq contour 95 equal length 10 measurements
-#' extract_ts(X = selection_file_ts, ts.column = "Peak.Freq.Contour..Hz.", 
+#' # Peak freq equal length 10 measurements
+#' extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", 
 #' equal.length = T, length.out = 10)     
 #' }
 #' 

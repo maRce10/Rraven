@@ -19,25 +19,31 @@
 #' @name  relabel_colms
 #' @examples
 #' \dontrun{
-#'  data("selection_file_ts")
+#' # Load data
+#' data(selection_files)
 #' 
-#' names(selection_file_ts)
+#' #save Raven selection tables in the temporary directory 
+#' writeLines(selection_files[[5]], con = names(selection_files)[5])
+#' 
+#' #'# import data to R
+#'rvn.dat <- imp_raven(all.data = TRUE) 
+#'
+#' names(rvn.dat)
 #' 
 #' # Select data for a single sound file
-#' rc1 <-  relabel_colms(selection_file_ts)
+#' rvn.dat2 <-  relabel_colms(rvn.dat)
 #' 
-#' names(rc1)
+#' names(rvn.dat2)
 #' 
 #' # plus 1 additional column
-#' rc2 <-  relabel_colms(selection_file_ts, extra.cols.name = "selec.file", "Raven selection file")
+#' rvn.dat2 <-  relabel_colms(rvn.dat, extra.cols.name = "selec.file", "Raven selection file")
 #'
-#' names(rc2)
+#' names(rvn.dat2)
 #' 
 #' # plus 2 additional column 
-#' rc3 <-  relabel_colms(selection_file_ts, extra.cols.name = c("selec.file", "View"),
-#'  c("Raven selection file", "Raven view"))
-
-#' names(rc3)
+#' rvn.dat2 <- relabel_colms(rvn.dat, extra.cols.name = c("selec.file", "View"), c("Raven selection file", "Raven view"))
+#'  
+#'names(rvn.dat2)
 #'   }
 #' 
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
