@@ -55,7 +55,8 @@ rvn.dat2 <-  relabel_colms(rvn.dat, extra.cols.name = "selec.file", "Raven selec
 names(rvn.dat2)
 
 # plus 2 additional column 
-rvn.dat2 <- relabel_colms(rvn.dat, extra.cols.name = c("selec.file", "View"), c("Raven selection file", "Raven view"))
+rvn.dat2 <- relabel_colms(rvn.dat, extra.cols.name = c("selec.file", "View"), 
+c("Raven selection file", "Raven view"))
  
 names(rvn.dat2)
   }

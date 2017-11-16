@@ -199,21 +199,40 @@ The function extracts parameters enconded as time series in [Raven](http://www.b
 
 
 ```{r, eval=FALSE}
-# freq contour 95
-fcts <- extract_ts(X = selection_file_ts, ts.column = "Freq.Contour.95...Hz.")
 
-fcts[,1:14]
-fcts[,39:53]
+#remove previous raven data files
+unlink(list.files(pattern = "\\.txt$"))
+
+#save Raven selection table in the temporary directory
+writeLines(selection_files[[5]], con = names(selection_files)[5])
+
+rvn.dat <- imp_raven(all.data = TRUE) 
+
+# Peak freq contour dif length
+fcts <- extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.")
+ 
+head(fcts[,1:14])
+head(fcts[,39:53])
 
 ```
 
 ```{r, eval=T, echo=FALSE}
 
-# freq contour 95 equal length
-fcts <- extract_ts(X = selection_file_ts, ts.column = "Freq.Contour.95...Hz.")
+#remove previous raven data files
+unlink(list.files(pattern = "\\.txt$"))
 
-knitr::kable(fcts[ ,1:14], align = "c", row.names = F)
-knitr::kable(fcts[ ,39:53], align = "c", row.names = F)
+#save Raven selection table in the temporary directory
+writeLines(selection_files[[5]], con = names(selection_files)[5])
+
+#save Raven selection table in the temporary directory
+rvn.dat <- imp_raven(all.data = TRUE) 
+
+# Peak freq contour dif length
+fcts <- extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.")
+ 
+
+knitr::kable(head(fcts[ ,1:14]), align = "c", row.names = FALSE)
+knitr::kable(head(fcts[ ,39:53]), align = "c", row.names = FALSE)
  
 ```
  &nbsp;
@@ -223,21 +242,21 @@ Note that these sequences are not all of equal length (one has NAs at the end).
 
 ```{r, eval=F, echo=T}
 
-# freq contour 95 equal length
-fcts <- extract_ts(X = selection_file_ts, ts.column = "Freq.Contour.95...Hz.",  equal.length = T)
+# Peak freq contour equal length
+fcts <- extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.",  equal.length = TRUE)
 
 #look at the last rows wit no NAs
-fcts[,21:32]
+head(fcts[,21:32])
 
 ```
  
 ```{r, eval=T, echo = F}
 
-# freq contour 95 equal length
-fcts <- extract_ts(X = selection_file_ts, ts.column = "Peak.Freq.Contour..Hz.",
- equal.length = T)
+# Peak freq contour equal length
+fcts <- extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.",
+ equal.length = TRUE)
 
-knitr::kable(fcts[ ,21:32], align = "c", row.names = F)
+knitr::kable(head(fcts[ ,21:32]), align = "c", row.names = FALSE)
  
 ```
  &nbsp; 
@@ -246,19 +265,19 @@ And the length of the series can also be specified:
 
 ```{r, eval=FALSE}
 
-# freq contour 95 equal length 10 measurements
-fcts <- extract_ts(X = selection_file_ts, ts.column = "Peak.Freq.Contour..Hz.", 
+# Peak freq contour equal length 10 measurements
+fcts <- extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.",
 equal.length = T, length.out = 10)  
 
-knitr::kable(fcts, align = "c", row.names = F)
+knitr::kable(head(fcts), align = "c", row.names = F)
 
 
 ```
 
 ```{r, eval=TRUE, echo=FALSE}
 
-# freq contour 95 equal length 10 measurements
-fcts <- extract_ts(X = selection_file_ts, ts.column = "Peak.Freq.Contour..Hz.", 
+# Peak freq contour equal length 10 measurements
+fcts <- extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", 
 equal.length = T, length.out = 10)  
 
 knitr::kable(head(fcts), align = "c", row.names = F)
@@ -284,7 +303,7 @@ This is a very simple function to relabel columns so they match the selection ta
 ```{r, eval = F, echo = T}
 
 #to simplify the example select a subset of the columns 
-st1 <- selection_file_ts[ ,1:7]
+st1 <- rvn.dat[ ,1:7]
 
 #check original column names
 st1
@@ -293,7 +312,7 @@ st1
 ```{r, eval = T, echo = F}
 
 #to simplify the example select a subset of the columns 
-st1 <- selection_file_ts[ ,1:7]
+st1 <- rvn.dat[ ,1:7]
 
 #check original column names
 kable(st1, align = "c", row.names = FALSE)
