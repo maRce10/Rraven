@@ -5,16 +5,14 @@ author: <a href="http://marceloarayasalas.weebly.com/">Marcelo Araya-Salas</a>
 date: "`r Sys.Date()`"
 output:
   html_document:
-    fig_caption: false
-    toc: true
+    toc: yes
     toc_float:
-      collapsed: false
-      smooth_scroll: false
-    toc_depth: 3
+      collapsed: no
+      smooth_scroll: no
 vignette: >
+  \usepackage[utf8]{inputenc}
   %\VignetteIndexEntry{Rraven: Connecting R and Raven Sound Analysis Software}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
 ---
 
 
@@ -128,20 +126,20 @@ This code shows how to import all the data contained in those files into R:
 ```{r, eval=FALSE}
 
  #providing the name of the column with the sound file names
-rav.dat <- imp_raven(all.data = TRUE)
+rvn.dat <- imp_raven(all.data = TRUE)
 
-head(rav.dat)
+head(rvn.dat)
 
 ```
 
 ```{r, eval=TRUE, echo=F, message=F}
 
  #providing the name of the column with the sound file names
-rav.dat <- imp_raven(all.data = TRUE, path = tempdir())
+rvn.dat <- imp_raven(all.data = TRUE, path = tempdir())
 
-kable(head(rav.dat[,1:5]), align = "c", row.names = F)
+kable(head(rvn.dat[,1:5]), align = "c", row.names = F)
 
-kable(head(rav.dat[,6:ncol(rav.dat)]), align = "c", row.names = F)
+kable(head(rvn.dat[,6:ncol(rvn.dat)]), align = "c", row.names = F)
 
 ```
  &nbsp; 
@@ -150,46 +148,85 @@ Note that the 'waveform' view data has been removed. It can also be imported as 
 
 ```{r, eval=FALSE}
 
-rav.dat <- imp_raven(all.data = TRUE, waveform = TRUE)
+rvn.dat <- imp_raven(all.data = TRUE, waveform = TRUE)
 
-head(rav.dat)
+head(rvn.dat)
 
 ```
 
 ```{r, eval = TRUE, echo = FALSE, message = FALSE, warning = FALSE, cache.comments=FALSE, comment=F, include=F}
 
-rav.dat <- imp_raven(all.data = TRUE, path = tempdir(), waveform = TRUE)
+rvn.dat <- imp_raven(all.data = TRUE, path = tempdir(), waveform = TRUE)
 
-kable(head(rav.dat), format = "html")
+kable(head(rvn.dat), format = "html")
 
 ```
-
-
  &nbsp; 
  
 [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) selections can also be imported in a 'selection.table' format so it can be directly input into [warbleR](https://cran.r-project.org/package=warbleR) functions. To do this you need to set the `all.data = FALSE` and indicate which column contains the sound file name (using the 'sound.file.col' argument): 
 
 ```{r, eval=FALSE}
  #providing the name of the column with the sound file names
-rav.dat <- imp_raven(sound.file.col = "End.File", all.data = FALSE)
+rvn.dat <- imp_raven(sound.file.col = "End.File", all.data = FALSE)
 
-head(rav.dat)
+head(rvn.dat)
 
 ```
 
 ```{r, eval=TRUE, echo=FALSE}
 
  #providing the name of the column with the sound file names
-rav.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE)
+rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE)
 
-knitr::kable(head(rav.dat), align = "c", row.names = F)
+knitr::kable(head(rvn.dat), align = "c", row.names = FALSE)
 
 ```
  &nbsp; 
  
-The data frame contains the following columns: sound.files, channel, selec, start, end, and selec.file. You can also import the frequency range parameters in the 'selection.table' by setting 'freq.cols' tp `TRUE` (although this columns are not available in our example data). The data frame returned by "imp_raven" (when in the 'warbleR' format) can be input into several [warbleR](https://cran.r-project.org/package=warbleR) functions for further analysis. 
+The data frame contains the following columns: sound.files, channel, selec, start, end, and selec.file. You can also import the frequency range parameters in the 'selection.table' by setting 'freq.cols' tp `TRUE` (although this columns are not available in our example data). The data frame returned by "imp_raven" (when in the 'warbleR' format) can be input into several [warbleR](https://cran.r-project.org/package=warbleR) functions for further analysis. For instance, the following code runs additional parameter measurements on the imported selections:
 
+```{r, eval=FALSE, echo=TRUE}
+
+# convert to class selection.table
+rvn.dat.st <- make.selection.table(rvn.dat)
+
+sp <- specan(X = rvn.dat, bp = c(1, 11), wl = 150, pb = FALSE, ovlp = 90)
+
+head(sp)
+
+```
+
+```{r, eval=TRUE, echo=FALSE}
+
+# convert to class selection.table
+rvn.dat.st <- make.selection.table(rvn.dat)
+
+sp <- specan(X = rvn.dat, bp = c(1, 11), wl = 150, pb = FALSE, ovlp = 90)
+
+knitr::kable(head(sp[,1:6]), align = "c", row.names = FALSE)
+knitr::kable(head(sp[,6:15]), align = "c", row.names = FALSE)
+
+```
+ &nbsp; 
+
+
+And this code creates song catalogs:
+
+```{r, eval = FALSE}
+
+catalog(X = rvn.dat.st[1:9, ], flim = c(1, 10), nrow = 3, ncol = 3, same.time.scale = F,
+ ovlp = 90, parallel = 1, mar = 0.01, wl = 200, pal = reverse.heat.colors, width = 20,  labels = c("sound.files", "selec"), legend = 1, 
+ tag.pal = list(terrain.colors), tags = "sound.files")
+
+```
+
+![catalog](Catalog.jpeg)
 ---
+
+This is just to cite a few analysis that can be implemented in [warbleR](https://cran.r-project.org/package=warbleR).
+
+`Rraven` also contains the function `imp_syrinx` to import selections from [Syrinx sound analyis software](www.syrinxpc.com) (although this program is not been maintained any longer).
+
 
 ### *extract_ts*
 
@@ -267,7 +304,7 @@ And the length of the series can also be specified:
 fcts <- extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.",
 equal.length = T, length.out = 10)  
 
-knitr::kable(head(fcts), align = "c", row.names = F)
+knitr::kable(head(fcts), align = "c", row.names = FALSE)
 
 
 ```
@@ -278,7 +315,7 @@ knitr::kable(head(fcts), align = "c", row.names = F)
 fcts <- extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", 
 equal.length = T, length.out = 10)  
 
-knitr::kable(head(fcts), align = "c", row.names = F)
+knitr::kable(head(fcts), align = "c", row.names = FALSE)
 
 
 ```
@@ -378,7 +415,7 @@ list.files(path = file.path(tempdir(), "cuts"))
  
 Every selection is in its own sound file (labeled as `paste(sound.files, selec)`). Now open [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) and run the batch correlator on the 'cuts' folder as follows:
 
-![gif1](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/raven_correlator.gif)
+![gif1](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt_short_raven_correlator.gif)
  &nbsp; 
 
 And then import the output file into R:
@@ -467,12 +504,12 @@ st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav",]
 exp_raven(st1, file.name = "Phaethornis 1", khz.to.hz = TRUE, sound.file.path = tempdir())
 
 ```
-![gif2](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/exp_raven1.gif)
+![gif2](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt_short_exp_raven1.gif)
  &nbsp; 
 
 This is useful to add new selections or even new measurements:
 
-![gif3](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/exp_raven2.gif)
+![gif3](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt_short_exp_raven2.gif)
  &nbsp; 
 
 If several sound files are available, users can either export them as a single selection file or as multiple selection files (one for each sound file). This example creates a multiple sound file selection:
@@ -480,13 +517,13 @@ If several sound files are available, users can either export them as a single s
 ```{r, eval=FALSE, echo=T}
 
 exp_raven(X = selec.table, file.name = "Phaethornis multiple sound files", 
-sound.file.path = tempdir(), single.file = T)
+sound.file.path = tempdir(), single.file = TRUE)
 ```
  &nbsp; 
 
 These type of tables can be opened as a multiple file display in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html):
 
-![gif4](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/exp_raven3.gif)
+![gif4](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt_short_exp_raven3.gif)
  &nbsp; 
 
 ---
@@ -508,7 +545,7 @@ run_raven(raven.path = raven.path, sound.files = c("Phae.long1.wav", "Phae.long2
 
 ``` 
 
-![gif5](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/run_raven1.gif)
+![gif5](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt_short_run_raven1.gif)
  &nbsp; 
  
 See `imp_raven` above for more details on additional settings when importing selections.
@@ -528,7 +565,7 @@ sound.files = "BlackCappedVireo.aif", path = file.path(raven.path, "Examples"))
 
 ```
 
-![gif6](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/raven_batch_detec.gif)
+![gif6](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt_short_raven_batch_detec.gif)
  &nbsp; 
  
 ---
