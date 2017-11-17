@@ -378,7 +378,7 @@ list.files(path = file.path(tempdir(), "cuts"))
  
 Every selection is in its own sound file (labeled as `paste(sound.files, selec)`). Now open [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) and run the batch correlator on the 'cuts' folder as follows:
 
-![gif1](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/raven.correlator.gif)
+![gif1](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/raven_correlator.gif)
  &nbsp; 
 
 And then import the output file into R:
