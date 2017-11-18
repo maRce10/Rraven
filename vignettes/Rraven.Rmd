@@ -22,7 +22,7 @@ vignette: >
 library(warbleR)
 library(Rraven)
 library(knitr)
-source("~/Dropbox/Rraven/R/exp_raven.R")
+
 opts_chunk$set(comment = "")
 opts_knit$set(root.dir = tempdir())
 options(width = 150, max.print = 100)
@@ -91,10 +91,7 @@ getwd()
 ```{r eval= T, echo=F}
 
 #load example data
-data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table"))
-
-"selection_files"
-load("~/Dropbox/Rraven/data/selection_files.rda")
+data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table", "selection_files"))
 
 #save sound files  in temporary directory
 writeWave(Phae.long1,"Phae.long1.wav", extensible = FALSE)
