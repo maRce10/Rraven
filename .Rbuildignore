@@ -1,3 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^gifs$
+^.gitignore$
+^.Rd2pd
+^.Rproj.user$
+^.git$
+^Rproj.user$
+^git$
+^giignore$

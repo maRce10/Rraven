@@ -25,7 +25,6 @@ To install the latest developmental version from [github](http://github.com/) yo
 # From github
 devtools::install_github("maRce10/Rraven")
 
-
 #load package
 library(Rraven)
 
