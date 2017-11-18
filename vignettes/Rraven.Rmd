@@ -34,10 +34,10 @@ options(width = 150, max.print = 100)
 
 The `Rraven` package is designed to facilitate the exchange of data between R and  [Raven sound analysis software](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) ([Cornell Lab of Ornithology](http://www.birds.cornell.edu)). [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) provides very  powerful tools for the analysis of (animal) sounds. R can simplify the automatization of complex routines of analyses. Furthermore, R packages as [warbleR](https://cran.r-project.org/package=warbleR), [seewave](https://cran.r-project.org/package=seewave) and [monitoR](https://cran.r-project.org/package=monitoR) (among others) provide additional methods of analysis, working as a perfect complement for those found in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html). Hence, bridging these applications can largely expand the bioacoustician's toolkit.
 
-Currently, most analyses in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) cannot be run in the background from a command terminal. Thus, most `Rraven` functions are design to simplify the exchange of data between the two programs, and in some cases, export files to  [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) for further analysis. This vignette provides detailed examples for each function in `Rraven`, including both the R code as well as the additional steps in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) required to fully accomplished the analyses. Raven Pro must be installed to be able to run some of the code. Note that the animations explaining this additional [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) steps are more shown in more detailed in the [github](http://github.com/) version of this vignette, which can be downloaded as follows:
+Currently, most analyses in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) cannot be run in the background from a command terminal. Thus, most `Rraven` functions are design to simplify the exchange of data between the two programs, and in some cases, export files to  [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) for further analysis. This vignette provides detailed examples for each function in `Rraven`, including both the R code as well as the additional steps in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) required to fully accomplished the analyses. Raven Pro must be installed to be able to run some of the code. Note that the animations explaining this additional [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) steps are shown in more detailed in the [github](http://github.com/) version of this vignette, which can be downloaded as follows (saves the file "Rraven.hitgub.html" in your current working directory):
 
 
-```{r}
+```{r eval = FALSE}
 
 download.file(url = "https://github.com/maRce10/Rraven/raw/master/gifs/Rraven.hitgub.html", destfile = "Rraven.hitgub.html")
 
@@ -177,7 +177,7 @@ kable(head(rvn.dat), format = "html")
 
 ```{r, eval=FALSE}
  #providing the name of the column with the sound file names
-rvn.dat <- imp_raven(sound.file.col = "End.File", all.data = FALSE)
+rvn.dat <- imp_raven(sound.file.col = "End.File", all.data = FALSE, freq.cols = TRUE)
 
 head(rvn.dat)
 
@@ -186,21 +186,21 @@ head(rvn.dat)
 ```{r, eval=TRUE, echo=FALSE}
 
  #providing the name of the column with the sound file names
-rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE)
+rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE, freq.cols = TRUE)
 
 knitr::kable(head(rvn.dat), align = "c", row.names = FALSE)
 
 ```
  &nbsp; 
  
-The data frame contains the following columns: sound.files, channel, selec, start, end, and selec.file. You can also import the frequency range parameters in the 'selection.table' by setting 'freq.cols' tp `TRUE` (although this columns are not available in our example data). The data frame returned by "imp_raven" (when in the 'warbleR' format) can be input into several [warbleR](https://cran.r-project.org/package=warbleR) functions for further analysis. For instance, the following code runs additional parameter measurements on the imported selections:
+The data frame contains the following columns: sound.files, channel, selec, start, end, and selec.file. You can also import the frequency range parameters in the 'selection.table' by setting 'freq.cols' tp `TRUE`. The data frame returned by "imp_raven" (when in the 'warbleR' format) can be input into several [warbleR](https://cran.r-project.org/package=warbleR) functions for further analysis. For instance, the following code runs additional parameter measurements on the imported selections:
 
 ```{r, eval=FALSE, echo=TRUE}
 
 # convert to class selection.table
 rvn.dat.st <- make.selection.table(rvn.dat)
 
-sp <- specan(X = rvn.dat, bp = c(1, 11), wl = 150, pb = FALSE, ovlp = 90)
+sp <- specan(X = rvn.dat, bp = "frange", wl = 150, pb = FALSE, ovlp = 90)
 
 head(sp)
 
@@ -211,7 +211,7 @@ head(sp)
 # convert to class selection.table
 rvn.dat.st <- make.selection.table(rvn.dat)
 
-sp <- specan(X = rvn.dat, bp = c(1, 11), wl = 150, pb = FALSE, ovlp = 90)
+sp <- specan(X = rvn.dat, bp = "frange", wl = 150, pb = FALSE, ovlp = 90)
 
 knitr::kable(head(sp[,1:6]), align = "c", row.names = FALSE)
 knitr::kable(head(sp[,6:15]), align = "c", row.names = FALSE)
@@ -583,3 +583,13 @@ sound.files = "BlackCappedVireo.aif", path = file.path(raven.path, "Examples"))
 Please report any bugs [here](https://github.com/maRce10/Rraven/issues). The `Rraven` package should be cited as follows: 
 
 Araya-Salas. (2017), *Rraven: connecting R and Raven bioacoustic software*. R package version 1.0.0.
+
+```{r, eval=T, echo=F}
+
+# Import output (change the name of the file if you used a different one)
+xcorr.rav <- imp_corr_mat(file = "BatchCorrOutput.txt", path = "/home/m/Dropbox/Rraven/vignettes")
+
+unlink(list.files(pattern = "\\.wav$|\\.txt$", ignore.case = TRUE))
+
+```
+
