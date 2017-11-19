@@ -36,7 +36,7 @@ This function relabels columns to match the selection table format to match then
 # Load data
 data(selection_files)
 
-#save Raven selection tables in the temporary directory 
+#save 'Raven' selection tables in the temporary directory 
 writeLines(selection_files[[5]], con = names(selection_files)[5])
 
 #'# import data to R
@@ -59,7 +59,7 @@ rvn.dat2 <- relabel_colms(rvn.dat, extra.cols.name = c("selec.file", "View"),
 c("Raven selection file", "Raven view"))
  
 names(rvn.dat2)
-  }
+}
 
 }
 \author{

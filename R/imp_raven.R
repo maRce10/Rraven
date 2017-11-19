@@ -1,9 +1,9 @@
-#' Import Raven selections
+#' Import 'Raven' selections
 #' 
-#' \code{imp_raven} imports Raven selection files simultaneously from many files. Files must be in '.txt' format.
+#' \code{imp_raven} imports 'Raven' selection files simultaneously from many files. Files must be in '.txt' format.
 #' @usage imp_raven(path = NULL, sound.file.col = NULL, all.data = FALSE, recursive = FALSE,
 #'  name.from.file = FALSE, ext.case = NULL, freq.cols = TRUE, waveform = FALSE)  
-#' @param path A character string indicating the path of the directory in which to look for the Raven selection (text) files. 
+#' @param path A character string indicating the path of the directory in which to look for the 'Raven' selection (text) files. 
 #' If not provided (default) the function searches into the current working directory.
 #' @param sound.file.col A character string with the name of the column containing the sound files in 
 #' the selection text files. Default is \code{NULL}. If provided, the output data
@@ -11,7 +11,7 @@
 #' Duplicated rows, as when "waveform" and "spectrogram" information are included for the same selection, will be removed.
 #' All selection files must contain "Selection", "Begin.Time" and "End.Time" columns.
 #' @param all.data Logical. If \code{TRUE} all columns in the selection files are returned, 
-#' keeping the name columns as in the Raven files. Default is \code{FALSE}. Columns absent in some selection files will be filled with NA's.
+#' keeping the name columns as in the 'Raven' files. Default is \code{FALSE}. Columns absent in some selection files will be filled with NA's.
 #' @param recursive Logical. If \code{TRUE} the listing recurse into sub-directories.
 #' @param name.from.file Logical. If \code{TRUE} the sound file names are extracted from the selection text file name. 
 #' It asssumes that selections files contained the suffix "Table.1.selections.txt" or "selections.txt". 
@@ -25,34 +25,29 @@
 #' @return A single data frame with information of the selection files. If 'all.data' argument is set to \code{FALSE} the data 
 #' frame contains the following columns: selec, start, end, and selec.file. If sound.file.col is provided the data frame
 #' will also contain a 'sound.files' column. In addition, all rows with duplicated data are removed. This is useful when 
-#' both spectrogram and waveform views are included in the Raven selection files. If all.data is set to \code{TRUE} then all 
-#' columns in the Raven selection files are returned. 
-#' @details The function import Raven selection data from many files simultaneously. Files must be in '.txt' format. Selection 
+#' both spectrogram and waveform views are included in the 'Raven' selection files. If all.data is set to \code{TRUE} then all 
+#' columns in the 'Raven' selection files are returned. 
+#' @details The function import 'Raven' selection data from many files simultaneously. Files must be in '.txt' format. Selection 
 #' files including data from mulitple recordings can also be imported. 
 #' @seealso \code{\link{imp_syrinx}} 
 #' @export
 #' @name imp_raven
 #' @examples
-#' \dontrun{
 #' # First set temporary folder
 #' setwd(tempdir())
 #' 
 #' #load data 
 #' data(selection_files)
 #' 
-#' #save Raven selection tables in the temporary directory 
+#' #save 'Raven' selection tables in the temporary directory 
 #' out <- lapply(1:2, function(x) 
 #' writeLines(selection_files[[x]], con = names(selection_files)[x]))
 #' 
 #'#providing the name of the column with the sound file names
 #'rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE)
 #' 
-#' View(rvn.dat)
+#' # View(rvn.dat)
 #' 
-#' #getting all the data
-#' rvn.dat2 <- imp_raven(all.data = TRUE)
-#' View(rvn.dat2)
-#' }
 #' 
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
 #last modification on nov-7-2017

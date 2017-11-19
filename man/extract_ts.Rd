@@ -2,7 +2,7 @@
 % Please edit documentation in R/extract_ts.R
 \name{extract_ts}
 \alias{extract_ts}
-\title{Extract time series parameters from data imported from Raven}
+\title{Extract time series parameters from data imported from 'Raven'}
 \usage{
 extract_ts(X, ts.column, equal.length = FALSE, as.time.series = FALSE, 
 length.out = 30)
@@ -26,17 +26,20 @@ interpolated (the length of the time series). default is 30. Ignored if equal.le
 A data frame with columns for sound file name (sound.files), selection label (selec) and the time series for each selection.
 }
 \description{
-\code{extract_ts} extracts time series parameters from data imported from Raven bioacoustic software.
+\code{extract_ts} extracts time series parameters from data imported from 'Raven' bioacoustic software.
 }
 \details{
-The function extracts parameters enconded as time series in Raven selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as \code{\link[warbleR]{dfDTW}}.
+The function extracts parameters enconded as time series in 'Raven' selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as \code{\link[warbleR]{dfDTW}}.
 }
 \examples{
-\dontrun{ 
+\dontrun{
+#' # First set temporary folder
+setwd(tempdir())
+
 # Load data
 data(selection_files)
 
-#save Raven selection tables in the temporary directory 
+#save 'Raven' selection tables in the temporary directory 
 writeLines(selection_files[[5]], con = names(selection_files)[5])
 
 # import data to R
@@ -50,7 +53,7 @@ extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", equal.length = T)
  
 # Peak freq equal length 10 measurements
 extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", 
-equal.length = T, length.out = 10)     
+equal.length = TRUE, length.out = 10) 
 }
 
 }

@@ -1,6 +1,6 @@
-#' Import Syrinx selections
+#' Import 'Syrinx' selections
 #' 
-#' \code{imp_syrinx} imports Syrinx selection data from many files simultaneously. 
+#' \code{imp_syrinx} imports 'Syrinx' selection data from many files simultaneously. 
 #' All files must be have the same columns.
 #' @usage imp_syrinx(path = NULL, all.data = FALSE, recursive = FALSE, 
 #' exclude = FALSE, hz.to.khz = TRUE)  
@@ -26,19 +26,20 @@
 #' #load data 
 #' data(selection_files)
 #' 
-#' #save Raven selection tables in the temporary directory 
-#' writeLines(selection_files[[6]], con = names(selection_files)[6])
+#' #save 'Raven' selection tables in the temporary directory 
+#' writeLines(selection_files[[7]], con = names(selection_files)[7])
 #' 
 #' 
 #' syr.dat <- imp_syrinx(all.data = FALSE)
 #' 
-#' View(syr.dat)
+#' # View(syr.dat)
 #' 
 #' #getting all the data
 #' syr.dat <- imp_syrinx(all.data = TRUE)
 #' 
-#' View(syr.dat)
+#' # View(syr.dat)
 #' }
+#' 
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
 #last modification on nov-7-2017
 

@@ -1,6 +1,6 @@
-#' Export Raven selections
+#' Export 'Raven' selections
 #' 
-#' \code{exp_raven} exports selection tables as Raven selection data in .txt format.
+#' \code{exp_raven} exports selection tables as 'Raven' selection data in .txt format.
 #' @usage exp_raven(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, 
 #' sound.file.path = NULL, single.file = TRUE)
 #' @param X Data frame containing columns for sound file (sound.files), selection (selec), start and end time of signals ('start' and 'end') and low and high frequency ('bottom.freq' and 'top.freq', optional). See example data 'selec.table' in the \code{\link{warbleR}}) package.
@@ -12,7 +12,7 @@
 #' @param sound.file.path A character string indicating the path of the 
 #' directory containing the sound file(s). Providing this information allows
 #'  to open both sound file and selection table simultaneously. This can be
-#'  done by using the 'File > Open selection table' option in Raven (or drag/drop the 
+#'  done by using the 'File > Open selection table' option in 'Raven' (or drag/drop the 
 #' selection file into Raven). Default is \code{NULL}. This argument is required when
 #' exporting selections from multiple sound files.
 #' @param single.file Logical. Controls whether a single selection file (\code{TRUE}; default)
@@ -25,7 +25,7 @@
 #' export them as a single selection file or as multiple selection files (one for each sound file). 
 #' No objects are returned in the R environment.
 #' @details The function exports selection tables (as the ones used in the R 
-#' package \code{\link{warbleR}}) into the Raven selection file format ('.txt').
+#' package \code{\link{warbleR}}) into the 'Raven' selection file format ('.txt').
 #'  This can be useful to obtain additional Raven
 #' measurements on existing selections by adding new measurements to the 
 #' selection table once in Raven. Note that selection labels must be numeric and unduplicated 
@@ -35,7 +35,6 @@
 #' @export
 #' @name exp_raven
 #' @examples
-#' \dontrun{
 #' # First set temporary folder
 #' setwd(tempdir())
 #' 
@@ -55,8 +54,7 @@
 #' writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
 #' 
 #' exp_raven(X = selec.table, file.name = "Phaethornis multiple sound files", 
-#' sound.file.path = tempdir(), single.file = T)
-#' }
+#' sound.file.path = tempdir(), single.file = TRUE)
 #' 
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
 #last modification on nov-7-2017

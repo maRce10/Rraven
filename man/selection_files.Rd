@@ -3,10 +3,9 @@
 \docType{data}
 \name{selection_files}
 \alias{selection_files}
-\title{A list of Raven selection tables.}
-\format{List of 6 selection tables. The fifth table contains a 
-multiple sound file selection table. The last table is formated as 
-in Syrinx.}
+\title{A list of 'Raven' selection tables.}
+\format{List of 7 selection tables. The first 5 items are 'Raven' selection tables of Long billed hermit songs. The 5th table contains a multiple sound file selection 
+table. The 6th item is a 'Raven' correlation matrix and the last one a table in 'Syrinx' format.}
 \source{
 Marcelo Araya-Salas
 }
@@ -14,10 +13,11 @@ Marcelo Araya-Salas
 data(selection_files)
 }
 \description{
-List of Raven and Syrinx selection tables containing 
+List of 'Raven' and 'Syrinx' selection tables containing 
 \emph{Phaethornis longirostris} (Long-billed Hermit) songs from the 
-example sound files included in the \code{\link{warbleR}} package 
-and one selection from cane-brake wrens (no sound file available).
+example sound files included in the \code{\link{warbleR}} package (times 1 to 5),
+a 'Raven' correlation matrix (item 6) and one selection from cane-brake wrens 
+(item 7; no sound file available).
 }
 \keyword{datasets}
 

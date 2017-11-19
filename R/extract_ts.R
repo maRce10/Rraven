@@ -1,6 +1,6 @@
-#' Extract time series parameters from data imported from Raven 
+#' Extract time series parameters from data imported from 'Raven' 
 #' 
-#' \code{extract_ts} extracts time series parameters from data imported from Raven bioacoustic software.
+#' \code{extract_ts} extracts time series parameters from data imported from 'Raven' bioacoustic software.
 #' @usage extract_ts(X, ts.column, equal.length = FALSE, as.time.series = FALSE, 
 #' length.out = 30)
 #' @param X Data frame imported from Raven. It should include at least columns for: sound file names, selection labels,
@@ -13,16 +13,19 @@
 #' @param length.out A numeric vector of length 1 giving the number of measurements to be
 #' interpolated (the length of the time series). default is 30. Ignored if equal.length is \code{FALSE}.
 #' @return A data frame with columns for sound file name (sound.files), selection label (selec) and the time series for each selection.
-#' @details The function extracts parameters enconded as time series in Raven selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as \code{\link[warbleR]{dfDTW}}.
+#' @details The function extracts parameters enconded as time series in 'Raven' selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as \code{\link[warbleR]{dfDTW}}.
 #' @seealso \code{\link{imp_raven}}; \code{\link{exp_raven}} 
 #' @export
 #' @name extract_ts
 #' @examples
-#' \dontrun{ 
+#' \dontrun{
+#' #' # First set temporary folder
+#' setwd(tempdir())
+#' 
 #' # Load data
 #' data(selection_files)
 #' 
-#' #save Raven selection tables in the temporary directory 
+#' #save 'Raven' selection tables in the temporary directory 
 #' writeLines(selection_files[[5]], con = names(selection_files)[5])
 #' 
 #'# import data to R
@@ -36,7 +39,7 @@
 #'  
 #' # Peak freq equal length 10 measurements
 #' extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", 
-#' equal.length = T, length.out = 10)     
+#' equal.length = TRUE, length.out = 10) 
 #' }
 #' 
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})

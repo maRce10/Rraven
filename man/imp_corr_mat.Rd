@@ -2,7 +2,7 @@
 % Please edit documentation in R/imp_corr_mat.R
 \name{imp_corr_mat}
 \alias{imp_corr_mat}
-\title{Import Raven batch correlator output}
+\title{Import 'Raven' batch correlator output}
 \usage{
 imp_corr_mat(file, path = NULL)
 }
@@ -18,7 +18,7 @@ A list with 2 matrices. The first one contains the correlation coefficients and
 the second one the time lags of the peak correlations.
 }
 \description{
-\code{imp_corr_mat} imports the output of Raven batch correlator.
+\code{imp_corr_mat} imports the output of 'Raven' batch correlator.
 }
 \details{
 The function imports the output of a batch correlation routine in Raven. 
@@ -43,7 +43,7 @@ dir.create("cuts")
 # cut files
 cut_sels(X = selec.table, mar = 0.05, path = tempdir(), dest.path = file.path(tempdir(), "cuts"))
 
-#Now run Raven batch correlator un the cuts and save the output in the same folder
+#Now run 'Raven' batch correlator un the cuts and save the output in the same folder
 
 # Import output (change the name of the file if you used a different one)
 xcorr.rav <- imp_corr_mat(file = "BatchCorrOutput.txt", 

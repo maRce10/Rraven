@@ -22,7 +22,7 @@
 #' # Load data
 #' data(selection_files)
 #' 
-#' #save Raven selection tables in the temporary directory 
+#' #save 'Raven' selection tables in the temporary directory 
 #' writeLines(selection_files[[5]], con = names(selection_files)[5])
 #' 
 #' #'# import data to R
@@ -45,7 +45,7 @@
 #' c("Raven selection file", "Raven view"))
 #'  
 #'names(rvn.dat2)
-#'   }
+#' }
 #' 
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
 #last modification on nov-7-2017

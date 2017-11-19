@@ -2,7 +2,7 @@
 % Please edit documentation in R/exp_raven.R
 \name{exp_raven}
 \alias{exp_raven}
-\title{Export Raven selections}
+\title{Export 'Raven' selections}
 \usage{
 exp_raven(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, 
 sound.file.path = NULL, single.file = TRUE)
@@ -21,7 +21,7 @@ selection files are generated (see 'single.file') then the sound files names are
 \item{sound.file.path}{A character string indicating the path of the 
 directory containing the sound file(s). Providing this information allows
  to open both sound file and selection table simultaneously. This can be
- done by using the 'File > Open selection table' option in Raven (or drag/drop the 
+ done by using the 'File > Open selection table' option in 'Raven' (or drag/drop the 
 selection file into Raven). Default is \code{NULL}. This argument is required when
 exporting selections from multiple sound files.}
 
@@ -38,11 +38,11 @@ export them as a single selection file or as multiple selection files (one for e
 No objects are returned in the R environment.
 }
 \description{
-\code{exp_raven} exports selection tables as Raven selection data in .txt format.
+\code{exp_raven} exports selection tables as 'Raven' selection data in .txt format.
 }
 \details{
 The function exports selection tables (as the ones used in the R 
-package \code{\link{warbleR}}) into the Raven selection file format ('.txt').
+package \code{\link{warbleR}}) into the 'Raven' selection file format ('.txt').
  This can be useful to obtain additional Raven
 measurements on existing selections by adding new measurements to the 
 selection table once in Raven. Note that selection labels must be numeric and unduplicated 
@@ -50,7 +50,6 @@ when exporting them to Raven. If that is not the case the function will
 relabeled the selections and the previous selection labels will be retained in a new column('old.selec').
 }
 \examples{
-\dontrun{
 # First set temporary folder
 setwd(tempdir())
 
@@ -70,8 +69,7 @@ writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
 writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
 
 exp_raven(X = selec.table, file.name = "Phaethornis multiple sound files", 
-sound.file.path = tempdir(), single.file = T)
-}
+sound.file.path = tempdir(), single.file = TRUE)
 
 }
 \author{

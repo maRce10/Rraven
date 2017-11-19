@@ -436,8 +436,11 @@ xcorr.rav <- imp_corr_mat(file = "BatchCorrOutput.txt", path = tempdir())
 
 ```{r, eval=T, echo=F}
 
+#save Raven selection table in the temporary directory
+writeLines(selection_files[[6]], con = names(selection_files)[6])
+
 # Import output (change the name of the file if you used a different one)
-xcorr.rav <- imp_corr_mat(file = "BatchCorrOutput.txt", path = "/home/m/Dropbox/Rraven/vignettes")
+xcorr.rav <- imp_corr_mat(file = "BatchCorrOutput.txt", path = tempdir())
 
 ```
  &nbsp; 
@@ -582,9 +585,6 @@ Please report any bugs [here](https://github.com/maRce10/Rraven/issues). The `Rr
 Araya-Salas. (2017), *Rraven: connecting R and Raven bioacoustic software*. R package version 1.0.0.
 
 ```{r, eval=T, echo=F}
-
-# Import output (change the name of the file if you used a different one)
-xcorr.rav <- imp_corr_mat(file = "BatchCorrOutput.txt", path = "/home/m/Dropbox/Rraven/vignettes")
 
 unlink(list.files(pattern = "\\.wav$|\\.txt$", ignore.case = TRUE))
 

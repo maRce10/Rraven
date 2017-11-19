@@ -1,0 +1,370 @@
+pkgname <- "Rraven"
+source(file.path(R.home("share"), "R", "examples-header.R"))
+options(warn = 1)
+base::assign(".ExTimings", "Rraven-Ex.timings", pos = 'CheckExEnv')
+base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+base::assign(".format_ptime",
+function(x) {
+  if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
+  if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
+  options(OutDec = '.')
+  format(x[1L:3L], digits = 7L)
+},
+pos = 'CheckExEnv')
+
+### * </HEADER>
+library('Rraven')
+
+base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+cleanEx()
+nameEx("exp_raven")
+### * exp_raven
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: exp_raven
+### Title: Export 'Raven' selections
+### Aliases: exp_raven
+
+### ** Examples
+
+# First set temporary folder
+setwd(tempdir())
+
+# Load data
+library(warbleR)
+data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table"))
+
+# Select data for a single sound file
+st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav",]
+
+# Export data of a single sound file
+exp_raven(st1, file.name = "Phaethornis 1")
+
+writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE) #save sound files 
+writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
+writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
+writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
+
+exp_raven(X = selec.table, file.name = "Phaethornis multiple sound files", 
+sound.file.path = tempdir(), single.file = TRUE)
+
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("exp_raven", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
+nameEx("extract_ts")
+### * extract_ts
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: extract_ts
+### Title: Extract time series parameters from data imported from 'Raven'
+### Aliases: extract_ts
+
+### ** Examples
+
+## Not run: 
+##D #' # First set temporary folder
+##D setwd(tempdir())
+##D 
+##D # Load data
+##D data(selection_files)
+##D 
+##D #save 'Raven' selection tables in the temporary directory 
+##D writeLines(selection_files[[5]], con = names(selection_files)[5])
+##D 
+##D # import data to R
+##D rvn.dat <- imp_raven(all.data = TRUE) 
+##D 
+##D # Peak freq dif length
+##D extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.")
+##D 
+##D # Peak freq equal length
+##D extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", equal.length = T)
+##D  
+##D # Peak freq equal length 10 measurements
+##D extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", 
+##D equal.length = TRUE, length.out = 10) 
+## End(Not run)
+
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("extract_ts", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
+nameEx("imp_corr_mat")
+### * imp_corr_mat
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: imp_corr_mat
+### Title: Import 'Raven' batch correlator output
+### Aliases: imp_corr_mat
+
+### ** Examples
+
+## Not run: 
+##D  
+##D # Load data
+##D library(warbleR)
+##D data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table"))
+##D 
+##D writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE) #save sound files 
+##D writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
+##D writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
+##D writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
+##D 
+##D #create new folder to put cuts
+##D dir.create("cuts")
+##D 
+##D # cut files
+##D cut_sels(X = selec.table, mar = 0.05, path = tempdir(), dest.path = file.path(tempdir(), "cuts"))
+##D 
+##D #Now run 'Raven' batch correlator un the cuts and save the output in the same folder
+##D 
+##D # Import output (change the name of the file if you used a different one)
+##D xcorr.rav <- imp_corr_mat(file = "BatchCorrOutput.txt", 
+##D path = file.path(tempdir(), "cuts"))
+##D 
+##D # check results
+##D   
+##D ## correlation matrix
+##D xcorr.rav[[1]]
+##D 
+##D ## time lag matrix
+##D xcorr.rav[[2]]
+## End(Not run)
+
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("imp_corr_mat", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
+nameEx("imp_raven")
+### * imp_raven
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: imp_raven
+### Title: Import 'Raven' selections
+### Aliases: imp_raven
+
+### ** Examples
+
+# First set temporary folder
+setwd(tempdir())
+
+#load data 
+data(selection_files)
+
+#save 'Raven' selection tables in the temporary directory 
+out <- lapply(1:2, function(x) 
+writeLines(selection_files[[x]], con = names(selection_files)[x]))
+
+#providing the name of the column with the sound file names
+rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE)
+
+# View(rvn.dat)
+
+
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("imp_raven", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
+nameEx("imp_syrinx")
+### * imp_syrinx
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: imp_syrinx
+### Title: Import 'Syrinx' selections
+### Aliases: imp_syrinx
+
+### ** Examples
+
+## Not run: 
+##D # First set temporary folder
+##D setwd(tempdir())
+##D 
+##D #load data 
+##D data(selection_files)
+##D 
+##D #save 'Raven' selection tables in the temporary directory 
+##D writeLines(selection_files[[7]], con = names(selection_files)[7])
+##D 
+##D 
+##D syr.dat <- imp_syrinx(all.data = FALSE)
+##D 
+##D # View(syr.dat)
+##D 
+##D #getting all the data
+##D syr.dat <- imp_syrinx(all.data = TRUE)
+##D 
+##D # View(syr.dat)
+## End(Not run)
+
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("imp_syrinx", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
+nameEx("raven_batch_detec")
+### * raven_batch_detec
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: raven_batch_detec
+### Title: Run 'Raven' batch detector
+### Aliases: raven_batch_detec
+
+### ** Examples
+
+## Not run: 
+##D 
+##D # here replace with the path where 'Raven' is install in your computer
+##D raven.path <- "PATH_TO_RAVEN_DIRECTORY_HERE" 
+##D 
+##D # Run detector on raven example sound files
+##D 
+##D # single sound file
+##D detec.res <- raven_batch_detec(raven.path = raven.path, 
+##D sound.files = "BlackCappedVireo.aif", path = file.path(raven.path, "Examples"))
+##D 
+##D # on raven examples  2 files
+##D detec.res <- raven_batch_detec(raven.path = raven.path, 
+##D sound.files = c("BlackCappedVireo.aif", "CanyonWren.wav"), 
+##D path = file.path(raven.path, "Examples"))
+##D 
+##D # using 'Band Limited Energy Detector' 
+##D detec.res <- raven_batch_detec(raven.path = raven.path, 
+##D sound.files = c("BlackCappedVireo.aif", "CanyonWren.wav"), 
+##D path = file.path(raven.path, "Examples"), detector = "Band Limited Energy Detector")
+## End(Not run)
+
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("raven_batch_detec", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
+nameEx("relabel_colms")
+### * relabel_colms
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: relabel_colms
+### Title: Relabel columns to match the selection table format
+### Aliases: relabel_colms
+
+### ** Examples
+
+## Not run: 
+##D # Load data
+##D data(selection_files)
+##D 
+##D #save 'Raven' selection tables in the temporary directory 
+##D writeLines(selection_files[[5]], con = names(selection_files)[5])
+##D 
+##D #'# import data to R
+##D rvn.dat <- imp_raven(all.data = TRUE) 
+##D 
+##D names(rvn.dat)
+##D 
+##D # Select data for a single sound file
+##D rvn.dat2 <-  relabel_colms(rvn.dat)
+##D 
+##D names(rvn.dat2)
+##D 
+##D # plus 1 additional column
+##D rvn.dat2 <-  relabel_colms(rvn.dat, extra.cols.name = "selec.file", "Raven selection file")
+##D 
+##D names(rvn.dat2)
+##D 
+##D # plus 2 additional column 
+##D rvn.dat2 <- relabel_colms(rvn.dat, extra.cols.name = c("selec.file", "View"), 
+##D c("Raven selection file", "Raven view"))
+##D  
+##D names(rvn.dat2)
+## End(Not run)
+
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("relabel_colms", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
+nameEx("run_raven")
+### * run_raven
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: run_raven
+### Title: Open sound files in 'Raven' sound analysis software
+### Aliases: run_raven
+
+### ** Examples
+
+## Not run: 
+##D # First set temporary folder
+##D setwd(tempdir())
+##D 
+##D # save sound files
+##D library(warbleR) 
+##D data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4"))
+##D writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE)
+##D writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
+##D 
+##D # here replace with the path where 'Raven' is install in your computer
+##D raven.path <- "PATH_TO_RAVEN_DIRECTORY_HERE" 
+##D 
+##D # run function 
+##D run_raven(raven.path = raven.path, sound.files = c("Phae.long1.wav", "Phae.long2.wav"),
+##D  at.the.time = 2, import = T, name.from.file = T, ext.case = "upper", 
+##D  all.data = TRUE, path = tempdir())  
+##D  
+##D #getting all the data
+##D rav.dat<-run_raven(all.data = TRUE, raven.path = raven.path)
+##D # View(rav.dat)
+##D 
+##D writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
+##D writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
+##D 
+##D # run function on all the wav files in the working directory 3 at the time
+##D run_raven(raven.path = raven.path, sound.files = list.files(pattern = "\\.wav$", 
+##D ignore.case = TRUE, path = tempdir()), at.the.time = 3, import = FALSE, 
+##D path = tempdir())
+##D   
+## End(Not run)
+
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("run_raven", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+### * <FOOTER>
+###
+options(digits = 7L)
+base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+grDevices::dev.off()
+###
+### Local variables: ***
+### mode: outline-minor ***
+### outline-regexp: "\\(> \\)?### [*]+" ***
+### End: ***
+quit('no')

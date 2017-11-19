@@ -2,18 +2,18 @@
 % Please edit documentation in R/raven_batch_detec.R
 \name{raven_batch_detec}
 \alias{raven_batch_detec}
-\title{Run Raven batch detector}
+\title{Run 'Raven' batch detector}
 \usage{
 raven_batch_detec(raven.path = NULL, sound.files, path = NULL, 
 detector = "Amplitude detector", 
 relabel_colms = TRUE, pb = TRUE)
 }
 \arguments{
-\item{raven.path}{A character string indicating the path of the directory in which to look for the Raven executable file (where Raven was installed).}
+\item{raven.path}{A character string indicating the path of the directory in which to look for the 'Raven' executable file (where 'Raven' was installed).}
 
 \item{sound.files}{character vector indicating the files that will be analyzed.
 In OSX (mac) only one file at the time can be run (use loops instead!). If \code{NULL} (default) 
-then Raven will be run without opening any file.}
+then 'Raven' will be run without opening any file.}
 
 \item{path}{A character string indicating the path of the directory in which to look for
 the sound files. If not provided (default) the function searches into the current working 
@@ -22,7 +22,7 @@ directory. Default is \code{NULL}.}
 \item{detector}{Character string specifying the type of detector to be called.
 There are 3 options available in Raven: 'Amplitude detector' (default), 'Band 
 Limited Energy Detector' and 'Band Limited Entropy Detector'. Detector 
-parameters must be set in Raven before running the function.}
+parameters must be set in 'Raven' before running the function.}
 
 \item{relabel_colms}{Logical. If  \code{TRUE} (default) colums are labeled to 
 match the selection table format from the acoustic analysis package \code{\link{warbleR}}}
@@ -33,18 +33,18 @@ match the selection table format from the acoustic analysis package \code{\link{
 A data frame with the selections produced during the detection. See \code{\link{imp_raven}} for more details on how selections are imported.
 }
 \description{
-\code{raven_batch_detec} Runs Raven batch detector on multiple sound files sequentially
+\code{raven_batch_detec} Runs 'Raven' batch detector on multiple sound files sequentially
 }
 \details{
-The function runs Raven sound analysis software (Cornell Lab of
-Ornithology), detector on  multiple sound files seuentially. Raven Pro must be 
-installed. Note that batch detection in Raven can also take 
+The function runs 'Raven' sound analysis software (Cornell Lab of
+Ornithology), detector on  multiple sound files seuentially. 'Raven' Pro must be 
+installed. Note that batch detection in 'Raven' can also take 
 sound files in 'mp3', 'flac' and 'aif' format.
 }
 \examples{
 \dontrun{
 
-# here replace with the path where Raven is install in your computer
+# here replace with the path where 'Raven' is install in your computer
 raven.path <- "PATH_TO_RAVEN_DIRECTORY_HERE" 
 
 # Run detector on raven example sound files

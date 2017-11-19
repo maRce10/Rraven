@@ -2,7 +2,7 @@
 % Please edit documentation in R/imp_syrinx.R
 \name{imp_syrinx}
 \alias{imp_syrinx}
-\title{Import Syrinx selections}
+\title{Import 'Syrinx' selections}
 \usage{
 imp_syrinx(path = NULL, all.data = FALSE, recursive = FALSE, 
 exclude = FALSE, hz.to.khz = TRUE)
@@ -27,7 +27,7 @@ will also contain a 'sound.files' column. If all.data is set to \code{TRUE} then
 columns in selection files are returned.
 }
 \description{
-\code{imp_syrinx} imports Syrinx selection data from many files simultaneously. 
+\code{imp_syrinx} imports 'Syrinx' selection data from many files simultaneously. 
 All files must be have the same columns.
 }
 \examples{
@@ -38,19 +38,20 @@ setwd(tempdir())
 #load data 
 data(selection_files)
 
-#save Raven selection tables in the temporary directory 
-writeLines(selection_files[[6]], con = names(selection_files)[6])
+#save 'Raven' selection tables in the temporary directory 
+writeLines(selection_files[[7]], con = names(selection_files)[7])
 
 
 syr.dat <- imp_syrinx(all.data = FALSE)
 
-View(syr.dat)
+# View(syr.dat)
 
 #getting all the data
 syr.dat <- imp_syrinx(all.data = TRUE)
 
-View(syr.dat)
+# View(syr.dat)
 }
+
 }
 \author{
 Marcelo Araya-Salas (\email{araya-salas@cornell.edu})

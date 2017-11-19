@@ -1,0 +1,14 @@
+Rraven                  Rraven: Exchange data and open sound files in
+                        'Raven' from R
+exp_raven               Export 'Raven' selections
+extract_ts              Extract time series parameters from data
+                        imported from 'Raven'
+imp_corr_mat            Import 'Raven' batch correlator output
+imp_raven               Import 'Raven' selections
+imp_syrinx              Import 'Syrinx' selections
+raven_batch_detec       Run 'Raven' batch detector
+relabel_colms           Relabel columns to match the selection table
+                        format
+run_raven               Open sound files in 'Raven' sound analysis
+                        software
+selection_files         A list of 'Raven' selection tables.
