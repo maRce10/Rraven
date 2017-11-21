@@ -32,13 +32,14 @@ The function returns the input data frame with new column names for time and fre
 This function relabels columns to match the selection table format to match then ones used by other bioacoustic analysis R packages like \code{\link{warbleR}}.
 }
 \examples{
-\dontrun{
+
 # Load data
 data(selection_files)
 
 #save 'Raven' selection tables in the temporary directory 
 writeLines(selection_files[[5]], con = names(selection_files)[5])
 
+\donttest{ 
 #'# import data to R
 rvn.dat <- imp_raven(all.data = TRUE) 
 

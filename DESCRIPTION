@@ -1,11 +1,11 @@
-Package: Rraven
 Type: Package
-Title: Connecting R and Raven Sound Analysis Software
+Package: Rraven
+Title: Connecting R and 'Raven' Sound Analysis Software
 Version: 1.0.0
-Date: 2017-11-18
+Date: 2017-11-19
 Author: Marcelo Araya-Salas
 Maintainer: Marcelo Araya-Salas <araya-salas@cornell.edu>
-Description: A tool to exchange data between R and 'Raven' sound analysis software (Cornell Lab of Ornithology). Functions work on data formats compatible with the R package 'warbleR'.
+Description: A tool to exchange data between R and 'Raven' sound analysis software <http://www.birds.cornell.edu/brp/raven/RavenOverview.html> (Cornell Lab of Ornithology). Functions work on data formats compatible with the R package 'warbleR'.
 License: GPL (>= 2)
 Imports: pbapply, warbleR, utils, stats, vegan
 Depends: R (>= 3.2.1)

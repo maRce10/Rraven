@@ -18,7 +18,7 @@
 #' @export
 #' @name extract_ts
 #' @examples
-#' \dontrun{
+#' 
 #' #' # First set temporary folder
 #' setwd(tempdir())
 #' 
@@ -27,8 +27,9 @@
 #' 
 #' #save 'Raven' selection tables in the temporary directory 
 #' writeLines(selection_files[[5]], con = names(selection_files)[5])
-#' 
-#'# import data to R
+#'
+#' \donttest{
+#' # import data to R
 #'rvn.dat <- imp_raven(all.data = TRUE) 
 #'
 #'# Peak freq dif length
@@ -40,7 +41,7 @@
 #' # Peak freq equal length 10 measurements
 #' extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", 
 #' equal.length = TRUE, length.out = 10) 
-#' }
+#'} 
 #' 
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
 #last modification on nov-7-2017

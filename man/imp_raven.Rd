@@ -60,11 +60,13 @@ data(selection_files)
 out <- lapply(1:2, function(x) 
 writeLines(selection_files[[x]], con = names(selection_files)[x]))
 
+\donttest{
 #providing the name of the column with the sound file names
-rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE)
+rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE, 
+path = tempdir())
 
 # View(rvn.dat)
-
+}
 
 }
 \author{

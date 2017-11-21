@@ -39,5 +39,5 @@ vignette("Rraven")
 
 ```
 
-Note that the vignette avaialble on [github](http://github.com/) (which can be download from here) has more detailed animations of the [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) steps.
+Note that the vignette avaialble on [github](http://github.com/) (which can be downloaded from here) has more detailed animations of the [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) steps.
 
