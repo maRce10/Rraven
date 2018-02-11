@@ -35,8 +35,6 @@
 #' @export
 #' @name exp_raven
 #' @examples
-#' # First set temporary folder
-#' setwd(tempdir())
 #' 
 #' # Load data
 #' library(warbleR)
@@ -53,8 +51,8 @@
 #' writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
 #' writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
 #' 
-#' exp_raven(X = selec.table, file.name = "Phaethornis multiple sound files", 
-#' sound.file.path = tempdir(), single.file = TRUE)
+#' exp_raven(X = selec.table, file.name = "Phaethornis multiple sound files",
+#'  single.file = TRUE, sound.file.path = getwd())
 #' 
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
 #last modification on nov-7-2017
@@ -69,7 +67,7 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
                                                                    "start", "end") %in% colnames(X))], collapse=", "), "column(s) not found in data frame"))
   
   #stop if more than 1 sound file is found in X
-  if(length(unique(X$sound.files)) > 1 & is.null(sound.file.path)) stop("'sound.file.path' must be provided when including selection from multiple sound files")
+  if(length(unique(X$sound.files)) > 1 & is.null(sound.file.path)) stop("'sound.file.path' must be provided when including selections from multiple sound files")
   
   
   if(length(unique(X$sound.files)) == 1) single.file <- TRUE

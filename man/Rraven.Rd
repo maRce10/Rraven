@@ -33,4 +33,3 @@ Marcelo Araya-Salas
   
   Maintainer: Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
 }
-

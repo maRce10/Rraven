@@ -63,10 +63,9 @@ names(rvn.dat2)
 }
 
 }
-\author{
-Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
-}
 \seealso{
 \code{\link{imp_raven}}; \code{\link{exp_raven}}
 }
-
+\author{
+Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
+}

@@ -50,8 +50,6 @@ when exporting them to Raven. If that is not the case the function will
 relabeled the selections and the previous selection labels will be retained in a new column('old.selec').
 }
 \examples{
-# First set temporary folder
-setwd(tempdir())
 
 # Load data
 library(warbleR)
@@ -68,14 +66,13 @@ writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
 writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
 writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
 
-exp_raven(X = selec.table, file.name = "Phaethornis multiple sound files", 
-sound.file.path = tempdir(), single.file = TRUE)
+exp_raven(X = selec.table, file.name = "Phaethornis multiple sound files",
+ single.file = TRUE, sound.file.path = getwd())
 
-}
-\author{
-Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
 }
 \seealso{
 \code{\link{imp_raven}}; \code{\link{imp_syrinx}}
 }
-
+\author{
+Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
+}

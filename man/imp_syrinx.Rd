@@ -32,15 +32,11 @@ All files must be have the same columns.
 }
 \examples{
 \dontrun{
-# First set temporary folder
-setwd(tempdir())
-
 #load data 
 data(selection_files)
 
 #save 'Raven' selection tables in the temporary directory 
 writeLines(selection_files[[7]], con = names(selection_files)[7])
-
 
 syr.dat <- imp_syrinx(all.data = FALSE)
 
@@ -53,10 +49,9 @@ syr.dat <- imp_syrinx(all.data = TRUE)
 }
 
 }
-\author{
-Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
-}
 \seealso{
 \code{\link{imp_raven}}
 }
-
+\author{
+Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
+}

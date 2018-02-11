@@ -10,7 +10,7 @@ License: GPL (>= 2)
 Imports: pbapply, warbleR, utils, stats, vegan, dplyr,kableExtra
 Depends: R (>= 3.2.1)
 LazyData: TRUE
-URL: https://github.com/maRce10/Rraven 
+URL: https://github.com/maRce10/Rraven
 BugReports: https://github.com/maRce10/Rraven/issues
 NeedsCompilation: no
 Suggests: knitr
@@ -19,3 +19,4 @@ RoxygenNote: 6.0.1
 Packaged: 2017-11-17 23:45:31 UTC; m
 Repository: CRAN
 Date/Publication: 2017-11-17 08:12:11
+Built: R 3.4.3; ; 2018-02-11 18:56:48 UTC; unix

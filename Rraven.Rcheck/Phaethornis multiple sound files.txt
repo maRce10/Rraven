@@ -1,0 +1,12 @@
+Selection	View	Channel	Begin Time (s)	End Time (s)	Low Freq (Hz)	High Freq (Hz)	Begin File	channel	sel.comment	rec.comment	Begin Path	File Offset	old.selec
+1	Spectrogram 1	1	1.16935492686256	1.34238837651785	2220.10539116336	8604.37778678557	Phae.long1.wav	1	c24	NA	/home/m/Dropbox/Rraven/Rraven.Rcheck/Phae.long1.wav	1.16935492686256	1
+2	Spectrogram 1	1	2.15840849019842	2.32145650374094	2169.43656262667	8807.05310093231	Phae.long1.wav	1	c25	NA	/home/m/Dropbox/Rraven/Rraven.Rcheck/Phae.long1.wav	2.15840849019842	2
+3	Spectrogram 1	1	0.343336570405113	0.518255314152904	2218.29412537784	8756.60402155342	Phae.long1.wav	1	c26	NA	/home/m/Dropbox/Rraven/Rraven.Rcheck/Phae.long1.wav	0.343336570405113	3
+4	Spectrogram 1	1	2.65964271209589	2.79221362038085	2316.86161124984	8822.31567880142	Phae.long2.wav	1	c27	NA	/home/m/Dropbox/Rraven/Rraven.Rcheck/Phae.long2.wav	0.159598267651446	1
+5	Spectrogram 1	1	3.95710292422995	4.08325312100606	2284.00578262584	8888.02733604942	Phae.long2.wav	1	c28	NA	/home/m/Dropbox/Rraven/Rraven.Rcheck/Phae.long2.wav	1.45705847978551	2
+6	Spectrogram 1	1	4.8266408427261	4.95786037537536	3006.83401235379	8822.31567880142	Phae.long3.wav	1	c29	NA	/home/m/Dropbox/Rraven/Rraven.Rcheck/Phae.long3.wav	0.626551953837213	1
+7	Spectrogram 1	1	6.17430209775682	6.30448102324547	2776.84321198581	8888.02733604942	Phae.long3.wav	1	c30	NA	/home/m/Dropbox/Rraven/Rraven.Rcheck/Phae.long3.wav	1.97421320886793	2
+8	Spectrogram 1	1	4.32345317207876	4.45467012896772	2316.86161124984	9315.15310816139	Phae.long3.wav	1	c31	NA	/home/m/Dropbox/Rraven/Rraven.Rcheck/Phae.long3.wav	0.12336428318987	3
+9	Spectrogram 1	1	7.91690047336175	8.06232538395891	2513.99658299382	9216.58562228939	Phae.long4.wav	1	c32	NA	/home/m/Dropbox/Rraven/Rraven.Rcheck/Phae.long4.wav	1.51681158447286	1
+10	Spectrogram 1	1	9.33278087202025	9.47696732112503	2579.70824024182	10235.1163096333	Phae.long4.wav	1	c33	NA	/home/m/Dropbox/Rraven/Rraven.Rcheck/Phae.long4.wav	2.93269198313136	2
+11	Spectrogram 1	1	6.54548654914012	6.690585476306	2579.70824024182	9742.27888027336	Phae.long4.wav	1	c34	NA	/home/m/Dropbox/Rraven/Rraven.Rcheck/Phae.long4.wav	0.145397660251226	3

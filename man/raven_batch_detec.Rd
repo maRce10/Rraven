@@ -65,10 +65,9 @@ path = file.path(raven.path, "Examples"), detector = "Band Limited Energy Detect
 }
 
 }
-\author{
-Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
-}
 \seealso{
 \code{\link{imp_raven}}; \code{\link{imp_syrinx}};  \code{\link{run_raven}}
 }
-
+\author{
+Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
+}

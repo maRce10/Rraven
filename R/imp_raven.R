@@ -33,8 +33,6 @@
 #' @export
 #' @name imp_raven
 #' @examples
-#' # First set temporary folder
-#' setwd(tempdir())
 #' 
 #' #load data 
 #' data(selection_files)
@@ -45,8 +43,7 @@
 #' 
 #' \donttest{
 #'#providing the name of the column with the sound file names
-#'rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE, 
-#'path = tempdir())
+#'rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE)
 #' 
 #' # View(rvn.dat)
 #' }

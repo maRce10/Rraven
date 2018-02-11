@@ -50,8 +50,6 @@ The function import 'Raven' selection data from many files simultaneously. Files
 files including data from mulitple recordings can also be imported.
 }
 \examples{
-# First set temporary folder
-setwd(tempdir())
 
 #load data 
 data(selection_files)
@@ -62,17 +60,15 @@ writeLines(selection_files[[x]], con = names(selection_files)[x]))
 
 \donttest{
 #providing the name of the column with the sound file names
-rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE, 
-path = tempdir())
+rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE)
 
 # View(rvn.dat)
 }
 
 }
-\author{
-Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
-}
 \seealso{
 \code{\link{imp_syrinx}}
 }
-
+\author{
+Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
+}

@@ -33,9 +33,6 @@ The function extracts parameters enconded as time series in 'Raven' selection fi
 }
 \examples{
 
-#' # First set temporary folder
-setwd(tempdir())
-
 # Load data
 data(selection_files)
 
@@ -58,10 +55,9 @@ equal.length = TRUE, length.out = 10)
 } 
 
 }
-\author{
-Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
-}
 \seealso{
 \code{\link{imp_raven}}; \code{\link{exp_raven}}
 }
-
+\author{
+Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
+}

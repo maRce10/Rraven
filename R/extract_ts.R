@@ -19,9 +19,6 @@
 #' @name extract_ts
 #' @examples
 #' 
-#' #' # First set temporary folder
-#' setwd(tempdir())
-#' 
 #' # Load data
 #' data(selection_files)
 #' 

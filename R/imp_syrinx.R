@@ -20,15 +20,11 @@
 #' @name imp_syrinx
 #' @examples
 #' \dontrun{
-#' # First set temporary folder
-#' setwd(tempdir())
-#' 
 #' #load data 
 #' data(selection_files)
 #' 
 #' #save 'Raven' selection tables in the temporary directory 
 #' writeLines(selection_files[[7]], con = names(selection_files)[7])
-#' 
 #' 
 #' syr.dat <- imp_syrinx(all.data = FALSE)
 #' 
