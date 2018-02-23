@@ -5,7 +5,8 @@
 \title{Import 'Raven' selections}
 \usage{
 imp_raven(path = NULL, sound.file.col = NULL, all.data = FALSE, recursive = FALSE,
- name.from.file = FALSE, ext.case = NULL, freq.cols = TRUE, waveform = FALSE)
+ name.from.file = FALSE, ext.case = NULL, freq.cols = TRUE, waveform = FALSE, 
+ parallel = 1, pb = TRUE, unread = FALSE)
 }
 \arguments{
 \item{path}{A character string indicating the path of the directory in which to look for the 'Raven' selection (text) files. 
@@ -34,13 +35,22 @@ Ignored if 'sound.file.col' is provided and/or all.data is \code{TRUE}.}
 \item{freq.cols}{Logical. If \code{TRUE} 'Low Freq' and 'High Freq' columns are also imported. Ignored if all.data is \code{TRUE}.}
 
 \item{waveform}{Logical to control if waveform view data should be included (this data is typically duplicated in spectrogram view data).  Default is \code{FALSE} (not to include it).}
+
+\item{parallel}{Numeric. Controls whether parallel computing is applied.
+It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).}
+
+\item{pb}{Logical argument to control progress bar. Default is \code{TRUE}. Note that progress bar is only used
+when parallel = 1.}
+
+\item{unread}{Logical. If  \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections\
+whole the second one is a character vector with the names of sound files that could not be read. Default is \code{FALSE}.}
 }
 \value{
-A single data frame with information of the selection files. If 'all.data' argument is set to \code{FALSE} the data 
-frame contains the following columns: selec, start, end, and selec.file. If sound.file.col is provided the data frame
-will also contain a 'sound.files' column. In addition, all rows with duplicated data are removed. This is useful when 
-both spectrogram and waveform views are included in the 'Raven' selection files. If all.data is set to \code{TRUE} then all 
-columns in the 'Raven' selection files are returned.
+A single data frame with information of the selection files. If \code{unread = TRUE} the function returns a list of length 2 with
+ the selection data frame and a vector with the names of files that could not be read (see 'unread' argument).  
+ If 'all.data' argument is set to \code{FALSE} the data frame contains the following columns: selec, start, end, and selec.file. 
+ If sound.file.col is provided the data frame  will also contain a 'sound.files' column. In addition, all rows with duplicated 
+ data are removed. This is useful when both spectrogram and waveform views are included in the 'Raven' selection files. If all.data is set to \code{TRUE} then all columns in the 'Raven' selection files are returned.
 }
 \description{
 \code{imp_raven} imports 'Raven' selection files simultaneously from many files. Files must be in '.txt' format.

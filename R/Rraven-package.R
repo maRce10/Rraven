@@ -23,6 +23,9 @@
 #' @import warbleR 
 #' @import dplyr
 #' @import kableExtra
+#' @import foreach
+#' @import pbapply
+#' @importFrom doParallel registerDoParallel
 #' @importFrom pbapply pblapply
 #' @importFrom stats approx as.ts
 #' @importFrom utils read.table write.table

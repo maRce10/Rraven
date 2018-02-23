@@ -259,7 +259,7 @@ writeLines(selection_files[[5]], con = names(selection_files)[5])
 rvn.dat <- imp_raven(all.data = TRUE) 
 
 # Peak freq contour dif length
-fcts <- extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.")
+fcts <- extract_ts(X = rvn.dat, ts.column = "Peak Freq Contour (Hz)")
  
 head(fcts[,1:14])
 head(fcts[,39:53])
@@ -278,7 +278,7 @@ writeLines(selection_files[[5]], con = names(selection_files)[5])
 rvn.dat <- imp_raven(all.data = TRUE) 
 
 # Peak freq contour dif length
-fcts <- extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.")
+fcts <- extract_ts(X = rvn.dat, ts.column = "Peak Freq Contour (Hz)")
  
 knitr::kable(head(fcts[ , 1:14]), align = "c", row.names = F, escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = FALSE, font_size = 14)
@@ -295,7 +295,7 @@ Note that these sequences are not all of equal length (one has NAs at the end).
 ```{r, eval=F, echo=T}
 
 # Peak freq contour equal length
-fcts <- extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.",  equal.length = TRUE)
+fcts <- extract_ts(X = rvn.dat, ts.column = "Peak Freq Contour (Hz)",  equal.length = TRUE)
 
 #look at the last rows wit no NAs
 head(fcts[,21:32])
@@ -305,7 +305,7 @@ head(fcts[,21:32])
 ```{r, eval=T, echo = F}
 
 # Peak freq contour equal length
-fcts <- extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.",
+fcts <- extract_ts(X = rvn.dat, ts.column = "Peak Freq Contour (Hz)",
  equal.length = TRUE)
 
 knitr::kable(head(fcts[ , 21:32]), align = "c", row.names = F, escape = FALSE) %>%
@@ -319,7 +319,7 @@ And the length of the series can also be specified:
 ```{r, eval=FALSE}
 
 # Peak freq contour equal length 10 measurements
-fcts <- extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.",
+fcts <- extract_ts(X = rvn.dat, ts.column = "Peak Freq Contour (Hz)",
 equal.length = T, length.out = 10)  
 
 knitr::kable(head(fcts), align = "c", row.names = FALSE)
@@ -330,7 +330,7 @@ knitr::kable(head(fcts), align = "c", row.names = FALSE)
 ```{r, eval=TRUE, echo=FALSE}
 
 # Peak freq contour equal length 10 measurements
-fcts <- extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", 
+fcts <- extract_ts(X = rvn.dat, ts.column = "Peak Freq Contour (Hz)", 
 equal.length = T, length.out = 10)  
 
 knitr::kable(head(fcts), align = "c", row.names = F, escape = FALSE) %>%
