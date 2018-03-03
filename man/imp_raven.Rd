@@ -6,7 +6,7 @@
 \usage{
 imp_raven(path = NULL, sound.file.col = NULL, all.data = FALSE, recursive = FALSE,
  name.from.file = FALSE, ext.case = NULL, freq.cols = TRUE, waveform = FALSE, 
- parallel = 1, pb = TRUE, unread = FALSE)
+ parallel = 1, pb = TRUE, unread = FALSE, rm_dup = FALSE)
 }
 \arguments{
 \item{path}{A character string indicating the path of the directory in which to look for the 'Raven' selection (text) files. 
