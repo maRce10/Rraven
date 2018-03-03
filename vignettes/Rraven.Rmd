@@ -531,7 +531,7 @@ vegan::mantel(xcorr.rvn, dist.sp.wrblR)
 ```
  &nbsp; 
 
-There is actually a good match between two types of analysis!
+There is actually a good match between the two methods!
 
 ---
  
