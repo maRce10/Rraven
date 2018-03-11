@@ -42,8 +42,11 @@ It specifies the number of cores to be used. Default is 1 (i.e. no parallel comp
 \item{pb}{Logical argument to control progress bar. Default is \code{TRUE}. Note that progress bar is only used
 when parallel = 1.}
 
-\item{unread}{Logical. If  \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections\
+\item{unread}{Logical. If \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections\
 whole the second one is a character vector with the names of sound files that could not be read. Default is \code{FALSE}.}
+
+\item{rm_dup}{Logical. If \code{TRUE} duplicated rows are removed. Usefull when 
+selection files have been duplicated. Default is \code{FALSE}.}
 }
 \value{
 A single data frame with information of the selection files. If \code{unread = TRUE} the function returns a list of length 2 with

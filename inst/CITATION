@@ -4,5 +4,5 @@ citEntry(entry = "MISC",
         title = "Rraven: connecting R and Raven bioacoustic software. R package version 1.0.0.",
         author = personList(as.person("M. Araya-Salas")),
         year = "2017",
-        textVersion = "Araya-Salas. (2017), Rraven: connecting R and Raven bioacoustic software. R package version 1.0.0."
+        textVersion = "Araya-Salas. (2017), Rraven: connecting R and Raven bioacoustic software. R package version 1.0.2."
 )

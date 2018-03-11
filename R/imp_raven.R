@@ -27,8 +27,10 @@
 #' It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
 #' @param pb Logical argument to control progress bar. Default is \code{TRUE}. Note that progress bar is only used
 #' when parallel = 1.
-#' @param unread Logical. If  \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections\
+#' @param unread Logical. If \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections\
 #' whole the second one is a character vector with the names of sound files that could not be read. Default is \code{FALSE}.
+#' @param rm_dup Logical. If \code{TRUE} duplicated rows are removed. Usefull when 
+#' selection files have been duplicated. Default is \code{FALSE}. 
 #' @return A single data frame with information of the selection files. If \code{unread = TRUE} the function returns a list of length 2 with
 #'  the selection data frame and a vector with the names of files that could not be read (see 'unread' argument).  
 #'  If 'all.data' argument is set to \code{FALSE} the data frame contains the following columns: selec, start, end, and selec.file. 
@@ -60,7 +62,8 @@
 
 imp_raven<-function(path = NULL, sound.file.col = NULL, all.data = FALSE, 
                     recursive = FALSE, name.from.file = FALSE, ext.case = NULL, 
-                    freq.cols = TRUE, waveform = FALSE, parallel = 1, pb = TRUE, unread = FALSE, rm_dup = FALSE) 
+                    freq.cols = TRUE, waveform = FALSE, parallel = 1, pb = TRUE, 
+                    unread = FALSE, rm_dup = FALSE) 
 {
   
   # reset working directory 

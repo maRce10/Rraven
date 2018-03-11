@@ -1,8 +1,8 @@
 #' Relabel columns to match the selection table format 
 #' 
 #' \code{ relabel_colms} relabels columns to match the selection table format (as in the R package \code{\link{warbleR}})
-#' @usage  relabel_colms(X, extra.cols.name = NULL, extra.cols.new.name = NULL, khz.to.hz = FALSE, 
-#' waveform = FALSE)
+#' @usage  relabel_colms(X, extra.cols.name = NULL, extra.cols.new.name = NULL, 
+#' khz.to.hz = FALSE, hz.to.khz = FALSE, waveform = FALSE)
 #' @param X Data frame imported from Raven.
 #' @param extra.cols.name Character vector with the names of additional columns to be relabeled. Default is \code{NULL}.
 #' 'extra.cols.new.name' must be also provided.
@@ -11,6 +11,9 @@
 #' @param khz.to.hz Logical. Controls if frequency variables ('top.freq' and 'bottom.freq') should be converted from kHz 
 #' (the unit used by other bioacoustic analysis R packages like \code{\link{warbleR}}) to Hz (the unit used by Raven). 
 #' Default is \code{TRUE}.
+#' @param hz.to.khz Logical. Controls if frequency variables ('top.freq' and 'bottom.freq') should be converted from Hz 
+#' (the unit used by other bioacoustic analysis R packages like Raven) to kHz (the unit used by \code{\link{warbleR}}). 
+#' Default is \code{FALSE}. Ignored if 'kHz.to.hz' is provided.
 #' @param waveform Logical to control if 'waveform' related data should be included (this data is typically duplicated in 'spectrogram' data).  Default is \code{FALSE} (not to include it).
 #' @return The function returns the input data frame with new column names for time and frequency 'coordinates' and sound files and selections.
 #' @details This function relabels columns to match the selection table format to match then ones used by other bioacoustic analysis R packages like \code{\link{warbleR}}. 
@@ -51,7 +54,8 @@
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
 #last modification on nov-7-2017
 
- relabel_colms <- function(X, extra.cols.name = NULL, extra.cols.new.name = NULL, khz.to.hz = FALSE,  waveform = FALSE){
+ relabel_colms <- function(X, extra.cols.name = NULL, extra.cols.new.name = NULL, khz.to.hz = FALSE, hz.to.khz = FALSE,
+                           waveform = FALSE){
   
   #if X is not a data frame
   if(!class(X) == "data.frame") stop("X is not a data frame")
@@ -97,6 +101,15 @@
   # convert to Hz
   if("top.freq" %in% names(X) & khz.to.hz)
     X$top.freq <- X$top.freq * 1000
+  
+  # convert to kHz
+  if("bottom.freq" %in% names(X) & !khz.to.hz & hz.to.khz)
+    X$bottom.freq <- X$bottom.freq / 1000
+  
+  # convert to kHz
+  if("top.freq" %in% names(X) & !khz.to.hz & hz.to.khz)
+    X$top.freq <- X$top.freq / 1000
+  
   
 return(X)  
   
