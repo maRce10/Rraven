@@ -1,4 +1,4 @@
-#'Run 'Raven' batch detector
+#' Run 'Raven' batch detector
 #' 
 #' \code{raven_batch_detec} Runs 'Raven' batch detector on multiple sound files sequentially
 #' @usage raven_batch_detec(raven.path = NULL, sound.files, path = NULL, 

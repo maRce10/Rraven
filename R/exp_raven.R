@@ -2,9 +2,9 @@
 #' 
 #' \code{exp_raven} exports selection tables as 'Raven' selection data in .txt format.
 #' @usage exp_raven(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, 
-#' sound.file.path = NULL, single.file = TRUE)
+#' sound.file.path = NULL, single.file = TRUE, parallel = 1, pb = TRUE)
 #' @param X Data frame containing columns for sound file (sound.files), selection (selec), start and end time of signals ('start' and 'end') and low and high frequency ('bottom.freq' and 'top.freq', optional). See example data 'selec.table' in the \code{\link{warbleR}}) package.
-#' @param path A character string indicating the path of the directory in which to save the selection files. 
+#' @param path A character string indicating the path of the directory in which to save the selection files.
 #' If not provided (default) the function saves the file into the current working directory.
 #' @param file.name Name of the output .txt file. If \code{NULL} then the sound file names are used instead. If multiple
 #' selection files are generated (see 'single.file') then the sound files names are added to the provided 'file.name'.
@@ -20,6 +20,9 @@
 #' when several sound files are included in 'X') are generated. Note that
 #' 'sound.file.path' must be provided when exporting several sound files into a single selection file as the
 #' duration of the sound files is required.
+#' @param parallel Numeric. Controls whether parallel computing is applied.
+#'  It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
+#' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
 #' @return The function saves a selection table in '.txt' format that can be 
 #' directly opened in Raven. If several sound files are available users can either 
 #' export them as a single selection file or as multiple selection files (one for each sound file). 
@@ -56,7 +59,7 @@
 #' 
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
 #last modification on nov-7-2017
-exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.file.path = NULL, single.file = TRUE){
+exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.file.path = NULL, single.file = TRUE, parallel = 1, pb = TRUE){
   
   #if X is not a data frame
   if(!class(X) == "data.frame") stop("X is not a data frame")
@@ -68,7 +71,6 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
   
   #stop if more than 1 sound file is found in X
   if(length(unique(X$sound.files)) > 1 & is.null(sound.file.path)) stop("'sound.file.path' must be provided when including selections from multiple sound files")
-  
   
   if(length(unique(X$sound.files)) == 1) single.file <- TRUE
   
@@ -99,18 +101,15 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
   X$View <- "Spectrogram 1"  
   X$Channel <- 1  
   
-  
   mtch <- match(c( "Selection", "View", "Channel", "Begin Time (s)", "End Time (s)", "Low Freq (Hz)", "High Freq (Hz)"), names(X))
   
   X <- X[,c(mtch[!is.na(mtch)], base::setdiff(1:ncol(X), mtch))]
   
-    
   if(!is.null(sound.file.path))
   {
     X$'Begin Path' <- file.path(sound.file.path, X$'Begin File')
     
     X$'File Offset' <- X$'Begin Time (s)'
-    
     
     if(length(unique(X$'Begin File')) > 1 & single.file)
     {
@@ -118,6 +117,7 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
     durs$cumdur <- cumsum(durs$duration)
     durs <- durs[durs$sound.files %in% X$'Begin File', ]
     
+    # calculate file offset
     out <- lapply(1:nrow(durs), function(x) {
       
       Y <- X[X$`Begin File` == durs$sound.files[x], ]
@@ -150,8 +150,14 @@ if(single.file | nrow(X) == 1)
     row.list <- data.frame(e, e2, sound.files = X$`Begin File`[!duplicated(X$`Begin File`)])
     }
 
+  # set pb options 
+  pbapply::pboptions(type = ifelse(pb, "timer", "none"))
   
-out <-  lapply(seq_len(nrow(row.list)), function(x){
+  # set clusters for windows OS
+  if (Sys.info()[1] == "Windows" & parallel > 1)
+    cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else cl <- parallel  
+  
+  out <- pbapply::pblapply(seq_len(nrow(row.list)), cl = cl, function(x){
   
   if(is.null(file.name)) file.name2 <- "" else file.name2 <- file.name
   
@@ -167,6 +173,6 @@ out <-  lapply(seq_len(nrow(row.list)), function(x){
     file.name2 <- paste0(file.name2, ".txt")
   
   utils::write.table(x = X[c(row.list[x, 1] : row.list[x, 2]),], sep = "\t", file = file.name2, row.names = FALSE, quote = FALSE)  
-})
+ })
   
 }

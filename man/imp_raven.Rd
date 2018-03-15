@@ -39,8 +39,7 @@ Ignored if 'sound.file.col' is provided and/or all.data is \code{TRUE}.}
 \item{parallel}{Numeric. Controls whether parallel computing is applied.
 It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).}
 
-\item{pb}{Logical argument to control progress bar. Default is \code{TRUE}. Note that progress bar is only used
-when parallel = 1.}
+\item{pb}{Logical argument to control progress bar. Default is \code{TRUE}.}
 
 \item{unread}{Logical. If \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections\
 whole the second one is a character vector with the names of sound files that could not be read. Default is \code{FALSE}.}

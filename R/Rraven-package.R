@@ -6,15 +6,19 @@
 #' 
 #'  @section Functions:
 #'   
-#'   \code{\link{extract_ts}}: Extract time series parameters from data imported from Raven
-#'   
 #'   \code{\link{exp_raven}}: Export R selection tables into 'Raven' selection file format
+#'  
+#'   \code{\link{extract_ts}}: Extract time series parameters from data imported from Raven
 #'   
 #'   \code{\link{imp_corr_mat}}: Import 'Raven' batch correlator output 
 #'   
 #'   \code{\link{imp_raven}}: Importing 'Raven' selections
 #'   
 #'   \code{\link{imp_syrinx}}: Importing 'Syrinx' selections
+#'
+#'   \code{\link{match_wav_case}}: Fix the extension case of sound files
+#'
+#'   \code{\link{raven_batch_detec}}: Run 'Raven' batch detector
 #'   
 #'   \code{\link{relabel_colms}}: Relabel columns to match the selection table format
 #'   
@@ -23,15 +27,13 @@
 #' @import warbleR 
 #' @import dplyr
 #' @import kableExtra
-#' @import foreach
 #' @import pbapply
-#' @importFrom doParallel registerDoParallel
 #' @importFrom pbapply pblapply
 #' @importFrom stats approx as.ts
 #' @importFrom utils read.table write.table
 #' @author Marcelo Araya-Salas
 #'   
-#'   Maintainer: Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
+#'  Maintainer: Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
 #'   
 #' @docType package
 #' @name Rraven

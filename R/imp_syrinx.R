@@ -3,7 +3,7 @@
 #' \code{imp_syrinx} imports 'Syrinx' selection data from many files simultaneously. 
 #' All files must be have the same columns.
 #' @usage imp_syrinx(path = NULL, all.data = FALSE, recursive = FALSE, 
-#' exclude = FALSE, hz.to.khz = TRUE)  
+#' exclude = FALSE, hz.to.khz = TRUE, parallel = 1, pb = TRUE)  
 #' @param path A character string indicating the path of the directory in which to look for the text files. 
 #' If not provided (default) the function searches into the current working directory. Default is \code{NULL}.
 #' @param all.data Logical. If \code{TRUE} all columns in text files are returned. Default is \code{FALSE}. Note 
@@ -11,6 +11,9 @@
 #' @param recursive Logical. If \code{TRUE} the listing recurse into sub-directories.
 #' @param exclude Logical. Controls whether files that cannot be read are ignored (\code{TRUE}). Default is \code{FALSE}.
 #' @param hz.to.khz Logical. Controls if frequency variables should be converted from  Hz (the unit used by Syrinx) to kHz (the unit used by warbleR and other bioacoustic analyssis packages in R). Default if \code{TRUE}. Ignored if all.data is \code{TRUE}.
+#' @param parallel Numeric. Controls whether parallel computing is applied.
+#'  It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
+#' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
 #' @return A single data frame with information of the selection files. If all.data argument is set to \code{FALSE} the data 
 #' frame contains the following columns: selec, start, end, and selec.file. If sound.file.col is provided the data frame
 #' will also contain a 'sound.files' column. If all.data is set to \code{TRUE} then all 
@@ -40,9 +43,8 @@
 #last modification on nov-7-2017
 
 imp_syrinx <- function(path = NULL, all.data = FALSE, recursive = FALSE,
-                       exclude = FALSE, hz.to.khz = TRUE) 
+                       exclude = FALSE, hz.to.khz = TRUE, parallel = 1, pb = TRUE) 
 { 
-  
   # reset working directory 
   wd <- getwd()
   on.exit(setwd(wd))
@@ -63,8 +65,14 @@ if(length(sel.txt) == 0) stop("No selection files in working directory/'path' pr
 b<-NULL
 if(substring(text = readLines(sel.txt[1])[1], first = 0, last = 9) == "fieldkey:") field <- T else field <- F
 
+# set pb options 
+pbapply::pboptions(type = ifelse(pb, "timer", "none"))
 
-clist<-lapply(1:length(sel.txt), function(i)
+# set clusters for windows OS
+if (Sys.info()[1] == "Windows" & parallel > 1)
+  cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else cl <- parallel  
+
+clist <- pbapply::pblapply(1:length(sel.txt), cl = cl, function(i)
   {    
   if(field)  {
     
@@ -105,7 +113,6 @@ if(!all.data) if(any(is.na(b$start))) warning("NAs found (empty rows)")
 
 b <- b[!duplicated(b), ]
 
-
 options(warn = -1)
 if(!all.data)
 {
@@ -116,13 +123,11 @@ if(!all.data)
   b <- b[!is.na(b$start), ]
   } else b <-b[b[,2] != names(b)[2],]
 
-
 # convert to hz
 if(hz.to.khz & !all.data & all(c("bottom.freq", "top.freq") %in% names(b)))
   {b$bottom.freq <- as.numeric(b$bottom.freq) / 1000 
   b$top.freq <- as.numeric(b$top.freq) / 1000 
 }
-
   return(b[!duplicated(b), ])
 
 }

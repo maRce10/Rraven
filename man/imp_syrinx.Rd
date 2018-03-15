@@ -5,7 +5,7 @@
 \title{Import 'Syrinx' selections}
 \usage{
 imp_syrinx(path = NULL, all.data = FALSE, recursive = FALSE, 
-exclude = FALSE, hz.to.khz = TRUE)
+exclude = FALSE, hz.to.khz = TRUE, parallel = 1, pb = TRUE)
 }
 \arguments{
 \item{path}{A character string indicating the path of the directory in which to look for the text files. 
@@ -19,6 +19,11 @@ that all files should contain exactly the same columns in the same order.}
 \item{exclude}{Logical. Controls whether files that cannot be read are ignored (\code{TRUE}). Default is \code{FALSE}.}
 
 \item{hz.to.khz}{Logical. Controls if frequency variables should be converted from  Hz (the unit used by Syrinx) to kHz (the unit used by warbleR and other bioacoustic analyssis packages in R). Default if \code{TRUE}. Ignored if all.data is \code{TRUE}.}
+
+\item{parallel}{Numeric. Controls whether parallel computing is applied.
+It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).}
+
+\item{pb}{Logical argument to control progress bar. Default is \code{TRUE}.}
 }
 \value{
 A single data frame with information of the selection files. If all.data argument is set to \code{FALSE} the data 

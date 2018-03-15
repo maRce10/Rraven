@@ -25,8 +25,7 @@
 #' @param waveform Logical to control if waveform view data should be included (this data is typically duplicated in spectrogram view data).  Default is \code{FALSE} (not to include it).
 #' @param parallel Numeric. Controls whether parallel computing is applied.
 #' It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
-#' @param pb Logical argument to control progress bar. Default is \code{TRUE}. Note that progress bar is only used
-#' when parallel = 1.
+#' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
 #' @param unread Logical. If \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections\
 #' whole the second one is a character vector with the names of sound files that could not be read. Default is \code{FALSE}.
 #' @param rm_dup Logical. If \code{TRUE} duplicated rows are removed. Usefull when 
@@ -145,60 +144,17 @@ imp_raven<-function(path = NULL, sound.file.col = NULL, all.data = FALSE,
       return(c)
  }
 
-    # Run parallel in windows
-    if(parallel > 1) {
-      if(Sys.info()[1] == "Windows") {
-        
-        i <- NULL #only to avoid non-declared objects
-        
-        cl <- parallel::makeCluster(parallel)
-        
-        doParallel::registerDoParallel(cl)
-        
-        clist <- foreach::foreach(i = seq_len(length(sel.txt))) %dopar% {
-          read_sels_FUN(i, sel.txt = sel.txt, sel.txt2 = sel.txt2, all.data = all.data, 
-                        sound.file.col = sound.file.col, name.from.file = name.from.file)
-        }
-        
-        parallel::stopCluster(cl)
-        
-      } 
-      if(Sys.info()[1] == "Linux") {    # Run parallel in Linux
-        
-        if(pb)       
-          clist <- pbmcapply::pbmclapply(seq_len(length(sel.txt)), mc.cores = parallel, function (i) {
-            read_sels_FUN(i, sel.txt = sel.txt, sel.txt2 = sel.txt2, all.data = all.data, 
-                          sound.file.col = sound.file.col, name.from.file = name.from.file)
-          }) else
-            clist <- parallel::mclapply(seq_len(length(sel.txt)), mc.cores = parallel, function (i) {
-              read_sels_FUN(i, sel.txt = sel.txt, sel.txt2 = sel.txt2, all.data = all.data, 
-                            sound.file.col = sound.file.col, name.from.file = name.from.file)
-            })
-      }
-      if(!any(Sys.info()[1] == c("Linux", "Windows"))) # parallel in OSX
-      {
-        cl <- parallel::makeForkCluster(getOption("cl.cores", parallel))
-        
-        doParallel::registerDoParallel(cl)
-        
-        clist <- foreach::foreach(i = seq_len(length(sel.txt))) %dopar% {
-          read_sels_FUN(i, sel.txt = sel.txt, sel.txt2 = sel.txt2, all.data = all.data, 
-                        sound.file.col = sound.file.col, name.from.file = name.from.file)
-          }
-        
-        parallel::stopCluster(cl)
-        
-      }
-    } else {
-      if(pb)
-        clist <- pbapply::pblapply(seq_len(length(sel.txt)), function(i) read_sels_FUN(i, sel.txt = sel.txt, sel.txt2 = sel.txt2, 
-                                                                                     all.data = all.data, sound.file.col = sound.file.col,
-                                                                                     name.from.file = name.from.file)) else 
-                                                                                       clist <- lapply(seq_len(length(sel.txt)), function(i) read_sels_FUN(i, sel.txt = sel.txt, sel.txt2 = sel.txt2, 
-                                                                            all.data = all.data, sound.file.col = sound.file.col,
-                                                                            name.from.file = name.from.file))
-    }
-    
+  # set pb options 
+  pbapply::pboptions(type = ifelse(pb, "timer", "none"))
+  
+  # set clusters for windows OS
+  if (Sys.info()[1] == "Windows" & parallel > 1)
+    cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else cl <- parallel  
+  
+  clist <- pbapply::pblapply(seq_len(length(sel.txt)), cl = cl, function(i) {
+    read_sels_FUN(i, sel.txt = sel.txt, sel.txt2 = sel.txt2, all.data = all.data, 
+                  sound.file.col = sound.file.col, name.from.file = name.from.file)
+  })
     
 # determine files that could not be read
 error.files <- sel.txt2[!sapply(clist, is.data.frame)]    
@@ -206,7 +162,7 @@ error.files <- sel.txt2[!sapply(clist, is.data.frame)]
 # remove NAs    
 clist <- clist[sapply(clist, is.data.frame)]
 
-## loop to fix start end when mutliple sound files are in a single selection file
+## loop to fix start and end when mutliple sound files are in a single selection file
 if (length(clist) > 0){
 
   clist <- lapply(clist, function(X){

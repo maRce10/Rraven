@@ -5,7 +5,7 @@
 \title{Extract time series parameters from data imported from 'Raven'}
 \usage{
 extract_ts(X, ts.column, equal.length = FALSE, as.time.series = FALSE, 
-length.out = 30)
+length.out = 30, parallel = 1, pb = TRUE)
 }
 \arguments{
 \item{X}{Data frame imported from Raven. It should include at least columns for: sound file names, selection labels,
@@ -21,6 +21,11 @@ time with unequal lengths) or numbers are interpolated to equalize series length
 
 \item{length.out}{A numeric vector of length 1 giving the number of measurements to be
 interpolated (the length of the time series). default is 30. Ignored if equal.length is \code{FALSE}.}
+
+\item{parallel}{Numeric. Controls whether parallel computing is applied.
+It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).}
+
+\item{pb}{Logical argument to control progress bar. Default is \code{TRUE}.}
 }
 \value{
 A data frame with columns for sound file name (sound.files), selection label (selec) and the time series for each selection.

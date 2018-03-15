@@ -5,12 +5,12 @@
 \title{Export 'Raven' selections}
 \usage{
 exp_raven(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, 
-sound.file.path = NULL, single.file = TRUE)
+sound.file.path = NULL, single.file = TRUE, parallel = 1, pb = TRUE)
 }
 \arguments{
 \item{X}{Data frame containing columns for sound file (sound.files), selection (selec), start and end time of signals ('start' and 'end') and low and high frequency ('bottom.freq' and 'top.freq', optional). See example data 'selec.table' in the \code{\link{warbleR}}) package.}
 
-\item{path}{A character string indicating the path of the directory in which to save the selection files. 
+\item{path}{A character string indicating the path of the directory in which to save the selection files.
 If not provided (default) the function saves the file into the current working directory.}
 
 \item{file.name}{Name of the output .txt file. If \code{NULL} then the sound file names are used instead. If multiple
@@ -30,6 +30,11 @@ or multiple selection files for each sound files (\code{FALSE}, hence, only appl
 when several sound files are included in 'X') are generated. Note that
 'sound.file.path' must be provided when exporting several sound files into a single selection file as the
 duration of the sound files is required.}
+
+\item{parallel}{Numeric. Controls whether parallel computing is applied.
+It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).}
+
+\item{pb}{Logical argument to control progress bar. Default is \code{TRUE}.}
 }
 \value{
 The function saves a selection table in '.txt' format that can be 
