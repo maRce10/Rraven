@@ -88,15 +88,6 @@ imp_raven<-function(path = NULL, sound.file.col = NULL, all.data = FALSE,
   
   options(warn = -1)
   
-  # if(pb) {
-  #   if(parallel > 1) lpply <- pbmcapply::pbmclapply else
-  #   lpply <- pbapply::pblapply}  else {
-  #     if(parallel > 1) lpply <- parallel::mclapply else
-  #       lpply <- lapply}
-  
-  #run loop for getting data of each selection file  
-  # clist <- lapply(seq_len(length(sel.txt)), ifelse(), 
-  
   read_sels_FUN <- function(i, sel.txt, sel.txt2, all.data, sound.file.col, name.from.file)
   {  
     a <- try(utils::read.table(sel.txt[i], header = TRUE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE)
