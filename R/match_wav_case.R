@@ -2,10 +2,8 @@
 #' 
 #' \code{match_wav_case} fixes the extension case of sound files in a selection table.
 #' @usage match_wav_case(X, path = NULL, output = "data.frame", verbose = TRUE)
-#' @param X Data frame containing columns for sound file (sound.files), selection
-#'  (selec), start and end time of signals ('start' and 'end') and low and high
-#'   frequency ('bottom.freq' and 'top.freq', optional). See example data 'selec.table'
-#'   in the \code{\link{warbleR}}) package.
+#' @param X Data frame containing columns for sound file (sound.files) and selection
+#'  (selec). See example data 'selec.table' in the \code{\link{warbleR}}) package.
 #' @param path A character string indicating the path of the directory in which to look for sound files. 
 #' If not provided (default) the function searches into the current working directory.
 #' @param output Character string. Controls whether a complete data frame ('data.frame') 

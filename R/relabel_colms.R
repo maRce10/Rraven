@@ -57,6 +57,8 @@
  relabel_colms <- function(X, extra.cols.name = NULL, extra.cols.new.name = NULL, khz.to.hz = FALSE, hz.to.khz = FALSE,
                            waveform = FALSE){
   
+   op.dig <- options(digits = 6)
+   
   #if X is not a data frame
   if(!class(X) == "data.frame") stop("X is not a data frame")
   

@@ -82,6 +82,10 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
     stop("Some (or all) .wav files are not in the working directory")
   }
   
+  if (any(is.na(X$start), is.na(X$end))) stop("'NAs' found in start and/or end column")
+  
+  if (any(!is.numeric(X$start), !is.numeric(X$end))) stop("start and/or end column(s) are not numeric")
+  
   # convert to Hz
   if("bottom.freq" %in% names(X) & khz.to.hz)
   X$bottom.freq <- X$bottom.freq * 1000
@@ -134,7 +138,6 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
     } 
   }
   
- 
  if(!is.null(sound.file.path))
    if(!is.numeric(X$Selection) | any(duplicated(X$Selection)))
    {
@@ -165,8 +168,8 @@ if(single.file | nrow(X) == 1)
     file.name2 <- file.path(path, file.name2)
   
   if(nrow(row.list) > 1)
-    file.name2 <- paste(file.name2, row.list$sound.files[x], sep = "-") else
-      if(is.null(file.name)) file.name2 <- paste(file.name2, X$`Begin File`[1])
+    file.name2 <- file.path(file.name2, row.list$sound.files[x]) else
+      if(is.null(file.name)) file.name2 <- file.path(file.name2, X$`Begin File`[1])
   
   # if file name does not contain the extension
   if(substr(file.name2, start = nchar(file.name2)- 3, nchar(file.name2)) != ".txt")
