@@ -1,9 +1,10 @@
 # NEWS
 
-##### Version 1.0.2 (Release date: XXXX-XX-XX)
+##### Version 1.0.2 (Release date: 2018-05-22)
 
 ## New functions
 
+* to_sound_selection: convert Raven's selection table files to sound selection table files
 * sort_colms: sort columns in a more intuitive order
 * match_wav_case: corrects the case of the extension name of sound files
 

@@ -45,6 +45,9 @@
 #' #load data 
 #' data(selection_files)
 #' 
+#' # set temporary directory
+#' # setwd(tempdir())
+#' 
 #' #save 'Raven' selection tables in the temporary directory 
 #' out <- lapply(1:2, function(x) 
 #' writeLines(selection_files[[x]], con = names(selection_files)[x]))
