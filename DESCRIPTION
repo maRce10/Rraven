@@ -1,7 +1,7 @@
 Type: Package
 Package: Rraven
 Title: Connecting R and 'Raven' Sound Analysis Software
-Version: 1.0.3
+Version: 1.0.4
 Date: 2018-05-22
 Author: Marcelo Araya-Salas
 Maintainer: Marcelo Araya-Salas <araya-salas@cornell.edu>
