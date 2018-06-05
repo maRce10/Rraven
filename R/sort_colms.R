@@ -33,7 +33,7 @@
 
 sort_colms <- function(X){
   
-if(any(duplicated(names(X)))) stop(" Duplicated column names must be fixed first")  
+if (any(duplicated(names(X)))) stop(" Duplicated column names must be fixed first")  
   
 mtch <- match(c("sound.files", "channel", "selec", "start", "end", "top.freq", "bottom.freq"), names(X))
   

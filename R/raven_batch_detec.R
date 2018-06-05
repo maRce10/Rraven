@@ -56,16 +56,16 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
 {
   
   #check path to working directory
-  if(is.null(path)) path <- getwd() else if(!file.exists(path)) stop("'path' provided does not exist") 
+  if (is.null(path)) path <- getwd() else if (!dir.exists(path)) stop("'path' provided does not exist") 
   
   # reset working directory 
   wd <- getwd()
   on.exit(setwd(wd), add = TRUE)
   on.exit(file.remove(file.path(raven.path, "temp.bcv.txt")), add = TRUE)
 
-    if(is.null(raven.path))
+    if (is.null(raven.path))
     stop("Path to 'Raven' folder must be provided")  else
-      if(!file.exists(raven.path)) stop("'raven.path' provided does not exist")
+      if (!dir.exists(raven.path)) stop("'raven.path' provided does not exist")
   
   setwd(raven.path)
   
@@ -76,28 +76,28 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
     
     #count number of sound files in working directory and if 0 stop
     sound.files <- sound.files[sound.files %in% recs.wd]
-    if(length(sound.files) == 0)
+    if (length(sound.files) == 0)
       stop("The sound files are not in the working directory")
     
     # remove sound files not found
-    if(length(sound.files) != length(sf)) 
+    if (length(sound.files) != length(sf)) 
       cat(paste(length(sf) - length(sound.files), ".wav file(s) not found"))
     
     
     # check if sound file names contains directory and fix
-    if(basename(sound.files[1]) == sound.files[1])
+    if (basename(sound.files[1]) == sound.files[1])
       sound.files <- file.path(path, sound.files)
     
-    if(pb) lply <- pbapply::pblapply else lply <- lapply
+    if (pb) lply <- pbapply::pblapply else lply <- lapply
 
     out <- lply(sound.files, function(x) {
       
-      if(Sys.info()[1] == "Windows")
+      if (Sys.info()[1] == "Windows")
       {  
         comnd <- paste(shQuote(file.path(raven.path, "Raven.exe"), type = "cmd"),  paste0("-detType:", detector), shQuote(x), "-detTable:temp.bcv.txt -x")
       } else
       {
-        if(Sys.info()[1] == "Linux")
+        if (Sys.info()[1] == "Linux")
         comnd <- paste(file.path(raven.path, "Raven"), paste0("-detType:", detector), x, "-detTable:temp.bcv.txt -x") else
         comnd <- paste("open Raven.app --args", x, paste0("-detType:", detector), "-detTable:temp.bcv.txt -x") # OSX
       }
@@ -107,7 +107,7 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
         
         output <- utils::read.table("temp.bcv.txt", sep = "\t",  header = TRUE)
         
-        if(nrow(output) > 1)
+        if (nrow(output) > 1)
         output$sound.files <- basename(x) else output <- vector(length = 0)
         
         return(output)
@@ -115,11 +115,11 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
 
     out <- out[sapply(out, is.data.frame)]
     
-    if(length(out) > 0)
+    if (length(out) > 0)
     {
       output <- do.call(rbind, out)
     
-    if(relabel_colms)
+    if (relabel_colms)
       output <- relabel_colms(output, waveform = !any(grepl("Spectrogram", output$View)))
     
     output <- output[, c(ncol(output), 2:(ncol(output) - 1))]  

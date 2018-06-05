@@ -49,13 +49,13 @@ extract_ts <- function(X, ts.column, equal.length = FALSE, as.time.series = FALS
                        length.out = 30, parallel = 1, pb = TRUE){
   
   #if X is not a data frame
-  if(!class(X) == "data.frame") stop("X is not a data frame")
+  if (!class(X) == "data.frame") stop("X is not a data frame")
   
   #check if ts.column exists
-  if(!any(names(X) == ts.column)) stop("'ts.column' not found")
+  if (!any(names(X) == ts.column)) stop("'ts.column' not found")
   
   #remove waveform rows
-  if(any(names(X) == "View"))
+  if (any(names(X) == "View"))
   X <- X[grep("Waveform", X$View, ignore.case = TRUE, invert = TRUE), ]
   
   X <- X[, c(grep("sound.files|selec|Selection|.File$", names(X))[1:2], which(names(X) == ts.column))]
@@ -71,7 +71,7 @@ extract_ts <- function(X, ts.column, equal.length = FALSE, as.time.series = FALS
   if (Sys.info()[1] == "Windows" & parallel > 1)
     cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else cl <- parallel
   
-  if(equal.length)
+  if (equal.length)
   {
     out <-  pbapply::pblapply(out, cl = cl, function(x) stats::approx(x, 1:length(x), n = length.out)$x)
     
@@ -82,7 +82,7 @@ extract_ts <- function(X, ts.column, equal.length = FALSE, as.time.series = FALS
   names(Y) <- paste(abbreviate(ts.column), 1:ncol(Y))
   names(Y) <- gsub("\\. ", "\\.", names(Y))
     
-  if(as.time.series) {
+  if (as.time.series) {
     Y <- stats::as.ts(Y)
     rownames(Y) <- paste(X[,grep("sound.files|.File$", names(X))[1]], X[,grep("sound.files|selec|Selection|.File$", names(X))[1]], sep = "-")
     return(Y)} else {

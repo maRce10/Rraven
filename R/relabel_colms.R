@@ -60,17 +60,17 @@
    op.dig <- options(digits = 6)
    
   #if X is not a data frame
-  if(!class(X) == "data.frame") stop("X is not a data frame")
+  if (!class(X) == "data.frame") stop("X is not a data frame")
   
   # if not extra.cols.new.name and extra.cols.name are provided
-  if(any(!is.null(extra.cols.name) & is.null(extra.cols.new.name), is.null(extra.cols.name) & !is.null(extra.cols.new.name))) stop("if either 'extra.cols.name' or 'extra.cols.new.name' are provided the other must be provided as well")
+  if (any(!is.null(extra.cols.name) & is.null(extra.cols.new.name), is.null(extra.cols.name) & !is.null(extra.cols.new.name))) stop("if either 'extra.cols.name' or 'extra.cols.new.name' are provided the other must be provided as well")
 
   # if not the same length
-  if(length(extra.cols.new.name) != length(extra.cols.name)) 
+  if (length(extra.cols.new.name) != length(extra.cols.name)) 
     stop("'extra.cols.name' and 'extra.cols.new.name' must have the same length")
     
   # remove waveform rows
-  if(!waveform & any(names(X) == "View"))
+  if (!waveform & any(names(X) == "View"))
   X <- X[grep("Waveform", X$View, ignore.case = TRUE, invert = TRUE), ]
   
   # change column names try 1
@@ -87,7 +87,7 @@
   for(i in 1:length(rvn.nms))
     names(X)[names(X) == rvn.nms[i]] <- wblr.nms[i]
   
-  if(!is.null(extra.cols.name))
+  if (!is.null(extra.cols.name))
   for(i in 1:length(extra.cols.name))
     names(X)[names(X) == extra.cols.name[i]] <- extra.cols.new.name[i]
   
@@ -97,19 +97,19 @@
   names(X)[grep("\\.File$", names(X))[1]] <- "sound.files"
   
   # convert to Hz
-  if("bottom.freq" %in% names(X) & khz.to.hz)
+  if ("bottom.freq" %in% names(X) & khz.to.hz)
     X$bottom.freq <- X$bottom.freq * 1000
   
   # convert to Hz
-  if("top.freq" %in% names(X) & khz.to.hz)
+  if ("top.freq" %in% names(X) & khz.to.hz)
     X$top.freq <- X$top.freq * 1000
   
   # convert to kHz
-  if("bottom.freq" %in% names(X) & !khz.to.hz & hz.to.khz)
+  if ("bottom.freq" %in% names(X) & !khz.to.hz & hz.to.khz)
     X$bottom.freq <- X$bottom.freq / 1000
   
   # convert to kHz
-  if("top.freq" %in% names(X) & !khz.to.hz & hz.to.khz)
+  if ("top.freq" %in% names(X) & !khz.to.hz & hz.to.khz)
     X$top.freq <- X$top.freq / 1000
   
   

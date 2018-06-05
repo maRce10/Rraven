@@ -1,6 +1,13 @@
 # NEWS
 
-##### Version 1.0.2 (Release date: 2018-05-22)
+##### Version 1.0.3 (Release date: 2018-05-22)
+
+## New functions
+
+* to_sound_selection: convert Raven's selection table files to sound selection table files
+
+
+##### Version 1.0.2 (Release date: 2018-03-11)
 
 ## New functions
 

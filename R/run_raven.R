@@ -75,20 +75,20 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
   {
   
   #check path to working directory
-  if(is.null(path)) path <- getwd() else if(!file.exists(path)) stop("'path' provided does not exist") 
+  if (is.null(path)) path <- getwd() else if (!dir.exists(path)) stop("'path' provided does not exist") 
   
-  if(is.null(raven.path))
+  if (is.null(raven.path))
     stop("Path to 'Raven' folder must be provided")  else
-      if(!file.exists(raven.path)) stop("'raven.path' provided does not exist")
+      if (!dir.exists(raven.path)) stop("'raven.path' provided does not exist")
 
   # reset working directory 
   wd <- getwd()
   on.exit(setwd(wd), add = TRUE)
   setwd(raven.path)
       
-  if(!is.null(view.preset))
+  if (!is.null(view.preset))
    {
-    if(!any(view.preset %in% list.files(path = file.path(raven.path, "Presets/Sound Window")))) stop("'view.preset' provided not found")
+    if (!any(view.preset %in% list.files(path = file.path(raven.path, "Presets/Sound Window")))) stop("'view.preset' provided not found")
     
   def.view.p <- grep("^Default", value = TRUE,  list.files(path = file.path(raven.path, "Presets/Sound Window")))
 
@@ -105,12 +105,12 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
   }
   
   
-  if(is.null(sound.files))
+  if (is.null(sound.files))
 {
-  if(Sys.info()[1] == "Windows")
+  if (Sys.info()[1] == "Windows")
     out <- system(shQuote(file.path(raven.path, "Raven"), type = "cmd"), ignore.stderr = TRUE, intern = TRUE) else
     { 
-      if(Sys.info()[1] == "Linux")
+      if (Sys.info()[1] == "Linux")
            out <- system(file.path(raven.path, "Raven"), ignore.stderr = TRUE, intern = TRUE) else
              out <- system("open Raven.app", ignore.stderr = TRUE, intern = TRUE) # OSX
     }  
@@ -123,39 +123,39 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
   
   #count number of sound files in working directory and if 0 stop
   sound.files <- sound.files[sound.files %in% recs.wd]
-  if(length(sound.files) == 0)
+  if (length(sound.files) == 0)
     stop("The .wav files are not in the working directory")
   
   # remove sound files not found
-  if(length(sound.files) != length(sf)) 
+  if (length(sound.files) != length(sf)) 
    cat(paste(length(sf) - length(sound.files), ".wav file(s) not found"))
   
-  if(!redo) {
+  if (!redo) {
     # get names of files from selections
     sls <- NULL
     try(sls <- imp_raven(path = file.path(raven.path, "Selections"), ...), silent = TRUE)
     
     # remove those that have a selection table
-    if(!is.null(sls))
+    if (!is.null(sls))
     sound.files <- sound.files[!gsub("\\.wav", "", basename(sound.files), ignore.case = TRUE) %in% sapply(strsplit(unique(sls[,names(sls) == "selec.file"]), ".Table"), "[", 1)]
   
-    if(length(sound.files) == 0) 
+    if (length(sound.files) == 0) 
     {
       cat("All sound files have a selection table in Raven's selection folder")
       stop("")}
     }
    
     # check if sound file names contains directory and fix
-    if(basename(sound.files[1]) == sound.files[1])
+    if (basename(sound.files[1]) == sound.files[1])
     sound.files <- file.path(path, sound.files)
 
   # if in OSX at the time not available
-      if(!Sys.info()[1] %in% c("Windows", "Linux")) at.the.time <- length(sound.files)
+      if (!Sys.info()[1] %in% c("Windows", "Linux")) at.the.time <- length(sound.files)
 
   # subset by groups of sound files according to at the time
   sq <- unique(c(seq(1, length(sound.files), by = at.the.time)))
   
-  if(pb) lply <- pbapply::pblapply else lply <- lapply
+  if (pb) lply <- pbapply::pblapply else lply <- lapply
   
   # run loop over files
   out <- lply(sq, function(x)
@@ -166,10 +166,10 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
     
     fls <- paste(fls, collapse = " ")
     
-    if(Sys.info()[1] == "Windows")
+    if (Sys.info()[1] == "Windows")
       comnd <- paste(shQuote(file.path(raven.path, "Raven"), type = "cmd"), fls) else
         {
-          if(Sys.info()[1] == "Linux")
+          if (Sys.info()[1] == "Linux")
         comnd <- paste(paste("cd", raven.path, ";"), paste(file.path(raven.path, "Raven"), fls)) else
           comnd <- paste("Open Raven.app --args", fls)
         }
@@ -180,7 +180,7 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
     )
 }
   
-  if(import){
+  if (import){
     sels <- imp_raven(path = file.path(raven.path, "Selections"), ...)
     
     # extract recording names from selec.file column
@@ -189,10 +189,10 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
     })
     
     # find selection tables for only target recordings among 'Raven' selection tables in Selections directory
-    if(!is.null(sf)){
+    if (!is.null(sf)){
     sf <- gsub("\\.wav", "", sf, ignore.case = TRUE)
     
-     if(any(rec.nms %in% sf)) sels <- sels[grep(paste(sf, collapse = "|"), rec.nms), ]
+     if (any(rec.nms %in% sf)) sels <- sels[grep(paste(sf, collapse = "|"), rec.nms), ]
      }
    
   return(sels)

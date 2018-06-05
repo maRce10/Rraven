@@ -60,16 +60,16 @@ to_sound_selection <- function(path = NULL, dest.path = NULL, recursive = FALSE,
   on.exit(setwd(wd))
   
   #check path to working directory
-  if(is.null(path)) path <- getwd() else {if(!file.exists(path)) stop("'path' provided does not exist") else
+  if (is.null(path)) path <- getwd() else {if (!dir.exists(path)) stop("'path' provided does not exist") else
     setwd(path)
   }  
 
-  if(is.null(dest.path)) dest.path <- path else 
-    if(!file.exists(dest.path)) stop("'path' provided does not exist") 
+  if (is.null(dest.path)) dest.path <- path else 
+    if (!dir.exists(dest.path)) stop("'path' provided does not exist") 
 
   sel.txt <- list.files(pattern = ".txt$", full.names = TRUE, recursive = recursive, ignore.case = TRUE)
 
-  if(length(sel.txt) == 0) stop("No selection .txt files in working directory/'path' provided")
+  if (length(sel.txt) == 0) stop("No selection .txt files in working directory/'path' provided")
   
   options(warn = -1)
   
@@ -83,7 +83,7 @@ to_sound_selection <- function(path = NULL, dest.path = NULL, recursive = FALSE,
   read_sels2_FUN <- function(i, sel.txt)
   {  
     a <- try(utils::read.table(sel.txt[i], header = TRUE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE)
-    if(class(a) != "try-error")
+    if (class(a) != "try-error")
       {
     
     rf <- readLines(sel.txt[i])  
@@ -110,11 +110,11 @@ to_sound_selection <- function(path = NULL, dest.path = NULL, recursive = FALSE,
         
     newname <- gsub("selections.txt$", "sound.selections.txt$",sel.txt[i], fixed = TRUE)
 
-    if(!grepl("sound.selections", newname)) newname <- gsub("\\.txt$", "sound.selections.txt",sel.txt[i])
+    if (!grepl("sound.selections", newname)) newname <- gsub("\\.txt$", "sound.selections.txt",sel.txt[i])
     
-    if(newname == sel.txt[i]) newname <- gsub("\\.txt$", "-2.txt",sel.txt[i])
+    if (newname == sel.txt[i]) newname <- gsub("\\.txt$", "-2.txt",sel.txt[i])
 
-    if(!is.null(dest.path)) newname <- file.path(dest.path, newname)
+    if (!is.null(dest.path)) newname <- file.path(dest.path, newname)
     
     writeLines(rf, con = newname)
       }
