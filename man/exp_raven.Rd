@@ -8,7 +8,7 @@ exp_raven(X, path = NULL, file.name = NULL, khz.to.hz = TRUE,
 sound.file.path = NULL, single.file = TRUE, parallel = 1, pb = TRUE)
 }
 \arguments{
-\item{X}{Data frame containing columns for sound file (sound.files), selection (selec), start and end time of signals ('start' and 'end') and low and high frequency ('bottom.freq' and 'top.freq', optional). See example data 'selec.table' in the \code{\link{warbleR}}) package.}
+\item{X}{Object of class data frame or \code{\link[warbleR]{selection_table}} containing columns for sound file (sound.files), selection (selec), start and end time of signals ('start' and 'end') and low and high frequency ('bottom.freq' and 'top.freq', optional). See example data 'selec_table' in the \code{\link{warbleR}}) package.}
 
 \item{path}{A character string indicating the path of the directory in which to save the selection files.
 If not provided (default) the function saves the file into the current working directory.}
@@ -26,7 +26,7 @@ selection file into Raven). Default is \code{NULL}. This argument is required wh
 exporting selections from multiple sound files.}
 
 \item{single.file}{Logical. Controls whether a single selection file (\code{TRUE}; default)
-or multiple selection files for each sound files (\code{FALSE}, hence, only applicable
+or multiple selection files for each sound file (\code{FALSE}, hence, only applicable
 when several sound files are included in 'X') are generated. Note that
 'sound.file.path' must be provided when exporting several sound files into a single selection file as the
 duration of the sound files is required.}
@@ -66,6 +66,7 @@ st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav",]
 # Export data of a single sound file
 exp_raven(st1, file.name = "Phaethornis 1")
 
+# Export a single selection table including multiple files
 writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE) #save sound files 
 writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
 writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)

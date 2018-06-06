@@ -185,7 +185,14 @@ if (single.file | nrow(X) == 1)
   if (substr(file.name2, start = nchar(file.name2)- 3, nchar(file.name2)) != ".txt")
     file.name2 <- paste0(file.name2, ".txt")
   
-  utils::write.table(x = X[c(row.list[x, 1] : row.list[x, 2]),], sep = "\t", file = file.name2, row.names = FALSE, quote = FALSE)  
+  W <- X[c(row.list[x, 1] : row.list[x, 2]), ]
+    
+    if(any(sapply(W, is.list)))
+      for(i in which(sapply(W, is.list)))
+        W[i] <- unlist(W[i])  
+  
+  
+  utils::write.table(x = W, sep = "\t", file = file.name2, row.names = FALSE, quote = FALSE)  
  })
   
 }
