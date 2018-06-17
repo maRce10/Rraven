@@ -2,6 +2,7 @@
 
 export(exp_raven)
 export(extract_ts)
+export(fix_path)
 export(imp_corr_mat)
 export(imp_raven)
 export(imp_syrinx)
