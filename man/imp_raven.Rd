@@ -6,7 +6,7 @@
 \usage{
 imp_raven(path = NULL, sound.file.col = NULL, all.data = FALSE, recursive = FALSE,
  name.from.file = FALSE, ext.case = NULL, freq.cols = TRUE, waveform = FALSE, 
- parallel = 1, pb = TRUE, unread = FALSE, rm_dup = FALSE)
+ parallel = 1, pb = TRUE, unread = FALSE, rm.dup = FALSE)
 }
 \arguments{
 \item{path}{A character string indicating the path of the directory in which to look for the 'Raven' selection (text) files. 
@@ -44,7 +44,7 @@ It specifies the number of cores to be used. Default is 1 (i.e. no parallel comp
 \item{unread}{Logical. If \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections\
 whole the second one is a character vector with the names of sound files that could not be read. Default is \code{FALSE}.}
 
-\item{rm_dup}{Logical. If \code{TRUE} duplicated rows are removed. Usefull when 
+\item{rm.dup}{Logical. If \code{TRUE} duplicated rows and columns are removed. Usefull when 
 selection files have been duplicated. Default is \code{FALSE}.}
 }
 \value{

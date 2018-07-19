@@ -3,7 +3,7 @@
 #' \code{imp_raven} imports 'Raven' selection files simultaneously from many files. Files must be in '.txt' format.
 #' @usage imp_raven(path = NULL, sound.file.col = NULL, all.data = FALSE, recursive = FALSE,
 #'  name.from.file = FALSE, ext.case = NULL, freq.cols = TRUE, waveform = FALSE, 
-#'  parallel = 1, pb = TRUE, unread = FALSE, rm_dup = FALSE)  
+#'  parallel = 1, pb = TRUE, unread = FALSE, rm.dup = FALSE)  
 #' @param path A character string indicating the path of the directory in which to look for the 'Raven' selection (text) files. 
 #' If not provided (default) the function searches into the current working directory.
 #' @param sound.file.col A character string with the name of the column containing the sound files in 
@@ -28,7 +28,7 @@
 #' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
 #' @param unread Logical. If \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections\
 #' whole the second one is a character vector with the names of sound files that could not be read. Default is \code{FALSE}.
-#' @param rm_dup Logical. If \code{TRUE} duplicated rows are removed. Usefull when 
+#' @param rm.dup Logical. If \code{TRUE} duplicated rows and columns are removed. Usefull when 
 #' selection files have been duplicated. Default is \code{FALSE}. 
 #' @return A single data frame with information of the selection files. If \code{unread = TRUE} the function returns a list of length 2 with
 #'  the selection data frame and a vector with the names of files that could not be read (see 'unread' argument).  
@@ -65,7 +65,7 @@
 imp_raven<-function(path = NULL, sound.file.col = NULL, all.data = FALSE, 
                     recursive = FALSE, name.from.file = FALSE, ext.case = NULL, 
                     freq.cols = TRUE, waveform = FALSE, parallel = 1, pb = TRUE, 
-                    unread = FALSE, rm_dup = FALSE) 
+                    unread = FALSE, rm.dup = FALSE) 
 {
   
   # reset working directory 
@@ -224,8 +224,11 @@ return(X)
     
 b <- do.call("rbind", clist)
 
-if (rm_dup)
-b <- b[!duplicated(b), ]
+if (rm.dup)
+{
+  b <- b[!duplicated(b), ]
+  # b <- b[, !duplicated(lapply(b, summary)) & !duplicated(names(b)), ]
+}
 
 rownames(b) <- 1:nrow(b)
 
