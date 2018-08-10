@@ -87,7 +87,7 @@
 <p> </p>
             
             <h4 class="date"><center>
-“2018-07-18”
+“2018-08-10”
 </center></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/maRce10/Rraven/blob/master/vignettes/Rraven.Rmd"><code>vignettes/Rraven.Rmd</code></a></small>
@@ -709,15 +709,6 @@ entropy
 sfm
 </th>
 <th style="text-align:center;">
-meanfun
-</th>
-<th style="text-align:center;">
-minfun
-</th>
-<th style="text-align:center;">
-maxfun
-</th>
-<th style="text-align:center;">
 meandom
 </th>
 <th style="text-align:center;">
@@ -809,15 +800,6 @@ Phae.long1.wav
 </td>
 <td style="text-align:center;">
 0.6510024
-</td>
-<td style="text-align:center;">
-3.565944
-</td>
-<td style="text-align:center;">
-1.2500000
-</td>
-<td style="text-align:center;">
-7.5
 </td>
 <td style="text-align:center;">
 6.403086
@@ -912,15 +894,6 @@ Phae.long1.wav
 0.6678647
 </td>
 <td style="text-align:center;">
-3.571200
-</td>
-<td style="text-align:center;">
-0.4411765
-</td>
-<td style="text-align:center;">
-7.5
-</td>
-<td style="text-align:center;">
 6.638936
 </td>
 <td style="text-align:center;">
@@ -1011,15 +984,6 @@ Phae.long1.wav
 </td>
 <td style="text-align:center;">
 0.6715892
-</td>
-<td style="text-align:center;">
-3.600466
-</td>
-<td style="text-align:center;">
-1.1842105
-</td>
-<td style="text-align:center;">
-7.5
 </td>
 <td style="text-align:center;">
 6.495238
@@ -1114,15 +1078,6 @@ Phae.long2.wav
 0.6086184
 </td>
 <td style="text-align:center;">
-6.161170
-</td>
-<td style="text-align:center;">
-1.0714286
-</td>
-<td style="text-align:center;">
-7.5
-</td>
-<td style="text-align:center;">
 6.413764
 </td>
 <td style="text-align:center;">
@@ -1215,15 +1170,6 @@ Phae.long2.wav
 0.6151042
 </td>
 <td style="text-align:center;">
-5.774079
-</td>
-<td style="text-align:center;">
-0.3040541
-</td>
-<td style="text-align:center;">
-7.5
-</td>
-<td style="text-align:center;">
 6.101143
 </td>
 <td style="text-align:center;">
@@ -1314,15 +1260,6 @@ Phae.long3.wav
 </td>
 <td style="text-align:center;">
 0.5702146
-</td>
-<td style="text-align:center;">
-6.830357
-</td>
-<td style="text-align:center;">
-3.2142857
-</td>
-<td style="text-align:center;">
-7.5
 </td>
 <td style="text-align:center;">
 6.681285
@@ -5244,12 +5181,12 @@ Mantel statistic based on Pearson's product-moment correlation
 Call:
 vegan::mantel(xdis = xcorr.rvn, ydis = dist.sp.wrblR) 
 
-Mantel statistic r: 0.2841 
-      Significance: 0.019 
+Mantel statistic r: 0.2766 
+      Significance: 0.012 
 
 Upper quantiles of permutations (null model):
   90%   95% 97.5%   99% 
-0.160 0.198 0.247 0.307 
+0.147 0.196 0.235 0.282 
 Permutation: free
 Number of permutations: 999</code></pre>
 <p> </p>
@@ -5323,7 +5260,7 @@ raven.path &lt;-<span class="st"> "PATH_TO_RAVEN_DIRECTORY_HERE"</span>
 <p><font size="4">Session information</font></p>
 <pre><code>R version 3.4.4 (2018-03-15)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 16.04.4 LTS
+Running under: Ubuntu 16.04.5 LTS
 
 Matrix products: default
 BLAS: /usr/lib/openblas-base/libblas.so.3
@@ -5342,9 +5279,9 @@ other attached packages:
 [8] maps_3.3.0        
 
 loaded via a namespace (and not attached):
- [1] rgl_0.95.1441        Rcpp_0.12.17         lattice_0.20-35      fftw_1.0-4           assertthat_0.2.0     rprojroot_1.3-2     
- [7] digest_0.6.13        R6_2.2.2             plyr_1.8.4           Sim.DiffProc_4.0     backports_1.1.2      signal_0.7-6        
-[13] evaluate_0.10.1      pracma_2.1.4         httr_1.3.1           highr_0.6            pillar_1.2.3         rlang_0.2.0         
+ [1] rgl_0.95.1441        Rcpp_0.12.18         lattice_0.20-35      fftw_1.0-4           assertthat_0.2.0     rprojroot_1.3-2     
+ [7] digest_0.6.15        R6_2.2.2             plyr_1.8.4           Sim.DiffProc_4.0     backports_1.1.2      signal_0.7-6        
+[13] evaluate_0.10.1      pracma_2.1.4         httr_1.3.1           highr_0.6            pillar_1.2.3         rlang_0.2.1         
 [19] rstudioapi_0.7       vegan_2.5-2          Matrix_1.2-14        rmarkdown_1.9        pkgdown_1.1.0        desc_1.1.1          
 [25] readr_1.1.1          stringr_1.3.1        RCurl_1.95-4.11      munsell_0.4.3        proxy_0.4-22         compiler_3.4.4      
 [31] Deriv_3.8.4          pkgconfig_2.0.1      mgcv_1.8-24          htmltools_0.3.6      tidyselect_0.2.4     tibble_1.4.2        
@@ -5353,7 +5290,7 @@ loaded via a namespace (and not attached):
 [49] scales_0.5.0         stringi_1.2.2        pbapply_1.3-4        fs_1.2.3             scatterplot3d_0.3-40 bindrcpp_0.2.2      
 [55] xml2_1.2.0           rjson_0.2.20         iterators_1.0.10     tools_3.4.4          glue_1.2.0           purrr_0.2.4         
 [61] hms_0.4.0            jpeg_0.1-8           parallel_3.4.4       yaml_2.1.19          colorspace_1.3-2     cluster_2.0.7-1     
-[67] rvest_0.3.2          memoise_1.1.0        bindr_0.1.1         </code></pre>
+[67] soundgen_1.2.1       rvest_0.3.2          memoise_1.1.0        bindr_0.1.1         </code></pre>
 </div>
 </div>
   </div>

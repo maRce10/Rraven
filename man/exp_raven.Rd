@@ -52,7 +52,7 @@ package \code{\link{warbleR}}) into the 'Raven' selection file format ('.txt').
 measurements on existing selections by adding new measurements to the 
 selection table once in Raven. Note that selection labels must be numeric and unduplicated 
 when exporting them to Raven. If that is not the case the function will
-relabeled the selections and the previous selection labels will be retained in a new column('old.selec').
+relabeled the selections and the previous selection labels will be retained in a new column ('old.selec').
 }
 \examples{
 

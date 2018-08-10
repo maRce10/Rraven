@@ -33,7 +33,7 @@
 #' measurements on existing selections by adding new measurements to the 
 #' selection table once in Raven. Note that selection labels must be numeric and unduplicated 
 #' when exporting them to Raven. If that is not the case the function will
-#' relabeled the selections and the previous selection labels will be retained in a new column('old.selec').
+#' relabeled the selections and the previous selection labels will be retained in a new column ('old.selec').
 #' @seealso \code{\link{imp_raven}}; \code{\link{imp_syrinx}} 
 #' @export
 #' @name exp_raven
@@ -163,6 +163,10 @@ if (single.file | nrow(X) == 1)
     row.list <- data.frame(e, e2, sound.files = X$`Begin File`[!duplicated(X$`Begin File`)])
     }
 
+    # raven measurements and metadata column names as in Raven Pro 1.5.0 build 35
+  rvn_msr_nms <-  c("Begin Time (s)", "End Time (s)", "Low Frequency (Hz)", "High Frequency (Hz)", "File Offset (s)", "Begin File", "Begin Path", "1st Quartile Frequency (Hz)", "1st Quartile Frequency Relative", "1st Quartile Time (s)", "1st Quartile Time Relative", "3rd Quartile Frequency (Hz)", "3rd Quartile Frequency Relative", "3rd Quartile Time (s)", "3rd Quartile Time Relative", "Aggregate Entropy (bits)", "Average Amplitude (u)", "Average Entropy (bits)", "Average Power (dB)", "Bandwidth 90% (Hz)", "Begin Clock Time", "Begin Date", "Begin Date Time", "Begin File Sample (samples)", "Begin Hour", "Begin Sample (samples)", "Center Frequency (Hz)", "Center Time (s)", "Center Time Relative", " Delta Frequency (Hz)", "Delta Power (dB)", "Delta Time (s)", "Duration 90% (s)", "End Clock Time", "End Date", "End File", "End File Sample (samples)",
+                    "End Path", "End Sample (samples)", "Energy (dB)", "Filtered RMS Amplitude (U)", "Frequency 5% (Hz)", "Frequency 5% Relative", "Frequency 95% (Hz)", "Frequency 95% Relative", "Frequency Contour Percentile  5% (Hz)", "Frequency Contour Percentile 25% (Hz)", "Frequency Contour Percentile 50% (Hz)", "Frequency Contour Percentile 75% (Hz)", "Frequency Contour Percentile 95% (Hz)", "IQR Bandwidth (Hz)", "IQR Duration (s)", "Inband Power (dB)", "Length (frames)", "Leq (dB)", "Max Amplitude (U)", "Max Bearing (deg)", "Max Entropy (bits)", "Max Frequency (Hz)", "Max Power (dB)", "Max Time (s)", "Min Amplitude (U)", "Min Entropy (bits)", "Min Time (s)", "Peak Amplitude (U)", "Peak Correlation (U)", "Peak Frequency (Hz)", "Peak Frequency Contour (Hz)", "Peak Frequency Contour Average Slope (Hz/ms)", "Peak Frequency Contour Max Frequency (Hz)", "Peak Frequency Contour Max Slope (Hz/ms)", "Peak Frequency Contour Min Frequency (Hz)", "Peak Frequency Contour Min Slope (Hz/ms)", "Peak Frequency Contour Number of Inflection Points", "Peak Frequency Contour Slope (Hz/ms)", "Peak Lag (s)", "Peak Power (dB)", "Peak Time (s)", "Peak Time Relative", "RMS Amplitude (U)", "SEL (dB)", "Sample Length (samples)", "Time 5% (s)", "Time 5% Relative", "Time 95% (s)", "Time 95% Relative")
+  
   # set pb options 
   pbapply::pboptions(type = ifelse(pb, "timer", "none"))
   
@@ -191,6 +195,8 @@ if (single.file | nrow(X) == 1)
       for(i in which(sapply(W, is.list)))
         W[i] <- unlist(W[i])  
   
+  # sort putting raven measurements in the first columns
+  W <- W[ , c(which(names(W) %in% rvn_msr_nms), which(!names(W) %in% rvn_msr_nms))]
   
   utils::write.table(x = W, sep = "\t", file = file.name2, row.names = FALSE, quote = FALSE)  
  })
