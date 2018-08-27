@@ -44,7 +44,7 @@
 #' data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table"))
 #' 
 #' # Select data for a single sound file
-#' st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav",]
+#' st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav", ]
 #' 
 #' # Export data of a single sound file
 #' exp_raven(st1, file.name = "Phaethornis 1")
@@ -127,9 +127,9 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
     
     if (length(unique(X$'Begin File')) > 1 & single.file)
     {
-      durs <- warbleR::wavdur(path = sound.file.path)
-    durs$cumdur <- cumsum(durs$duration)
-    durs <- durs[durs$sound.files %in% X$'Begin File', ]
+      durs <- warbleR::wavdur(path = sound.file.path, files = as.character(X$'Begin File'[!duplicated(X$'Begin File')]))
+      durs$cumdur <- cumsum(durs$duration)
+    # durs <- durs[durs$sound.files %in% X$'Begin File', ]
     
     # calculate file offset
     out <- lapply(1:nrow(durs), function(x) {
@@ -145,7 +145,7 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
         })     
       
     X <- do.call(rbind, out)
-    } 
+     } 
   }
   
  if (!is.null(sound.file.path))
@@ -195,7 +195,7 @@ if (single.file | nrow(X) == 1)
       for(i in which(sapply(W, is.list)))
         W[i] <- unlist(W[i])  
   
-  # sort putting raven measurements in the first columns
+  # sort to put raven measurements in the first columns
   W <- W[ , c(which(names(W) %in% rvn_msr_nms), which(!names(W) %in% rvn_msr_nms))]
   
   utils::write.table(x = W, sep = "\t", file = file.name2, row.names = FALSE, quote = FALSE)  

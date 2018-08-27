@@ -56,7 +56,7 @@ wvs.no.ext <- gsub(".wav", "", wvs, ignore.case = TRUE)
 fix.sf <- sapply(1:nrow(X), function(i) ifelse(sf.no.ext[i] %in% wvs.no.ext, wvs[wvs.no.ext == sf.no.ext[i]], sf.no.ext[i]))
 
 # warning if not all find found
-if (length(which(!sf.no.ext %in% wvs.no.ext)) > 0 & verbose) cat(paste("the following files were not found:", paste(unique(sf.no.ext[which(!sf.no.ext %in% wvs.no.ext)]), collapse = "/")))
+if (any(!sf.no.ext %in% wvs.no.ext) & verbose) cat(paste("the following files were not found:", paste(unique(sf.no.ext[!sf.no.ext %in% wvs.no.ext]), collapse = "/")))
 
 # overwrite sound.files column with fix names
 X$sound.files <- fix.sf

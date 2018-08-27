@@ -196,7 +196,7 @@ relabeled the selections and the previous selection labels will be retained in a
 #&gt; <span class='message'> Please see citation('warbleR') for use in publication</span></div><div class='input'><span class='fu'>data</span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>, <span class='st'>"selec.table"</span>))
 
 <span class='co'># Select data for a single sound file</span>
-<span class='no'>st1</span> <span class='kw'>&lt;-</span> <span class='no'>selec.table</span>[<span class='no'>selec.table</span>$<span class='no'>sound.files</span> <span class='kw'>==</span> <span class='st'>"Phae.long1.wav"</span>,]
+<span class='no'>st1</span> <span class='kw'>&lt;-</span> <span class='no'>selec.table</span>[<span class='no'>selec.table</span>$<span class='no'>sound.files</span> <span class='kw'>==</span> <span class='st'>"Phae.long1.wav"</span>, ]
 
 <span class='co'># Export data of a single sound file</span>
 <span class='fu'>exp_raven</span>(<span class='no'>st1</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='st'>"Phaethornis 1"</span>)</div><div class='output co'>#&gt;    |                                                  | 0 % ~calculating     |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed = 00s</div><div class='input'>

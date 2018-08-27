@@ -203,14 +203,13 @@ if (length(clist) > 0){
         names(x)[names(x) == i] <- paste0(names(x)[names(x) == i],  seq_len(length(which(names(x) == i))))
     }
     return(x)
-  }
-  ) 
+  }) 
   
-# determine all column names in all selection tables    
-cnms <- unique(unlist(lapply(clist, names)))    
-
-# add columns that are missing to each selection table
-clist <- lapply(clist, function(X)
+  # determine all column names in all selection tables    
+  cnms <- unique(unlist(lapply(clist, names)))    
+  
+  # add columns that are missing to each selection table
+  clist <- lapply(clist, function(X)
   {
 nms <- names(X)
 if (length(nms) != length(cnms))  
@@ -241,8 +240,8 @@ b <- b[, c(clm, base::setdiff(1:ncol(b), clm))]
 if (!waveform & all.data)
   b <- b[grep("Waveform", b$View, ignore.case = TRUE, invert = TRUE), ]
 
-if (!all.data)
-  b$sound.files <- basename(b$sound.files)
+if (!all.data & !is.null(b$sound.files))
+  b$sound.files <- basename(as.character(b$sound.files))
 }  else b <- NULL
 
 if (length(error.files) == length(sel.txt2)) cat("Not a single file could be read") else

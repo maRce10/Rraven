@@ -61,7 +61,7 @@ library(warbleR)
 data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table"))
 
 # Select data for a single sound file
-st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav",]
+st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav", ]
 
 # Export data of a single sound file
 exp_raven(st1, file.name = "Phaethornis 1")

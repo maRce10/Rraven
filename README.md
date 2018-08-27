@@ -44,9 +44,10 @@ Note that the vignette avaialble on [github](http://github.com/) (which can be d
 Note that the animations explaining additional steps in [Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) are shown in more detail in the [github](https://github.com/maRce10/Rraven) version of this vignette, which can be downloaded as follows (saves the file "Rraven.hitgub.html" in your current working directory):
 
 
-```{r eval = FALSE}
+```r
 
-download.file(url = "https://github.com/maRce10/Rraven/raw/master/gifs/Rraven.hitgub.html", destfile = "Rraven.hitgub.html")
+download.file(url = "https://github.com/maRce10/Rraven/raw/master/gifs/Rraven.hitgub.html", 
+destfile = "Rraven.hitgub.html")
 
 ```
  &nbsp; 
