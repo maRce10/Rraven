@@ -67,7 +67,7 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
   on.exit(setwd(wd))
   
   #check path to working directory
-  if (is.null(path)) path <- getwd() else {if (!dir.exists(path)) stop("'path' provided does not exist") else
+  if (is.null(path)) path <- wd else {if (!dir.exists(path)) stop("'path' provided does not exist") else
     setwd(path)
   }  
   
@@ -121,7 +121,7 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
   
   if (!is.null(sound.file.path))
   {
-    X$'Begin Path' <- file.path(sound.file.path, X$'Begin File')
+    X$'Begin Path' <- file.path(path.expand(sound.file.path), X$'Begin File')
     
     X$'File Offset (s)' <- X$'Begin Time (s)'
     

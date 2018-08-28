@@ -91,14 +91,14 @@ imp_raven<-function(path = NULL, sound.file.col = NULL, all.data = FALSE,
   
   options(warn = -1)
   
-  read_sels_FUN <- function(i, sel.txt, sel.txt2, all.data, sound.file.col, name.from.file)
+  read_sels_FUN <- function(i, sel.txt, sel.txt2, all.data, freq.cols, sound.file.col, name.from.file)
   {  
     a <- try(utils::read.table(sel.txt[i], header = TRUE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE)
     if (class(a) != "try-error")
     {   if (!all.data) { 
       if (!is.null(sound.file.col)) 
       {  
-        if (length(grep(sound.file.col, colnames(a))) == 0) stop(paste0("'",sound.file.col , "' column provided in 'sound.file.col' not found (make sure no other '.txt' files are found in that directory")) 
+        if (length(grep(sound.file.col, colnames(a))) == 0) stop(paste0("'",sound.file.col , "' column provided in 'sound.file.col' not found. Make sure all files contain that column and that no other '.txt' files are found in that directory")) 
         c <- try(data.frame(sound.files = a[, grep(sound.file.col, colnames(a), ignore.case = TRUE)], channel = a[, grep("channel", colnames(a), ignore.case = TRUE)],
                             selec = a[,grep("Selection",colnames(a), ignore.case = TRUE)],
                             start = a[,grep("Begin.Time",colnames(a), ignore.case = TRUE)],
@@ -124,8 +124,8 @@ imp_raven<-function(path = NULL, sound.file.col = NULL, all.data = FALSE,
       }
       
       if (freq.cols) {    
-        try(c$bottom.freq <- a[, grep("Low.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
-        try(c$top.freq <- a[, grep("High.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
+        try(c$bottom.freq <- as.numeric(a[, grep("Low.Freq", colnames(a), ignore.case = TRUE)])/ 1000, silent = TRUE)
+        try(c$top.freq <- as.numeric(a[, grep("High.Freq", colnames(a), ignore.case = TRUE)])/ 1000, silent = TRUE)
     
         if (all(c("High.Freq", "Low.Freq") %in% names(c)))
           c <- c[c(1:(ncol(c) - 3), ncol(c):(ncol(c)-1), ncol(c) -2 )]
@@ -146,7 +146,7 @@ imp_raven<-function(path = NULL, sound.file.col = NULL, all.data = FALSE,
     cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else cl <- parallel  
   
   clist <- pbapply::pblapply(seq_len(length(sel.txt)), cl = cl, function(i) {
-    read_sels_FUN(i, sel.txt = sel.txt, sel.txt2 = sel.txt2, all.data = all.data, 
+    read_sels_FUN(i, sel.txt = sel.txt, sel.txt2 = sel.txt2, all.data = all.data, freq.cols = freq.cols, 
                   sound.file.col = sound.file.col, name.from.file = name.from.file)
   })
     
