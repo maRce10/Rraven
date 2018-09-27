@@ -18,11 +18,11 @@ Default is \code{NULL}. 'extra.cols.name' must be also provided.}
 
 \item{khz.to.hz}{Logical. Controls if frequency variables ('top.freq' and 'bottom.freq') should be converted from kHz 
 (the unit used by other bioacoustic analysis R packages like \code{\link{warbleR}}) to Hz (the unit used by Raven). 
-Default is \code{TRUE}.}
+Default is \code{FALSE}.}
 
 \item{hz.to.khz}{Logical. Controls if frequency variables ('top.freq' and 'bottom.freq') should be converted from Hz 
 (the unit used by other bioacoustic analysis R packages like Raven) to kHz (the unit used by \code{\link{warbleR}}). 
-Default is \code{FALSE}. Ignored if 'kHz.to.hz' is provided.}
+Default is \code{FALSE}. Ignored if 'kHz.to.hz' is \code{TRUE}.}
 
 \item{waveform}{Logical to control if 'waveform' related data should be included (this data is typically duplicated in 'spectrogram' data).  Default is \code{FALSE} (not to include it).}
 }

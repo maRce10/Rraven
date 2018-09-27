@@ -115,7 +115,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>raven_batch_detec</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>sound.files</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-<span class='kw'>detector</span> <span class='kw'>=</span> <span class='st'>"Amplitude detector"</span>,
+<span class='kw'>detector.type</span> <span class='kw'>=</span> <span class='st'>"Amplitude detector"</span>, <span class='kw'>detector.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
 <span class='kw'>relabel_colms</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>pb</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -138,11 +138,17 @@ the sound files. If not provided (default) the function searches into the curren
 directory. Default is <code>NULL</code>.</p></td>
     </tr>
     <tr>
-      <th>detector</th>
+      <th>detector.type</th>
       <td><p>Character string specifying the type of detector to be called.
 There are 3 options available in Raven: 'Amplitude detector' (default), 'Band 
 Limited Energy Detector' and 'Band Limited Entropy Detector'. Detector 
 parameters must be set in 'Raven' before running the function.</p></td>
+    </tr>
+    <tr>
+      <th>detector.name</th>
+      <td><p>Character string specifying the name of the customized detector to be called (if any). If 
+If <code>NULL</code> (default) then the Default Raven detector for the specific detector type will be used 
+(see 'detector.type' argument). Custom detectors must be found in one of the default Raven detector directories.</p></td>
     </tr>
     <tr>
       <th>relabel_colms</th>
@@ -162,7 +168,7 @@ match the selection table format from the acoustic analysis package <code>warble
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The function runs 'Raven' sound analysis software (Cornell Lab of
-Ornithology), detector on  multiple sound files seuentially. 'Raven' Pro must be 
+Ornithology), detector on  multiple sound files sequentially. 'Raven' Pro must be 
 installed. Note that batch detection in 'Raven' can also take 
 sound files in 'mp3', 'flac' and 'aif' format.</p>
     

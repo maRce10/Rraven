@@ -35,6 +35,8 @@
 #'  If 'all.data' argument is set to \code{FALSE} the data frame contains the following columns: selec, start, end, and selec.file. 
 #'  If sound.file.col is provided the data frame  will also contain a 'sound.files' column. In addition, all rows with duplicated 
 #'  data are removed. This is useful when both spectrogram and waveform views are included in the 'Raven' selection files. If all.data is set to \code{TRUE} then all columns in the 'Raven' selection files are returned. 
+#'  If individual selection files contain information about multiple sound files the function will correct the time
+#'  parameters (start and end) only if 1) the 'File Offset (s)' is also included in the selection file and 2) the sound file column has been provided (using 'sound.file.col' or 'name.from.file' arguments).
 #' @details The function import 'Raven' selection data from many files simultaneously. Files must be in '.txt' format. Selection 
 #' files including data from mulitple recordings can also be imported. 
 #' @seealso \code{\link{imp_syrinx}} 
@@ -62,7 +64,7 @@
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
 #last modification on nov-7-2017
 
-imp_raven<-function(path = NULL, sound.file.col = NULL, all.data = FALSE, 
+imp_raven <- function(path = NULL, sound.file.col = NULL, all.data = FALSE, 
                     recursive = FALSE, name.from.file = FALSE, ext.case = NULL, 
                     freq.cols = TRUE, waveform = FALSE, parallel = 1, pb = TRUE, 
                     unread = FALSE, rm.dup = FALSE) 
@@ -78,8 +80,8 @@ imp_raven<-function(path = NULL, sound.file.col = NULL, all.data = FALSE,
   }  
   
   if (!is.null(ext.case)) 
-  {if (!ext.case %in% c("upper", "lower")) stop("'ext.case' should be either 'upper' or 'lower'") else
-    if (ext.case == "upper") ext <- "WAV" else ext <- "wav"}
+    if (!ext.case %in% c("upper", "lower")) stop("'ext.case' should be either 'upper' or 'lower'") else
+    ext <- if (ext.case == "upper") "WAV" else "wav"
   
   if (is.null(ext.case) & name.from.file) stop("'ext.case' must be provided when name.from.file is TRUE")
   
@@ -93,47 +95,61 @@ imp_raven<-function(path = NULL, sound.file.col = NULL, all.data = FALSE,
   
   read_sels_FUN <- function(i, sel.txt, sel.txt2, all.data, freq.cols, sound.file.col, name.from.file)
   {  
+    # read selection file
     a <- try(utils::read.table(sel.txt[i], header = TRUE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE)
+    
     if (class(a) != "try-error")
-    {   if (!all.data) { 
-      if (!is.null(sound.file.col)) 
-      {  
-        if (length(grep(sound.file.col, colnames(a))) == 0) stop(paste0("'",sound.file.col , "' column provided in 'sound.file.col' not found. Make sure all files contain that column and that no other '.txt' files are found in that directory")) 
-        c <- try(data.frame(sound.files = a[, grep(sound.file.col, colnames(a), ignore.case = TRUE)], channel = a[, grep("channel", colnames(a), ignore.case = TRUE)],
-                            selec = a[,grep("Selection",colnames(a), ignore.case = TRUE)],
+    {   
+      if (!all.data) { # read only file, time and freq columns
+        
+        if (name.from.file) # get sound file name from selection file
+        {  
+        sound.files <- gsub("Table\\.([0-9]+)\\.selections.txt$", ext, sel.txt2[i])
+        sound.files <- gsub(".selections.txt$", ext, sound.files) 
+        }     
+  
+        if (!is.null(sound.file.col)) # get sound file name from sound file column provided
+          if (length(grep(sound.file.col, colnames(a))) == 0) stop(paste0("'",sound.file.col , "' column provided in 'sound.file.col' not found. Make sure all files contain that column and that no other '.txt' files are found in that directory")) else
+          sound.files <- a[, grep(sound.file.col, colnames(a), ignore.case = TRUE)]
+
+        # put data in data frame      
+        c <- try(data.frame(channel = a[, grep("channel", colnames(a), ignore.case = TRUE)],
+                            selec = a[,grep("Selection$",colnames(a), ignore.case = TRUE)],
                             start = a[,grep("Begin.Time",colnames(a), ignore.case = TRUE)],
                             end = a[, grep("End.Time",colnames(a), ignore.case = TRUE)], selec.file = sel.txt2[i], stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE)
         
+        # add sound file column and offset info
+        if (exists("sound.files")) {
+          c <- data.frame(sound.files, c) 
+    
+          # fix start end if multiple files are found
+         if (length(unique(sound.files)) > 1)
+          { 
+           if (!any(grepl("offset", names(a), ignore.case = TRUE))) stop(paste0("selections files from multiple sound files must contain an 'Offset' column (check ", sel.txt[i],")"))
+          
+          c$file.offset.DELETE <- a[, grep("Offset", colnames(a), ignore.case = TRUE)]
+          c$end <- c$end - c$start
+          c$start <- c$file.offset.DELETE
+          c$end <- c$end + c$start
+          }
+          }
+        
+        # add frequency columns 
+        if (freq.cols)
+        {
         try(c$bottom.freq <- a[, grep("Low.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
         try(c$top.freq <- a[, grep("High.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
+          }
+        
         if (all(c("High.Freq", "Low.Freq") %in% names(c)))
           c <- c[c(1:(ncol(c) - 3), ncol(c):(ncol(c)-1), ncol(c) -2 )]
-      } else
-      { 
-        if (name.from.file) 
-        {
-          sound.files <- gsub("Table\\.([0-9]+)\\.selections.txt$", ext, sel.txt2[i])
-          sound.files <- gsub(".selections.txt$", ext, sound.files)
-          
-          c <- try(data.frame(sound.files, selec.file = sel.txt2[i], channel = a[, grep("channel", colnames(a), 
-                                                                                        ignore.case = TRUE)],selec = a[,grep("Selection",colnames(a), ignore.case = TRUE)],
-                              start = a[, grep("Begin.Time", colnames(a), ignore.case = TRUE)],
-                              end = a[, grep("End.Time", colnames(a), ignore.case = TRUE)], stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE)
-        } else
-          c <- try(data.frame(selec.file = sel.txt2[i], channel = a[, grep("channel", colnames(a), ignore.case = TRUE)], selec = a[,grep("Selection",colnames(a), ignore.case = TRUE)], start = a[, grep("Begin.Time", colnames(a), ignore.case = TRUE)], end = a[, grep("End.Time", colnames(a), ignore.case = TRUE)], stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE)
+      
+        } else { # if all data needed
+          # read data
+          c <- try(data.frame(a, selec.file = sel.txt2[i], stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE) 
+  
+          if (class(c) == "try-error") c <- NA
       }
-      
-      if (freq.cols) {    
-        try(c$bottom.freq <- as.numeric(a[, grep("Low.Freq", colnames(a), ignore.case = TRUE)])/ 1000, silent = TRUE)
-        try(c$top.freq <- as.numeric(a[, grep("High.Freq", colnames(a), ignore.case = TRUE)])/ 1000, silent = TRUE)
-    
-        if (all(c("High.Freq", "Low.Freq") %in% names(c)))
-          c <- c[c(1:(ncol(c) - 3), ncol(c):(ncol(c)-1), ncol(c) -2 )]
-      
-        }
-      } else 
-      c <- try(data.frame(a, selec.file = sel.txt2[i], stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE) 
-      if (class(c) == "try-error") c <- NA
       } else c <- NA
       return(c)
  }
@@ -156,35 +172,8 @@ error.files <- sel.txt2[!sapply(clist, is.data.frame)]
 # remove NAs    
 clist <- clist[sapply(clist, is.data.frame)]
 
-## loop to fix start and end when mutliple sound files are in a single selection file
 if (length(clist) > 0){
 
-  clist <- lapply(clist, function(X){
-  
-  if (!all.data)
-  sfcol <- "sound.files" else sfcol <- grep("\\.File$|\\.Path$", names(X), value = TRUE)[1]
-  
-  
-  if (any(grepl("\\.File$|\\.Path$", names(X)))){
-    if (length(unique(X[,sfcol])) > 1) 
-  {
-    if (!all.data) 
-    {
-      if (!any(grepl("Offset", names(X)))) stop("selections files from multiple sound files must contain an 'Offset' column")
-      
-      X$end <- X$end - X$start
-      X$start <- X[ ,grep("Offset", names(X))]
-      X$end <- X$end + X$start
-      } else {
-        X[ ,grep("^End.Time", names(X))] <- X[ ,grep("^End.Time", names(X))] - X[ ,grep("^Begin.Time", names(X))]
-        X[ ,grep("^Begin.Time", names(X))] <- X[ ,grep("Offset", names(X))]
-        X[ ,grep("^End.Time", names(X))] <- X[ ,grep("^End.Time", names(X))] + X[ ,grep("^Begin.Time", names(X))]
-      }
-  }
-}
-  return(X)
-  }) 
-  
   # relabel duplicated column names
   clist <- lapply(clist, function(x) {
       
@@ -224,18 +213,19 @@ return(X)
 b <- do.call("rbind", clist)
 
 if (rm.dup)
-{
   b <- b[!duplicated(b), ]
-  # b <- b[, !duplicated(lapply(b, summary)) & !duplicated(names(b)), ]
-}
 
 rownames(b) <- 1:nrow(b)
 
+# order columns
 clm <- match(names(b), c("sound.files", "selec", "start", "end", "bottom.freq", "top.freq"))
 clm <- clm[!is.na(clm)]
 
 if (length(clm) > 1)
 b <- b[, c(clm, base::setdiff(1:ncol(b), clm))]
+
+# remove file.offset column
+if (!all.data)  b$file.offset.DELETE <- NULL
 
 if (!waveform & all.data)
   b <- b[grep("Waveform", b$View, ignore.case = TRUE, invert = TRUE), ]

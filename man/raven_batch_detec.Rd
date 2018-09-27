@@ -5,7 +5,7 @@
 \title{Run 'Raven' batch detector}
 \usage{
 raven_batch_detec(raven.path = NULL, sound.files, path = NULL, 
-detector = "Amplitude detector", 
+detector.type = "Amplitude detector", detector.name = NULL,
 relabel_colms = TRUE, pb = TRUE)
 }
 \arguments{
@@ -19,10 +19,14 @@ then 'Raven' will be run without opening any file.}
 the sound files. If not provided (default) the function searches into the current working 
 directory. Default is \code{NULL}.}
 
-\item{detector}{Character string specifying the type of detector to be called.
+\item{detector.type}{Character string specifying the type of detector to be called.
 There are 3 options available in Raven: 'Amplitude detector' (default), 'Band 
 Limited Energy Detector' and 'Band Limited Entropy Detector'. Detector 
 parameters must be set in 'Raven' before running the function.}
+
+\item{detector.name}{Character string specifying the name of the customized detector to be called (if any). If 
+If \code{NULL} (default) then the Default Raven detector for the specific detector type will be used 
+(see 'detector.type' argument). Custom detectors must be found in one of the default Raven detector directories.}
 
 \item{relabel_colms}{Logical. If  \code{TRUE} (default) colums are labeled to 
 match the selection table format from the acoustic analysis package \code{\link{warbleR}}}
@@ -37,7 +41,7 @@ A data frame with the selections produced during the detection. See \code{\link{
 }
 \details{
 The function runs 'Raven' sound analysis software (Cornell Lab of
-Ornithology), detector on  multiple sound files seuentially. 'Raven' Pro must be 
+Ornithology), detector on  multiple sound files sequentially. 'Raven' Pro must be 
 installed. Note that batch detection in 'Raven' can also take 
 sound files in 'mp3', 'flac' and 'aif' format.
 }
