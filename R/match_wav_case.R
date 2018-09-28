@@ -63,6 +63,3 @@ X$sound.files <- fix.sf
 
 if (output == "data.frame")  return(X) else return(fix.sf)
 }
-
-
-

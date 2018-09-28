@@ -20,13 +20,14 @@ the sound files. If not provided (default) the function searches into the curren
 directory. Default is \code{NULL}.}
 
 \item{detector.type}{Character string specifying the type of detector to be called.
-There are 3 options available in Raven: 'Amplitude detector' (default), 'Band 
+There are 3 options available in 'Raven': 'Amplitude detector' (default), 'Band 
 Limited Energy Detector' and 'Band Limited Entropy Detector'. Detector 
 parameters must be set in 'Raven' before running the function.}
 
-\item{detector.name}{Character string specifying the name of the customized detector to be called (if any). If 
-If \code{NULL} (default) then the Default Raven detector for the specific detector type will be used 
-(see 'detector.type' argument). Custom detectors must be found in one of the default Raven detector directories.}
+\item{detector.name}{Character string specifying the name of the customized detector to be called (if any).
+If \code{NULL} (default) then the 'Default' detector for the specific detector type will be used 
+(see 'detector.type' argument). Custom detectors must be found in one of the default 'Raven' detector directories 
+(usually within "'raven.path'/Presets/Detector").}
 
 \item{relabel_colms}{Logical. If  \code{TRUE} (default) colums are labeled to 
 match the selection table format from the acoustic analysis package \code{\link{warbleR}}}
