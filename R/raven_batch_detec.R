@@ -57,7 +57,7 @@
 #last modification on nov-8-2017
 
 raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detector.type = "Amplitude detector", 
-                              detector.name = NULL, relabel_colms = TRUE, pb = TRUE)
+                              detector.preset = "Default", view.preset = "Default", relabel_colms = TRUE, pb = TRUE)
 {
   
   #check path to working directory
@@ -74,25 +74,7 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
       if (!dir.exists(raven.path)) stop("'raven.path' provided does not exist")
   
   setwd(raven.path)
-  
-  # check detector name
-  if (!is.null(detector.name))
-    if (!file.exists(file.path(raven.path, "Presets/Detector", detector.type, detector.name))) stop("'detector.name' file not found") else
-    {
-      # rename default to org.default
-      try(out <- file.rename(from = file.path(raven.path, "Presets/Detector", detector.type, "Default"), to = file.path(raven.path, "Presets/Detector", detector.type, "org.Default")))
-
-      # rename custom to default
-      try(out <- file.rename(from = file.path(raven.path, "Presets/Detector", detector.type, detector.name), to = file.path(raven.path, "Presets/Detector", detector.type, "Default")))
-      
-      # on exit rename default to custom
-      on.exit(try(out <- file.rename(from = file.path(raven.path, "Presets/Detector", detector.type, "Default"), to = file.path(raven.path, "Presets/Detector", detector.type, detector.name))), add = TRUE)
-      
-      # rename org.default to default
-      on.exit(try(out <- file.rename(from = file.path(raven.path, "Presets/Detector", detector.type, "org.Default"), to = file.path(raven.path, "Presets/Detector", detector.type, "Default"))), add = TRUE)
-      }
-      
-  
+   
     sf <- sound.files <- as.character(sound.files)
 
     #return warning if not all sound files were found
@@ -117,12 +99,12 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
       
       if (Sys.info()[1] == "Windows")
       {  
-        comnd <- paste(shQuote(file.path(raven.path, "Raven.exe"), type = "cmd"),  paste0("-detType:", detector.type), shQuote(x), "-detTable:temp.bcv.txt -x")
+        comnd <- paste(shQuote(file.path(raven.path, "Raven.exe"), type = "cmd"), paste0("-detPreset:", detector.preset), paste0("-viewPreset:", view.preset), paste0("-detType:", detector.type), shQuote(x), "-detTable:temp.bcv.txt -x")
       } else
       {
         if (Sys.info()[1] == "Linux")
-        comnd <- paste(file.path(raven.path, "Raven"), paste0("-detType:", detector.type), x, "-detTable:temp.bcv.txt -x") else
-        comnd <- paste("open Raven.app --args", x, paste0("-detType:", detector.type), "-detTable:temp.bcv.txt -x") # OSX
+        comnd <- paste(file.path(raven.path, "Raven"), paste0("-detPreset:", detector.preset), paste0("-viewPreset:", view.preset), paste0("-detType:", detector.type), x, "-detTable:temp.bcv.txt -x") else
+        comnd <- paste("open Raven.app --args", x, paste0("-detPreset:", detector.preset), paste0("-viewPreset:", view.preset), paste0("-detType:", detector.type), "-detTable:temp.bcv.txt -x") # OSX
       }
         
         # run raven
