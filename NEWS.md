@@ -1,5 +1,9 @@
 # Version 1.0.3 (Release date: 2018-05-22)
 
+## Changes and additions:
+
+* 'detector.name' and 'detector.type' arguments added to 'raven_batch_detec()' to allow the use of custom made detectors 
+
 ## New functions
 
 * to_sound_selection: convert Raven's selection table files to sound selection table files

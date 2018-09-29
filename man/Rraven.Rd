@@ -31,6 +31,8 @@ License: GPL (>= 2)
   \code{\link{relabel_colms}}: Relabel columns to match the selection table format
   
   \code{\link{run_raven}}: Open sound files in Raven
+  
+  \code{\link{to_sound_selection}}: Convert Raven's selection files into sound selection files
 }
 \author{
 Marcelo Araya-Salas

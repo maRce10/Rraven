@@ -1,6 +1,6 @@
-#' Convert Raven's selection table file to sound selection file
+#' Convert Raven's selection files into sound selection files
 #' 
-#' \code{to_sound_selection} converts Raven's selection table files into  sound selection files
+#' \code{to_sound_selection} converts Raven's selection files into sound selection files
 #' @usage to_sound_selection(path = NULL, dest.path = NULL, recursive = FALSE,
 #'  parallel = 1, pb = TRUE, sound.file.path, sound.file.col)  
 #' @param path A character string indicating the path of the directory in which to look for the 'Raven' selection (text) files. 

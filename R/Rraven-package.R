@@ -23,12 +23,13 @@
 #'   \code{\link{relabel_colms}}: Relabel columns to match the selection table format
 #'   
 #'   \code{\link{run_raven}}: Open sound files in Raven
+#'   
+#'   \code{\link{to_sound_selection}}: Convert Raven's selection files into sound selection files
 #'      
 #' @import warbleR 
 #' @import dplyr
 #' @import kableExtra
 #' @import pbapply
-#' @importFrom pbapply pblapply
 #' @importFrom stats approx as.ts
 #' @importFrom utils read.table write.table
 #' @author Marcelo Araya-Salas

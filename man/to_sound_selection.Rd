@@ -2,7 +2,7 @@
 % Please edit documentation in R/to_sound_selection.R
 \name{to_sound_selection}
 \alias{to_sound_selection}
-\title{Convert Raven's selection table file to sound selection file}
+\title{Convert Raven's selection files into sound selection files}
 \usage{
 to_sound_selection(path = NULL, dest.path = NULL, recursive = FALSE,
  parallel = 1, pb = TRUE, sound.file.path, sound.file.col)
@@ -33,7 +33,7 @@ Sound selection table file(s) saved in 'dest.path' or in the working
 directory.
 }
 \description{
-\code{to_sound_selection} converts Raven's selection table files into  sound selection files
+\code{to_sound_selection} converts Raven's selection files into sound selection files
 }
 \details{
 The function converts Raven's selection tables to sound selection tables.
