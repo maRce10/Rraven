@@ -5,8 +5,8 @@
 \title{Run 'Raven' batch detector}
 \usage{
 raven_batch_detec(raven.path = NULL, sound.files, path = NULL, 
-detector.type = "Amplitude detector", detector.name = NULL,
-relabel_colms = TRUE, pb = TRUE)
+detector.type, detector.preset = "Default",
+view.preset = "Default", relabel_colms = TRUE, pb = TRUE)
 }
 \arguments{
 \item{raven.path}{A character string indicating the path of the directory in which to look for the 'Raven' executable file (where 'Raven' was installed).}
@@ -20,14 +20,16 @@ the sound files. If not provided (default) the function searches into the curren
 directory. Default is \code{NULL}.}
 
 \item{detector.type}{Character string specifying the type of detector to be called.
-There are 3 options available in 'Raven': 'Amplitude detector' (default), 'Band 
-Limited Energy Detector' and 'Band Limited Entropy Detector'. Detector 
-parameters must be set in 'Raven' before running the function.}
+There are 3 options available in 'Raven': 'Amplitude Detector', 'Band 
+Limited Energy Detector' and 'Band Limited Entropy Detector'. Must be provided.}
 
-\item{detector.name}{Character string specifying the name of the customized detector to be called (if any).
-If \code{NULL} (default) then the 'Default' detector for the specific detector type will be used 
+\item{detector.preset}{Character string specifying the name of the customized detector to be called.
+If \code{NULL} (default) then the 'Default' detector for the specific detector type is used 
 (see 'detector.type' argument). Custom detectors must be found in one of the default 'Raven' detector directories 
 (usually within "'raven.path'/Presets/Detector").}
+
+\item{view.preset}{Character string specifying the name of the window preset to be used. Not require for 'Amplitude Detector' (see 'detector.type' argument).
+If \code{NULL} (default) then the 'Default' window preset is used.}
 
 \item{relabel_colms}{Logical. If  \code{TRUE} (default) colums are labeled to 
 match the selection table format from the acoustic analysis package \code{\link{warbleR}}}
@@ -54,14 +56,15 @@ raven.path <- "PATH_TO_RAVEN_DIRECTORY_HERE"
 
 # Run detector on raven example sound files
 
-# single sound file
+# single sound file using 'Amplitude Detector' 
 detec.res <- raven_batch_detec(raven.path = raven.path, 
-sound.files = "BlackCappedVireo.aif", path = file.path(raven.path, "Examples"))
+sound.files = "BlackCappedVireo.aif", path = file.path(raven.path, "Examples"), 
+detector.type = "Amplitude Detector")
 
 # on raven examples  2 files
 detec.res <- raven_batch_detec(raven.path = raven.path, 
 sound.files = c("BlackCappedVireo.aif", "CanyonWren.wav"), 
-path = file.path(raven.path, "Examples"))
+path = file.path(raven.path, "Examples"), detector.type = "Amplitude Detector")
 
 # using 'Band Limited Energy Detector' 
 detec.res <- raven_batch_detec(raven.path = raven.path, 

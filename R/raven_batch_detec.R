@@ -2,8 +2,8 @@
 #' 
 #' \code{raven_batch_detec} Runs 'Raven' batch detector on multiple sound files sequentially
 #' @usage raven_batch_detec(raven.path = NULL, sound.files, path = NULL, 
-#' detector.type = "Amplitude detector", detector.name = NULL,
-#' relabel_colms = TRUE, pb = TRUE)  
+#' detector.type, detector.preset = "Default",
+#' view.preset = "Default", relabel_colms = TRUE, pb = TRUE)  
 #' @param raven.path A character string indicating the path of the directory in which to look for the 'Raven' executable file (where 'Raven' was installed). 
 #' @param sound.files character vector indicating the files that will be analyzed.
 #' In OSX (mac) only one file at the time can be run (use loops instead!). If \code{NULL} (default) 
@@ -12,13 +12,14 @@
 #' the sound files. If not provided (default) the function searches into the current working 
 #' directory. Default is \code{NULL}.
 #' @param detector.type Character string specifying the type of detector to be called.
-#' There are 3 options available in 'Raven': 'Amplitude detector' (default), 'Band 
-#' Limited Energy Detector' and 'Band Limited Entropy Detector'. Detector 
-#' parameters must be set in 'Raven' before running the function.
-#' @param detector.name Character string specifying the name of the customized detector to be called (if any).
-#' If \code{NULL} (default) then the 'Default' detector for the specific detector type will be used 
+#' There are 3 options available in 'Raven': 'Amplitude Detector', 'Band 
+#' Limited Energy Detector' and 'Band Limited Entropy Detector'. Must be provided.
+#' @param detector.preset Character string specifying the name of the customized detector to be called.
+#' If \code{NULL} (default) then the 'Default' detector for the specific detector type is used 
 #' (see 'detector.type' argument). Custom detectors must be found in one of the default 'Raven' detector directories 
 #' (usually within "'raven.path'/Presets/Detector"). 
+#' @param view.preset Character string specifying the name of the window preset to be used. Not require for 'Amplitude Detector' (see 'detector.type' argument).
+#' If \code{NULL} (default) then the 'Default' window preset is used. 
 #' @param relabel_colms Logical. If  \code{TRUE} (default) colums are labeled to 
 #' match the selection table format from the acoustic analysis package \code{\link{warbleR}}
 #' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
@@ -38,14 +39,15 @@
 #' 
 #' # Run detector on raven example sound files
 #' 
-#' # single sound file
+#' # single sound file using 'Amplitude Detector' 
 #' detec.res <- raven_batch_detec(raven.path = raven.path, 
-#' sound.files = "BlackCappedVireo.aif", path = file.path(raven.path, "Examples"))
+#' sound.files = "BlackCappedVireo.aif", path = file.path(raven.path, "Examples"), 
+#' detector.type = "Amplitude Detector")
 #' 
 #' # on raven examples  2 files
 #' detec.res <- raven_batch_detec(raven.path = raven.path, 
 #' sound.files = c("BlackCappedVireo.aif", "CanyonWren.wav"), 
-#' path = file.path(raven.path, "Examples"))
+#' path = file.path(raven.path, "Examples"), detector.type = "Amplitude Detector")
 #' 
 #' # using 'Band Limited Energy Detector' 
 #' detec.res <- raven_batch_detec(raven.path = raven.path, 
@@ -56,7 +58,7 @@
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
 #last modification on nov-8-2017
 
-raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detector.type = "Amplitude detector", 
+raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detector.type,
                               detector.preset = "Default", view.preset = "Default", relabel_colms = TRUE, pb = TRUE)
 {
   
@@ -74,7 +76,16 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
       if (!dir.exists(raven.path)) stop("'raven.path' provided does not exist")
   
   setwd(raven.path)
-   
+
+  # check detector type
+   if (!detector.type %in% c("Amplitude Detector", "Band Limited Energy Detector", "Band Limited Entropy Detector")) stop("'detector.type' not recognized")
+     
+  # check detector name
+    if (!file.exists(file.path(raven.path, "Presets/Detector", detector.type, detector.preset))) stop("'detector.preset' file not found")
+  
+  # check view  preset name
+    # if (!file.exists(file.path(raven.path, "Presets/Sound Window", view.preset))) stop("'view.preset' file not found")
+  
     sf <- sound.files <- as.character(sound.files)
 
     #return warning if not all sound files were found
@@ -96,15 +107,19 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
     if (pb) lply <- pbapply::pblapply else lply <- lapply
 
     out <- lply(sound.files, function(x) {
+    
+      # view and detector preset together to fix it when view preset not need it  
+   view.detector <- if (detector.type == "Amplitude Detector")  paste0("-detPreset:", detector.preset) else
+     paste(paste0("-viewPreset:", view.preset), paste0("-detPreset:", detector.preset))
       
       if (Sys.info()[1] == "Windows")
       {  
-        comnd <- paste(shQuote(file.path(raven.path, "Raven.exe"), type = "cmd"), paste0("-detPreset:", detector.preset), paste0("-viewPreset:", view.preset), paste0("-detType:", detector.type), shQuote(x), "-detTable:temp.bcv.txt -x")
+        comnd <- paste(shQuote(file.path(raven.path, "Raven.exe"), type = "cmd"), view.detector, paste0("-detType:", detector.type), shQuote(x), "-detTable:temp.bcv.txt -x")
       } else
       {
         if (Sys.info()[1] == "Linux")
-        comnd <- paste(file.path(raven.path, "Raven"), paste0("-detPreset:", detector.preset), paste0("-viewPreset:", view.preset), paste0("-detType:", detector.type), x, "-detTable:temp.bcv.txt -x") else
-        comnd <- paste("open Raven.app --args", x, paste0("-detPreset:", detector.preset), paste0("-viewPreset:", view.preset), paste0("-detType:", detector.type), "-detTable:temp.bcv.txt -x") # OSX
+        comnd <- paste(file.path(raven.path, "Raven"), view.detector, paste0("-detType:", detector.type), x, "-detTable:temp.bcv.txt -x") else
+        comnd <- paste("open Raven.app --args", x, view.detector, paste0("-detType:", detector.type), "-detTable:temp.bcv.txt -x") # OSX
       }
         
         # run raven
@@ -112,7 +127,7 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
         
         output <- utils::read.table("temp.bcv.txt", sep = "\t",  header = TRUE)
         
-        if (nrow(output) > 1)
+        if (nrow(output) > 0)
         output$sound.files <- basename(x) else output <- vector(length = 0)
         
         return(output)

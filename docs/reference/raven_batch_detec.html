@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rraven</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.5</span>
       </span>
     </div>
 
@@ -115,8 +115,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>raven_batch_detec</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>sound.files</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-<span class='kw'>detector.type</span> <span class='kw'>=</span> <span class='st'>"Amplitude detector"</span>, <span class='kw'>detector.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-<span class='kw'>relabel_colms</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>pb</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+<span class='no'>detector.type</span>, <span class='kw'>detector.preset</span> <span class='kw'>=</span> <span class='st'>"Default"</span>,
+<span class='kw'>view.preset</span> <span class='kw'>=</span> <span class='st'>"Default"</span>, <span class='kw'>relabel_colms</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>pb</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -140,16 +140,20 @@ directory. Default is <code>NULL</code>.</p></td>
     <tr>
       <th>detector.type</th>
       <td><p>Character string specifying the type of detector to be called.
-There are 3 options available in 'Raven': 'Amplitude detector' (default), 'Band 
-Limited Energy Detector' and 'Band Limited Entropy Detector'. Detector 
-parameters must be set in 'Raven' before running the function.</p></td>
+There are 3 options available in 'Raven': 'Amplitude Detector', 'Band 
+Limited Energy Detector' and 'Band Limited Entropy Detector'. Must be provided.</p></td>
     </tr>
     <tr>
-      <th>detector.name</th>
-      <td><p>Character string specifying the name of the customized detector to be called (if any).
-If <code>NULL</code> (default) then the 'Default' detector for the specific detector type will be used 
+      <th>detector.preset</th>
+      <td><p>Character string specifying the name of the customized detector to be called.
+If <code>NULL</code> (default) then the 'Default' detector for the specific detector type is used 
 (see 'detector.type' argument). Custom detectors must be found in one of the default 'Raven' detector directories 
 (usually within "'raven.path'/Presets/Detector").</p></td>
+    </tr>
+    <tr>
+      <th>view.preset</th>
+      <td><p>Character string specifying the name of the window preset to be used. Not require for 'Amplitude Detector' (see 'detector.type' argument).
+If <code>NULL</code> (default) then the 'Default' window preset is used.</p></td>
     </tr>
     <tr>
       <th>relabel_colms</th>
@@ -185,14 +189,15 @@ sound files in 'mp3', 'flac' and 'aif' format.</p>
 
 <span class='co'># Run detector on raven example sound files</span>
 
-<span class='co'># single sound file</span>
+<span class='co'># single sound file using 'Amplitude Detector' </span>
 <span class='no'>detec.res</span> <span class='kw'>&lt;-</span> <span class='fu'>raven_batch_detec</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='no'>raven.path</span>,
-<span class='kw'>sound.files</span> <span class='kw'>=</span> <span class='st'>"BlackCappedVireo.aif"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='no'>raven.path</span>, <span class='st'>"Examples"</span>))
+<span class='kw'>sound.files</span> <span class='kw'>=</span> <span class='st'>"BlackCappedVireo.aif"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='no'>raven.path</span>, <span class='st'>"Examples"</span>),
+<span class='kw'>detector.type</span> <span class='kw'>=</span> <span class='st'>"Amplitude Detector"</span>)
 
 <span class='co'># on raven examples  2 files</span>
 <span class='no'>detec.res</span> <span class='kw'>&lt;-</span> <span class='fu'>raven_batch_detec</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='no'>raven.path</span>,
 <span class='kw'>sound.files</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"BlackCappedVireo.aif"</span>, <span class='st'>"CanyonWren.wav"</span>),
-<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='no'>raven.path</span>, <span class='st'>"Examples"</span>))
+<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='no'>raven.path</span>, <span class='st'>"Examples"</span>), <span class='kw'>detector.type</span> <span class='kw'>=</span> <span class='st'>"Amplitude Detector"</span>)
 
 <span class='co'># using 'Band Limited Energy Detector' </span>
 <span class='no'>detec.res</span> <span class='kw'>&lt;-</span> <span class='fu'>raven_batch_detec</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='no'>raven.path</span>,
