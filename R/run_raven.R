@@ -85,7 +85,11 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
   wd <- getwd()
   on.exit(setwd(wd), add = TRUE)
   setwd(raven.path)
-      
+    
+  # set progress bar back to original
+  on.exit(pbapply::pboptions(type = .Options$pboptions$type), 
+          add = TRUE)
+    
   if (!is.null(view.preset))
    {
     if (!any(view.preset %in% list.files(path = file.path(raven.path, "Presets/Sound Window")))) stop("'view.preset' provided not found")
@@ -133,7 +137,7 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
   if (!redo) {
     # get names of files from selections
     sls <- NULL
-    try(sls <- imp_raven(path = file.path(raven.path, "Selections"), ...), silent = TRUE)
+    try(sls <- imp_raven(pb = FALSE, path = file.path(raven.path, "Selections"), ...), silent = TRUE)
     
     # remove those that have a selection table
     if (!is.null(sls))
@@ -155,10 +159,10 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
   # subset by groups of sound files according to at the time
   sq <- unique(c(seq(1, length(sound.files), by = at.the.time)))
   
-  if (pb) lply <- pbapply::pblapply else lply <- lapply
+  if (pb) pbapply::pboptions(type = "timer") else pbapply::pboptions(type = "none")
   
   # run loop over files
-  out <- lply(sq, function(x)
+  out <- pbapply::pblapply(sq, function(x)
     {
  
     fls <- sound.files[x:(x + at.the.time - 1)]
@@ -181,7 +185,7 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
 }
   
   if (import){
-    sels <- imp_raven(path = file.path(raven.path, "Selections"), ...)
+    sels <- imp_raven(pb = FALSE, path = file.path(raven.path, "Selections"), ...)
     
     # extract recording names from selec.file column
     rec.nms <- sapply(1:nrow(sels), function(x){

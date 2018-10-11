@@ -172,13 +172,13 @@ Default is <code>FALSE</code>. Ignored if 'kHz.to.hz' is <code>TRUE</code>.</p><
 
 <span class='co'>#save 'Raven' selection tables in the temporary directory </span>
 <span class='fu'>writeLines</span>(<span class='no'>selection_files</span><span class='kw'>[[</span><span class='fl'>5</span>]], <span class='kw'>con</span> <span class='kw'>=</span> <span class='fu'>names</span>(<span class='no'>selection_files</span>)[<span class='fl'>5</span>])</div><div class='input'><span class='co'>#'# import data to R</span>
-<span class='no'>rvn.dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='imp_raven.html'>imp_raven</a></span>(<span class='kw'>all.data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;    |                                                  | 0 % ~calculating     |++++++                                            | 11% ~00s             |++++++++++++                                      | 22% ~00s             |+++++++++++++++++                                 | 33% ~00s             |+++++++++++++++++++++++                           | 44% ~00s             |++++++++++++++++++++++++++++                      | 56% ~00s             |++++++++++++++++++++++++++++++++++                | 67% ~00s             |+++++++++++++++++++++++++++++++++++++++           | 78% ~00s             |+++++++++++++++++++++++++++++++++++++++++++++     | 89% ~00s             |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed = 00s</div><div class='input'>
+<span class='no'>rvn.dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='imp_raven.html'>imp_raven</a></span>(<span class='kw'>all.data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;    |                                                  | 0 % ~calculating     |++++                                              | 7 % ~00s             |+++++++                                           | 13% ~00s             |++++++++++                                        | 20% ~00s             |++++++++++++++                                    | 27% ~00s             |+++++++++++++++++                                 | 33% ~00s             |++++++++++++++++++++                              | 40% ~00s             |++++++++++++++++++++++++                          | 47% ~00s             |+++++++++++++++++++++++++++                       | 53% ~00s             |++++++++++++++++++++++++++++++                    | 60% ~00s             |++++++++++++++++++++++++++++++++++                | 67% ~00s             |+++++++++++++++++++++++++++++++++++++             | 73% ~00s             |++++++++++++++++++++++++++++++++++++++++         | 80% ~00s             |++++++++++++++++++++++++++++++++++++++++++++      | 87% ~00s             |+++++++++++++++++++++++++++++++++++++++++++++++   | 93% ~00s             |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed = 00s</div><div class='input'>
 <span class='fu'>names</span>(<span class='no'>rvn.dat</span>)</div><div class='output co'>#&gt;  [1] "Selection"              "View"                   "Channel"               
 #&gt;  [4] "Begin Time (s)"         "End Time (s)"           "Low Freq (Hz)"         
 #&gt;  [7] "High Freq (Hz)"         "Begin File"             "channel"               
 #&gt; [10] "Begin Path"             "File Offset (s)"        "selec.file"            
 #&gt; [13] "Peak Freq Contour (Hz)" "sel.comment"            "rec.comment"           
-#&gt; [16] "old.selec"             </div><div class='input'>
+#&gt; [16] "Rraven.labels"          "old.selec"             </div><div class='input'>
 <span class='co'># Select data for a single sound file</span>
 <span class='no'>rvn.dat2</span> <span class='kw'>&lt;-</span>  <span class='fu'>relabel_colms</span>(<span class='no'>rvn.dat</span>)
 
@@ -187,7 +187,7 @@ Default is <code>FALSE</code>. Ignored if 'kHz.to.hz' is <code>TRUE</code>.</p><
 #&gt;  [7] "top.freq"               "Begin File"             "channel"               
 #&gt; [10] "Begin Path"             "File Offset (s)"        "selec.file"            
 #&gt; [13] "Peak Freq Contour (Hz)" "sel.comment"            "rec.comment"           
-#&gt; [16] "old.selec"             </div><div class='input'>
+#&gt; [16] "Rraven.labels"          "old.selec"             </div><div class='input'>
 <span class='co'># plus 1 additional column</span>
 <span class='no'>rvn.dat2</span> <span class='kw'>&lt;-</span>  <span class='fu'>relabel_colms</span>(<span class='no'>rvn.dat</span>, <span class='kw'>extra.cols.name</span> <span class='kw'>=</span> <span class='st'>"selec.file"</span>, <span class='st'>"Raven selection file"</span>)
 
@@ -196,7 +196,7 @@ Default is <code>FALSE</code>. Ignored if 'kHz.to.hz' is <code>TRUE</code>.</p><
 #&gt;  [7] "top.freq"               "Begin File"             "channel"               
 #&gt; [10] "Begin Path"             "File Offset (s)"        "Raven selection file"  
 #&gt; [13] "Peak Freq Contour (Hz)" "sel.comment"            "rec.comment"           
-#&gt; [16] "old.selec"             </div><div class='input'>
+#&gt; [16] "Rraven.labels"          "old.selec"             </div><div class='input'>
 <span class='co'># plus 2 additional column </span>
 <span class='no'>rvn.dat2</span> <span class='kw'>&lt;-</span> <span class='fu'>relabel_colms</span>(<span class='no'>rvn.dat</span>, <span class='kw'>extra.cols.name</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"selec.file"</span>, <span class='st'>"View"</span>),
 <span class='fu'>c</span>(<span class='st'>"Raven selection file"</span>, <span class='st'>"Raven view"</span>))
@@ -206,7 +206,7 @@ Default is <code>FALSE</code>. Ignored if 'kHz.to.hz' is <code>TRUE</code>.</p><
 #&gt;  [7] "top.freq"               "Begin File"             "channel"               
 #&gt; [10] "Begin Path"             "File Offset (s)"        "Raven selection file"  
 #&gt; [13] "Peak Freq Contour (Hz)" "sel.comment"            "rec.comment"           
-#&gt; [16] "old.selec"             </div><div class='input'>
+#&gt; [16] "Rraven.labels"          "old.selec"             </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

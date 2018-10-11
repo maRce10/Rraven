@@ -87,7 +87,7 @@
 <p> </p>
             
             <h4 class="date"><center>
-“2018-09-30”
+“2018-10-11”
 </center></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/maRce10/Rraven/blob/master/vignettes/Rraven.Rmd"><code>vignettes/Rraven.Rmd</code></a></small>
@@ -3462,7 +3462,6 @@ Phae.long3.wav
 <p>The time series data frame can be directly input into the <code>dfDTW</code> <a href="https://cran.r-project.org/package=warbleR">warbleR</a> function to calculate <a href="https://en.wikipedia.org/wiki/Dynamic_time_warping">Dynamic Time Warping</a> distances:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/warbleR/topics/dfDTW">dfDTW</a></span>(<span class="dt">ts.df =</span> fcts)</code></pre></div>
 <p> </p>
-<pre><code>calculating DTW distances (step 2 of 2, no progress bar):</code></pre>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:500px; overflow-x: scroll; width:808px; ">
 <table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
 <thead><tr>
@@ -5204,11 +5203,11 @@ Call:
 vegan::mantel(xdis = xcorr.rvn, ydis = dist.sp.wrblR) 
 
 Mantel statistic r: 0.277 
-      Significance: 0.009 
+      Significance: 0.018 
 
 Upper quantiles of permutations (null model):
   90%   95% 97.5%   99% 
-0.157 0.200 0.229 0.273 
+0.155 0.200 0.255 0.295 
 Permutation: free
 Number of permutations: 999</code></pre>
 <p> </p>
@@ -5297,7 +5296,7 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] kableExtra_0.9.0   knitr_1.20         Rraven_1.0.4       warbleR_1.1.15     NatureSounds_1.0.0 seewave_2.1.0      tuneR_1.3.3       
+[1] kableExtra_0.9.0   knitr_1.20         Rraven_1.0.5       warbleR_1.1.15     NatureSounds_1.0.0 seewave_2.1.0      tuneR_1.3.3       
 [8] maps_3.3.0        
 
 loaded via a namespace (and not attached):
@@ -5311,7 +5310,7 @@ loaded via a namespace (and not attached):
 [43] bitops_1.0-6         commonmark_1.5       grid_3.4.4           nlme_3.1-137         magrittr_1.5         scales_1.0.0        
 [49] stringi_1.2.4        pbapply_1.3-4        fs_1.2.6             scatterplot3d_0.3-41 bindrcpp_0.2.2       xml2_1.2.0          
 [55] rjson_0.2.20         iterators_1.0.10     tools_3.4.4          glue_1.3.0           purrr_0.2.5          hms_0.4.2           
-[61] jpeg_0.1-8           parallel_3.4.4       yaml_2.2.0           colorspace_1.3-2     cluster_2.0.7-1      soundgen_1.3.0      
+[61] jpeg_0.1-8           parallel_3.4.4       yaml_2.2.0           colorspace_1.3-2     cluster_2.0.7-1      soundgen_1.3.1      
 [67] rvest_0.3.2          memoise_1.1.0        bindr_0.1.1         </code></pre>
 </div>
 </div>

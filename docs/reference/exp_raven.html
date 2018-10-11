@@ -191,9 +191,8 @@ relabeled the selections and the previous selection labels will be retained in a
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Load data</span>
-<span class='fu'>library</span>(<span class='no'>warbleR</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: maps</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: tuneR</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: seewave</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: NatureSounds</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>NOTE: functions are being renamed (run 'print(new_function_names)' to see new names). Both old and new names are available in this version </span>
-#&gt; <span class='message'> Please see citation('warbleR') for use in publication</span></div><div class='input'><span class='fu'>data</span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>, <span class='st'>"selec.table"</span>))
+<span class='fu'>library</span>(<span class='no'>warbleR</span>)
+<span class='fu'>data</span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>, <span class='st'>"selec.table"</span>))
 
 <span class='co'># Select data for a single sound file</span>
 <span class='no'>st1</span> <span class='kw'>&lt;-</span> <span class='no'>selec.table</span>[<span class='no'>selec.table</span>$<span class='no'>sound.files</span> <span class='kw'>==</span> <span class='st'>"Phae.long1.wav"</span>, ]

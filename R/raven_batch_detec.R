@@ -65,6 +65,10 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
   #check path to working directory
   if (is.null(path)) path <- getwd() else if (!dir.exists(path)) stop("'path' provided does not exist") 
   
+  # set progress bar back to original
+  on.exit(pbapply::pboptions(type = .Options$pboptions$type), 
+          add = TRUE)
+  
   # reset working directory 
   wd <- getwd()
   on.exit(setwd(wd), add = TRUE)
@@ -104,9 +108,9 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
     if (basename(sound.files[1]) == sound.files[1])
       sound.files <- file.path(path, sound.files)
     
-    if (pb) lply <- pbapply::pblapply else lply <- lapply
-
-    out <- lply(sound.files, function(x) {
+    if (pb) pbapply::pboptions(type = "timer") else pbapply::pboptions(type = "none")
+    
+    out <- pbapply::pblapply(sound.files, function(x) {
     
       # view and detector preset together to fix it when view preset not need it  
    view.detector <- if (detector.type == "Amplitude Detector")  paste0("-detPreset:", detector.preset) else

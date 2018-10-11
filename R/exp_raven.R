@@ -59,7 +59,7 @@
 #'  single.file = TRUE, sound.file.path = getwd())
 #' 
 #' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
-#last modification on nov-7-2017
+#last modification on oct-12-2018
 exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.file.path = NULL, single.file = TRUE, parallel = 1, pb = TRUE){
   
   # reset working directory 
@@ -73,6 +73,8 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
   
   #if X is not a data frame
   if (!any(is.data.frame(X), is_selection_table(X))) stop("X is not of a class 'data.frame', 'selection_table'")
+  
+  if (is_selection_table(X)) X <- as.data.frame(X)
   
   if (!all(c("sound.files", "selec", 
              "start", "end") %in% colnames(X))) 
@@ -117,7 +119,7 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
   
   mtch <- match(c( "Selection", "View", "Channel", "Begin Time (s)", "End Time (s)", "Low Freq (Hz)", "High Freq (Hz)"), names(X))
   
-  X <- X[,c(mtch[!is.na(mtch)], base::setdiff(1:ncol(X), mtch))]
+  X <- X[ , c(mtch[!is.na(mtch)], base::setdiff(1:ncol(X), mtch))]
   
   if (!is.null(sound.file.path))
   {
@@ -129,7 +131,7 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
     {
       durs <- warbleR::wavdur(path = sound.file.path, files = as.character(X$'Begin File'[!duplicated(X$'Begin File')]))
       durs$cumdur <- cumsum(durs$duration)
-    # durs <- durs[durs$sound.files %in% X$'Begin File', ]
+     durs <- durs[durs$sound.files %in% X$'Begin File', ]
     
     # calculate file offset
     out <- lapply(1:nrow(durs), function(x) {
