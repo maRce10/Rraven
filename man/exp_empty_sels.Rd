@@ -23,9 +23,9 @@ No objects are returned in the R environment.
 \code{exp_empty_sels} exports a 'Raven' selection data in .txt format that includes empty selections for all sound files in a folder.
 }
 \details{
-The function saves a selection table in '.txt' format (that can be 
+The function saves a selection file in '.txt' format (that can be 
 directly opened in Raven) that will display all sound files in the provided
-directory (argument 'path'). Useful to simplify making selections on several sound files that need to be displayed simultaneously (e.g. several recordings from the same individual).
+directory (argument 'path'). Useful to simplify the making of selections from several sound files that need to be displayed simultaneously (e.g. several recordings from the same individual). The selection file is saved in the provided directory ('path').
 }
 \examples{
 

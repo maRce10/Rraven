@@ -1,8 +1,21 @@
-# Version 1.0.3 (Release date: 2018-05-22)
+# Version 1.0.5 (Release date: 2018-XX-XX)
+
+## New functions
+
+* exp_empty_sels: export a 'Raven' selection for all sound files in a folder
 
 ## Changes and additions:
 
-* 'detector.name' and 'detector.type' arguments added to 'raven_batch_detec()' to allow the use of custom made detectors 
+* bug fix in 'raven_batch_detec()' when using custom made detectors 
+
+
+# Version 1.0.4 (Release date: 2018-09-29)
+
+## Changes and additions:
+
+* 'detector.name', 'detector.preset' and 'view.preset' arguments added to 'raven_batch_detec()' to allow the use of custom made detectors 
+
+# Version 1.0.3 (Release date: 2018-05-22)
 
 ## New functions
 
