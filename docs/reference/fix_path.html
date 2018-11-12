@@ -177,24 +177,33 @@ containing the sound files.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>{
 
+<span class='co'># load warbleR for sound file examples</span>
+<span class='fu'>library</span>(<span class='no'>warbleR</span>)
+
 <span class='co'>#load data </span>
-<span class='fu'>data</span>(<span class='no'>selection_files</span>)
+<span class='fu'>data</span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>, <span class='st'>"selection_files"</span>))
 
 <span class='co'># set temporary directory</span>
 <span class='co'># setwd(tempdir())</span>
 
+<span class='co'># save sound files</span>
+<span class='fu'>writeWave</span>(<span class='no'>Phae.long1</span>,<span class='st'>"Phae.long1.wav"</span>)
+<span class='fu'>writeWave</span>(<span class='no'>Phae.long2</span>,<span class='st'>"Phae.long2.wav"</span>)
+<span class='fu'>writeWave</span>(<span class='no'>Phae.long3</span>,<span class='st'>"Phae.long3.wav"</span>)
+<span class='fu'>writeWave</span>(<span class='no'>Phae.long4</span>,<span class='st'>"Phae.long4.wav"</span>)
 <span class='co'># save 'Raven' selection tables in the temporary directory</span>
 <span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'>lapply</span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>function</span>(<span class='no'>x</span>)
 <span class='fu'>writeLines</span>(<span class='no'>selection_files</span><span class='kw'>[[</span><span class='no'>x</span>]], <span class='kw'>con</span> <span class='kw'>=</span> <span class='fu'>names</span>(<span class='no'>selection_files</span>)[<span class='no'>x</span>]))
 
 <span class='co'># try drag and drop selection files into Raven (shouldn't work)</span>
 
-<span class='co'># now convert files</span>
-<span class='co'>#fix_path(sound.file.path = getwd(), </span>
-<span class='co'>#sound.file.col = "Begin File", new.begin.path = "YOUR NEW LOCATION HERE")</span>
+<span class='co'># now fix files</span>
+<span class='fu'>fix_path</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(),
+<span class='kw'>sound.file.col</span> <span class='kw'>=</span> <span class='st'>"Begin File"</span>, <span class='kw'>new.begin.path</span> <span class='kw'>=</span> <span class='st'>"YOUR NEW LOCATION HERE"</span>)
 
 <span class='co'># try drag and drop into Raven again (should work now)</span>
-}</div></pre>
+}</div><div class='output co'>#&gt;    |                                                  | 0 % ~calculating     |++                                                | 4 % ~00s             |++++                                              | 7 % ~00s             |++++++                                            | 11% ~00s             |++++++++                                          | 15% ~00s             |++++++++++                                        | 19% ~00s             |++++++++++++                                      | 22% ~00s             |+++++++++++++                                     | 26% ~00s             |+++++++++++++++                                   | 30% ~00s             |+++++++++++++++++                                 | 33% ~00s             |+++++++++++++++++++                               | 37% ~00s             |+++++++++++++++++++++                             | 41% ~00s             |+++++++++++++++++++++++                           | 44% ~00s             |+++++++++++++++++++++++++                         | 48% ~00s             |++++++++++++++++++++++++++                        | 52% ~00s             |++++++++++++++++++++++++++++                      | 56% ~00s             |++++++++++++++++++++++++++++++                    | 59% ~00s             |++++++++++++++++++++++++++++++++                  | 63% ~00s             |++++++++++++++++++++++++++++++++++                | 67% ~00s             |++++++++++++++++++++++++++++++++++++              | 70% ~00s             |++++++++++++++++++++++++++++++++++++++            | 74% ~00s             |+++++++++++++++++++++++++++++++++++++++           | 78% ~00s             |+++++++++++++++++++++++++++++++++++++++++         | 81% ~00s             |+++++++++++++++++++++++++++++++++++++++++++       | 85% ~00s             |+++++++++++++++++++++++++++++++++++++++++++++     | 89% ~00s             |+++++++++++++++++++++++++++++++++++++++++++++++   | 93% ~00s             |+++++++++++++++++++++++++++++++++++++++++++++++++ | 96% ~00s             |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed = 00s</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

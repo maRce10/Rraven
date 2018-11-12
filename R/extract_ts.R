@@ -49,7 +49,7 @@ extract_ts <- function(X, ts.column, equal.length = FALSE, as.time.series = FALS
                        length.out = 30, parallel = 1, pb = TRUE){
   
   #if X is not a data frame
-  if (!class(X) == "data.frame") stop("X is not a data frame")
+  if (!any(class(X) == "data.frame")) stop("X is not a data frame")
   
   #check if ts.column exists
   if (!any(names(X) == ts.column)) stop("'ts.column' not found")
@@ -72,10 +72,14 @@ extract_ts <- function(X, ts.column, equal.length = FALSE, as.time.series = FALS
     cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else cl <- parallel
   
   if (equal.length)
-  {
-    out <-  pbapply::pblapply(out, cl = cl, function(x) stats::approx(x, 1:length(x), n = length.out)$x)
-    
-  } else out <-  pbapply::pblapply(out, cl = cl, function(x) c(x, rep(NA, max(sapply(out, length)) - length(x))))
+    out <-  pbapply::pblapply(out, cl = cl, function(x) {
+      if (length(x) > 1)
+      return(stats::approx(x = x, n = length.out)$y) 
+        if (length(x) == 1)
+      return(rep(x, length.out))
+          if (length(x) == 0)
+            return(rep(NA, length.out))
+        })  else out <-  pbapply::pblapply(out, cl = cl, function(x) c(x, rep(NA, max(sapply(out, length)) - length(x))))
     
   
   Y <- as.data.frame(do.call(rbind, out))

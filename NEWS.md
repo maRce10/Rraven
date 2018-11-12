@@ -7,7 +7,7 @@
 ## Changes and additions:
 
 * bug fix in 'raven_batch_detec()' when using custom made detectors 
-
+* bug fix in 'extract_ts()' when having 1 value or no values in Raven frequency contours 
 
 # Version 1.0.4 (Release date: 2018-09-29)
 

@@ -19,7 +19,10 @@ Duplicated rows, as when "waveform" and "spectrogram" information are included f
 All selection files must contain "Selection", "Begin.Time" and "End.Time" columns.}
 
 \item{all.data}{Logical. If \code{TRUE} all columns in the selection files are returned, 
-keeping the name columns as in the 'Raven' files. Default is \code{FALSE}. Columns absent in some selection files will be filled with NA's.}
+keeping the name columns as in the 'Raven' files. Default is \code{FALSE}. Columns absent in some selection files will 
+be filled with NA's. Note that when Raven selection files contain data from multiple sound files the  "Begin.Time" and 
+"End.Time" columns are relative to the position of the sound files in sequence of files riginally displayed by Raven.
+This data is corrected to the absolute time for each sound file only if \code{all.data = FALSE}.}
 
 \item{recursive}{Logical. If \code{TRUE} the listing recurse into sub-directories.}
 
@@ -54,7 +57,7 @@ A single data frame with information of the selection files. If \code{unread = T
  If sound.file.col is provided the data frame  will also contain a 'sound.files' column. In addition, all rows with duplicated 
  data are removed. This is useful when both spectrogram and waveform views are included in the 'Raven' selection files. If all.data is set to \code{TRUE} then all columns in the 'Raven' selection files are returned. 
  If individual selection files contain information about multiple sound files the function will correct the time
- parameters (start and end) only if 1) the 'File Offset (s)' is also included in the selection file and 2) the sound file column has been provided (using 'sound.file.col' or 'name.from.file' arguments).
+ parameters (start and end) only if 1) the 'File Offset (s)' is also included in the selection file and 2) the sound file column has been provided (using 'sound.file.col' or 'name.from.file' arguments) and 3) 'all.data' is \code{FALSE}.
 }
 \description{
 \code{imp_raven} imports 'Raven' selection files simultaneously from many files. Files must be in '.txt' format.
