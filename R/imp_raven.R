@@ -116,45 +116,45 @@ imp_raven <- function(path = NULL, sound.file.col = NULL, all.data = FALSE,
           sound.files <- a[, grep(sound.file.col, colnames(a), ignore.case = TRUE)]
 
         # put data in data frame      
-        c <- try(data.frame(channel = a[, grep("channel", colnames(a), ignore.case = TRUE)],
+        d <- try(data.frame(channel = a[, grep("channel", colnames(a), ignore.case = TRUE)],
                             selec = a[,grep("Selection$",colnames(a), ignore.case = TRUE)],
                             start = a[,grep("Begin.Time",colnames(a), ignore.case = TRUE)],
                             end = a[, grep("End.Time",colnames(a), ignore.case = TRUE)], selec.file = sel.txt2[i], stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE)
         
         # add sound file column and offset info
         if (exists("sound.files")) {
-          c <- data.frame(sound.files, c) 
+          d <- data.frame(sound.files, d) 
     
           # fix start end if multiple files are found
          if (length(unique(sound.files)) > 1)
           { 
            if (!any(grepl("offset", names(a), ignore.case = TRUE))) stop(paste0("selections files from multiple sound files must contain an 'Offset' column (check ", sel.txt[i],")"))
           
-          c$file.offset.DELETE <- a[, grep("Offset", colnames(a), ignore.case = TRUE)]
-          c$end <- c$end - c$start
-          c$start <- c$file.offset.DELETE
-          c$end <- c$end + c$start
+          d$file.offset.DELETE <- as.numeric(a[, grep("Offset", colnames(a), ignore.case = TRUE)])
+          d$end <- as.numeric(d$end) - as.numeric(d$start)
+          d$start <- d$file.offset.DELETE
+          d$end <- d$end + d$start
           }
           }
         
         # add frequency columns 
         if (freq.cols)
         {
-        try(c$bottom.freq <- a[, grep("Low.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
-        try(c$top.freq <- a[, grep("High.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
+        try(d$bottom.freq <- a[, grep("Low.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
+        try(d$top.freq <- a[, grep("High.Freq", colnames(a), ignore.case = TRUE)]/ 1000, silent = TRUE)
           }
         
-        if (all(c("High.Freq", "Low.Freq") %in% names(c)))
-          c <- c[c(1:(ncol(c) - 3), ncol(c):(ncol(c)-1), ncol(c) -2 )]
+        if (all(c("High.Freq", "Low.Freq") %in% names(d)))
+          d <- d[c(1:(ncol(d) - 3), ncol(d):(ncol(d)-1), ncol(d) -2 )]
       
         } else { # if all data needed
           # read data
-          c <- try(data.frame(a, selec.file = sel.txt2[i], stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE) 
+          d <- try(data.frame(a, selec.file = sel.txt2[i], stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE) 
   
-          if (class(c) == "try-error") c <- NA
+          if (class(d) == "try-error") d <- NA
       }
-      } else c <- NA
-      return(c)
+      } else d <- NA
+      return(d)
  }
 
   # set pb options 
