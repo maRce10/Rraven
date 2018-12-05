@@ -99,7 +99,7 @@ imp_raven <- function(path = NULL, sound.file.col = NULL, all.data = FALSE,
   read_sels_FUN <- function(i, sel.txt, sel.txt2, all.data, freq.cols, sound.file.col, name.from.file)
   {  
     # read selection file
-    a <- try(utils::read.table(sel.txt[i], header = TRUE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE)
+    a <- try(utils::read.delim(sel.txt[i], header = TRUE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE)
     
     if (class(a) != "try-error")
     {   

@@ -87,7 +87,7 @@
 <p> </p>
             
             <h4 class="date"><center>
-“2018-11-27”
+“2018-12-05”
 </center></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/maRce10/Rraven/blob/master/vignettes/Rraven.Rmd"><code>vignettes/Rraven.Rmd</code></a></small>
@@ -668,7 +668,8 @@ rvn.dat.st &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rd
 sp &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/warbleR/topics/specan">specan</a></span>(<span class="dt">X =</span> rvn.dat, <span class="dt">bp =</span> <span class="st">"frange"</span>, <span class="dt">wl =</span> <span class="dv">150</span>, <span class="dt">pb =</span> <span class="ot">FALSE</span>, <span class="dt">ovlp =</span> <span class="dv">90</span>)
 
 <span class="kw">head</span>(sp)</code></pre></div>
-<pre><code>checking selections:</code></pre>
+<pre><code>checking selections (step 1 of 2):
+all selections are OK</code></pre>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:808px; ">
 <table class="table" style="font-size: 11px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
@@ -5203,11 +5204,11 @@ Call:
 vegan::mantel(xdis = xcorr.rvn, ydis = dist.sp.wrblR) 
 
 Mantel statistic r: 0.277 
-      Significance: 0.018 
+      Significance: 0.012 
 
 Upper quantiles of permutations (null model):
   90%   95% 97.5%   99% 
-0.144 0.192 0.244 0.294 
+0.155 0.188 0.218 0.282 
 Permutation: free
 Number of permutations: 999</code></pre>
 <p> </p>
@@ -5296,20 +5297,19 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] kableExtra_0.9.0   knitr_1.20         Rraven_1.0.5       warbleR_1.1.15     NatureSounds_1.0.0 seewave_2.1.0      tuneR_1.3.3       
+[1] kableExtra_0.9.0   knitr_1.20         Rraven_1.0.5       warbleR_1.1.16     NatureSounds_1.0.0 seewave_2.1.0      tuneR_1.3.3       
 [8] maps_3.3.0        
 
 loaded via a namespace (and not attached):
- [1] Rcpp_0.12.19       lattice_0.20-35    fftw_1.0-4         assertthat_0.2.0   rprojroot_1.3-2    digest_0.6.18      R6_2.3.0          
- [8] Sim.DiffProc_4.2   backports_1.1.2    signal_0.7-6       evaluate_0.11      pracma_2.1.8       httr_1.3.1         highr_0.7         
-[15] pillar_1.3.0       rlang_0.3.0.1      rstudioapi_0.7     vegan_2.5-2        Matrix_1.2-12      rmarkdown_1.10     pkgdown_1.1.0     
-[22] desc_1.2.0         moments_0.14       readr_1.1.1        stringr_1.3.1      RCurl_1.95-4.11    munsell_0.5.0      proxy_0.4-22      
-[29] compiler_3.4.4     Deriv_3.8.5        pkgconfig_2.0.2    mgcv_1.8-23        htmltools_0.3.6    tidyselect_0.2.5   tibble_1.4.2      
-[36] roxygen2_6.1.0     dtw_1.20-1         bioacoustics_0.1.5 permute_0.9-4      viridisLite_0.3.0  crayon_1.3.4       dplyr_0.7.7       
-[43] MASS_7.3-49        bitops_1.0-6       commonmark_1.5     grid_3.4.4         nlme_3.1-131       magrittr_1.5       scales_1.0.0      
-[50] stringi_1.2.4      pbapply_1.3-4      fs_1.2.6           bindrcpp_0.2.2     xml2_1.2.0         rjson_0.2.20       iterators_1.0.10  
-[57] tools_3.4.4        glue_1.3.0         purrr_0.2.5        hms_0.4.2          jpeg_0.1-8         parallel_3.4.4     yaml_2.2.0        
-[64] colorspace_1.3-2   cluster_2.0.6      soundgen_1.3.1     rvest_0.3.2        memoise_1.1.0      bindr_0.1.1       </code></pre>
+ [1] Rcpp_0.12.19      lattice_0.20-35   fftw_1.0-4        assertthat_0.2.0  rprojroot_1.3-2   digest_0.6.18     R6_2.3.0          Sim.DiffProc_4.3 
+ [9] backports_1.1.2   signal_0.7-6      evaluate_0.11     pracma_2.1.8      httr_1.3.1        highr_0.7         pillar_1.3.0      rlang_0.3.0.1    
+[17] rstudioapi_0.7    vegan_2.5-2       Matrix_1.2-12     rmarkdown_1.10    pkgdown_1.1.0     desc_1.2.0        readr_1.1.1       stringr_1.3.1    
+[25] RCurl_1.95-4.11   munsell_0.5.0     proxy_0.4-22      compiler_3.4.4    Deriv_3.8.5       pkgconfig_2.0.2   mgcv_1.8-23       htmltools_0.3.6  
+[33] tidyselect_0.2.5  tibble_1.4.2      roxygen2_6.1.0    dtw_1.20-1        permute_0.9-4     viridisLite_0.3.0 crayon_1.3.4      dplyr_0.7.7      
+[41] MASS_7.3-49       bitops_1.0-6      commonmark_1.5    grid_3.4.4        nlme_3.1-131      magrittr_1.5      scales_1.0.0      stringi_1.2.4    
+[49] pbapply_1.3-4     fs_1.2.6          bindrcpp_0.2.2    xml2_1.2.0        rjson_0.2.20      iterators_1.0.10  tools_3.4.4       glue_1.3.0       
+[57] purrr_0.2.5       hms_0.4.2         jpeg_0.1-8        parallel_3.4.4    yaml_2.2.0        colorspace_1.3-2  cluster_2.0.6     soundgen_1.3.1   
+[65] rvest_0.3.2       memoise_1.1.0     bindr_0.1.1      </code></pre>
 </div>
 </div>
   </div>

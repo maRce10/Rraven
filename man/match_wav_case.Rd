@@ -50,6 +50,9 @@ selec.table$sound.files[1] <- gsub("\\\\.wav$", ".WAV", selec.table$sound.files[
  match_wav_case(X = selec.table, output = "names")
     
 }
+\seealso{
+\code{\link[warbleR]{sort_colms}}; \code{\link{relabel_colms}}
+}
 \author{
 Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
 }
