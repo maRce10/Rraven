@@ -79,15 +79,12 @@
       <h1><center>
 <font size="7"><b>Rraven: Connecting R and Raven Sound Analysis Software</b></font>
 </center></h1>
-                        <h4 class="author">
-<center>
+                        <h4 class="author"><center>
 <a href="http://marceloarayasalas.weebly.com/">Marcelo Araya-Salas, PhD</a>
-</center>
-</h4>
-<p> </p>
+</center></h4>
             
             <h4 class="date"><center>
-“2018-12-05”
+“2019-03-04”
 </center></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/maRce10/Rraven/blob/master/vignettes/Rraven.Rmd"><code>vignettes/Rraven.Rmd</code></a></small>
@@ -100,39 +97,39 @@
 <p> </p>
 <p>The <code>Rraven</code> package is designed to facilitate the exchange of data between R and <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven sound analysis software</a> (<a href="http://www.birds.cornell.edu">Cornell Lab of Ornithology</a>). <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> provides very powerful tools for the analysis of (animal) sounds. R can simplify the automatization of complex routines of analyses. Furthermore, R packages as <a href="https://cran.r-project.org/package=warbleR">warbleR</a>, <a href="https://cran.r-project.org/package=seewave">seewave</a> and <a href="https://cran.r-project.org/package=monitoR">monitoR</a> (among others) provide additional methods of analysis, working as a perfect complement for those found in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a>. Hence, bridging these applications can largely expand the bioacoustician’s toolkit.</p>
 <p>Currently, most analyses in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> cannot be run in the background from a command terminal. Thus, most <code>Rraven</code> functions are design to simplify the exchange of data between the two programs, and in some cases, export files to <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> for further analysis. This vignette provides detailed examples for each function in <code>Rraven</code>, including both the R code as well as the additional steps in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> required to fully accomplished the analyses. Raven Pro must be installed to be able to run some of the code. Note that the animations explaining these additional <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> steps are shown in more detail in the <a href="https://github.com/maRce10/Rraven">github</a> version of this vignette, which can be downloaded as follows (saves the file “Rraven.hitgub.html” in your current working directory):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">"https://github.com/maRce10/Rraven/raw/master/gifs/Rraven.hitgub.html"</span>, <span class="dt">destfile =</span> <span class="st">"Rraven.hitgub.html"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">"https://github.com/maRce10/Rraven/raw/master/gifs/Rraven.hitgub.html"</span>, <span class="dt">destfile =</span> <span class="st">"Rraven.hitgub.html"</span>)</a></code></pre></div>
 <p> </p>
 <p>The downloaded file can be opened by any internet browser.</p>
 <p>Before getting into the functions, the packages must be installed and loaded. I recommend using the latest developmental version, which is found in <a href="https://github.com/maRce10/Rraven">github</a>. To do so, you need the R package <a href="https://cran.r-project.org/package=devtools">devtools</a> (which of course should be installed!). Some <a href="https://cran.r-project.org/package=warbleR">warbleR</a> functions and example data sets will be used, so <a href="https://cran.r-project.org/package=warbleR">warbleR</a> should be installed as well:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"maRce10/warbleR"</span>)
-
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"maRce10/Rraven"</span>)
-
-<span class="co">#from CRAN would be</span>
-<span class="co">#install.packages("warbleR")</span>
-
-<span class="co">#load packages</span>
-<span class="kw">library</span>(warbleR)
-<span class="kw">library</span>(Rraven)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"maRce10/warbleR"</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"maRce10/Rraven"</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#from CRAN would be</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#install.packages("warbleR")</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#load packages</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw">library</span>(warbleR)</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw">library</span>(Rraven)</a></code></pre></div>
 <p> </p>
 <p>Let’s also use a temporary folder as the working directory i which to save all sound files and data files:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="kw">tempdir</span>())
-
-<span class="co">#load example data</span>
-<span class="kw">data</span>(<span class="dt">list =</span> <span class="kw">c</span>(<span class="st">"Phae.long1"</span>, <span class="st">"Phae.long2"</span>, <span class="st">"Phae.long3"</span>, <span class="st">"Phae.long4"</span>, <span class="st">"selec.table"</span>, <span class="st">"selection_files"</span>))
-
-<span class="co">#save sound files  in temporary directory</span>
-<span class="kw">writeWave</span>(Phae.long1,<span class="st">"Phae.long1.wav"</span>)
-<span class="kw">writeWave</span>(Phae.long2,<span class="st">"Phae.long2.wav"</span>)
-<span class="kw">writeWave</span>(Phae.long3,<span class="st">"Phae.long3.wav"</span>)
-<span class="kw">writeWave</span>(Phae.long4,<span class="st">"Phae.long4.wav"</span>)
-
-<span class="co">#save Raven selection tables in the temporary directory</span>
-out &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="cf">function</span>(x)
-<span class="kw">writeLines</span>(selection_files[[x]], <span class="dt">con =</span> <span class="kw">names</span>(selection_files)[x]))
-
-<span class="co">#this is the temporary directory location (of course different each time is run)</span>
-<span class="kw">getwd</span>() </code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">setwd</span>(<span class="kw">tempdir</span>())</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#load example data</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">data</span>(<span class="dt">list =</span> <span class="kw">c</span>(<span class="st">"Phae.long1"</span>, <span class="st">"Phae.long2"</span>, <span class="st">"Phae.long3"</span>, <span class="st">"Phae.long4"</span>, <span class="st">"selec.table"</span>, <span class="st">"selection_files"</span>))</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#save sound files  in temporary directory</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">writeWave</span>(Phae.long1,<span class="st">"Phae.long1.wav"</span>)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">writeWave</span>(Phae.long2,<span class="st">"Phae.long2.wav"</span>)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">writeWave</span>(Phae.long3,<span class="st">"Phae.long3.wav"</span>)</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">writeWave</span>(Phae.long4,<span class="st">"Phae.long4.wav"</span>)</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#save Raven selection tables in the temporary directory</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">out &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw">writeLines</span>(selection_files[[x]], <span class="dt">con =</span> <span class="kw">names</span>(selection_files)[x]))</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#this is the temporary directory location (of course different each time is run)</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="kw">getwd</span>() </a></code></pre></div>
 <p> </p>
 <hr>
 <div id="importing-data-from-raven" class="section level2">
@@ -143,14 +140,14 @@ out &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv
 <a href="#imp_raven" class="anchor"></a><em>imp_raven</em>
 </h3>
 <p>This function imports <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> selection tables. Multiple files can be imported at once. <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> selection tables including data from multiple recordings can also be imported. It returns a single data frame with the information contained in the selection files. We already have 2 <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> selection tables in the working directory:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="kw">tempdir</span>(), <span class="dt">pattern =</span> <span class="st">"</span><span class="ch">\\</span><span class="st">.txt$"</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="kw">tempdir</span>(), <span class="dt">pattern =</span> <span class="st">"</span><span class="ch">\\</span><span class="st">.txt$"</span>)</a></code></pre></div>
 <pre><code>[1] "LBH 1 selection table example.txt" "LBH 2 selection table example.txt" "LBH 3 selection table example.txt" "LBH 4 selection table example.txt"</code></pre>
 <p> </p>
 <p>This code shows how to import all the data contained in those files into R:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="co">#providing the name of the column with the sound file names</span>
-rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">all.data =</span> <span class="ot">TRUE</span>)
-
-<span class="kw">head</span>(rvn.dat)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"> <span class="co">#providing the name of the column with the sound file names</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">all.data =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">head</span>(rvn.dat)</a></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:808px; ">
 <table class="table" style="font-size: 11px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
@@ -446,13 +443,13 @@ LBH 3 selection table example.txt
 </div>
 <p> </p>
 <p>Note that the ‘waveform’ view data has been removed. It can also be imported as follows (but note that the example selection tables have no waveform data):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">all.data =</span> <span class="ot">TRUE</span>, <span class="dt">waveform =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">all.data =</span> <span class="ot">TRUE</span>, <span class="dt">waveform =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p> </p>
 <p><a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> selections can also be imported in a ‘selection.table’ format so it can be directly input into <a href="https://cran.r-project.org/package=warbleR">warbleR</a> functions. To do this you need to set the <code>all.data = FALSE</code> and indicate which column contains the sound file name (using the ‘sound.file.col’ argument):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="co">#providing the name of the column with the sound file names</span>
-rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">sound.file.col =</span> <span class="st">"End.File"</span>, <span class="dt">all.data =</span> <span class="ot">FALSE</span>, <span class="dt">freq.cols =</span> <span class="ot">TRUE</span>)
-
-<span class="kw">head</span>(rvn.dat)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"> <span class="co">#providing the name of the column with the sound file names</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">sound.file.col =</span> <span class="st">"End.File"</span>, <span class="dt">all.data =</span> <span class="ot">FALSE</span>, <span class="dt">freq.cols =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">head</span>(rvn.dat)</a></code></pre></div>
 <table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:center;">
@@ -662,14 +659,14 @@ LBH 3 selection table example.txt
 </table>
 <p> </p>
 <p>The data frame contains the following columns: sound.files, channel, selec, start, end, and selec.file. You can also import the frequency range parameters in the ‘selection.table’ by setting ‘freq.cols’ tp <code>TRUE</code>. The data frame returned by “imp_raven” (when in the ‘warbleR’ format) can be input into several <a href="https://cran.r-project.org/package=warbleR">warbleR</a> functions for further analysis. For instance, the following code runs additional parameter measurements on the imported selections:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># convert to class selection.table</span>
-rvn.dat.st &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/warbleR/topics/make.selection.table">make.selection.table</a></span>(rvn.dat)
-
-sp &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/warbleR/topics/specan">specan</a></span>(<span class="dt">X =</span> rvn.dat, <span class="dt">bp =</span> <span class="st">"frange"</span>, <span class="dt">wl =</span> <span class="dv">150</span>, <span class="dt">pb =</span> <span class="ot">FALSE</span>, <span class="dt">ovlp =</span> <span class="dv">90</span>)
-
-<span class="kw">head</span>(sp)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># convert to class selection.table</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">rvn.dat.st &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/warbleR/topics/make.selection.table">make.selection.table</a></span>(rvn.dat)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">sp &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/warbleR/topics/specan">specan</a></span>(<span class="dt">X =</span> rvn.dat, <span class="dt">bp =</span> <span class="st">"frange"</span>, <span class="dt">wl =</span> <span class="dv">150</span>, <span class="dt">pb =</span> <span class="ot">FALSE</span>, <span class="dt">ovlp =</span> <span class="dv">90</span>)</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="kw">head</span>(sp)</a></code></pre></div>
 <pre><code>checking selections (step 1 of 2):
-all selections are OK</code></pre>
+all selections are OK </code></pre>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:808px; ">
 <table class="table" style="font-size: 11px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
@@ -678,6 +675,12 @@ sound.files
 </th>
 <th style="text-align:center;">
 selec
+</th>
+<th style="text-align:center;">
+top.freq
+</th>
+<th style="text-align:center;">
+bottom.freq
 </th>
 <th style="text-align:center;">
 duration
@@ -757,12 +760,6 @@ dfslope
 <th style="text-align:center;">
 meanpeakf
 </th>
-<th style="text-align:center;">
-bottom.freq
-</th>
-<th style="text-align:center;">
-top.freq
-</th>
 </tr></thead>
 <tbody>
 <tr>
@@ -771,6 +768,12 @@ Phae.long1.wav
 </td>
 <td style="text-align:center;">
 1
+</td>
+<td style="text-align:center;">
+8.604378
+</td>
+<td style="text-align:center;">
+2.220105
 </td>
 <td style="text-align:center;">
 0.1730334
@@ -824,37 +827,31 @@ Phae.long1.wav
 0.6510024
 </td>
 <td style="text-align:center;">
-6.403086
+6.491049
 </td>
 <td style="text-align:center;">
-3.75
+3.825
 </td>
 <td style="text-align:center;">
-8.25
+8.325
 </td>
 <td style="text-align:center;">
 4.50
 </td>
 <td style="text-align:center;">
-8.600000
+7.200000
 </td>
 <td style="text-align:center;">
-6.90
+6.975
 </td>
 <td style="text-align:center;">
-7.50
+7.575
 </td>
 <td style="text-align:center;">
 3.467538
 </td>
 <td style="text-align:center;">
 7.125
-</td>
-<td style="text-align:center;">
-2.220105
-</td>
-<td style="text-align:center;">
-8.604378
 </td>
 </tr>
 <tr>
@@ -863,6 +860,12 @@ Phae.long1.wav
 </td>
 <td style="text-align:center;">
 2
+</td>
+<td style="text-align:center;">
+8.807053
+</td>
+<td style="text-align:center;">
+2.169437
 </td>
 <td style="text-align:center;">
 0.1630480
@@ -916,13 +919,13 @@ Phae.long1.wav
 0.6678647
 </td>
 <td style="text-align:center;">
-6.638936
+6.713936
 </td>
 <td style="text-align:center;">
-3.90
+3.975
 </td>
 <td style="text-align:center;">
-8.40
+8.475
 </td>
 <td style="text-align:center;">
 4.50
@@ -931,22 +934,16 @@ Phae.long1.wav
 4.900000
 </td>
 <td style="text-align:center;">
-6.75
+6.825
 </td>
 <td style="text-align:center;">
-7.20
+7.275
 </td>
 <td style="text-align:center;">
 2.759923
 </td>
 <td style="text-align:center;">
 6.975
-</td>
-<td style="text-align:center;">
-2.169437
-</td>
-<td style="text-align:center;">
-8.807053
 </td>
 </tr>
 <tr>
@@ -955,6 +952,12 @@ Phae.long1.wav
 </td>
 <td style="text-align:center;">
 3
+</td>
+<td style="text-align:center;">
+8.756604
+</td>
+<td style="text-align:center;">
+2.218294
 </td>
 <td style="text-align:center;">
 0.1749187
@@ -1008,37 +1011,31 @@ Phae.long1.wav
 0.6715892
 </td>
 <td style="text-align:center;">
-6.495238
+6.532707
 </td>
 <td style="text-align:center;">
-2.25
+2.325
 </td>
 <td style="text-align:center;">
-8.55
+8.625
 </td>
 <td style="text-align:center;">
 6.30
 </td>
 <td style="text-align:center;">
-11.190476
+10.309524
 </td>
 <td style="text-align:center;">
-8.40
+2.925
 </td>
 <td style="text-align:center;">
-7.20
+7.275
 </td>
 <td style="text-align:center;">
--6.860328
+24.868690
 </td>
 <td style="text-align:center;">
 7.125
-</td>
-<td style="text-align:center;">
-2.218294
-</td>
-<td style="text-align:center;">
-8.756604
 </td>
 </tr>
 <tr>
@@ -1047,6 +1044,12 @@ Phae.long2.wav
 </td>
 <td style="text-align:center;">
 1
+</td>
+<td style="text-align:center;">
+8.822316
+</td>
+<td style="text-align:center;">
+2.316862
 </td>
 <td style="text-align:center;">
 0.1325709
@@ -1100,37 +1103,31 @@ Phae.long2.wav
 0.6086184
 </td>
 <td style="text-align:center;">
-6.413764
+6.482865
 </td>
 <td style="text-align:center;">
-4.80
+4.875
 </td>
 <td style="text-align:center;">
-7.95
+8.025
 </td>
 <td style="text-align:center;">
 3.15
 </td>
 <td style="text-align:center;">
-11.142857
+11.476190
 </td>
 <td style="text-align:center;">
-5.85
+4.875
 </td>
 <td style="text-align:center;">
-6.15
+6.225
 </td>
 <td style="text-align:center;">
-2.262940
+10.183230
 </td>
 <td style="text-align:center;">
 7.425
-</td>
-<td style="text-align:center;">
-2.316862
-</td>
-<td style="text-align:center;">
-8.822316
 </td>
 </tr>
 <tr>
@@ -1139,6 +1136,12 @@ Phae.long2.wav
 </td>
 <td style="text-align:center;">
 2
+</td>
+<td style="text-align:center;">
+8.888027
+</td>
+<td style="text-align:center;">
+2.284006
 </td>
 <td style="text-align:center;">
 0.1261502
@@ -1192,13 +1195,13 @@ Phae.long2.wav
 0.6151042
 </td>
 <td style="text-align:center;">
-6.101143
+6.176143
 </td>
 <td style="text-align:center;">
-3.00
+3.075
 </td>
 <td style="text-align:center;">
-7.65
+7.725
 </td>
 <td style="text-align:center;">
 4.65
@@ -1207,22 +1210,16 @@ Phae.long2.wav
 9.580645
 </td>
 <td style="text-align:center;">
-5.55
+5.625
 </td>
 <td style="text-align:center;">
-5.70
+5.775
 </td>
 <td style="text-align:center;">
 1.189059
 </td>
 <td style="text-align:center;">
 6.675
-</td>
-<td style="text-align:center;">
-2.284006
-</td>
-<td style="text-align:center;">
-8.888027
 </td>
 </tr>
 <tr>
@@ -1231,6 +1228,12 @@ Phae.long3.wav
 </td>
 <td style="text-align:center;">
 1
+</td>
+<td style="text-align:center;">
+8.822316
+</td>
+<td style="text-align:center;">
+3.006834
 </td>
 <td style="text-align:center;">
 0.1312195
@@ -1284,13 +1287,13 @@ Phae.long3.wav
 0.5702146
 </td>
 <td style="text-align:center;">
-6.681285
+6.756285
 </td>
 <td style="text-align:center;">
-4.80
+4.875
 </td>
 <td style="text-align:center;">
-8.10
+8.175
 </td>
 <td style="text-align:center;">
 3.30
@@ -1299,10 +1302,10 @@ Phae.long3.wav
 11.045454
 </td>
 <td style="text-align:center;">
-5.40
+5.475
 </td>
 <td style="text-align:center;">
-7.95
+8.025
 </td>
 <td style="text-align:center;">
 19.433083
@@ -1310,21 +1313,15 @@ Phae.long3.wav
 <td style="text-align:center;">
 6.675
 </td>
-<td style="text-align:center;">
-3.006834
-</td>
-<td style="text-align:center;">
-8.822316
-</td>
 </tr>
 </tbody>
 </table>
 </div>
 <p> </p>
 <p>And this code creates song catalogs:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/warbleR/topics/catalog">catalog</a></span>(<span class="dt">X =</span> rvn.dat.st[<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, ], <span class="dt">flim =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">same.time.scale =</span> F,
- <span class="dt">ovlp =</span> <span class="dv">90</span>, <span class="dt">parallel =</span> <span class="dv">1</span>, <span class="dt">mar =</span> <span class="fl">0.01</span>, <span class="dt">wl =</span> <span class="dv">200</span>, <span class="dt">pal =</span> reverse.heat.colors, <span class="dt">width =</span> <span class="dv">20</span>,  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"sound.files"</span>, <span class="st">"selec"</span>), <span class="dt">legend =</span> <span class="dv">1</span>, 
- <span class="dt">tag.pal =</span> <span class="kw">list</span>(terrain.colors), <span class="dt">tags =</span> <span class="st">"sound.files"</span>)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/warbleR/topics/catalog">catalog</a></span>(<span class="dt">X =</span> rvn.dat.st[<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, ], <span class="dt">flim =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">same.time.scale =</span> F,</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"> <span class="dt">ovlp =</span> <span class="dv">90</span>, <span class="dt">parallel =</span> <span class="dv">1</span>, <span class="dt">mar =</span> <span class="fl">0.01</span>, <span class="dt">wl =</span> <span class="dv">200</span>, <span class="dt">pal =</span> reverse.heat.colors, <span class="dt">width =</span> <span class="dv">20</span>,  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"sound.files"</span>, <span class="st">"selec"</span>), <span class="dt">legend =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"> <span class="dt">tag.pal =</span> <span class="kw">list</span>(terrain.colors), <span class="dt">tags =</span> <span class="st">"sound.files"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="catalog" class="section level2">
@@ -1338,18 +1335,18 @@ Phae.long3.wav
 <a href="#extract_ts" class="anchor"></a><em>extract_ts</em>
 </h3>
 <p>The function extracts parameters encoded as time series in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> selection tables. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as in the <a href="https://cran.r-project.org/package=warbleR">warbleR</a> function <code>dfDTW</code>. The function needs an R data frame, so the data should have been previously imported using <code>imp_raven</code>. This example uses the <code>selection_file.ts</code> example data that comes with <code>Rraven</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#remove previous raven data files</span>
-<span class="kw">unlink</span>(<span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">"</span><span class="ch">\\</span><span class="st">.txt$"</span>))
-
-<span class="co">#save Raven selection table in the temporary directory</span>
-<span class="kw">writeLines</span>(selection_files[[<span class="dv">5</span>]], <span class="dt">con =</span> <span class="kw">names</span>(selection_files)[<span class="dv">5</span>])
-
-rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">all.data =</span> <span class="ot">TRUE</span>) 
-
-<span class="co"># Peak freq contour dif length</span>
-fcts &lt;-<span class="st"> </span><span class="kw"><a href="../reference/extract_ts.html">extract_ts</a></span>(<span class="dt">X =</span> rvn.dat, <span class="dt">ts.column =</span> <span class="st">"Peak Freq Contour (Hz)"</span>)
- 
-<span class="kw">head</span>(fcts)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">#remove previous raven data files</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">unlink</span>(<span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">"</span><span class="ch">\\</span><span class="st">.txt$"</span>))</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#save Raven selection table in the temporary directory</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw">writeLines</span>(selection_files[[<span class="dv">5</span>]], <span class="dt">con =</span> <span class="kw">names</span>(selection_files)[<span class="dv">5</span>])</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">all.data =</span> <span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co"># Peak freq contour dif length</span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">fcts &lt;-<span class="st"> </span><span class="kw"><a href="../reference/extract_ts.html">extract_ts</a></span>(<span class="dt">X =</span> rvn.dat, <span class="dt">ts.column =</span> <span class="st">"Peak Freq Contour (Hz)"</span>)</a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"> </a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="kw">head</span>(fcts)</a></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:808px; ">
 <table class="table" style="font-size: 11px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
@@ -2485,11 +2482,11 @@ NA
 </div>
 <p> </p>
 <p>Note that these sequences are not all of equal length (one has NAs at the end). <code>extract_ts</code> can also interpolate values so all time series have the same length:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Peak freq contour equal length</span>
-fcts &lt;-<span class="st"> </span><span class="kw"><a href="../reference/extract_ts.html">extract_ts</a></span>(<span class="dt">X =</span> rvn.dat, <span class="dt">ts.column =</span> <span class="st">"Peak Freq Contour (Hz)"</span>,  <span class="dt">equal.length =</span> <span class="ot">TRUE</span>)
-
-<span class="co">#look at the last rows wit no NAs</span>
-<span class="kw">head</span>(fcts)</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># Peak freq contour equal length</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">fcts &lt;-<span class="st"> </span><span class="kw"><a href="../reference/extract_ts.html">extract_ts</a></span>(<span class="dt">X =</span> rvn.dat, <span class="dt">ts.column =</span> <span class="st">"Peak Freq Contour (Hz)"</span>,  <span class="dt">equal.length =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">#look at the last rows wit no NAs</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="kw">head</span>(fcts)</a></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:808px; ">
 <table class="table" style="font-size: 11px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
@@ -2599,94 +2596,94 @@ Phae.long1.wav
 1
 </td>
 <td style="text-align:center;">
-3955.1
+6943.4
 </td>
 <td style="text-align:center;">
-4082.390
+7246.403
 </td>
 <td style="text-align:center;">
-4209.679
+7294.900
 </td>
 <td style="text-align:center;">
-4336.969
+7397.955
 </td>
 <td style="text-align:center;">
-4464.259
+7628.314
 </td>
 <td style="text-align:center;">
-4591.548
+5240.059
 </td>
 <td style="text-align:center;">
-4718.838
+5391.610
 </td>
 <td style="text-align:center;">
-4846.128
+5455.262
 </td>
 <td style="text-align:center;">
-4973.417
+5537.100
 </td>
 <td style="text-align:center;">
-5100.707
+6076.572
 </td>
 <td style="text-align:center;">
-5227.997
+6591.800
 </td>
 <td style="text-align:center;">
-5355.286
+5997.814
 </td>
 <td style="text-align:center;">
-5482.576
+5958.383
 </td>
 <td style="text-align:center;">
-5609.866
+6343.255
 </td>
 <td style="text-align:center;">
-5737.155
+6025.083
 </td>
 <td style="text-align:center;">
-5864.445
+5343.100
 </td>
 <td style="text-align:center;">
-5991.734
+4803.690
 </td>
 <td style="text-align:center;">
-6119.024
+4197.514
 </td>
 <td style="text-align:center;">
-6246.314
+7110.010
 </td>
 <td style="text-align:center;">
-6373.603
+6788.817
 </td>
 <td style="text-align:center;">
-6500.893
+6810.034
 </td>
 <td style="text-align:center;">
-6628.183
+6979.752
 </td>
 <td style="text-align:center;">
-6755.472
+7200.938
 </td>
 <td style="text-align:center;">
-6882.762
+7207.000
 </td>
 <td style="text-align:center;">
-7010.052
+6997.897
 </td>
 <td style="text-align:center;">
-7137.341
+6646.348
 </td>
 <td style="text-align:center;">
-7264.631
+7119.100
 </td>
 <td style="text-align:center;">
-7391.921
+7158.503
 </td>
 <td style="text-align:center;">
-7519.210
+7182.752
 </td>
 <td style="text-align:center;">
-7646.5
+7119.1
 </td>
 </tr>
 <tr>
@@ -2697,94 +2694,94 @@ Phae.long1.wav
 2
 </td>
 <td style="text-align:center;">
-3867.2
+6767.6
 </td>
 <td style="text-align:center;">
-4021.766
+7107.014
 </td>
 <td style="text-align:center;">
-4176.331
+7228.217
 </td>
 <td style="text-align:center;">
-4330.897
+7370.676
 </td>
 <td style="text-align:center;">
-4485.462
+7513.134
 </td>
 <td style="text-align:center;">
-4640.028
+7567.693
 </td>
 <td style="text-align:center;">
-4794.593
+5864.397
 </td>
 <td style="text-align:center;">
-4949.159
+5421.921
 </td>
 <td style="text-align:center;">
-5103.724
+8167.748
 </td>
 <td style="text-align:center;">
-5258.290
+8313.228
 </td>
 <td style="text-align:center;">
-5412.855
+5873.524
 </td>
 <td style="text-align:center;">
-5567.421
+6516.024
 </td>
 <td style="text-align:center;">
-5721.986
+6325.114
 </td>
 <td style="text-align:center;">
-5876.552
+6361.448
 </td>
 <td style="text-align:center;">
-6031.117
+5988.655
 </td>
 <td style="text-align:center;">
-6185.683
+5976.600
 </td>
 <td style="text-align:center;">
-6340.248
+5976.600
 </td>
 <td style="text-align:center;">
-6494.814
+5273.400
 </td>
 <td style="text-align:center;">
-6649.379
+4524.834
 </td>
 <td style="text-align:center;">
-6803.945
+3958.110
 </td>
 <td style="text-align:center;">
-6958.510
+7010.024
 </td>
 <td style="text-align:center;">
-7113.076
+6855.500
 </td>
 <td style="text-align:center;">
-7267.641
+6913.090
 </td>
 <td style="text-align:center;">
-7422.207
+7143.348
 </td>
 <td style="text-align:center;">
-7576.772
+7207.000
 </td>
 <td style="text-align:center;">
-7731.338
+7207.000
 </td>
 <td style="text-align:center;">
-7885.903
+7194.876
 </td>
 <td style="text-align:center;">
-8040.469
+7119.100
 </td>
 <td style="text-align:center;">
-8195.034
+7173.659
 </td>
 <td style="text-align:center;">
-8349.6
+7207.0
 </td>
 </tr>
 <tr>
@@ -2795,94 +2792,94 @@ Phae.long1.wav
 3
 </td>
 <td style="text-align:center;">
-3779.3
+6943.4
 </td>
 <td style="text-align:center;">
-3949.021
+6464.479
 </td>
 <td style="text-align:center;">
-4118.741
+5897.759
 </td>
 <td style="text-align:center;">
-4288.462
+4921.900
 </td>
 <td style="text-align:center;">
-4458.183
+7285.838
 </td>
 <td style="text-align:center;">
-4627.903
+7701.059
 </td>
 <td style="text-align:center;">
-4797.624
+8028.310
 </td>
 <td style="text-align:center;">
-4967.345
+5631.041
 </td>
 <td style="text-align:center;">
-5137.066
+8295.041
 </td>
 <td style="text-align:center;">
-5306.786
+8361.724
 </td>
 <td style="text-align:center;">
-5476.507
+6525.117
 </td>
 <td style="text-align:center;">
-5646.228
+5828.076
 </td>
 <td style="text-align:center;">
-5815.948
+6503.900
 </td>
 <td style="text-align:center;">
-5985.669
+6364.472
 </td>
 <td style="text-align:center;">
-6155.390
+5546.179
 </td>
 <td style="text-align:center;">
-6325.110
+5470.403
 </td>
 <td style="text-align:center;">
-6494.831
+5067.348
 </td>
 <td style="text-align:center;">
-6664.552
+4373.314
 </td>
 <td style="text-align:center;">
-6834.272
+3888.407
 </td>
 <td style="text-align:center;">
-7003.993
+6810.034
 </td>
 <td style="text-align:center;">
-7173.714
+6767.600
 </td>
 <td style="text-align:center;">
-7343.434
+6961.566
 </td>
 <td style="text-align:center;">
-7513.155
+7113.038
 </td>
 <td style="text-align:center;">
-7682.876
+7203.969
 </td>
 <td style="text-align:center;">
-7852.597
+7207.000
 </td>
 <td style="text-align:center;">
-8022.317
+7049.386
 </td>
 <td style="text-align:center;">
-8192.038
+7061.510
 </td>
 <td style="text-align:center;">
-8361.759
+7079.697
 </td>
 <td style="text-align:center;">
-8531.479
+7143.348
 </td>
 <td style="text-align:center;">
-8701.2
+7119.1
 </td>
 </tr>
 <tr>
@@ -2893,94 +2890,94 @@ Phae.long2.wav
 4
 </td>
 <td style="text-align:center;">
-3779.3
+5888.7
 </td>
 <td style="text-align:center;">
-3918.714
+5903.817
 </td>
 <td style="text-align:center;">
-4058.128
+4733.976
 </td>
 <td style="text-align:center;">
-4197.541
+5161.259
 </td>
 <td style="text-align:center;">
-4336.955
+5537.100
 </td>
 <td style="text-align:center;">
-4476.369
+5682.590
 </td>
 <td style="text-align:center;">
-4615.783
+6406.921
 </td>
 <td style="text-align:center;">
-4755.197
+4203.593
 </td>
 <td style="text-align:center;">
-4894.610
+6282.634
 </td>
 <td style="text-align:center;">
-5034.024
+6397.814
 </td>
 <td style="text-align:center;">
-5173.438
+6455.414
 </td>
 <td style="text-align:center;">
-5312.852
+5455.262
 </td>
 <td style="text-align:center;">
-5452.266
+5140.107
 </td>
 <td style="text-align:center;">
-5591.679
+7337.341
 </td>
 <td style="text-align:center;">
-5731.093
+6306.948
 </td>
 <td style="text-align:center;">
-5870.507
+7343.431
 </td>
 <td style="text-align:center;">
-6009.921
+5864.445
 </td>
 <td style="text-align:center;">
-6149.334
+7422.203
 </td>
 <td style="text-align:center;">
-6288.748
+7346.428
 </td>
 <td style="text-align:center;">
-6428.162
+5728.034
 </td>
 <td style="text-align:center;">
-6567.576
+6206.859
 </td>
 <td style="text-align:center;">
-6706.990
+6143.259
 </td>
 <td style="text-align:center;">
-6846.403
+7270.686
 </td>
 <td style="text-align:center;">
-6985.817
+7219.124
 </td>
 <td style="text-align:center;">
-7125.231
+6979.717
 </td>
 <td style="text-align:center;">
-7264.645
+7525.283
 </td>
 <td style="text-align:center;">
-7404.059
+7695.010
 </td>
 <td style="text-align:center;">
-7543.472
+6009.941
 </td>
 <td style="text-align:center;">
-7682.886
+6125.052
 </td>
 <td style="text-align:center;">
-7822.3
+6152.3
 </td>
 </tr>
 <tr>
@@ -2994,91 +2991,91 @@ Phae.long2.wav
 4570.3
 </td>
 <td style="text-align:center;">
-4676.376
+4788.534
 </td>
 <td style="text-align:center;">
-4782.452
+5006.769
 </td>
 <td style="text-align:center;">
-4888.528
+5097.700
 </td>
 <td style="text-align:center;">
-4994.603
+5182.472
 </td>
 <td style="text-align:center;">
-5100.679
+5782.614
 </td>
 <td style="text-align:center;">
-5206.755
+5791.707
 </td>
 <td style="text-align:center;">
-5312.831
+5949.321
 </td>
 <td style="text-align:center;">
-5418.907
+6058.438
 </td>
 <td style="text-align:center;">
-5524.983
+5806.879
 </td>
 <td style="text-align:center;">
-5631.059
+5515.900
 </td>
 <td style="text-align:center;">
-5737.134
+6855.500
 </td>
 <td style="text-align:center;">
-5843.210
+6067.521
 </td>
 <td style="text-align:center;">
-5949.286
+6831.252
 </td>
 <td style="text-align:center;">
-6055.362
+6546.334
 </td>
 <td style="text-align:center;">
-6161.438
+7146.417
 </td>
 <td style="text-align:center;">
-6267.514
+5979.603
 </td>
 <td style="text-align:center;">
-6373.590
+7152.452
 </td>
 <td style="text-align:center;">
-6479.666
+6649.390
 </td>
 <td style="text-align:center;">
-6585.741
+6385.690
 </td>
 <td style="text-align:center;">
-6691.817
+6749.414
 </td>
 <td style="text-align:center;">
-6797.893
+6907.028
 </td>
 <td style="text-align:center;">
-6903.969
+6579.676
 </td>
 <td style="text-align:center;">
-7010.045
+6749.414
 </td>
 <td style="text-align:center;">
-7116.121
+6522.086
 </td>
 <td style="text-align:center;">
-7222.197
+6455.400
 </td>
 <td style="text-align:center;">
-7328.272
+7291.897
 </td>
 <td style="text-align:center;">
-7434.348
+6137.197
 </td>
 <td style="text-align:center;">
-7540.424
+6379.652
 </td>
 <td style="text-align:center;">
-7646.5
+5537.1
 </td>
 </tr>
 <tr>
@@ -3092,91 +3089,91 @@ Phae.long3.wav
 4218.8
 </td>
 <td style="text-align:center;">
-4349.117
+6361.441
 </td>
 <td style="text-align:center;">
-4479.434
+6652.421
 </td>
 <td style="text-align:center;">
-4609.752
+7046.366
 </td>
 <td style="text-align:center;">
-4740.069
+5309.834
 </td>
 <td style="text-align:center;">
-4870.386
+6118.986
 </td>
 <td style="text-align:center;">
-5000.703
+6743.352
 </td>
 <td style="text-align:center;">
-5131.021
+6379.628
 </td>
 <td style="text-align:center;">
-5261.338
+6328.100
 </td>
 <td style="text-align:center;">
-5391.655
+6522.086
 </td>
 <td style="text-align:center;">
-5521.972
+6640.297
 </td>
 <td style="text-align:center;">
-5652.290
+5755.314
 </td>
 <td style="text-align:center;">
-5782.607
+6679.700
 </td>
 <td style="text-align:center;">
-5912.924
+6637.266
 </td>
 <td style="text-align:center;">
-6043.241
+6882.779
 </td>
 <td style="text-align:center;">
-6173.559
+6082.669
 </td>
 <td style="text-align:center;">
-6303.876
+6864.541
 </td>
 <td style="text-align:center;">
-6434.193
+6816.083
 </td>
 <td style="text-align:center;">
-6564.510
+7252.486
 </td>
 <td style="text-align:center;">
-6694.828
+6997.903
 </td>
 <td style="text-align:center;">
-6825.145
+6682.721
 </td>
 <td style="text-align:center;">
-6955.462
+7785.852
 </td>
 <td style="text-align:center;">
-7085.779
+7582.848
 </td>
 <td style="text-align:center;">
-7216.097
+7091.821
 </td>
 <td style="text-align:center;">
-7346.414
+7088.862
 </td>
 <td style="text-align:center;">
-7476.731
+7143.410
 </td>
 <td style="text-align:center;">
-7607.048
+7707.124
 </td>
 <td style="text-align:center;">
-7737.366
+7337.334
 </td>
 <td style="text-align:center;">
-7867.683
+6900.931
 </td>
 <td style="text-align:center;">
-7998.0
+6855.5
 </td>
 </tr>
 </tbody>
@@ -3184,11 +3181,11 @@ Phae.long3.wav
 </div>
 <p> </p>
 <p>And the length of the series can also be specified:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Peak freq contour equal length 10 measurements</span>
-fcts &lt;-<span class="st"> </span><span class="kw"><a href="../reference/extract_ts.html">extract_ts</a></span>(<span class="dt">X =</span> rvn.dat, <span class="dt">ts.column =</span> <span class="st">"Peak Freq Contour (Hz)"</span>,
-<span class="dt">equal.length =</span> T, <span class="dt">length.out =</span> <span class="dv">10</span>)  
-
-<span class="kw">head</span>(fcts)</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># Peak freq contour equal length 10 measurements</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">fcts &lt;-<span class="st"> </span><span class="kw"><a href="../reference/extract_ts.html">extract_ts</a></span>(<span class="dt">X =</span> rvn.dat, <span class="dt">ts.column =</span> <span class="st">"Peak Freq Contour (Hz)"</span>,</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="dt">equal.length =</span> T, <span class="dt">length.out =</span> <span class="dv">10</span>)  </a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="kw">head</span>(fcts)</a></code></pre></div>
 <table class="table" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:center;">
@@ -3237,34 +3234,34 @@ Phae.long1.wav
 1
 </td>
 <td style="text-align:center;">
-3955.1
+6943.4
 </td>
 <td style="text-align:center;">
-4365.256
+7431.633
 </td>
 <td style="text-align:center;">
-4775.411
+5449.200
 </td>
 <td style="text-align:center;">
-5185.567
+6533.200
 </td>
 <td style="text-align:center;">
-5595.722
+6376.933
 </td>
 <td style="text-align:center;">
-6005.878
+4736.333
 </td>
 <td style="text-align:center;">
-6416.033
+6767.600
 </td>
 <td style="text-align:center;">
-6826.189
+7207.000
 </td>
 <td style="text-align:center;">
-7236.344
+7119.100
 </td>
 <td style="text-align:center;">
-7646.5
+7119.1
 </td>
 </tr>
 <tr>
@@ -3275,34 +3272,34 @@ Phae.long1.wav
 2
 </td>
 <td style="text-align:center;">
-3867.2
+6767.6
 </td>
 <td style="text-align:center;">
-4365.244
+7402.333
 </td>
 <td style="text-align:center;">
-4863.289
+5263.633
 </td>
 <td style="text-align:center;">
-5361.333
+6650.400
 </td>
 <td style="text-align:center;">
-5859.378
+6357.411
 </td>
 <td style="text-align:center;">
-6357.422
+5898.467
 </td>
 <td style="text-align:center;">
-6855.467
+4951.167
 </td>
 <td style="text-align:center;">
-7353.511
+7041.011
 </td>
 <td style="text-align:center;">
-7851.556
+7207.000
 </td>
 <td style="text-align:center;">
-8349.6
+7207.0
 </td>
 </tr>
 <tr>
@@ -3313,34 +3310,34 @@ Phae.long1.wav
 3
 </td>
 <td style="text-align:center;">
-3779.3
+6943.4
 </td>
 <td style="text-align:center;">
-4326.178
+4921.900
 </td>
 <td style="text-align:center;">
-4873.056
+7792.933
 </td>
 <td style="text-align:center;">
-5419.933
+7236.333
 </td>
 <td style="text-align:center;">
-5966.811
+6347.633
 </td>
 <td style="text-align:center;">
-6513.689
+5000.011
 </td>
 <td style="text-align:center;">
-7060.567
+6767.600
 </td>
 <td style="text-align:center;">
-7607.444
+7040.967
 </td>
 <td style="text-align:center;">
-8154.322
+7128.867
 </td>
 <td style="text-align:center;">
-8701.2
+7119.1
 </td>
 </tr>
 <tr>
@@ -3351,34 +3348,34 @@ Phae.long2.wav
 4
 </td>
 <td style="text-align:center;">
-3779.3
+5888.7
 </td>
 <td style="text-align:center;">
-4228.522
+5263.633
 </td>
 <td style="text-align:center;">
-4677.744
+5292.967
 </td>
 <td style="text-align:center;">
-5126.967
+6533.200
 </td>
 <td style="text-align:center;">
-5576.189
+7109.367
 </td>
 <td style="text-align:center;">
-6025.411
+5986.344
 </td>
 <td style="text-align:center;">
-6474.633
+5742.167
 </td>
 <td style="text-align:center;">
-6923.856
+7363.267
 </td>
 <td style="text-align:center;">
-7373.078
+7822.300
 </td>
 <td style="text-align:center;">
-7822.3
+6152.3
 </td>
 </tr>
 <tr>
@@ -3392,31 +3389,31 @@ Phae.long2.wav
 4570.3
 </td>
 <td style="text-align:center;">
-4912.100
+5097.700
 </td>
 <td style="text-align:center;">
-5253.900
+5888.700
 </td>
 <td style="text-align:center;">
-5595.700
+4570.300
 </td>
 <td style="text-align:center;">
-5937.500
+6855.500
 </td>
 <td style="text-align:center;">
-6279.300
+5712.900
 </td>
 <td style="text-align:center;">
-6621.100
+6240.200
 </td>
 <td style="text-align:center;">
-6962.900
+6943.400
 </td>
 <td style="text-align:center;">
-7304.700
+7558.600
 </td>
 <td style="text-align:center;">
-7646.5
+5537.1
 </td>
 </tr>
 <tr>
@@ -3430,38 +3427,38 @@ Phae.long3.wav
 4218.8
 </td>
 <td style="text-align:center;">
-4638.711
+6416.000
 </td>
 <td style="text-align:center;">
-5058.622
+6533.200
 </td>
 <td style="text-align:center;">
-5478.533
+6679.700
 </td>
 <td style="text-align:center;">
-5898.444
+6650.400
 </td>
 <td style="text-align:center;">
-6318.356
+6943.333
 </td>
 <td style="text-align:center;">
-6738.267
+7470.700
 </td>
 <td style="text-align:center;">
-7158.178
+7617.200
 </td>
 <td style="text-align:center;">
-7578.089
+7470.733
 </td>
 <td style="text-align:center;">
-7998.0
+6855.5
 </td>
 </tr>
 </tbody>
 </table>
 <p> </p>
 <p>The time series data frame can be directly input into the <code>dfDTW</code> <a href="https://cran.r-project.org/package=warbleR">warbleR</a> function to calculate <a href="https://en.wikipedia.org/wiki/Dynamic_time_warping">Dynamic Time Warping</a> distances:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/warbleR/topics/dfDTW">dfDTW</a></span>(<span class="dt">ts.df =</span> fcts)</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/warbleR/topics/dfDTW">dfDTW</a></span>(<span class="dt">ts.df =</span> fcts)</a></code></pre></div>
 <p> </p>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:500px; overflow-x: scroll; width:808px; ">
 <table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
@@ -3511,34 +3508,34 @@ Phae.long1.wav-1
 0.000
 </td>
 <td style="text-align:center;">
-2665.922
+2509.733
 </td>
 <td style="text-align:center;">
-3652.378
+5702.989
 </td>
 <td style="text-align:center;">
-1777.533
+9541.189
 </td>
 <td style="text-align:center;">
-2255.756
+12411.933
 </td>
 <td style="text-align:center;">
-2402.544
+9648.400
 </td>
 <td style="text-align:center;">
-3007.411
+7207.000
 </td>
 <td style="text-align:center;">
-3251.644
+7343.822
 </td>
 <td style="text-align:center;">
-4218.800
+13740.278
 </td>
 <td style="text-align:center;">
-4609.500
+11455.400
 </td>
 <td style="text-align:center;">
-4169.867
+14970.644
 </td>
 </tr>
 <tr>
@@ -3546,37 +3543,37 @@ Phae.long1.wav-1
 Phae.long1.wav-2
 </td>
 <td style="text-align:center;">
-2665.922
+2509.733
 </td>
 <td style="text-align:center;">
 0.000
 </td>
 <td style="text-align:center;">
-2734.500
+5624.778
 </td>
 <td style="text-align:center;">
-2744.233
+7334.111
 </td>
 <td style="text-align:center;">
-3456.878
+12333.711
 </td>
 <td style="text-align:center;">
-3027.333
+10058.778
 </td>
 <td style="text-align:center;">
-3427.622
+7255.633
 </td>
 <td style="text-align:center;">
-3896.578
+7734.489
 </td>
 <td style="text-align:center;">
-3486.478
+14257.911
 </td>
 <td style="text-align:center;">
-3583.922
+10908.222
 </td>
 <td style="text-align:center;">
-3242.167
+15107.311
 </td>
 </tr>
 <tr>
@@ -3584,37 +3581,37 @@ Phae.long1.wav-2
 Phae.long1.wav-3
 </td>
 <td style="text-align:center;">
-3652.378
+5702.989
 </td>
 <td style="text-align:center;">
-2734.500
+5624.778
 </td>
 <td style="text-align:center;">
 0.000
 </td>
 <td style="text-align:center;">
-3515.600
+10615.033
 </td>
 <td style="text-align:center;">
-4287.078
+11620.856
 </td>
 <td style="text-align:center;">
-3340.089
+11044.989
 </td>
 <td style="text-align:center;">
-3730.722
+8046.644
 </td>
 <td style="text-align:center;">
-4423.944
+7675.456
 </td>
 <td style="text-align:center;">
-3047.033
+15077.767
 </td>
 <td style="text-align:center;">
-2773.678
+13476.378
 </td>
 <td style="text-align:center;">
-3310.367
+14696.922
 </td>
 </tr>
 <tr>
@@ -3622,37 +3619,37 @@ Phae.long1.wav-3
 Phae.long2.wav-4
 </td>
 <td style="text-align:center;">
-1777.533
+9541.189
 </td>
 <td style="text-align:center;">
-2744.233
+7334.111
 </td>
 <td style="text-align:center;">
-3515.600
+10615.033
 </td>
 <td style="text-align:center;">
 0.000
 </td>
 <td style="text-align:center;">
-3046.867
+7665.756
 </td>
 <td style="text-align:center;">
-2783.167
+9111.456
 </td>
 <td style="text-align:center;">
-3261.922
+7587.778
 </td>
 <td style="text-align:center;">
-3818.556
+7109.267
 </td>
 <td style="text-align:center;">
-3750.033
+11318.256
 </td>
 <td style="text-align:center;">
-4179.911
+10683.489
 </td>
 <td style="text-align:center;">
-3486.267
+11572.133
 </td>
 </tr>
 <tr>
@@ -3660,37 +3657,37 @@ Phae.long2.wav-4
 Phae.long2.wav-5
 </td>
 <td style="text-align:center;">
-2255.756
+12411.933
 </td>
 <td style="text-align:center;">
-3456.878
+12333.711
 </td>
 <td style="text-align:center;">
-4287.078
+11620.856
 </td>
 <td style="text-align:center;">
-3046.867
+7665.756
 </td>
 <td style="text-align:center;">
 0.000
 </td>
 <td style="text-align:center;">
-2539.122
+8466.933
 </td>
 <td style="text-align:center;">
-2265.967
+9160.356
 </td>
 <td style="text-align:center;">
-868.900
+8339.722
 </td>
 <td style="text-align:center;">
-5244.222
+10839.778
 </td>
 <td style="text-align:center;">
-5420.067
+13535.000
 </td>
 <td style="text-align:center;">
-5722.533
+9902.211
 </td>
 </tr>
 <tr>
@@ -3698,37 +3695,37 @@ Phae.long2.wav-5
 Phae.long3.wav-6
 </td>
 <td style="text-align:center;">
-2402.544
+9648.400
 </td>
 <td style="text-align:center;">
-3027.333
+10058.778
 </td>
 <td style="text-align:center;">
-3340.089
+11044.989
 </td>
 <td style="text-align:center;">
-2783.167
+9111.456
 </td>
 <td style="text-align:center;">
-2539.122
+8466.933
 </td>
 <td style="text-align:center;">
 0.000
 </td>
 <td style="text-align:center;">
-2060.578
+6464.633
 </td>
 <td style="text-align:center;">
-2636.633
+6425.533
 </td>
 <td style="text-align:center;">
-3613.667
+16122.967
 </td>
 <td style="text-align:center;">
-4033.744
+15234.567
 </td>
 <td style="text-align:center;">
-4619.300
+14413.978
 </td>
 </tr>
 <tr>
@@ -3736,37 +3733,37 @@ Phae.long3.wav-6
 Phae.long3.wav-7
 </td>
 <td style="text-align:center;">
-3007.411
+7207.000
 </td>
 <td style="text-align:center;">
-3427.622
+7255.633
 </td>
 <td style="text-align:center;">
-3730.722
+8046.644
 </td>
 <td style="text-align:center;">
-3261.922
+7587.778
 </td>
 <td style="text-align:center;">
-2265.967
+9160.356
 </td>
 <td style="text-align:center;">
-2060.578
+6464.633
 </td>
 <td style="text-align:center;">
 0.000
 </td>
 <td style="text-align:center;">
-2031.244
+4882.822
 </td>
 <td style="text-align:center;">
-4609.611
+13144.400
 </td>
 <td style="text-align:center;">
-5078.578
+11689.300
 </td>
 <td style="text-align:center;">
-5751.878
+13095.311
 </td>
 </tr>
 <tr>
@@ -3774,37 +3771,37 @@ Phae.long3.wav-7
 Phae.long3.wav-8
 </td>
 <td style="text-align:center;">
-3251.644
+7343.822
 </td>
 <td style="text-align:center;">
-3896.578
+7734.489
 </td>
 <td style="text-align:center;">
-4423.944
+7675.456
 </td>
 <td style="text-align:center;">
-3818.556
+7109.267
 </td>
 <td style="text-align:center;">
-868.900
+8339.722
 </td>
 <td style="text-align:center;">
-2636.633
+6425.533
 </td>
 <td style="text-align:center;">
-2031.244
+4882.822
 </td>
 <td style="text-align:center;">
 0.000
 </td>
 <td style="text-align:center;">
-5351.944
+13711.033
 </td>
 <td style="text-align:center;">
-5645.189
+13144.478
 </td>
 <td style="text-align:center;">
-6503.867
+13515.511
 </td>
 </tr>
 <tr>
@@ -3812,37 +3809,37 @@ Phae.long3.wav-8
 Phae.long4.wav-9
 </td>
 <td style="text-align:center;">
-4218.800
+13740.278
 </td>
 <td style="text-align:center;">
-3486.478
+14257.911
 </td>
 <td style="text-align:center;">
-3047.033
+15077.767
 </td>
 <td style="text-align:center;">
-3750.033
+11318.256
 </td>
 <td style="text-align:center;">
-5244.222
+10839.778
 </td>
 <td style="text-align:center;">
-3613.667
+16122.967
 </td>
 <td style="text-align:center;">
-4609.611
+13144.400
 </td>
 <td style="text-align:center;">
-5351.944
+13711.033
 </td>
 <td style="text-align:center;">
 0.000
 </td>
 <td style="text-align:center;">
-1758.000
+10517.489
 </td>
 <td style="text-align:center;">
-4814.789
+9424.156
 </td>
 </tr>
 <tr>
@@ -3850,37 +3847,37 @@ Phae.long4.wav-9
 Phae.long4.wav-10
 </td>
 <td style="text-align:center;">
-4609.500
+11455.400
 </td>
 <td style="text-align:center;">
-3583.922
+10908.222
 </td>
 <td style="text-align:center;">
-2773.678
+13476.378
 </td>
 <td style="text-align:center;">
-4179.911
+10683.489
 </td>
 <td style="text-align:center;">
-5420.067
+13535.000
 </td>
 <td style="text-align:center;">
-4033.744
+15234.567
 </td>
 <td style="text-align:center;">
-5078.578
+11689.300
 </td>
 <td style="text-align:center;">
-5645.189
+13144.478
 </td>
 <td style="text-align:center;">
-1758.000
+10517.489
 </td>
 <td style="text-align:center;">
 0.000
 </td>
 <td style="text-align:center;">
-3701.233
+9725.811
 </td>
 </tr>
 <tr>
@@ -3888,34 +3885,34 @@ Phae.long4.wav-10
 Phae.long4.wav-11
 </td>
 <td style="text-align:center;">
-4169.867
+14970.644
 </td>
 <td style="text-align:center;">
-3242.167
+15107.311
 </td>
 <td style="text-align:center;">
-3310.367
+14696.922
 </td>
 <td style="text-align:center;">
-3486.267
+11572.133
 </td>
 <td style="text-align:center;">
-5722.533
+9902.211
 </td>
 <td style="text-align:center;">
-4619.300
+14413.978
 </td>
 <td style="text-align:center;">
-5751.878
+13095.311
 </td>
 <td style="text-align:center;">
-6503.867
+13515.511
 </td>
 <td style="text-align:center;">
-4814.789
+9424.156
 </td>
 <td style="text-align:center;">
-3701.233
+9725.811
 </td>
 <td style="text-align:center;">
 0.000
@@ -3931,18 +3928,18 @@ Phae.long4.wav-11
 <a href="#relabel_colms" class="anchor"></a><em>relabel_colms</em>
 </h3>
 <p>This is a simple function to relabel columns so they match the selection table format used in <a href="https://cran.r-project.org/package=warbleR">warbleR</a>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#to simplify the example select a subset of the columns </span>
-st1 &lt;-<span class="st"> </span>rvn.dat[ ,<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>]
-
-<span class="co">#check original column names</span>
-st1</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Relabel the basic columns required by warbleR</span>
-<span class="kw"><a href="../reference/relabel_colms.html">relabel_colms</a></span>(st1)</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co">#to simplify the example select a subset of the columns </span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">st1 &lt;-<span class="st"> </span>rvn.dat[ ,<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>]</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co">#check original column names</span></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">st1</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># Relabel the basic columns required by warbleR</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw"><a href="../reference/relabel_colms.html">relabel_colms</a></span>(st1)</a></code></pre></div>
 <p> </p>
 <p>Additional columns can also be relabeled:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 2 additional column </span>
-<span class="kw"><a href="../reference/relabel_colms.html">relabel_colms</a></span>(st1, <span class="dt">extra.cols.name =</span> <span class="st">"View"</span>,
-              <span class="dt">extra.cols.new.name =</span> <span class="st">"Raven view"</span>)</code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># 2 additional column </span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw"><a href="../reference/relabel_colms.html">relabel_colms</a></span>(st1, <span class="dt">extra.cols.name =</span> <span class="st">"View"</span>,</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">              <span class="dt">extra.cols.new.name =</span> <span class="st">"Raven view"</span>)</a></code></pre></div>
 <table class="table" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:center;">
@@ -4232,26 +4229,26 @@ Spectrogram 1
 </h3>
 <p>The function imports the output of a batch correlation routine in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a>. Both the correlation and lag matrices contained in the output ‘.txt’ file are read and both waveform and spectrogram (cross-correlation) correlations can be imported.</p>
 <p>This example shows how to input the sound files into <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> and how to bring the results back to R. First, the selections need to be cut as single sound files for the <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> correlator to be able to read it. We can do this using the <code>cut_sels</code> function from <a href="https://cran.r-project.org/package=warbleR">warbleR</a>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#create new folder to put cuts</span>
-<span class="kw">dir.create</span>(<span class="st">"cuts"</span>)
-
-<span class="co"># add a rowname column to be able to match cuts and selections</span>
-selec.table<span class="op">$</span>rownames &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">"%02d"</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(selec.table))
-
-<span class="co"># cut files</span>
-<span class="kw"><a href="http://www.rdocumentation.org/packages/warbleR/topics/cut_sels">cut_sels</a></span>(<span class="dt">X =</span> selec.table, <span class="dt">mar =</span> <span class="fl">0.05</span>, <span class="dt">path =</span> <span class="kw">tempdir</span>(), <span class="dt">dest.path =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">"cuts"</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"rownames"</span>, <span class="st">"sound.files"</span>, <span class="st">"selec"</span>), <span class="dt">pb =</span> <span class="ot">FALSE</span>)
-
-<span class="co">#list cuts</span>
-<span class="kw">list.files</span>(<span class="dt">path =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">"cuts"</span>))</code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co">#create new folder to put cuts</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw">dir.create</span>(<span class="st">"cuts"</span>)</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="co"># add a rowname column to be able to match cuts and selections</span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5">selec.table<span class="op">$</span>rownames &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">"%02d"</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(selec.table))</a>
+<a class="sourceLine" id="cb19-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="co"># cut files</span></a>
+<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="kw"><a href="http://www.rdocumentation.org/packages/warbleR/topics/cut_sels">cut_sels</a></span>(<span class="dt">X =</span> selec.table, <span class="dt">mar =</span> <span class="fl">0.05</span>, <span class="dt">path =</span> <span class="kw">tempdir</span>(), <span class="dt">dest.path =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">"cuts"</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"rownames"</span>, <span class="st">"sound.files"</span>, <span class="st">"selec"</span>), <span class="dt">pb =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb19-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb19-10" data-line-number="10"><span class="co">#list cuts</span></a>
+<a class="sourceLine" id="cb19-11" data-line-number="11"><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">"cuts"</span>))</a></code></pre></div>
 <p> </p>
 <p>Every selection is in its own sound file (labeled as <code>paste("rownames", "sound.files", "selec")</code>). Now open <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> and run the batch correlator on the ‘cuts’ folder as follows:</p>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_raven_correlator.gif" alt="gif1">  </p>
 <p>And then import the output file into R:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Import output (change the name of the file if you used a different one)</span>
-xcorr.rav &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_corr_mat.html">imp_corr_mat</a></span>(<span class="dt">file =</span> <span class="st">"BatchCorrOutput.txt"</span>, <span class="dt">path =</span> <span class="kw">tempdir</span>())</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># Import output (change the name of the file if you used a different one)</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">xcorr.rav &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_corr_mat.html">imp_corr_mat</a></span>(<span class="dt">file =</span> <span class="st">"BatchCorrOutput.txt"</span>, <span class="dt">path =</span> <span class="kw">tempdir</span>())</a></code></pre></div>
 <p> </p>
 <p>The function returns a list containing the correlation matrix:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xcorr.rav<span class="op">$</span>correlation</code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">xcorr.rav<span class="op">$</span>correlation</a></code></pre></div>
 <p> </p>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:500px; overflow-x: scroll; width:808px; ">
 <table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
@@ -4716,7 +4713,7 @@ xcorr.rav &lt;-<span class="st"> </span><span class="kw"><a href="../reference/i
 </div>
 <p> </p>
 <p>and the time lag matrix:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xcorr.rav<span class="op">$</span><span class="st">`</span><span class="dt">lag (s)</span><span class="st">`</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">xcorr.rav<span class="op">$</span><span class="st">`</span><span class="dt">lag (s)</span><span class="st">`</span></a></code></pre></div>
 <p> </p>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:500px; overflow-x: scroll; width:808px; ">
 <table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
@@ -5181,34 +5178,34 @@ xcorr.rav &lt;-<span class="st"> </span><span class="kw"><a href="../reference/i
 </div>
 <p> </p>
 <p>This output is ready for stats. For instance, the following code runs a mantel test between cross-correlation (converted to distances) and <a href="https://cran.r-project.org/package=warbleR">warbleR</a> spectral parameter pairwise dissimilarities:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#convert cross-corr to distance</span>
-xcorr.rvn &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">-</span><span class="st"> </span>xcorr.rav<span class="op">$</span>correlation
-
-<span class="co">#sort matrix to match selection table</span>
-xcorr.rvn &lt;-<span class="st"> </span>xcorr.rvn[<span class="kw">order</span>(<span class="kw">rownames</span>(xcorr.rvn)), <span class="kw">order</span>(<span class="kw">colnames</span>(xcorr.rvn))]
-
-<span class="co">#convert it to distance matrix</span>
-xcorr.rvn &lt;-<span class="st"> </span><span class="kw">as.dist</span>(xcorr.rvn)
-
-<span class="co"># measure acoustic parameters</span>
-sp.wrblR &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/warbleR/topics/specan">specan</a></span>(selec.table, <span class="dt">bp =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">11</span>), <span class="dt">wl =</span> <span class="dv">150</span>, <span class="dt">pb =</span> <span class="ot">FALSE</span>)
-
-<span class="co">#convert them to distance matrix</span>
-dist.sp.wrblR &lt;-<span class="st"> </span><span class="kw">dist</span>(sp.wrblR)
-
-vegan<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/vegan/topics/mantel">mantel</a></span>(xcorr.rvn, dist.sp.wrblR)</code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co">#convert cross-corr to distance</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">xcorr.rvn &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">-</span><span class="st"> </span>xcorr.rav<span class="op">$</span>correlation</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="co">#sort matrix to match selection table</span></a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">xcorr.rvn &lt;-<span class="st"> </span>xcorr.rvn[<span class="kw">order</span>(<span class="kw">rownames</span>(xcorr.rvn)), <span class="kw">order</span>(<span class="kw">colnames</span>(xcorr.rvn))]</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb23-7" data-line-number="7"><span class="co">#convert it to distance matrix</span></a>
+<a class="sourceLine" id="cb23-8" data-line-number="8">xcorr.rvn &lt;-<span class="st"> </span><span class="kw">as.dist</span>(xcorr.rvn)</a>
+<a class="sourceLine" id="cb23-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb23-10" data-line-number="10"><span class="co"># measure acoustic parameters</span></a>
+<a class="sourceLine" id="cb23-11" data-line-number="11">sp.wrblR &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/warbleR/topics/specan">specan</a></span>(selec.table, <span class="dt">bp =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">11</span>), <span class="dt">wl =</span> <span class="dv">150</span>, <span class="dt">pb =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb23-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb23-13" data-line-number="13"><span class="co">#convert them to distance matrix</span></a>
+<a class="sourceLine" id="cb23-14" data-line-number="14">dist.sp.wrblR &lt;-<span class="st"> </span><span class="kw">dist</span>(sp.wrblR)</a></code></pre></div>
+<pre><code>Warning in dist(sp.wrblR): NAs introduced by coercion</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">vegan<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/vegan/topics/mantel">mantel</a></span>(xcorr.rvn, dist.sp.wrblR)</a></code></pre></div>
 <pre><code>
 Mantel statistic based on Pearson's product-moment correlation 
 
 Call:
 vegan::mantel(xdis = xcorr.rvn, ydis = dist.sp.wrblR) 
 
-Mantel statistic r: 0.277 
-      Significance: 0.012 
+Mantel statistic r: 0.259 
+      Significance: 0.016 
 
 Upper quantiles of permutations (null model):
   90%   95% 97.5%   99% 
-0.155 0.188 0.218 0.282 
+0.147 0.196 0.233 0.311 
 Permutation: free
 Number of permutations: 999</code></pre>
 <p> </p>
@@ -5224,24 +5221,24 @@ Number of permutations: 999</code></pre>
 <a href="#exp_raven" class="anchor"></a><em>exp_raven</em>
 </h3>
 <p><em>exp_raven</em> saves a selection table in ‘.txt’ format that can be directly opened in Raven. No objects are returned into the R environment. The following code exports a data table from a single sound file:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select data for a single sound file</span>
-st1 &lt;-<span class="st"> </span>selec.table[selec.table<span class="op">$</span>sound.files <span class="op">==</span><span class="st"> "Phae.long1.wav"</span>,]
-
-<span class="co"># Export data of a single sound file</span>
-<span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(st1, <span class="dt">file.name =</span> <span class="st">"Phaethornis 1"</span>, <span class="dt">khz.to.hz =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># Select data for a single sound file</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">st1 &lt;-<span class="st"> </span>selec.table[selec.table<span class="op">$</span>sound.files <span class="op">==</span><span class="st"> "Phae.long1.wav"</span>,]</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="co"># Export data of a single sound file</span></a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(st1, <span class="dt">file.name =</span> <span class="st">"Phaethornis 1"</span>, <span class="dt">khz.to.hz =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p> </p>
 <p>If the path to the sound file is provided, the functions exports a ‘sound selection table’ which can be directly open by <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> (and which will also open the associated sound file):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select data for a single sound file</span>
-st1 &lt;-<span class="st"> </span>selec.table[selec.table<span class="op">$</span>sound.files <span class="op">==</span><span class="st"> "Phae.long1.wav"</span>,]
-
-<span class="co"># Export data of a single sound file</span>
-<span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(st1, <span class="dt">file.name =</span> <span class="st">"Phaethornis 1"</span>, <span class="dt">khz.to.hz =</span> <span class="ot">TRUE</span>, <span class="dt">sound.file.path =</span> <span class="kw">tempdir</span>())</code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># Select data for a single sound file</span></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">st1 &lt;-<span class="st"> </span>selec.table[selec.table<span class="op">$</span>sound.files <span class="op">==</span><span class="st"> "Phae.long1.wav"</span>,]</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="co"># Export data of a single sound file</span></a>
+<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(st1, <span class="dt">file.name =</span> <span class="st">"Phaethornis 1"</span>, <span class="dt">khz.to.hz =</span> <span class="ot">TRUE</span>, <span class="dt">sound.file.path =</span> <span class="kw">tempdir</span>())</a></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven1.gif" alt="gif2">  </p>
 <p>This is useful to add new selections or even new measurements:</p>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven2.gif" alt="gif3">  </p>
 <p>If several sound files are available, users can either export them as a single selection file or as multiple selection files (one for each sound file). This example creates a multiple sound file selection:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(<span class="dt">X =</span> selec.table, <span class="dt">file.name =</span> <span class="st">"Phaethornis multiple sound files"</span>, 
-<span class="dt">sound.file.path =</span> <span class="kw">tempdir</span>(), <span class="dt">single.file =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(<span class="dt">X =</span> selec.table, <span class="dt">file.name =</span> <span class="st">"Phaethornis multiple sound files"</span>, </a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="dt">sound.file.path =</span> <span class="kw">tempdir</span>(), <span class="dt">single.file =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p> </p>
 <p>These type of tables can be opened as a multiple file display in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a>:</p>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven3.gif" alt="gif4">  </p>
@@ -5256,12 +5253,12 @@ st1 &lt;-<span class="st"> </span>selec.table[selec.table<span class="op">$</spa
 <a href="#run_raven" class="anchor"></a><em>run_raven</em>
 </h3>
 <p>The function opens multiple sound files simultaneously in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a>. When the analysis is finished (and the <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> window is closed) the data can be automatically imported back into R using the ‘import’ argument. Note that <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a>, unlike R, can also handle files in ‘mp3’, ‘flac’ and ‘aif’ format .</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># here replace with the path where Raven is install in your computer</span>
-raven.path &lt;-<span class="st"> "PATH_TO_RAVEN_DIRECTORY_HERE"</span> 
-
-<span class="co"># run function </span>
-<span class="kw"><a href="../reference/run_raven.html">run_raven</a></span>(<span class="dt">raven.path =</span> raven.path, <span class="dt">sound.files =</span> <span class="kw">c</span>(<span class="st">"Phae.long1.wav"</span>, <span class="st">"Phae.long2.wav"</span>, <span class="st">"Phae.long3.wav"</span>, <span class="st">"Phae.long4.wav"</span>), <span class="dt">import =</span> <span class="ot">TRUE</span>, 
- <span class="dt">all.data =</span> <span class="ot">TRUE</span>)  </code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="co"># here replace with the path where Raven is install in your computer</span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">raven.path &lt;-<span class="st"> "PATH_TO_RAVEN_DIRECTORY_HERE"</span> </a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="co"># run function </span></a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="kw"><a href="../reference/run_raven.html">run_raven</a></span>(<span class="dt">raven.path =</span> raven.path, <span class="dt">sound.files =</span> <span class="kw">c</span>(<span class="st">"Phae.long1.wav"</span>, <span class="st">"Phae.long2.wav"</span>, <span class="st">"Phae.long3.wav"</span>, <span class="st">"Phae.long4.wav"</span>), <span class="dt">import =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"> <span class="dt">all.data =</span> <span class="ot">TRUE</span>)  </a></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_run_raven1.gif" alt="gif5">  </p>
 <p>See <code>imp_raven</code> above for more details on additional settings when importing selections.</p>
 <hr>
@@ -5272,21 +5269,21 @@ raven.path &lt;-<span class="st"> "PATH_TO_RAVEN_DIRECTORY_HERE"</span>
 </h3>
 <p>As the name suggests, <em>raven_batch_detec</em> runs <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> detector on multiple sound files (sequentially). Batch detection in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> can also take files in ‘mp3’, ‘flac’ and ‘aif’ format (although this could not be further analyzed in R!).</p>
 <p>This is example runs the detector on one of the example sound files that comes by default with <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">detec.res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/raven_batch_detec.html">raven_batch_detec</a></span>(<span class="dt">raven.path =</span> raven.path, 
-<span class="dt">sound.files =</span> <span class="st">"BlackCappedVireo.aif"</span>, <span class="dt">path =</span> <span class="kw">file.path</span>(raven.path, <span class="st">"Examples"</span>))</code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">detec.res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/raven_batch_detec.html">raven_batch_detec</a></span>(<span class="dt">raven.path =</span> raven.path, </a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="dt">sound.files =</span> <span class="st">"BlackCappedVireo.aif"</span>, <span class="dt">path =</span> <span class="kw">file.path</span>(raven.path, <span class="st">"Examples"</span>))</a></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_raven_batch_detec.gif" alt="gif6">  </p>
 <hr>
 <p>Please report any bugs <a href="https://github.com/maRce10/Rraven/issues">here</a>. The <code>Rraven</code> package should be cited as follows:</p>
 <p>Araya-Salas, M. (2017), <em>Rraven: connecting R and Raven bioacoustic software</em>. R package version 1.0.0.</p>
 <hr>
 <p><font size="4">Session information</font></p>
-<pre><code>R version 3.4.4 (2018-03-15)
+<pre><code>R version 3.5.1 (2018-07-02)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.1 LTS
+Running under: Ubuntu 18.10
 
 Matrix products: default
 BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
-LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.2.20.so
+LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.3.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8     LC_MONETARY=en_US.UTF-8   
@@ -5297,18 +5294,18 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] kableExtra_0.9.0   knitr_1.20         Rraven_1.0.5       warbleR_1.1.16     NatureSounds_1.0.0 seewave_2.1.0      tuneR_1.3.3       
+[1] kableExtra_0.9.0   knitr_1.20         Rraven_1.0.5       warbleR_1.1.16     NatureSounds_1.0.1 seewave_2.1.0      tuneR_1.3.3       
 [8] maps_3.3.0        
 
 loaded via a namespace (and not attached):
- [1] Rcpp_0.12.19      lattice_0.20-35   fftw_1.0-4        assertthat_0.2.0  rprojroot_1.3-2   digest_0.6.18     R6_2.3.0          Sim.DiffProc_4.3 
- [9] backports_1.1.2   signal_0.7-6      evaluate_0.11     pracma_2.1.8      httr_1.3.1        highr_0.7         pillar_1.3.0      rlang_0.3.0.1    
-[17] rstudioapi_0.7    vegan_2.5-2       Matrix_1.2-12     rmarkdown_1.10    pkgdown_1.1.0     desc_1.2.0        readr_1.1.1       stringr_1.3.1    
-[25] RCurl_1.95-4.11   munsell_0.5.0     proxy_0.4-22      compiler_3.4.4    Deriv_3.8.5       pkgconfig_2.0.2   mgcv_1.8-23       htmltools_0.3.6  
-[33] tidyselect_0.2.5  tibble_1.4.2      roxygen2_6.1.0    dtw_1.20-1        permute_0.9-4     viridisLite_0.3.0 crayon_1.3.4      dplyr_0.7.7      
-[41] MASS_7.3-49       bitops_1.0-6      commonmark_1.5    grid_3.4.4        nlme_3.1-131      magrittr_1.5      scales_1.0.0      stringi_1.2.4    
-[49] pbapply_1.3-4     fs_1.2.6          bindrcpp_0.2.2    xml2_1.2.0        rjson_0.2.20      iterators_1.0.10  tools_3.4.4       glue_1.3.0       
-[57] purrr_0.2.5       hms_0.4.2         jpeg_0.1-8        parallel_3.4.4    yaml_2.2.0        colorspace_1.3-2  cluster_2.0.6     soundgen_1.3.1   
+ [1] Rcpp_1.0.0        lattice_0.20-35   fftw_1.0-4        assertthat_0.2.0  rprojroot_1.3-2   digest_0.6.18     R6_2.3.0          Sim.DiffProc_4.3 
+ [9] backports_1.1.3   signal_0.7-6      evaluate_0.12     pracma_2.2.2      httr_1.4.0        highr_0.7         pillar_1.3.0      rlang_0.3.1      
+[17] rstudioapi_0.9.0  vegan_2.5-3       Matrix_1.2-14     rmarkdown_1.10    pkgdown_1.1.0     desc_1.2.0        readr_1.3.1       stringr_1.3.1    
+[25] RCurl_1.95-4.11   munsell_0.5.0     proxy_0.4-22      compiler_3.5.1    Deriv_3.8.5       pkgconfig_2.0.2   mgcv_1.8-24       htmltools_0.3.6  
+[33] tidyselect_0.2.5  tibble_1.4.2      roxygen2_6.1.1    dtw_1.20-1        permute_0.9-4     viridisLite_0.3.0 crayon_1.3.4      dplyr_0.7.6      
+[41] MASS_7.3-50       bitops_1.0-6      commonmark_1.7    grid_3.5.1        nlme_3.1-137      magrittr_1.5      scales_1.0.0      stringi_1.2.4    
+[49] pbapply_1.4-0     fs_1.2.6          bindrcpp_0.2.2    xml2_1.2.0        rjson_0.2.20      iterators_1.0.10  tools_3.5.1       glue_1.3.0       
+[57] purrr_0.2.5       hms_0.4.2         jpeg_0.1-8        parallel_3.5.1    yaml_2.2.0        colorspace_1.3-2  cluster_2.0.7-1   soundgen_1.3.2   
 [65] rvest_0.3.2       memoise_1.1.0     bindr_0.1.1      </code></pre>
 </div>
 </div>
