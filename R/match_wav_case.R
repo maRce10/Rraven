@@ -13,7 +13,7 @@
 #' @details The function returns the data from the input data frame with extension file
 #' names in the 'sound.files' column matching those of the sound files (in case there was
 #' any mismatch). The function needs the path to the sound files to compare extension names.
-#' @seealso \code{\link[warbleR]{sort_colms}}; \code{\link{relabel_colms}} 
+#' @seealso \code{\link{relabel_colms}} 
 #' @export
 #' @name match_wav_case
 #' @examples

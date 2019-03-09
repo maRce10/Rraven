@@ -27,8 +27,6 @@
 #'   \code{\link{to_sound_selection}}: Convert Raven's selection files into sound selection files
 #'      
 #' @import warbleR 
-#' @import dplyr
-#' @import kableExtra
 #' @import pbapply
 #' @importFrom stats approx as.ts
 #' @importFrom utils read.table write.table

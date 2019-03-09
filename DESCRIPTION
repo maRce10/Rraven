@@ -7,13 +7,13 @@ Author: Marcelo Araya-Salas [aut, cre]
 Maintainer: Marcelo Araya-Salas <araya-salas@cornell.edu>
 Description: A tool to exchange data between R and 'Raven' sound analysis software <http://www.birds.cornell.edu/brp/raven/RavenOverview.html> (Cornell Lab of Ornithology). Functions work on data formats compatible with the R package 'warbleR'.
 License: GPL (>= 2)
-Imports: pbapply, warbleR, utils, stats, dplyr, kableExtra
+Imports: pbapply, warbleR, utils, stats
 Depends: R (>= 3.2.1)
 LazyData: TRUE
 URL: https://github.com/maRce10/Rraven 
 BugReports: https://github.com/maRce10/Rraven/issues
 NeedsCompilation: no
-Suggests: knitr, vegan
+Suggests: knitr, vegan, dplyr, kableExtra
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 Packaged: 2018-09-27 23:45:31 UTC; m
