@@ -28,6 +28,8 @@
 #'      
 #' @import warbleR 
 #' @import pbapply
+#' @importFrom seewave duration pastew
+#' @importFrom tuneR normalize writeWave
 #' @importFrom stats approx as.ts
 #' @importFrom utils read.table write.table
 #' @author Marcelo Araya-Salas
