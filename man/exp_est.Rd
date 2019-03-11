@@ -8,7 +8,7 @@ exp_est(X, file.name = NULL, path = NULL, single.file = FALSE,
 selection.table = TRUE, pb = TRUE, normalize = TRUE, parallel = 1)
 }
 \arguments{
-\item{X}{object of class 'extended_selection_table' (objects produced by \code{\link[warbleR]{selection_table}}). More details about this objects can be found on \href{https://marce10.github.io/2018/05/15/Extended_selection_tables.html}{this link}.}
+\item{X}{object of class 'extended_selection_table' (objects produced by \code{\link[warbleR]{selection_table}}). More details about these objects can be found on \href{https://marce10.github.io/2018/05/15/Extended_selection_tables.html}{this link}.}
 
 \item{file.name}{character string indicating the name of the sound file (if \code{single.file = TRUE}) 
 and/or the selection table (if \code{selection.table = TRUE}). Default is \code{NULL}.}
