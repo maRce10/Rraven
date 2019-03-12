@@ -1,5 +1,0 @@
-Begin Time (s)	End Time (s)	Begin File	Begin Path	File Offset (s)	Selection	View	Channel	Low Freq (Hz)	High Freq (Hz)	channel	Rraven.labels
-0	0	Phae.long1.wav	/home/m/Dropbox/Rraven/docs/reference/Phae.long1.wav	0	1	Spectrogram 1	1	1000	1000	1	Phae.long1.wav
-2.50004444444444	2.50004444444444	Phae.long2.wav	/home/m/Dropbox/Rraven/docs/reference/Phae.long2.wav	0	2	Spectrogram 1	1	1000	1000	1	Phae.long2.wav
-4.20008888888889	4.20008888888889	Phae.long3.wav	/home/m/Dropbox/Rraven/docs/reference/Phae.long3.wav	0	3	Spectrogram 1	1	1000	1000	1	Phae.long3.wav
-6.40008888888889	6.40008888888889	Phae.long4.wav	/home/m/Dropbox/Rraven/docs/reference/Phae.long4.wav	0	4	Spectrogram 1	1	1000	1000	1	Phae.long4.wav

@@ -1,4 +1,4 @@
-#' Export wave objects of an extended selection table as sound files  
+#' Export wave objects of extended selection tables as sound files  
 #' 
 #' \code{exp_est} exports wave objects of an extended selection table as sound files
 #' @usage exp_est(X, file.name = NULL, path = NULL, single.file = FALSE, 

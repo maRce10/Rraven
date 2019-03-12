@@ -2,7 +2,7 @@
 % Please edit documentation in R/exp_est.R
 \name{exp_est}
 \alias{exp_est}
-\title{Export wave objects of an extended selection table as sound files}
+\title{Export wave objects of extended selection tables as sound files}
 \usage{
 exp_est(X, file.name = NULL, path = NULL, single.file = FALSE, 
 selection.table = TRUE, pb = TRUE, normalize = TRUE, parallel = 1)
