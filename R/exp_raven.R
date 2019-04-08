@@ -16,7 +16,7 @@
 #' selection file into Raven). Default is \code{NULL}. This argument is required when
 #' exporting selections from multiple sound files.
 #' @param single.file Logical. Controls whether a single selection file (\code{TRUE}; default)
-#' or multiple selection files for each sound file (\code{FALSE}, hence, only applicable
+#' or a selection file for each sound file (\code{FALSE}, hence, only applicable
 #' when several sound files are included in 'X') are generated. Note that
 #' 'sound.file.path' must be provided when exporting several sound files into a single selection file as the
 #' duration of the sound files is required.

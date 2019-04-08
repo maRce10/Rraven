@@ -72,7 +72,7 @@ library(Rraven)
 ```
  &nbsp; 
  
-Let's also use a temporary folder as the working directory i which to save all sound files and data files:
+Let's also use a temporary folder as the working directory in which to save all sound files and data files:
 
 ```{r eval= F, echo=T}
 

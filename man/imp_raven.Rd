@@ -22,7 +22,7 @@ All selection files must contain "Selection", "Begin.Time" and "End.Time" column
 keeping the name columns as in the 'Raven' files. Default is \code{FALSE}. Columns absent in some selection files will 
 be filled with NA's. Note that when Raven selection files contain data from multiple sound files the  "Begin.Time" and 
 "End.Time" columns are relative to the position of the sound files in sequence of files riginally displayed by Raven.
-This data is corrected to the absolute time for each sound file only if \code{all.data = FALSE}.}
+Keep in mind that the data is corrected to the absolute time for each sound file only if \code{all.data = FALSE}.}
 
 \item{recursive}{Logical. If \code{TRUE} the listing recurse into sub-directories.}
 

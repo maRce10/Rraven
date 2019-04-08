@@ -15,7 +15,7 @@
 #' keeping the name columns as in the 'Raven' files. Default is \code{FALSE}. Columns absent in some selection files will 
 #' be filled with NA's. Note that when Raven selection files contain data from multiple sound files the  "Begin.Time" and 
 #' "End.Time" columns are relative to the position of the sound files in sequence of files riginally displayed by Raven.
-#' This data is corrected to the absolute time for each sound file only if \code{all.data = FALSE}.
+#' Keep in mind that the data is corrected to the absolute time for each sound file only if \code{all.data = FALSE}.
 #' @param recursive Logical. If \code{TRUE} the listing recurse into sub-directories.
 #' @param name.from.file Logical. If \code{TRUE} the sound file names are extracted from the selection text file name. 
 #' It asssumes that selections files contained the suffix "Table.1.selections.txt" or "selections.txt". 
@@ -240,7 +240,8 @@ if (!all.data & !is.null(b$sound.files))
 if (length(error.files) == length(sel.txt2)) cat("Not a single file could be read") else
 if (length(error.files) > 0 & !unread) cat(paste(length(error.files), "file(s) could not be read:", paste(error.files, collapse = "/")))
 
+if (all.data) message("warning: when 'all.data = TRUE' time columns are not corrected if the data contains multiple sound files")
+
 if (unread) return(list(selections = b, unread_files = error.files)) else
 return(b)
-
 }
