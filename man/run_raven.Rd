@@ -89,5 +89,5 @@ path = tempdir())
 \code{\link{imp_raven}}; \code{\link{imp_syrinx}}
 }
 \author{
-Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
+Marcelo Araya-Salas (\email{marceloa27@gmail.com})
 }

@@ -58,5 +58,5 @@ syr.dat <- imp_syrinx(all.data = TRUE)
 \code{\link{imp_raven}}
 }
 \author{
-Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
+Marcelo Araya-Salas (\email{marceloa27@gmail.com})
 }

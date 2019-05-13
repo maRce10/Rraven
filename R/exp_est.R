@@ -43,7 +43,7 @@
 #' exp_est(X, single.file = FALSE, file.name = "test3")
 #' }
 #' 
-#' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
+#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
 #last modification on mar-11-2019
 
 exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,  

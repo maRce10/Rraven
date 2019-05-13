@@ -37,5 +37,5 @@ License: GPL (>= 2)
 \author{
 Marcelo Araya-Salas
   
- Maintainer: Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
+ Maintainer: Marcelo Araya-Salas (\email{marceloa27@gmail.com})
 }

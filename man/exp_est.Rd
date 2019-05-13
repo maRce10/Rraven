@@ -66,5 +66,5 @@ exp_est(X, single.file = FALSE, file.name = "test3")
 \code{\link{exp_raven}};
 }
 \author{
-Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
+Marcelo Araya-Salas (\email{marceloa27@gmail.com})
 }

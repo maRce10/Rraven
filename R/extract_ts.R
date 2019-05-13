@@ -43,7 +43,7 @@
 #' equal.length = TRUE, length.out = 10) 
 #'} 
 #' 
-#' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
+#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
 #last modification on nov-7-2017
 extract_ts <- function(X, ts.column, equal.length = FALSE, as.time.series = FALSE,
                        length.out = 30, parallel = 1, pb = TRUE){

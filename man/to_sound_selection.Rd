@@ -71,5 +71,5 @@ sound.file.col = "Begin Path")
 \code{\link{imp_syrinx}}; \code{\link{imp_raven}}
 }
 \author{
-Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
+Marcelo Araya-Salas (\email{marceloa27@gmail.com})
 }

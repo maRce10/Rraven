@@ -4,7 +4,7 @@
 \alias{imp_raven}
 \title{Import 'Raven' selections}
 \usage{
-imp_raven(path = NULL, warbler.format = FALSE,  all.data = FALSE, 
+imp_raven(path = NULL, warbler.format = FALSE,  all.data = FALSE, files = NULL,
 only.spectro.view = TRUE, recursive = FALSE, name.from.file = FALSE, 
 ext.case = NULL, freq.cols = TRUE, waveform = FALSE, parallel = 1, pb = TRUE, 
 unread = FALSE, rm.dup = FALSE,  sound.file.col = NULL)
@@ -13,11 +13,13 @@ unread = FALSE, rm.dup = FALSE,  sound.file.col = NULL)
 \item{path}{A character string indicating the path of the directory in which to look for the 'Raven' selection (text) files. 
 If not provided (default) the function searches into the current working directory.}
 
-\item{warbler.format}{Logical. If \code{TRUE} columns are renamed using the standard names for a selection table as in the package 'warbleR' and frequency limit columns (high and low frequency) in 'Hz' are converted to 'kHz' (as in warbleR selection tables). Default is \code{FALSE}.}
+\item{warbler.format}{Logical. If \code{TRUE} columns are renamed using the standard names for a selection table as in the package 'warbleR', frequency limit columns (high and low frequency) in 'Hz' are converted to 'kHz' (as in warbleR selection tables) and only the spectrogram view measurements are kept. Default is \code{FALSE}.}
 
 \item{all.data}{Logical. If \code{TRUE} all columns in the selection files are returned, 
 keeping the name columns as in the 'Raven' files. Default is \code{FALSE}. Columns absent in some selection files will 
-be filled with NA's. This argument WILL BE DEPRECATED as it is being replace by 'warbler.format'.}
+be filled with NA's. This argument WILL BE DEPRECATED as it is being replaced by 'warbler.format'.}
+
+\item{files}{Character vector indicating the name of selection files (in .txt format) to be imported. Optional. Default is \code{NULL}.}
 
 \item{only.spectro.view}{Logical. If \code{TRUE} (default) only the mesaurements in the Raven spectrogram view ('View' column) are returned. Ignored if \code{warbler.format == TRUE} (only spectrogram view measurements are kept).}
 
@@ -34,7 +36,7 @@ Ignored if 'sound.file.col' is provided and/or all.data is \code{TRUE}.}
 
 \item{freq.cols}{Logical. If \code{TRUE} 'Low Freq' and 'High Freq' columns are also imported. Ignored if all.data is \code{TRUE}.}
 
-\item{waveform}{Logical to control if waveform view data should be included (this data is typically duplicated in spectrogram view data).  Default is \code{FALSE} (not to include it). This argument WILL BE DEPRECATED as it is being replace by 'only.spectro.view'.}
+\item{waveform}{Logical to control if waveform view data should be included (this data is typically duplicated in spectrogram view data).  Default is \code{FALSE} (not to include it). This argument WILL BE DEPRECATED as it is being replaced by 'only.spectro.view'.}
 
 \item{parallel}{Numeric. Controls whether parallel computing is applied.
 It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).}
@@ -61,7 +63,7 @@ A single data frame with information of the selection files. If \code{unread = T
 \code{imp_raven} imports 'Raven' selection files simultaneously from many files. Files must be in '.txt' format.
 }
 \details{
-The function import 'Raven' selection data from many files simultaneously. It has been created using Raven Pro 1.5 so selection tables created with other versions might not be read properly. Files must be in '.txt' format. Selection 
+The function import 'Raven' selection data from many files simultaneously. All selection files in the working directory or 'path' supplied will be imported (unless 'files' argument is also supplied). It has been created using Raven Pro 1.5 so selection tables created with other versions might not be read properly. Files must be in '.txt' format. Selection 
 files including data from mulitple recordings can also be imported.
 }
 \examples{
@@ -88,5 +90,5 @@ rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE)
 \code{\link{imp_syrinx}}
 }
 \author{
-Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
+Marcelo Araya-Salas (\email{marceloa27@gmail.com})
 }

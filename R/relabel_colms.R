@@ -51,7 +51,7 @@
 #'names(rvn.dat2)
 #'}
 #' 
-#' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
+#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
 #last modification on nov-7-2017
 
  relabel_colms <- function(X, extra.cols.name = NULL, extra.cols.new.name = NULL, khz.to.hz = FALSE, hz.to.khz = FALSE,

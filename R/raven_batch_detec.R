@@ -55,7 +55,7 @@
 #' path = file.path(raven.path, "Examples"), detector = "Band Limited Energy Detector")
 #' }
 #' 
-#' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
+#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
 #last modification on nov-8-2017
 
 raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detector.type,

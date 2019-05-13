@@ -54,5 +54,5 @@ selec.table$sound.files[1] <- gsub("\\\\.wav$", ".WAV", selec.table$sound.files[
 \code{\link{relabel_colms}}
 }
 \author{
-Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
+Marcelo Araya-Salas (\email{marceloa27@gmail.com})
 }

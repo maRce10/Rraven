@@ -33,7 +33,7 @@
 #' # export with file name
 #' exp_empty_sels(file.name = "Phaethornis.longirostris")
 #' 
-#' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
+#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
 #last modification on oct-12-2018
 
 exp_empty_sels <- function(path = NULL, file.name = NULL, pb = TRUE){

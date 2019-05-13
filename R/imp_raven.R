@@ -1,16 +1,17 @@
 #' Import 'Raven' selections
 #' 
 #' \code{imp_raven} imports 'Raven' selection files simultaneously from many files. Files must be in '.txt' format.
-#' @usage imp_raven(path = NULL, warbler.format = FALSE,  all.data = FALSE, 
+#' @usage imp_raven(path = NULL, warbler.format = FALSE,  all.data = FALSE, files = NULL,
 #' only.spectro.view = TRUE, recursive = FALSE, name.from.file = FALSE, 
 #' ext.case = NULL, freq.cols = TRUE, waveform = FALSE, parallel = 1, pb = TRUE, 
 #' unread = FALSE, rm.dup = FALSE,  sound.file.col = NULL)  
 #' @param path A character string indicating the path of the directory in which to look for the 'Raven' selection (text) files. 
 #' If not provided (default) the function searches into the current working directory.
-#' @param warbler.format Logical. If \code{TRUE} columns are renamed using the standard names for a selection table as in the package 'warbleR' and frequency limit columns (high and low frequency) in 'Hz' are converted to 'kHz' (as in warbleR selection tables). Default is \code{FALSE}.
+#' @param warbler.format Logical. If \code{TRUE} columns are renamed using the standard names for a selection table as in the package 'warbleR', frequency limit columns (high and low frequency) in 'Hz' are converted to 'kHz' (as in warbleR selection tables) and only the spectrogram view measurements are kept. Default is \code{FALSE}.
 #' @param all.data Logical. If \code{TRUE} all columns in the selection files are returned, 
 #' keeping the name columns as in the 'Raven' files. Default is \code{FALSE}. Columns absent in some selection files will 
-#' be filled with NA's. This argument WILL BE DEPRECATED as it is being replace by 'warbler.format'.
+#' be filled with NA's. This argument WILL BE DEPRECATED as it is being replaced by 'warbler.format'.
+#' @param files Character vector indicating the name of selection files (in .txt format) to be imported. Optional. Default is \code{NULL}.
 #' @param only.spectro.view Logical. If \code{TRUE} (default) only the mesaurements in the Raven spectrogram view ('View' column) are returned. Ignored if \code{warbler.format == TRUE} (only spectrogram view measurements are kept). 
 #' @param recursive Logical. If \code{TRUE} the listing recurse into sub-directories.
 #' @param name.from.file Logical. If \code{TRUE} the sound file names are extracted from the selection text file name. 
@@ -21,7 +22,7 @@
 #' of the .wav files from which the selection were made. It must be either 'upper' or 'lower'. Only needed when 'name.from.file' is \code{TRUE}. 
 #' Ignored if 'sound.file.col' is provided and/or all.data is \code{TRUE}.
 #' @param freq.cols Logical. If \code{TRUE} 'Low Freq' and 'High Freq' columns are also imported. Ignored if all.data is \code{TRUE}.
-#' @param waveform Logical to control if waveform view data should be included (this data is typically duplicated in spectrogram view data).  Default is \code{FALSE} (not to include it). This argument WILL BE DEPRECATED as it is being replace by 'only.spectro.view'.
+#' @param waveform Logical to control if waveform view data should be included (this data is typically duplicated in spectrogram view data).  Default is \code{FALSE} (not to include it). This argument WILL BE DEPRECATED as it is being replaced by 'only.spectro.view'.
 #' @param parallel Numeric. Controls whether parallel computing is applied.
 #' It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
 #' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
@@ -36,7 +37,7 @@
 #'  If 'warbler.format' argument is set to \code{TRUE} the data frame contains the following columns: sound.files, selec, channel,start, end, top.freq, bottom.freq and selec.file. If all.data is set to \code{TRUE} then all columns in the 'Raven' selection files are returned. 
 #'  If individual selection files contain information about multiple sound files the function will import the file and correct the time
 #'  parameters (start and end) only if 1) the 'File Offset (s)' is found in the selection table.
-#' @details The function import 'Raven' selection data from many files simultaneously. It has been created using Raven Pro 1.5 so selection tables created with other versions might not be read properly. Files must be in '.txt' format. Selection 
+#' @details The function import 'Raven' selection data from many files simultaneously. All selection files in the working directory or 'path' supplied will be imported (unless 'files' argument is also supplied). It has been created using Raven Pro 1.5 so selection tables created with other versions might not be read properly. Files must be in '.txt' format. Selection 
 #' files including data from mulitple recordings can also be imported. 
 #' @seealso \code{\link{imp_syrinx}} 
 #' @export
@@ -60,10 +61,10 @@
 #' # View(rvn.dat)
 #' }
 #' 
-#' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
+#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
 #last modification on nov-7-2017
 
-imp_raven <- function(path = NULL, warbler.format = FALSE, all.data = FALSE,  
+imp_raven <- function(path = NULL, warbler.format = FALSE, all.data = FALSE, files = NULL,  
                       only.spectro.view = TRUE, recursive = FALSE, name.from.file = FALSE, 
                       ext.case = NULL, freq.cols = TRUE, waveform = FALSE, 
                       parallel = 1, pb = TRUE, unread = FALSE, 
@@ -85,13 +86,21 @@ imp_raven <- function(path = NULL, warbler.format = FALSE, all.data = FALSE,
   
   if (is.null(ext.case) & name.from.file) stop("'ext.case' must be provided when name.from.file is TRUE")
   
-  # only read file names
+  # read name and path
   sel.txt <- list.files(pattern = ".txt$", full.names = TRUE, recursive = recursive, ignore.case = TRUE)
   
-  # read name and path
+  # only read file names
   sel.txt2 <- list.files(pattern = ".txt$", full.names = FALSE, recursive = recursive, ignore.case = TRUE)
   
   if (length(sel.txt) == 0) stop("No selection .txt files in working directory/'path' provided")
+  
+  # subset 
+  if (!is.null(files)){
+    sel.txt2 <- sel.txt2[sel.txt2 %in% files]
+    sel.txt <- sel.txt[basename(sel.txt) %in% files]
+  
+    if (length(sel.txt) == 0) stop("Files provided not found")
+    }
   
 # set pb options 
 pbapply::pboptions(type = ifelse(pb, "timer", "none"))

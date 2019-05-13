@@ -49,7 +49,7 @@
 #' # try drag and drop into Raven again (should work now)
 #' }
 #' 
-#' @author Marcelo Araya-Salas (\email{araya-salas@@cornell.edu})
+#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
 #last modification on nov-7-2017
 
 to_sound_selection <- function(path = NULL, dest.path = NULL, recursive = FALSE, parallel = 1, pb = TRUE, sound.file.path, sound.file.col)

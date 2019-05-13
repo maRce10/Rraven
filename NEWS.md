@@ -6,6 +6,7 @@
 
 ## Changes and additions:
 
+* new arguments in 'imp_raven()': 'warbler.format' for importing with warbleR selection table column names, 'only.spectro.view' for keeping measurements only for the spectrogram view and 'files' for importing specific selection files
 * bug fix in 'raven_batch_detec()' when using custom made detectors 
 * bug fix in 'extract_ts()' when having 1 value or no values in Raven frequency contours 
 

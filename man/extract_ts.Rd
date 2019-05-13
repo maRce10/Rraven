@@ -64,5 +64,5 @@ equal.length = TRUE, length.out = 10)
 \code{\link{imp_raven}}; \code{\link{exp_raven}}
 }
 \author{
-Marcelo Araya-Salas (\email{araya-salas@cornell.edu})
+Marcelo Araya-Salas (\email{marceloa27@gmail.com})
 }
