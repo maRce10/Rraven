@@ -173,11 +173,11 @@ rvn.dat <- imp_raven(all.data = TRUE, waveform = TRUE)
 ```
  &nbsp; 
  
-[Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) selections can also be imported in a 'selection.table' format so it can be directly input into [warbleR](https://cran.r-project.org/package=warbleR) functions. To do this you need to set the `all.data = FALSE` and indicate which column contains the sound file name (using the 'sound.file.col' argument): 
+[Raven](http://www.birds.cornell.edu/brp/raven/RavenOverview.html) selections can also be imported in a 'selection.table' format so it can be directly input into [warbleR](https://cran.r-project.org/package=warbleR) functions. To do this you need to set `warbler.format = FALSE`: 
 
 ```{r, eval=FALSE}
  #providing the name of the column with the sound file names
-rvn.dat <- imp_raven(sound.file.col = "End.File", all.data = FALSE, freq.cols = TRUE)
+rvn.dat <- imp_raven(sound.file.col = "End.File", warbler.format =  TRUE)
 
 head(rvn.dat)
 
@@ -186,7 +186,7 @@ head(rvn.dat)
 ```{r, eval=TRUE, echo=FALSE}
 
  #providing the name of the column with the sound file names
-rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE, freq.cols = TRUE)
+rvn.dat <- imp_raven(sound.file.col = "End.File", warbler.format =  TRUE)
 
 kbl <- kable(head(rvn.dat), align = "c", row.names = F, escape = FALSE)
 

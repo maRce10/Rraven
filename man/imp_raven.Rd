@@ -4,25 +4,22 @@
 \alias{imp_raven}
 \title{Import 'Raven' selections}
 \usage{
-imp_raven(path = NULL, sound.file.col = NULL, all.data = FALSE, recursive = FALSE,
- name.from.file = FALSE, ext.case = NULL, freq.cols = TRUE, waveform = FALSE, 
- parallel = 1, pb = TRUE, unread = FALSE, rm.dup = FALSE)
+imp_raven(path = NULL, warbler.format = FALSE,  all.data = FALSE, 
+only.spectro.view = TRUE, recursive = FALSE, name.from.file = FALSE, 
+ext.case = NULL, freq.cols = TRUE, waveform = FALSE, parallel = 1, pb = TRUE, 
+unread = FALSE, rm.dup = FALSE,  sound.file.col = NULL)
 }
 \arguments{
 \item{path}{A character string indicating the path of the directory in which to look for the 'Raven' selection (text) files. 
 If not provided (default) the function searches into the current working directory.}
 
-\item{sound.file.col}{A character string with the name of the column containing the sound files in 
-the selection text files. Default is \code{NULL}. If provided, the output data
-frame will contained all columns needed for subsequent analysis in the acoustic analysis package \code{\link{warbleR}}. 
-Duplicated rows, as when "waveform" and "spectrogram" information are included for the same selection, will be removed.
-All selection files must contain "Selection", "Begin.Time" and "End.Time" columns.}
+\item{warbler.format}{Logical. If \code{TRUE} columns are renamed using the standard names for a selection table as in the package 'warbleR' and frequency limit columns (high and low frequency) in 'Hz' are converted to 'kHz' (as in warbleR selection tables). Default is \code{FALSE}.}
 
 \item{all.data}{Logical. If \code{TRUE} all columns in the selection files are returned, 
 keeping the name columns as in the 'Raven' files. Default is \code{FALSE}. Columns absent in some selection files will 
-be filled with NA's. Note that when Raven selection files contain data from multiple sound files the  "Begin.Time" and 
-"End.Time" columns are relative to the position of the sound files in sequence of files riginally displayed by Raven.
-Keep in mind that the data is corrected to the absolute time for each sound file only if \code{all.data = FALSE}.}
+be filled with NA's. This argument WILL BE DEPRECATED as it is being replace by 'warbler.format'.}
+
+\item{only.spectro.view}{Logical. If \code{TRUE} (default) only the mesaurements in the Raven spectrogram view ('View' column) are returned. Ignored if \code{warbler.format == TRUE} (only spectrogram view measurements are kept).}
 
 \item{recursive}{Logical. If \code{TRUE} the listing recurse into sub-directories.}
 
@@ -37,33 +34,34 @@ Ignored if 'sound.file.col' is provided and/or all.data is \code{TRUE}.}
 
 \item{freq.cols}{Logical. If \code{TRUE} 'Low Freq' and 'High Freq' columns are also imported. Ignored if all.data is \code{TRUE}.}
 
-\item{waveform}{Logical to control if waveform view data should be included (this data is typically duplicated in spectrogram view data).  Default is \code{FALSE} (not to include it).}
+\item{waveform}{Logical to control if waveform view data should be included (this data is typically duplicated in spectrogram view data).  Default is \code{FALSE} (not to include it). This argument WILL BE DEPRECATED as it is being replace by 'only.spectro.view'.}
 
 \item{parallel}{Numeric. Controls whether parallel computing is applied.
 It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).}
 
 \item{pb}{Logical argument to control progress bar. Default is \code{TRUE}.}
 
-\item{unread}{Logical. If \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections\
-whole the second one is a character vector with the names of sound files that could not be read. Default is \code{FALSE}.}
+\item{unread}{Logical. If \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections
+whole data. The second and third elements are character vectors with the names of sound files that could not be read or that contain multiple sound files but no 'File Offset' column and could not be imported. Default is \code{FALSE}.}
 
 \item{rm.dup}{Logical. If \code{TRUE} duplicated rows and columns are removed. Usefull when 
 selection files have been duplicated. Default is \code{FALSE}.}
+
+\item{sound.file.col}{A character string with the name of the column containing the sound files in 
+the selection text files. Default is \code{NULL}. This argument WILL BE DEPRECATED as the function now searches for columns containing the sound file names.}
 }
 \value{
-A single data frame with information of the selection files. If \code{unread = TRUE} the function returns a list of length 2 with
+A single data frame with information of the selection files. If \code{unread = TRUE} the function returns a list of length 3 with
  the selection data frame and a vector with the names of files that could not be read (see 'unread' argument).  
- If 'all.data' argument is set to \code{FALSE} the data frame contains the following columns: selec, start, end, and selec.file. 
- If sound.file.col is provided the data frame  will also contain a 'sound.files' column. In addition, all rows with duplicated 
- data are removed. This is useful when both spectrogram and waveform views are included in the 'Raven' selection files. If all.data is set to \code{TRUE} then all columns in the 'Raven' selection files are returned. 
- If individual selection files contain information about multiple sound files the function will correct the time
- parameters (start and end) only if 1) the 'File Offset (s)' is also included in the selection file and 2) the sound file column has been provided (using 'sound.file.col' or 'name.from.file' arguments) and 3) 'all.data' is \code{FALSE}.
+ If 'warbler.format' argument is set to \code{TRUE} the data frame contains the following columns: sound.files, selec, channel,start, end, top.freq, bottom.freq and selec.file. If all.data is set to \code{TRUE} then all columns in the 'Raven' selection files are returned. 
+ If individual selection files contain information about multiple sound files the function will import the file and correct the time
+ parameters (start and end) only if 1) the 'File Offset (s)' is found in the selection table.
 }
 \description{
 \code{imp_raven} imports 'Raven' selection files simultaneously from many files. Files must be in '.txt' format.
 }
 \details{
-The function import 'Raven' selection data from many files simultaneously. Files must be in '.txt' format. Selection 
+The function import 'Raven' selection data from many files simultaneously. It has been created using Raven Pro 1.5 so selection tables created with other versions might not be read properly. Files must be in '.txt' format. Selection 
 files including data from mulitple recordings can also be imported.
 }
 \examples{
