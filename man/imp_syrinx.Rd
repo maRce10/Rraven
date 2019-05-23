@@ -33,7 +33,7 @@ columns in selection files are returned.
 }
 \description{
 \code{imp_syrinx} imports 'Syrinx' selection data from many files simultaneously. 
-All files must be have the same columns.
+All files must have the same columns.
 }
 \examples{
 \dontrun{

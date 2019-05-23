@@ -85,7 +85,7 @@
 </center></h4>
             
             <h4 class="date"><center>
-“2019-05-13”
+“2019-05-22”
 </center></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/maRce10/Rraven/blob/master/vignettes/Rraven.Rmd"><code>vignettes/Rraven.Rmd</code></a></small>
@@ -624,7 +624,8 @@ LBH 3 selection table example.txt
 <a class="sourceLine" id="cb9-4" data-line-number="4">sp &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/warbleR/topics/specan">specan</a></span>(<span class="dt">X =</span> rvn.dat, <span class="dt">bp =</span> <span class="st">"frange"</span>, <span class="dt">wl =</span> <span class="dv">150</span>, <span class="dt">pb =</span> <span class="ot">FALSE</span>, <span class="dt">ovlp =</span> <span class="dv">90</span>)</a>
 <a class="sourceLine" id="cb9-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb9-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(sp)</a></code></pre></div>
-<pre><code>checking selections:</code></pre>
+<pre><code>checking selections (step 1 of 2):
+all selections are OK </code></pre>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:808px; ">
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
@@ -633,6 +634,12 @@ sound.files
 </th>
 <th style="text-align:center;">
 selec
+</th>
+<th style="text-align:center;">
+top.freq
+</th>
+<th style="text-align:center;">
+bottom.freq
 </th>
 <th style="text-align:center;">
 duration
@@ -712,12 +719,6 @@ dfslope
 <th style="text-align:center;">
 meanpeakf
 </th>
-<th style="text-align:center;">
-bottom.freq
-</th>
-<th style="text-align:center;">
-top.freq
-</th>
 </tr></thead>
 <tbody>
 <tr>
@@ -726,6 +727,12 @@ Phae.long1.wav
 </td>
 <td style="text-align:center;">
 1
+</td>
+<td style="text-align:center;">
+8.60438
+</td>
+<td style="text-align:center;">
+2.22011
 </td>
 <td style="text-align:center;">
 0.173033
@@ -779,37 +786,31 @@ Phae.long1.wav
 0.651002
 </td>
 <td style="text-align:center;">
-6.40309
+6.49105
 </td>
 <td style="text-align:center;">
-3.75
+3.825
 </td>
 <td style="text-align:center;">
-8.25
+8.325
 </td>
 <td style="text-align:center;">
 4.50
 </td>
 <td style="text-align:center;">
-8.60000
+7.20000
 </td>
 <td style="text-align:center;">
-6.90
+6.975
 </td>
 <td style="text-align:center;">
-7.50
+7.575
 </td>
 <td style="text-align:center;">
 3.46754
 </td>
 <td style="text-align:center;">
 7.125
-</td>
-<td style="text-align:center;">
-2.22011
-</td>
-<td style="text-align:center;">
-8.60438
 </td>
 </tr>
 <tr>
@@ -818,6 +819,12 @@ Phae.long1.wav
 </td>
 <td style="text-align:center;">
 2
+</td>
+<td style="text-align:center;">
+8.80705
+</td>
+<td style="text-align:center;">
+2.16944
 </td>
 <td style="text-align:center;">
 0.163048
@@ -871,13 +878,13 @@ Phae.long1.wav
 0.667865
 </td>
 <td style="text-align:center;">
-6.63894
+6.71394
 </td>
 <td style="text-align:center;">
-3.90
+3.975
 </td>
 <td style="text-align:center;">
-8.40
+8.475
 </td>
 <td style="text-align:center;">
 4.50
@@ -886,22 +893,16 @@ Phae.long1.wav
 4.90000
 </td>
 <td style="text-align:center;">
-6.75
+6.825
 </td>
 <td style="text-align:center;">
-7.20
+7.275
 </td>
 <td style="text-align:center;">
 2.75992
 </td>
 <td style="text-align:center;">
 6.975
-</td>
-<td style="text-align:center;">
-2.16944
-</td>
-<td style="text-align:center;">
-8.80705
 </td>
 </tr>
 <tr>
@@ -910,6 +911,12 @@ Phae.long1.wav
 </td>
 <td style="text-align:center;">
 3
+</td>
+<td style="text-align:center;">
+8.75660
+</td>
+<td style="text-align:center;">
+2.21829
 </td>
 <td style="text-align:center;">
 0.174919
@@ -963,37 +970,31 @@ Phae.long1.wav
 0.671589
 </td>
 <td style="text-align:center;">
-6.49524
+6.53271
 </td>
 <td style="text-align:center;">
-2.25
+2.325
 </td>
 <td style="text-align:center;">
-8.55
+8.625
 </td>
 <td style="text-align:center;">
 6.30
 </td>
 <td style="text-align:center;">
-11.19048
+10.30952
 </td>
 <td style="text-align:center;">
-8.40
+2.925
 </td>
 <td style="text-align:center;">
-7.20
+7.275
 </td>
 <td style="text-align:center;">
--6.86033
+24.86869
 </td>
 <td style="text-align:center;">
 7.125
-</td>
-<td style="text-align:center;">
-2.21829
-</td>
-<td style="text-align:center;">
-8.75660
 </td>
 </tr>
 <tr>
@@ -1002,6 +1003,12 @@ Phae.long2.wav
 </td>
 <td style="text-align:center;">
 1
+</td>
+<td style="text-align:center;">
+8.82232
+</td>
+<td style="text-align:center;">
+2.31686
 </td>
 <td style="text-align:center;">
 0.132571
@@ -1055,37 +1062,31 @@ Phae.long2.wav
 0.608618
 </td>
 <td style="text-align:center;">
-6.41376
+6.48287
 </td>
 <td style="text-align:center;">
-4.80
+4.875
 </td>
 <td style="text-align:center;">
-7.95
+8.025
 </td>
 <td style="text-align:center;">
 3.15
 </td>
 <td style="text-align:center;">
-11.14286
+11.47619
 </td>
 <td style="text-align:center;">
-5.85
+4.875
 </td>
 <td style="text-align:center;">
-6.15
+6.225
 </td>
 <td style="text-align:center;">
-2.26294
+10.18323
 </td>
 <td style="text-align:center;">
 7.425
-</td>
-<td style="text-align:center;">
-2.31686
-</td>
-<td style="text-align:center;">
-8.82232
 </td>
 </tr>
 <tr>
@@ -1094,6 +1095,12 @@ Phae.long2.wav
 </td>
 <td style="text-align:center;">
 2
+</td>
+<td style="text-align:center;">
+8.88803
+</td>
+<td style="text-align:center;">
+2.28401
 </td>
 <td style="text-align:center;">
 0.126150
@@ -1147,13 +1154,13 @@ Phae.long2.wav
 0.615104
 </td>
 <td style="text-align:center;">
-6.10114
+6.17614
 </td>
 <td style="text-align:center;">
-3.00
+3.075
 </td>
 <td style="text-align:center;">
-7.65
+7.725
 </td>
 <td style="text-align:center;">
 4.65
@@ -1162,22 +1169,16 @@ Phae.long2.wav
 9.58065
 </td>
 <td style="text-align:center;">
-5.55
+5.625
 </td>
 <td style="text-align:center;">
-5.70
+5.775
 </td>
 <td style="text-align:center;">
 1.18906
 </td>
 <td style="text-align:center;">
 6.675
-</td>
-<td style="text-align:center;">
-2.28401
-</td>
-<td style="text-align:center;">
-8.88803
 </td>
 </tr>
 <tr>
@@ -1186,6 +1187,12 @@ Phae.long3.wav
 </td>
 <td style="text-align:center;">
 1
+</td>
+<td style="text-align:center;">
+8.82232
+</td>
+<td style="text-align:center;">
+3.00683
 </td>
 <td style="text-align:center;">
 0.131220
@@ -1239,13 +1246,13 @@ Phae.long3.wav
 0.570215
 </td>
 <td style="text-align:center;">
-6.68128
+6.75629
 </td>
 <td style="text-align:center;">
-4.80
+4.875
 </td>
 <td style="text-align:center;">
-8.10
+8.175
 </td>
 <td style="text-align:center;">
 3.30
@@ -1254,22 +1261,16 @@ Phae.long3.wav
 11.04546
 </td>
 <td style="text-align:center;">
-5.40
+5.475
 </td>
 <td style="text-align:center;">
-7.95
+8.025
 </td>
 <td style="text-align:center;">
 19.43308
 </td>
 <td style="text-align:center;">
 6.675
-</td>
-<td style="text-align:center;">
-3.00683
-</td>
-<td style="text-align:center;">
-8.82232
 </td>
 </tr>
 </tbody>
@@ -5149,21 +5150,21 @@ Spectrogram 1
 <a class="sourceLine" id="cb23-11" data-line-number="11">sp.wrblR &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/warbleR/topics/specan">specan</a></span>(selec.table, <span class="dt">bp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">11</span>), <span class="dt">wl =</span> <span class="dv">150</span>, <span class="dt">pb =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb23-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb23-13" data-line-number="13"><span class="co">#convert them to distance matrix</span></a>
-<a class="sourceLine" id="cb23-14" data-line-number="14">dist.sp.wrblR &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(sp.wrblR)</a>
-<a class="sourceLine" id="cb23-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb23-16" data-line-number="16">vegan<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/vegan/topics/mantel">mantel</a></span>(xcorr.rvn, dist.sp.wrblR)</a></code></pre></div>
+<a class="sourceLine" id="cb23-14" data-line-number="14">dist.sp.wrblR &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(sp.wrblR)</a></code></pre></div>
+<pre><code>Warning in dist(sp.wrblR): NAs introduced by coercion</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">vegan<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/vegan/topics/mantel">mantel</a></span>(xcorr.rvn, dist.sp.wrblR)</a></code></pre></div>
 <pre><code>
 Mantel statistic based on Pearson's product-moment correlation 
 
 Call:
 vegan::mantel(xdis = xcorr.rvn, ydis = dist.sp.wrblR) 
 
-Mantel statistic r: 0.277 
-      Significance: 0.02 
+Mantel statistic r: 0.259 
+      Significance: 0.026 
 
 Upper quantiles of permutations (null model):
   90%   95% 97.5%   99% 
-0.153 0.187 0.229 0.298 
+0.155 0.195 0.254 0.299 
 Permutation: free
 Number of permutations: 999</code></pre>
 <p> </p>
@@ -5179,24 +5180,24 @@ Number of permutations: 999</code></pre>
 <a href="#exp_raven" class="anchor"></a><em>exp_raven</em>
 </h3>
 <p><em>exp_raven</em> saves a selection table in ‘.txt’ format that can be directly opened in Raven. No objects are returned into the R environment. The following code exports a data table from a single sound file:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># Select data for a single sound file</span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">st1 &lt;-<span class="st"> </span>selec.table[selec.table<span class="op">$</span>sound.files <span class="op">==</span><span class="st"> "Phae.long1.wav"</span>,]</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="co"># Export data of a single sound file</span></a>
-<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(st1, <span class="dt">file.name =</span> <span class="st">"Phaethornis 1"</span>, <span class="dt">khz.to.hz =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># Select data for a single sound file</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">st1 &lt;-<span class="st"> </span>selec.table[selec.table<span class="op">$</span>sound.files <span class="op">==</span><span class="st"> "Phae.long1.wav"</span>,]</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="co"># Export data of a single sound file</span></a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(st1, <span class="dt">file.name =</span> <span class="st">"Phaethornis 1"</span>, <span class="dt">khz.to.hz =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p> </p>
 <p>If the path to the sound file is provided, the functions exports a ‘sound selection table’ which can be directly open by <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> (and which will also open the associated sound file):</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># Select data for a single sound file</span></a>
-<a class="sourceLine" id="cb26-2" data-line-number="2">st1 &lt;-<span class="st"> </span>selec.table[selec.table<span class="op">$</span>sound.files <span class="op">==</span><span class="st"> "Phae.long1.wav"</span>,]</a>
-<a class="sourceLine" id="cb26-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="co"># Export data of a single sound file</span></a>
-<a class="sourceLine" id="cb26-5" data-line-number="5"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(st1, <span class="dt">file.name =</span> <span class="st">"Phaethornis 1"</span>, <span class="dt">khz.to.hz =</span> <span class="ot">TRUE</span>, <span class="dt">sound.file.path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># Select data for a single sound file</span></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">st1 &lt;-<span class="st"> </span>selec.table[selec.table<span class="op">$</span>sound.files <span class="op">==</span><span class="st"> "Phae.long1.wav"</span>,]</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="co"># Export data of a single sound file</span></a>
+<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(st1, <span class="dt">file.name =</span> <span class="st">"Phaethornis 1"</span>, <span class="dt">khz.to.hz =</span> <span class="ot">TRUE</span>, <span class="dt">sound.file.path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())</a></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven1.gif" alt="gif2">  </p>
 <p>This is useful to add new selections or even new measurements:</p>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven2.gif" alt="gif3">  </p>
 <p>If several sound files are available, users can either export them as a single selection file or as multiple selection files (one for each sound file). This example creates a multiple sound file selection:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(<span class="dt">X =</span> selec.table, <span class="dt">file.name =</span> <span class="st">"Phaethornis multiple sound files"</span>, </a>
-<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="dt">sound.file.path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>(), <span class="dt">single.file =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(<span class="dt">X =</span> selec.table, <span class="dt">file.name =</span> <span class="st">"Phaethornis multiple sound files"</span>, </a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="dt">sound.file.path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>(), <span class="dt">single.file =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p> </p>
 <p>These type of tables can be opened as a multiple file display in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a>:</p>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven3.gif" alt="gif4">  </p>
@@ -5211,12 +5212,12 @@ Number of permutations: 999</code></pre>
 <a href="#run_raven" class="anchor"></a><em>run_raven</em>
 </h3>
 <p>The function opens multiple sound files simultaneously in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a>. When the analysis is finished (and the <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> window is closed) the data can be automatically imported back into R using the ‘import’ argument. Note that <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a>, unlike R, can also handle files in ‘mp3’, ‘flac’ and ‘aif’ format .</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># here replace with the path where Raven is install in your computer</span></a>
-<a class="sourceLine" id="cb28-2" data-line-number="2">raven.path &lt;-<span class="st"> "PATH_TO_RAVEN_DIRECTORY_HERE"</span> </a>
-<a class="sourceLine" id="cb28-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="co"># run function </span></a>
-<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="kw"><a href="../reference/run_raven.html">run_raven</a></span>(<span class="dt">raven.path =</span> raven.path, <span class="dt">sound.files =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Phae.long1.wav"</span>, <span class="st">"Phae.long2.wav"</span>, <span class="st">"Phae.long3.wav"</span>, <span class="st">"Phae.long4.wav"</span>), <span class="dt">import =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb28-6" data-line-number="6"> <span class="dt">all.data =</span> <span class="ot">TRUE</span>)  </a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="co"># here replace with the path where Raven is install in your computer</span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">raven.path &lt;-<span class="st"> "PATH_TO_RAVEN_DIRECTORY_HERE"</span> </a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="co"># run function </span></a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="kw"><a href="../reference/run_raven.html">run_raven</a></span>(<span class="dt">raven.path =</span> raven.path, <span class="dt">sound.files =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Phae.long1.wav"</span>, <span class="st">"Phae.long2.wav"</span>, <span class="st">"Phae.long3.wav"</span>, <span class="st">"Phae.long4.wav"</span>), <span class="dt">import =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"> <span class="dt">all.data =</span> <span class="ot">TRUE</span>)  </a></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_run_raven1.gif" alt="gif5">  </p>
 <p>See <code>imp_raven</code> above for more details on additional settings when importing selections.</p>
 <hr>
@@ -5227,8 +5228,8 @@ Number of permutations: 999</code></pre>
 </h3>
 <p>As the name suggests, <em>raven_batch_detec</em> runs <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> detector on multiple sound files (sequentially). Batch detection in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> can also take files in ‘mp3’, ‘flac’ and ‘aif’ format (although this could not be further analyzed in R!).</p>
 <p>This is example runs the detector on one of the example sound files that comes by default with <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a>:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">detec.res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/raven_batch_detec.html">raven_batch_detec</a></span>(<span class="dt">raven.path =</span> raven.path, </a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="dt">sound.files =</span> <span class="st">"BlackCappedVireo.aif"</span>, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/file.path">file.path</a></span>(raven.path, <span class="st">"Examples"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">detec.res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/raven_batch_detec.html">raven_batch_detec</a></span>(<span class="dt">raven.path =</span> raven.path, </a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="dt">sound.files =</span> <span class="st">"BlackCappedVireo.aif"</span>, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/file.path">file.path</a></span>(raven.path, <span class="st">"Examples"</span>))</a></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_raven_batch_detec.gif" alt="gif6">  </p>
 <hr>
 <p>Please report any bugs <a href="https://github.com/maRce10/Rraven/issues">here</a>. The <code>Rraven</code> package should be cited as follows:</p>
@@ -5252,20 +5253,18 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] kableExtra_1.1.0   knitr_1.22         Rraven_1.0.6       warbleR_1.1.15     NatureSounds_1.0.1 seewave_2.1.3      tuneR_1.3.3       
+[1] kableExtra_1.1.0   knitr_1.22         Rraven_1.0.6       warbleR_1.1.16     NatureSounds_1.0.1 seewave_2.1.3      tuneR_1.3.3       
 [8] maps_3.3.0        
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.1         lattice_0.20-38    fftw_1.0-5         assertthat_0.2.1   rprojroot_1.3-2    digest_0.6.18      R6_2.4.0          
- [8] Sim.DiffProc_4.3   backports_1.1.4    signal_0.7-6       evaluate_0.13      pracma_2.2.5       httr_1.4.0         pillar_1.4.0      
-[15] rlang_0.3.4        rstudioapi_0.10    vegan_2.5-5        Matrix_1.2-17      rmarkdown_1.12     pkgdown_1.3.0      desc_1.2.0        
-[22] moments_0.14       splines_3.6.0      webshot_0.5.1      readr_1.3.1        stringr_1.4.0      RCurl_1.95-4.12    munsell_0.5.0     
-[29] proxy_0.4-23       compiler_3.6.0     Deriv_3.8.5        xfun_0.6           pkgconfig_2.0.2    mgcv_1.8-28        htmltools_0.3.6   
-[36] tibble_2.1.1       roxygen2_6.1.1     dtw_1.20-1         bioacoustics_0.2.0 permute_0.9-5      viridisLite_0.3.0  crayon_1.3.4      
-[43] MASS_7.3-51.4      bitops_1.0-6       commonmark_1.7     grid_3.6.0         nlme_3.1-139       magrittr_1.5       scales_1.0.0      
-[50] stringi_1.4.3      pbapply_1.4-0      fs_1.3.1           xml2_1.2.0         rjson_0.2.20       iterators_1.0.10   tools_3.6.0       
-[57] glue_1.3.1         hms_0.4.2          jpeg_0.1-8         parallel_3.6.0     yaml_2.2.0         colorspace_1.4-1   cluster_2.0.8     
-[64] soundgen_1.4.0     rvest_0.3.3        memoise_1.1.0     </code></pre>
+ [1] xfun_0.6          pbapply_1.4-0     splines_3.6.0     lattice_0.20-38   colorspace_1.4-1  viridisLite_0.3.0 htmltools_0.3.6   mgcv_1.8-28      
+ [9] yaml_2.2.0        rlang_0.3.4       pracma_2.2.5      pkgdown_1.3.0     pillar_1.4.0      glue_1.3.1        jpeg_0.1-8        stringr_1.4.0    
+[17] munsell_0.5.0     commonmark_1.7    rvest_0.3.3       memoise_1.1.0     evaluate_0.13     permute_0.9-5     fftw_1.0-5        parallel_3.6.0   
+[25] Rcpp_1.0.1        readr_1.3.1       backports_1.1.4   scales_1.0.0      vegan_2.5-5       desc_1.2.0        webshot_0.5.1     soundgen_1.4.0   
+[33] Sim.DiffProc_4.3  fs_1.3.1          Deriv_3.8.5       rjson_0.2.20      hms_0.4.2         digest_0.6.18     stringi_1.4.3     grid_3.6.0       
+[41] dtw_1.20-1        rprojroot_1.3-2   tools_3.6.0       bitops_1.0-6      magrittr_1.5      RCurl_1.95-4.12   proxy_0.4-23      tibble_2.1.1     
+[49] cluster_2.0.8     crayon_1.3.4      pkgconfig_2.0.2   Matrix_1.2-17     MASS_7.3-51.4     xml2_1.2.0        assertthat_0.2.1  rmarkdown_1.12   
+[57] roxygen2_6.1.1    httr_1.4.0        rstudioapi_0.10   iterators_1.0.10  R6_2.4.0          nlme_3.1-139      signal_0.7-6      compiler_3.6.0   </code></pre>
 </div>
 </div>
   </div>

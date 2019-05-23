@@ -11,10 +11,10 @@ khz.to.hz = FALSE, hz.to.khz = FALSE, waveform = FALSE)
 \item{X}{Data frame imported from Raven.}
 
 \item{extra.cols.name}{Character vector with the names of additional columns to be relabeled. Default is \code{NULL}.
-'extra.cols.new.name' must be also provided.}
+'extra.cols.new.name' must also be provided.}
 
 \item{extra.cols.new.name}{Character vector with the new names for the additional columns to be relabeled. 
-Default is \code{NULL}. 'extra.cols.name' must be also provided.}
+Default is \code{NULL}. 'extra.cols.name' must also be provided.}
 
 \item{khz.to.hz}{Logical. Controls if frequency variables ('top.freq' and 'bottom.freq') should be converted from kHz 
 (the unit used by other bioacoustic analysis R packages like \code{\link{warbleR}}) to Hz (the unit used by Raven). 
