@@ -1,0 +1,11 @@
+Begin Time (s)	End Time (s)	Begin File	Begin Path	File Offset (s)	Selection	View	Channel	Low Freq (Hz)	High Freq (Hz)	lek	lek.song.type
+0.1	0.2577133694	test2.wav	/home/m/Dropbox/Rraven/Rraven.Rcheck/test2.wav	0.1	1	Spectrogram 1	1	2322.6800985	11673.1794985	BR1	BR1-D1
+0.457709750566893	0.612506190766895	test2.wav	/home/m/Dropbox/Rraven/Rraven.Rcheck/test2.wav	0.457709750566893	2	Spectrogram 1	1	2367.9773622	11718.4767622	BR1	BR1-D1
+0.812517006802721	0.968078659802713	test2.wav	/home/m/Dropbox/Rraven/Rraven.Rcheck/test2.wav	0.812517006802721	3	Spectrogram 1	1	2549.1664168	11899.6658168	BR1	BR1-D1
+1.16809523809524	1.32830026279524	test2.wav	/home/m/Dropbox/Rraven/Rraven.Rcheck/test2.wav	1.16809523809524	4	Spectrogram 1	1	2639.760944	11990.260344	BR1	BR1-D1
+1.52829931972789	1.68985908992789	test2.wav	/home/m/Dropbox/Rraven/Rraven.Rcheck/test2.wav	1.52829931972789	5	Spectrogram 1	1	2277.3828349	11627.8822349	BR1	BR1-D1
+1.88984126984127	2.04787623434126	test2.wav	/home/m/Dropbox/Rraven/Rraven.Rcheck/test2.wav	1.88984126984127	6	Spectrogram 1	1	2639.760944	11990.260344	BR1	BR1-D1
+2.24789115646259	2.40472273176259	test2.wav	/home/m/Dropbox/Rraven/Rraven.Rcheck/test2.wav	2.24789115646259	7	Spectrogram 1	1	2639.760944	11990.260344	BR1	BR1-D1
+2.60471655328798	2.76288835538798	test2.wav	/home/m/Dropbox/Rraven/Rraven.Rcheck/test2.wav	2.60471655328798	8	Spectrogram 1	1	2594.4636804	11944.9630804	BR1	BR1-D1
+2.9628798185941	3.12289165459411	test2.wav	/home/m/Dropbox/Rraven/Rraven.Rcheck/test2.wav	2.9628798185941	9	Spectrogram 1	1	2820.9499986	12171.4493986	BR1	BR1-D1
+3.32290249433107	3.48890829923107	test2.wav	/home/m/Dropbox/Rraven/Rraven.Rcheck/test2.wav	3.32290249433107	10	Spectrogram 1	1	2639.760944	11990.260344	BR1	BR1-D1

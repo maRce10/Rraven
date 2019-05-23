@@ -1,0 +1,245 @@
+* using log directory ‘/home/m/Dropbox/Rraven/Rraven.Rcheck’
+* using R version 3.6.0 (2019-04-26)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* using session charset: UTF-8
+* using option ‘--as-cran’
+* checking for file ‘Rraven/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘Rraven’ version ‘1.0.6’
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: ‘Marcelo Araya-Salas <marceloa27@gmail.com>’
+
+New maintainer:
+  Marcelo Araya-Salas <marceloa27@gmail.com>
+Old maintainer(s):
+  Marcelo Araya-Salas <araya-salas@cornell.edu>
+
+Package has a VignetteBuilder field but no prebuilt vignette index.
+
+This build time stamp is over a month old.
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... WARNING
+Found the following executable file:
+  .git/objects/5e/991ef0fc50fb2da3c47dbfb14b136121b6d7c1
+Source packages should not contain undeclared executable files.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .RData
+  .Rhistory
+  .gitignore
+  R/.Rhistory
+  .Rd2pdf24249
+  .Rd2pdf2703
+  .Rproj.user
+  .git
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+
+CRAN-pack does not know about
+  .RData
+  .Rd2pdf24249
+  .Rd2pdf2703
+  .git
+* checking for portable file names ... WARNING
+Found the following files with non-portable file names:
+  docs/reference/LBH 1 selection table example.txt
+  docs/reference/LBH 1 selection table examplesound.selections-2-2-2-2-2-2-2-2-2.txt
+  docs/reference/LBH 1 selection table examplesound.selections-2-2-2-2-2-2-2-2.txt
+  docs/reference/LBH 1 selection table examplesound.selections-2-2-2-2-2-2-2.txt
+  docs/reference/LBH 1 selection table examplesound.selections-2-2-2-2-2-2.txt
+  docs/reference/LBH 1 selection table examplesound.selections-2-2-2-2-2.txt
+  docs/reference/LBH 1 selection table examplesound.selections-2-2-2-2.txt
+  docs/reference/LBH 1 selection table examplesound.selections-2-2-2.txt
+  docs/reference/LBH 1 selection table examplesound.selections-2-2.txt
+  docs/reference/LBH 1 selection table examplesound.selections-2.txt
+  docs/reference/LBH 1 selection table examplesound.selections.txt
+  docs/reference/LBH 2 selection table example.txt
+  docs/reference/LBH 2 selection table examplesound.selections-2-2-2-2-2-2-2-2-2.txt
+  docs/reference/LBH 2 selection table examplesound.selections-2-2-2-2-2-2-2-2.txt
+  docs/reference/LBH 2 selection table examplesound.selections-2-2-2-2-2-2-2.txt
+  docs/reference/LBH 2 selection table examplesound.selections-2-2-2-2-2-2.txt
+  docs/reference/LBH 2 selection table examplesound.selections-2-2-2-2-2.txt
+  docs/reference/LBH 2 selection table examplesound.selections-2-2-2-2.txt
+  docs/reference/LBH 2 selection table examplesound.selections-2-2-2.txt
+  docs/reference/LBH 2 selection table examplesound.selections-2-2.txt
+  docs/reference/LBH 2 selection table examplesound.selections-2.txt
+  docs/reference/LBH 2 selection table examplesound.selections.txt
+  docs/reference/LBH multiple selection table warbleR.txt
+  docs/reference/LBH multiple selection table warbleRsound.selections-2-2-2-2-2-2-2-2-2.txt
+  docs/reference/LBH multiple selection table warbleRsound.selections-2-2-2-2-2-2-2-2.txt
+  docs/reference/LBH multiple selection table warbleRsound.selections-2-2-2-2-2-2-2.txt
+  docs/reference/LBH multiple selection table warbleRsound.selections-2-2-2-2-2-2.txt
+  docs/reference/LBH multiple selection table warbleRsound.selections-2-2-2-2-2.txt
+  docs/reference/LBH multiple selection table warbleRsound.selections-2-2-2-2.txt
+  docs/reference/LBH multiple selection table warbleRsound.selections-2-2-2.txt
+  docs/reference/LBH multiple selection table warbleRsound.selections-2-2.txt
+  docs/reference/LBH multiple selection table warbleRsound.selections-2.txt
+  docs/reference/LBH multiple selection table warbleRsound.selections.txt
+  docs/reference/Phaethornis 1.txt
+  docs/reference/Phaethornis multiple sound files.txt
+  docs/reference/Phaethornis multiple sound filessound.selections-2-2-2-2-2-2-2-2-2.txt
+  docs/reference/Phaethornis multiple sound filessound.selections-2-2-2-2-2-2-2-2.txt
+  docs/reference/Phaethornis multiple sound filessound.selections-2-2-2-2-2-2-2.txt
+  docs/reference/Phaethornis multiple sound filessound.selections-2-2-2-2-2-2.txt
+  docs/reference/Phaethornis multiple sound filessound.selections-2-2-2-2-2.txt
+  docs/reference/Phaethornis multiple sound filessound.selections-2-2-2-2.txt
+  docs/reference/Phaethornis multiple sound filessound.selections-2-2-2.txt
+  docs/reference/Phaethornis multiple sound filessound.selections-2-2.txt
+  docs/reference/Phaethornis multiple sound filessound.selections-2.txt
+  docs/reference/Phaethornis multiple sound filessound.selections.txt
+These are not fully portable file names.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+Found the following non-portable file paths:
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B16495AAC/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B30AB5F77/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B3D23252/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B42A1C965/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B46C5753D/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B48308222/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B49B3579E/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B4D107C9E/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B4D7014FF/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B5198925F/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B7330FAF1/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B7BA83B54/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B86910B2E/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B955249C3/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BA183924D/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BA2300025/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BAAE00353/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BAC6D29B/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BC32C03FA/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BC6C813D1/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BC902F7D4/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BCA49D544/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BD64A461E/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BE363964D/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BE43CF230/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BE9B6D5F5/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BEBD28CDC/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BEC2FD250/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BFB54B0CD/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/AD61FF7D50499AB1/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/AD61FF7DB5F658ED/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/AD61FF7DB6A58671/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/AD61FF7DB7EC2D/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/AD61FF7DC3BAAFAC/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/AD61FF7DF8B6BF0F/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/s/c8c8kmuw7elcn/000002.csv
+  Rraven/.Rproj.user/shared/notebooks/E50E10BF-unix code to post and run github pages with jekyll/1/s/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/F1FCA221-testing-checking warbleR function nov-16/1/s/chunks.json
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B16495AAC
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B30AB5F77
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B3D23252
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B42A1C965
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B46C5753D
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B48308222
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B49B3579E
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B4D107C9E
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B4D7014FF
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B5198925F
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B7330FAF1
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B7BA83B54
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B86910B2E
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4B955249C3
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BA183924D
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BA2300025
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BAAE00353
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BAC6D29B
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BC32C03FA
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BC6C813D1
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BC902F7D4
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BCA49D544
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BD64A461E
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BE363964D
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BE43CF230
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BE9B6D5F5
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BEBD28CDC
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BEC2FD250
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/6ED36D4BFB54B0CD
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/AD61FF7D50499AB1
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/AD61FF7DB5F658ED
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/AD61FF7DB6A58671
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/AD61FF7DB7EC2D
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/AD61FF7DC3BAAFAC
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/AD61FF7DF8B6BF0F
+  Rraven/.Rproj.user/shared/notebooks/4B0B8A51-testing-checking Rraven function nov-17/1/s/c8c8kmuw7elcn
+
+Tarballs are only required to store paths of up to 100 bytes and cannot
+store those of more than 256 bytes, with restrictions including to 100
+bytes for the final component.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+* checking for sufficient/correct file permissions ... OK
+* checking serialization versions ... OK
+* checking whether package ‘Rraven’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking for future file timestamps ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... NOTE
+Files ‘README.md’ or ‘NEWS.md’ cannot be checked without ‘pandoc’ being installed.
+Non-standard files/directories found at top level:
+  ‘Rraven.Rcheck’ ‘Rraven.Rproj’ ‘docs’ ‘gifs’
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Found the following directory with the name of a check directory:
+  ./Rraven.Rcheck
+Most likely, these were included erroneously.
+Found the following directories with names of Rd2pdf directories:
+  ./.Rd2pdf24249
+  ./.Rd2pdf2703
+Most likely, these were included erroneously.
+Found the following directory with the name of a version control directory:
+  ./.git
+These should not be in a package tarball.
+Found the following CITATION file in a non-standard place:
+  Rraven.Rcheck/Rraven/CITATION
+Most likely ‘inst/CITATION’ should be used instead.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking use of S3 registration ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd line widths ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... WARNING
+Files in the 'vignettes' directory but no files in 'inst/doc':
+  ‘Catalog.jpeg’, ‘Phae.long1.wav’, ‘Phae.long2.wav’, ‘Phae.long3.wav’,
+    ‘Phae.long4.wav’, ‘Rraven.Rmd’, ‘Rraven.html’
+* checking examples ... OK
+** found \donttest examples: check also with --run-donttest
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... WARNING
+dir.exists(dir) is not TRUE
+Package vignette without corresponding single PDF/HTML:
+   ‘Rraven.Rmd’
+
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+Status: 5 WARNINGs, 3 NOTEs

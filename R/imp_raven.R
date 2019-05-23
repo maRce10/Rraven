@@ -1,6 +1,6 @@
 #' Import 'Raven' selections
 #' 
-#' \code{imp_raven} imports 'Raven' selection files simultaneously from many files. Files must be in '.txt' format.
+#' \code{imp_raven} imports several 'Raven' selection files simultaneously. Files must be in '.txt' format.
 #' @usage imp_raven(path = NULL, warbler.format = FALSE,  all.data = FALSE, files = NULL,
 #' only.spectro.view = TRUE, recursive = FALSE, name.from.file = FALSE, 
 #' ext.case = NULL, freq.cols = TRUE, waveform = FALSE, parallel = 1, pb = TRUE, 

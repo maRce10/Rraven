@@ -60,7 +60,7 @@ A single data frame with information of the selection files. If \code{unread = T
  parameters (start and end) only if 1) the 'File Offset (s)' is found in the selection table.
 }
 \description{
-\code{imp_raven} imports 'Raven' selection files simultaneously from many files. Files must be in '.txt' format.
+\code{imp_raven} imports several 'Raven' selection files simultaneously. Files must be in '.txt' format.
 }
 \details{
 The function import 'Raven' selection data from many files simultaneously. All selection files in the working directory or 'path' supplied will be imported (unless 'files' argument is also supplied). It has been created using Raven Pro 1.5 so selection tables created with other versions might not be read properly. Files must be in '.txt' format. Selection 
