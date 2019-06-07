@@ -1,3 +1,9 @@
+# Version 1.0.y
+
+## Changes and additions
+
+* imp_raven: error message when not all selections have a sound file name column
+
 # Version 1.0.6
 
 ## Changes and additions

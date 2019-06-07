@@ -28,11 +28,11 @@ be filled with NA's. This argument WILL BE DEPRECATED as it is being replaced by
 \item{name.from.file}{Logical. If \code{TRUE} the sound file names are extracted from the selection text file name. 
 It asssumes that selections files contained the suffix "Table.1.selections.txt" or "selections.txt". 
 Note that by default it will assume that the extension file name is ".wav". This can be control using the
-argumet 'ext.wav'. Default is \code{FALSE}). Ignored if sound.file.col' is provided and/or all.data is \code{TRUE}).}
+argument 'ext.case'. Default is \code{FALSE}). Ignored if sound.file.col' is provided and/or all.data is \code{TRUE}). Note that
+the time information for selection tables with multiple sound files won't be corrected if \code{name.from.file = TRUE}.}
 
 \item{ext.case}{Character string of length 1 to specify whether sound file extensions are in upper or lower case. This should match the extension of the
-of the .wav files from which the selection were made. It must be either 'upper' or 'lower'. Only needed when 'name.from.file' is \code{TRUE}. 
-Ignored if 'sound.file.col' is provided and/or all.data is \code{TRUE}.}
+of the .wav files from which the selection were made. It must be either 'upper' or 'lower'. Only needed when 'name.from.file' is \code{TRUE}.}
 
 \item{freq.cols}{Logical. If \code{TRUE} 'Low Freq' and 'High Freq' columns are also imported. Ignored if all.data is \code{TRUE}.}
 
@@ -50,7 +50,7 @@ whole data. The second and third elements are character vectors with the names o
 selection files have been duplicated. Default is \code{FALSE}.}
 
 \item{sound.file.col}{A character string with the name of the column containing the sound files in 
-the selection text files. Default is \code{NULL}. This argument WILL BE DEPRECATED as the function now searches for columns containing the sound file names.}
+the selection text files. Default is \code{NULL}. Ignored if 'name.from.file' is \code{TRUE} and/or all.data is \code{TRUE}. This argument WILL BE DEPRECATED as the function now searches for columns containing the sound file names.}
 }
 \value{
 A single data frame with information of the selection files. If \code{unread = TRUE} the function returns a list of length 3 with

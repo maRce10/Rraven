@@ -17,10 +17,10 @@
 #' @param name.from.file Logical. If \code{TRUE} the sound file names are extracted from the selection text file name. 
 #' It asssumes that selections files contained the suffix "Table.1.selections.txt" or "selections.txt". 
 #' Note that by default it will assume that the extension file name is ".wav". This can be control using the
-#' argumet 'ext.wav'. Default is \code{FALSE}). Ignored if sound.file.col' is provided and/or all.data is \code{TRUE}).
+#' argument 'ext.case'. Default is \code{FALSE}). Ignored if sound.file.col' is provided and/or all.data is \code{TRUE}). Note that
+#' the time information for selection tables with multiple sound files won't be corrected if \code{name.from.file = TRUE}.
 #' @param ext.case Character string of length 1 to specify whether sound file extensions are in upper or lower case. This should match the extension of the
-#' of the .wav files from which the selection were made. It must be either 'upper' or 'lower'. Only needed when 'name.from.file' is \code{TRUE}. 
-#' Ignored if 'sound.file.col' is provided and/or all.data is \code{TRUE}.
+#' of the .wav files from which the selection were made. It must be either 'upper' or 'lower'. Only needed when 'name.from.file' is \code{TRUE}.
 #' @param freq.cols Logical. If \code{TRUE} 'Low Freq' and 'High Freq' columns are also imported. Ignored if all.data is \code{TRUE}.
 #' @param waveform Logical to control if waveform view data should be included (this data is typically duplicated in spectrogram view data).  Default is \code{FALSE} (not to include it). This argument WILL BE DEPRECATED as it is being replaced by 'only.spectro.view'.
 #' @param parallel Numeric. Controls whether parallel computing is applied.
@@ -31,7 +31,7 @@
 #' @param rm.dup Logical. If \code{TRUE} duplicated rows and columns are removed. Usefull when 
 #' selection files have been duplicated. Default is \code{FALSE}. 
 #' @param sound.file.col A character string with the name of the column containing the sound files in 
-#' the selection text files. Default is \code{NULL}. This argument WILL BE DEPRECATED as the function now searches for columns containing the sound file names. 
+#' the selection text files. Default is \code{NULL}. Ignored if 'name.from.file' is \code{TRUE} and/or all.data is \code{TRUE}. This argument WILL BE DEPRECATED as the function now searches for columns containing the sound file names. 
 #' @return A single data frame with information of the selection files. If \code{unread = TRUE} the function returns a list of length 3 with
 #'  the selection data frame and a vector with the names of files that could not be read (see 'unread' argument).  
 #'  If 'warbler.format' argument is set to \code{TRUE} the data frame contains the following columns: sound.files, selec, channel,start, end, top.freq, bottom.freq and selec.file. If all.data is set to \code{TRUE} then all columns in the 'Raven' selection files are returned. 
@@ -118,6 +118,7 @@ pbapply::pboptions(type = ifelse(pb, "timer", "none"))
   
   # determine files that could not be read
   error.files <- names(sl.list)[sapply(sl.list, class) == "try-error"]  
+  
   # remove errors    
   sl.list <- sl.list[sapply(sl.list, class) != "try-error"]
   
@@ -186,15 +187,16 @@ pbapply::pboptions(type = ifelse(pb, "timer", "none"))
     # sound file column
     sfcl <- sfcls[!(sapply(temp.sls[, sfcls], anyNA))][1]
     
-    if(length(sfcl) == 0 & !name.from.file) 
+    if((length(sfcl) == 0 | is.na(sfcl)) & !name.from.file) 
       stop("No column containing sound file names was shared by all selection table files")
     
     # fix time in multiple file selection table
     sl.list2 <- lapply(seq_len(length(sl.list)), function(i)
     {
       X <- sl.list[[i]]
-
-      if (length(unique(X[, sfcl])) > 1)
+      
+      if (!name.from.file)
+        if (length(unique(X[, sfcl])) > 1)
       { 
         if (!any(grepl("offset", names(X), ignore.case = TRUE))) {     
           message(paste0("warning: selections files from multiple sound files must contain a 'File Offset' column (check '", names(sl.list)[i],"')"))
@@ -235,12 +237,13 @@ pbapply::pboptions(type = ifelse(pb, "timer", "none"))
         sfcl <- "sound.files"
       
       if (ext.case == "lower")
-      sls$sound.files <- gsub(pattern = "\\.txt", replacement = ".wav", x = sls$selec.file) else
-        sls$sound.files <- gsub(pattern = "\\.txt", replacement = ".WAV", x = sls$selec.file) 
+        sls$sound.files <- gsub(pattern = "\\.Table\\.[[:digit:]].selections.txt", replacement = ".wav", x = sls$selec.file) else
+          sls$sound.files <- gsub(pattern = "\\.Table\\.[[:digit:]].selections.txt", replacement = ".WAV", x = sls$selec.file) 
     }
     
     # delete offset column
-    sls <- sls[, !grepl("^file offset", names(sls), ignore.case = TRUE)]      
+    if (!all.data)
+      sls <- sls[, !grepl("^file offset", names(sls), ignore.case = TRUE)]      
     
     # use base name in case begin.path or end.path were used as sound file names
     sls[, sfcl] <- basename(as.character(sls[, sfcl]))
