@@ -118,7 +118,7 @@
 
     <pre class="usage"><span class='fu'>raven_batch_detec</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>sound.files</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
 <span class='no'>detector.type</span>, <span class='kw'>detector.preset</span> <span class='kw'>=</span> <span class='st'>"Default"</span>,
-<span class='kw'>view.preset</span> <span class='kw'>=</span> <span class='st'>"Default"</span>, <span class='kw'>relabel_colms</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>pb</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+<span class='kw'>view.preset</span> <span class='kw'>=</span> <span class='st'>"Default"</span>, <span class='kw'>relabel_colms</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>pb</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,6 +165,11 @@ match the selection table format from the acoustic analysis package <code>warble
     <tr>
       <th>pb</th>
       <td><p>Logical argument to control progress bar. Default is <code>TRUE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>parallel</th>
+      <td><p>Numeric. Controls whether parallel computing is applied.
+It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).</p></td>
     </tr>
     </table>
     

@@ -3,7 +3,7 @@
 #' \code{raven_batch_detec} Runs 'Raven' batch detector on multiple sound files sequentially
 #' @usage raven_batch_detec(raven.path = NULL, sound.files, path = NULL, 
 #' detector.type, detector.preset = "Default",
-#' view.preset = "Default", relabel_colms = TRUE, pb = TRUE)  
+#' view.preset = "Default", relabel_colms = TRUE, pb = TRUE, parallel = 1)
 #' @param raven.path A character string indicating the path of the directory in which to look for the 'Raven' executable file (where 'Raven' was installed). 
 #' @param sound.files character vector indicating the files that will be analyzed.
 #' In OSX (mac) only one file at the time can be run (use loops instead!). If \code{NULL} (default) 
@@ -23,6 +23,8 @@
 #' @param relabel_colms Logical. If  \code{TRUE} (default) colums are labeled to 
 #' match the selection table format from the acoustic analysis package \code{\link{warbleR}}
 #' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
+#' @param parallel Numeric. Controls whether parallel computing is applied.
+#' It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
 #' @return A data frame with the selections produced during the detection. See \code{\link{imp_raven}} for more details on how selections are imported.
 #' @details The function runs 'Raven' sound analysis software (Cornell Lab of
 #' Ornithology), detector on  multiple sound files sequentially. 'Raven' Pro must be 
@@ -59,7 +61,7 @@
 #last modification on nov-8-2017
 
 raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detector.type,
-                              detector.preset = "Default", view.preset = "Default", relabel_colms = TRUE, pb = TRUE)
+                              detector.preset = "Default", view.preset = "Default", relabel_colms = TRUE, pb = TRUE, parallel = 1)
 {
   
   #check path to working directory
@@ -72,7 +74,7 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
   # reset working directory 
   wd <- getwd()
   on.exit(setwd(wd), add = TRUE)
-  on.exit(suppressWarnings(file.remove(file.path(raven.path, "temp.bcv.txt"))), add = TRUE)
+  on.exit(suppressWarnings(file.remove(list.files(path = raven.path, pattern = "temp.bcv.txt$", full.names = TRUE))), add = TRUE)
 
   # check path
     if (is.null(raven.path))
@@ -108,28 +110,40 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
     if (basename(sound.files[1]) == sound.files[1])
       sound.files <- file.path(path, sound.files)
     
+    # sert progress bar  
     if (pb) pbapply::pboptions(type = "timer") else pbapply::pboptions(type = "none")
+  
+    # set clusters for windows OS
+    if (Sys.info()[1] == "Windows" & parallel > 1)
+      cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else cl <- parallel  
     
-    out <- pbapply::pblapply(sound.files, function(x) {
+    out <- pbapply::pblapply(sound.files, cl = cl, function(x) {
     
+      # temporary output file name
+      tmp.txt <- paste0(gsub("[[:punct:]]", "", x), ".temp.bcv.txt")
+      
+      # in case file exists add random number to name
+      if(file.exists(file.path(raven.path, tmp.txt)))
+        tmp.txt <- paste0(sample(1:1000000, 1), tmp.txt)
+        
       # view and detector preset together to fix it when view preset not need it  
    view.detector <- if (detector.type == "Amplitude Detector")  paste0("-detPreset:", detector.preset) else
      paste(paste0("-viewPreset:", view.preset), paste0("-detPreset:", detector.preset))
       
       if (Sys.info()[1] == "Windows")
       {  
-        comnd <- paste(shQuote(file.path(raven.path, "Raven.exe"), type = "cmd"), view.detector, paste0("-detType:", detector.type), shQuote(x), "-detTable:temp.bcv.txt -x")
+        comnd <- paste(shQuote(file.path(raven.path, "Raven.exe"), type = "cmd"), view.detector, paste0("-detType:", detector.type), shQuote(x), paste0("-detTable:", tmp.txt," -x"))
       } else
       {
         if (Sys.info()[1] == "Linux")
-        comnd <- paste(file.path(raven.path, "Raven"), view.detector, paste0("-detType:", detector.type), x, "-detTable:temp.bcv.txt -x") else
-        comnd <- paste("open Raven.app --args", x, view.detector, paste0("-detType:", detector.type), "-detTable:temp.bcv.txt -x") # OSX
+        comnd <- paste(file.path(raven.path, "Raven"), view.detector, paste0("-detType:", detector.type), x, paste0("-detTable:", tmp.txt," -x")) else
+        comnd <- paste("open Raven.app --args", x, view.detector, paste0("-detType:", detector.type), paste0("-detTable:", tmp.txt," -x")) # OSX
       }
         
         # run raven
         system(command = comnd, ignore.stderr = TRUE, intern = TRUE)
         
-        output <- utils::read.table("temp.bcv.txt", sep = "\t",  header = TRUE)
+        output <- utils::read.table(tmp.txt, sep = "\t",  header = TRUE)
         
         if (nrow(output) > 0)
         output$sound.files <- basename(x) else output <- vector(length = 0)

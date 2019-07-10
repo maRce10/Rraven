@@ -98,19 +98,19 @@
   
   # convert to Hz
   if ("bottom.freq" %in% names(X) & khz.to.hz)
-    X$bottom.freq <- X$bottom.freq * 1000
+    X$bottom.freq <- as.numeric(X$bottom.freq) * 1000
   
   # convert to Hz
   if ("top.freq" %in% names(X) & khz.to.hz)
-    X$top.freq <- X$top.freq * 1000
+    X$top.freq <- as.numeric(X$top.freq) * 1000
   
   # convert to kHz
   if ("bottom.freq" %in% names(X) & !khz.to.hz & hz.to.khz)
-    X$bottom.freq <- X$bottom.freq / 1000
+    X$bottom.freq <- as.numeric(X$bottom.freq) / 1000
   
   # convert to kHz
   if ("top.freq" %in% names(X) & !khz.to.hz & hz.to.khz)
-    X$top.freq <- X$top.freq / 1000
+    X$top.freq <- as.numeric(X$top.freq) / 1000
   
   
 return(X)  

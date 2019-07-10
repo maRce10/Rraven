@@ -6,7 +6,7 @@
 \usage{
 raven_batch_detec(raven.path = NULL, sound.files, path = NULL, 
 detector.type, detector.preset = "Default",
-view.preset = "Default", relabel_colms = TRUE, pb = TRUE)
+view.preset = "Default", relabel_colms = TRUE, pb = TRUE, parallel = 1)
 }
 \arguments{
 \item{raven.path}{A character string indicating the path of the directory in which to look for the 'Raven' executable file (where 'Raven' was installed).}
@@ -35,6 +35,9 @@ If \code{NULL} (default) then the 'Default' window preset is used.}
 match the selection table format from the acoustic analysis package \code{\link{warbleR}}}
 
 \item{pb}{Logical argument to control progress bar. Default is \code{TRUE}.}
+
+\item{parallel}{Numeric. Controls whether parallel computing is applied.
+It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).}
 }
 \value{
 A data frame with the selections produced during the detection. See \code{\link{imp_raven}} for more details on how selections are imported.
