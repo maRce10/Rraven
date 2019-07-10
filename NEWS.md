@@ -8,6 +8,7 @@
 
 ## Changes and additions
 
+* unique names to temporal .txt output files to allow parallelization in 'raven_batch_detec()'
 * new arguments in 'imp_raven()': 'warbler.format' for importing with warbleR selection table column names, 'only.spectro.view' for keeping measurements only for the spectrogram view and 'files' for importing specific selection files
 
 # Version 1.0.5
