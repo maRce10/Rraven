@@ -13,6 +13,8 @@ vignette: >
   \usepackage[utf8]{inputenc}
   %\VignetteIndexEntry{Rraven: Connecting R and Raven Sound Analysis Software}
   %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -34,6 +36,7 @@ options(knitr.table.format = "html")
 opts_chunk$set(comment = "")
 opts_knit$set(root.dir = tempdir())
 options(width = 150, max.print = 100)
+
 
 #website to fix gifs
 #https://ezgif.com/optimize

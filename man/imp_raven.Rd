@@ -64,7 +64,7 @@ A single data frame with information of the selection files. If \code{unread = T
 }
 \details{
 The function import 'Raven' selection data from many files simultaneously. All selection files in the working directory or 'path' supplied will be imported (unless 'files' argument is also supplied). It has been created using Raven Pro 1.5 so selection tables created with other versions might not be read properly. Files must be in '.txt' format. Selection 
-files including data from mulitple recordings can also be imported.
+files including data from mulitple recordings can also be imported, although they must contained a 'File Offset (s)' column. Selections that span across multiple sound files are not recommended as they will be assigned to the first sound file, which would produce errors for downstream analyses as those from the 'warbleR' package.
 }
 \examples{
 

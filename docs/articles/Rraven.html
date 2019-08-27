@@ -85,7 +85,7 @@
 </center></h4>
             
             <h4 class="date"><center>
-“2019-07-10”
+“2019-08-27”
 </center></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/maRce10/Rraven/blob/master/vignettes/Rraven.Rmd"><code>vignettes/Rraven.Rmd</code></a></small>
@@ -183,6 +183,12 @@ channel
 Begin Path
 </th>
 <th style="text-align:center;">
+File Offset (s)
+</th>
+<th style="text-align:center;">
+File Offset
+</th>
+<th style="text-align:center;">
 selec.file
 </th>
 </tr></thead>
@@ -217,6 +223,12 @@ Phae.long1.wav
 </td>
 <td style="text-align:center;">
 /tmp/RtmpWpOeaR/Phae.long1.wav
+</td>
+<td style="text-align:center;">
+1.1693549
+</td>
+<td style="text-align:center;">
+NA
 </td>
 <td style="text-align:center;">
 LBH 1 selection table example.txt
@@ -254,6 +266,12 @@ Phae.long1.wav
 /tmp/RtmpWpOeaR/Phae.long1.wav
 </td>
 <td style="text-align:center;">
+2.1584085
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
 LBH 1 selection table example.txt
 </td>
 </tr>
@@ -287,6 +305,12 @@ Phae.long1.wav
 </td>
 <td style="text-align:center;">
 /tmp/RtmpWpOeaR/Phae.long1.wav
+</td>
+<td style="text-align:center;">
+0.3433366
+</td>
+<td style="text-align:center;">
+NA
 </td>
 <td style="text-align:center;">
 LBH 1 selection table example.txt
@@ -324,6 +348,12 @@ Phae.long2.wav
 /tmp/RtmpWpOeaR/Phae.long2.wav
 </td>
 <td style="text-align:center;">
+0.1595983
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
 LBH 2 selection table example.txt
 </td>
 </tr>
@@ -359,6 +389,12 @@ Phae.long2.wav
 /tmp/RtmpWpOeaR/Phae.long2.wav
 </td>
 <td style="text-align:center;">
+1.4570585
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
 LBH 2 selection table example.txt
 </td>
 </tr>
@@ -392,6 +428,12 @@ Phae.long3.wav
 </td>
 <td style="text-align:center;">
 /tmp/RtmpWpOeaR/Phae.long3.wav
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0.626552
 </td>
 <td style="text-align:center;">
 LBH 3 selection table example.txt
@@ -5160,11 +5202,11 @@ Call:
 vegan::mantel(xdis = xcorr.rvn, ydis = dist.sp.wrblR) 
 
 Mantel statistic r: 0.259 
-      Significance: 0.01 
+      Significance: 0.016 
 
 Upper quantiles of permutations (null model):
   90%   95% 97.5%   99% 
-0.143 0.173 0.212 0.239 
+0.143 0.180 0.226 0.272 
 Permutation: free
 Number of permutations: 999</code></pre>
 <p> </p>
@@ -5236,13 +5278,13 @@ Number of permutations: 999</code></pre>
 <p>Araya-Salas, M. (2017), <em>Rraven: connecting R and Raven bioacoustic software</em>. R package version 1.0.0.</p>
 <hr>
 <p><font size="4">Session information</font></p>
-<pre><code>R version 3.6.0 (2019-04-26)
+<pre><code>R version 3.6.1 (2019-07-05)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.2 LTS
+Running under: Ubuntu 19.04
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
-LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.8.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.8.0
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=es_CR.UTF-8        LC_COLLATE=en_US.UTF-8     LC_MONETARY=es_CR.UTF-8   
@@ -5257,14 +5299,14 @@ other attached packages:
 [8] maps_3.3.0        
 
 loaded via a namespace (and not attached):
- [1] xfun_0.7          pbapply_1.4-0     splines_3.6.0     lattice_0.20-38   colorspace_1.4-1  viridisLite_0.3.0 htmltools_0.3.6   mgcv_1.8-28      
+ [1] xfun_0.7          pbapply_1.4-0     splines_3.6.1     lattice_0.20-38   colorspace_1.4-1  viridisLite_0.3.0 htmltools_0.3.6   mgcv_1.8-28      
  [9] yaml_2.2.0        rlang_0.3.4       pracma_2.2.5      pkgdown_1.3.0     pillar_1.4.0      glue_1.3.1        jpeg_0.1-8        stringr_1.4.0    
-[17] munsell_0.5.0     commonmark_1.7    rvest_0.3.3       memoise_1.1.0     evaluate_0.14     permute_0.9-5     fftw_1.0-5        parallel_3.6.0   
+[17] munsell_0.5.0     commonmark_1.7    rvest_0.3.3       memoise_1.1.0     evaluate_0.14     permute_0.9-5     fftw_1.0-5        parallel_3.6.1   
 [25] Rcpp_1.0.1        readr_1.3.1       backports_1.1.4   scales_1.0.0      vegan_2.5-5       desc_1.2.0        webshot_0.5.1     soundgen_1.4.0   
-[33] Sim.DiffProc_4.3  fs_1.3.1          Deriv_3.8.5       rjson_0.2.20      hms_0.4.2         digest_0.6.19     stringi_1.4.3     grid_3.6.0       
-[41] dtw_1.20-1        rprojroot_1.3-2   tools_3.6.0       bitops_1.0-6      magrittr_1.5      RCurl_1.95-4.12   proxy_0.4-23      tibble_2.1.1     
-[49] cluster_2.0.8     crayon_1.3.4      pkgconfig_2.0.2   Matrix_1.2-17     MASS_7.3-51.4     xml2_1.2.0        assertthat_0.2.1  rmarkdown_1.13   
-[57] roxygen2_6.1.1    httr_1.4.0        rstudioapi_0.10   iterators_1.0.10  R6_2.4.0          nlme_3.1-139      signal_0.7-6      compiler_3.6.0   </code></pre>
+[33] Sim.DiffProc_4.3  fs_1.3.1          Deriv_3.8.5       rjson_0.2.20      hms_0.4.2         digest_0.6.19     stringi_1.4.3     grid_3.6.1       
+[41] dtw_1.20-1        rprojroot_1.3-2   tools_3.6.1       bitops_1.0-6      magrittr_1.5      RCurl_1.95-4.12   proxy_0.4-23      tibble_2.1.1     
+[49] cluster_2.1.0     crayon_1.3.4      pkgconfig_2.0.2   Matrix_1.2-17     MASS_7.3-51.4     xml2_1.2.0        assertthat_0.2.1  rmarkdown_1.13   
+[57] roxygen2_6.1.1    httr_1.4.0        rstudioapi_0.10   iterators_1.0.10  R6_2.4.0          nlme_3.1-141      signal_0.7-6      compiler_3.6.1   </code></pre>
 </div>
 </div>
   </div>

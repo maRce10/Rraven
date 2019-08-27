@@ -38,7 +38,7 @@
 #'  If individual selection files contain information about multiple sound files the function will import the file and correct the time
 #'  parameters (start and end) only if 1) the 'File Offset (s)' is found in the selection table.
 #' @details The function import 'Raven' selection data from many files simultaneously. All selection files in the working directory or 'path' supplied will be imported (unless 'files' argument is also supplied). It has been created using Raven Pro 1.5 so selection tables created with other versions might not be read properly. Files must be in '.txt' format. Selection 
-#' files including data from mulitple recordings can also be imported. 
+#' files including data from mulitple recordings can also be imported, although they must contained a 'File Offset (s)' column. Selections that span across multiple sound files are not recommended as they will be assigned to the first sound file, which would produce errors for downstream analyses as those from the 'warbleR' package. 
 #' @seealso \code{\link{imp_syrinx}} 
 #' @export
 #' @name imp_raven
@@ -193,18 +193,25 @@ pbapply::pboptions(type = ifelse(pb, "timer", "none"))
     # fix time in multiple file selection table
     sl.list2 <- lapply(seq_len(length(sl.list)), function(i)
     {
+      
       X <- sl.list[[i]]
       
       if (!name.from.file)
-        if (length(unique(X[, sfcl])) > 1)
+        if (length(unique(X[, sfcl])) > 1 | any(grepl("offset", names(X), ignore.case = TRUE)))
       { 
         if (!any(grepl("offset", names(X), ignore.case = TRUE))) {     
           message(paste0("warning: selections files from multiple sound files must contain a 'File Offset' column (check '", names(sl.list)[i],"')"))
           return(NA)
            } else {
-          
+          # fix start and end on multiple selection tables
         X[, grepl("^end time", names(X), ignore.case = TRUE)] <- as.numeric(X[, grepl("^end time", names(X), ignore.case = TRUE)]) - as.numeric(X[, grepl("^begin time", names(X), ignore.case = TRUE)])
-        X[, grepl("^begin time", names(X), ignore.case = TRUE)] <- as.numeric(X[, grepl("^file offset", names(X), ignore.case = TRUE)])
+
+        # fix if more than one column matches offset
+        of.st.cl <- grep("^file offset", names(X), ignore.case = TRUE)
+        if (length(of.st.cl) > 1) 
+          of.st.cl <- names(X)[of.st.cl][which(sapply(X[,of.st.cl], is.numeric))[1]]
+        
+        X[, grepl("^begin time", names(X), ignore.case = TRUE)] <- as.numeric(X[, ])
         X[, grepl("^end time", names(X), ignore.case = TRUE)] <- X[, grepl("^end time", names(X), ignore.case = TRUE)] + X[, grepl("^begin time", names(X), ignore.case = TRUE)]
             }
         }
