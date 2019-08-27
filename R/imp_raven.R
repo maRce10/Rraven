@@ -211,7 +211,7 @@ pbapply::pboptions(type = ifelse(pb, "timer", "none"))
         if (length(of.st.cl) > 1) 
           of.st.cl <- names(X)[of.st.cl][which(sapply(X[,of.st.cl], is.numeric))[1]]
         
-        X[, grepl("^begin time", names(X), ignore.case = TRUE)] <- as.numeric(X[, ])
+        X[, grepl("^begin time", names(X), ignore.case = TRUE)] <- as.numeric(X[, of.st.cl])
         X[, grepl("^end time", names(X), ignore.case = TRUE)] <- X[, grepl("^end time", names(X), ignore.case = TRUE)] + X[, grepl("^begin time", names(X), ignore.case = TRUE)]
             }
         }
