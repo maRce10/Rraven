@@ -27,7 +27,7 @@
 #' data(selection_files)
 #' 
 #' #save 'Raven' selection tables in the temporary directory 
-#' writeLines(selection_files[[7]], con = names(selection_files)[7])
+#' writeLines(selection_files[[7]], con = file.path(tempdir(), names(selection_files)[7]))
 #' 
 #' syr.dat <- imp_syrinx(all.data = FALSE)
 #' 
@@ -45,17 +45,14 @@
 imp_syrinx <- function(path = NULL, all.data = FALSE, recursive = FALSE,
                        exclude = FALSE, hz.to.khz = TRUE, parallel = 1, pb = TRUE) 
 { 
-  # reset working directory 
-  wd <- getwd()
-  on.exit(setwd(wd))
   
   #check path to working directory
-  if (is.null(path)) path <- getwd() else {if (!dir.exists(path)) stop("'path' provided does not exist") else
-    setwd(path)
-  }  
+  if (is.null(path)) path <- getwd() else 
+    if (!dir.exists(path)) 
+      stop("'path' provided does not exist")
 
-sel.txt <- list.files(full.names = TRUE)
-sel.txt2 <- list.files(full.names = FALSE)
+sel.txt <- list.files(full.names = TRUE, path = path)
+sel.txt2 <- list.files(full.names = FALSE, path = path)
 
 sel.txt <- sel.txt[grep(".log$|.txt$",ignore.case = TRUE, sel.txt)]
 sel.txt2 <- sel.txt2[grep(".log$|.txt$",ignore.case = TRUE, sel.txt2)]

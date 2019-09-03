@@ -47,16 +47,13 @@
 #' #load data 
 #' data(selection_files)
 #' 
-#' # set temporary directory
-#' # setwd(tempdir())
-#' 
 #' #save 'Raven' selection tables in the temporary directory 
 #' out <- lapply(1:2, function(x) 
-#' writeLines(selection_files[[x]], con = names(selection_files)[x]))
+#' writeLines(selection_files[[x]], con = file.path(tempdir(), names(selection_files)[x])))
 #' 
 #' \donttest{
 #'#providing the name of the column with the sound file names
-#'rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE)
+#'rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE, path = tempdir())
 #' 
 #' # View(rvn.dat)
 #' }
@@ -71,14 +68,9 @@ imp_raven <- function(path = NULL, warbler.format = FALSE, all.data = FALSE, fil
                       rm.dup = FALSE, sound.file.col = NULL) 
 {
   
-  # reset working directory 
-  wd <- getwd()
-  on.exit(setwd(wd))
-  
   #check path to working directory
-  if (is.null(path)) path <- getwd() else {if (!dir.exists(path)) stop("'path' provided does not exist") else
-    setwd(path)
-  }  
+  if (is.null(path)) path <- getwd() else 
+    if (!dir.exists(path)) stop("'path' provided does not exist") 
   
   if (!is.null(ext.case)) 
     if (!ext.case %in% c("upper", "lower")) stop("'ext.case' should be either 'upper' or 'lower'") else
@@ -87,10 +79,10 @@ imp_raven <- function(path = NULL, warbler.format = FALSE, all.data = FALSE, fil
   if (is.null(ext.case) & name.from.file) stop("'ext.case' must be provided when name.from.file is TRUE")
   
   # read name and path
-  sel.txt <- list.files(pattern = ".txt$", full.names = TRUE, recursive = recursive, ignore.case = TRUE)
+  sel.txt <- list.files(pattern = ".txt$", full.names = TRUE, recursive = recursive, ignore.case = TRUE, path = path)
   
   # only read file names
-  sel.txt2 <- list.files(pattern = ".txt$", full.names = FALSE, recursive = recursive, ignore.case = TRUE)
+  sel.txt2 <- list.files(pattern = ".txt$", full.names = FALSE, recursive = recursive, ignore.case = TRUE, path = path)
   
   if (length(sel.txt) == 0) stop("No selection .txt files in working directory/'path' provided")
   
@@ -193,7 +185,6 @@ pbapply::pboptions(type = ifelse(pb, "timer", "none"))
     # fix time in multiple file selection table
     sl.list2 <- lapply(seq_len(length(sl.list)), function(i)
     {
-      
       X <- sl.list[[i]]
       
       if (!name.from.file)
@@ -208,8 +199,12 @@ pbapply::pboptions(type = ifelse(pb, "timer", "none"))
 
         # fix if more than one column matches offset
         of.st.cl <- grep("^file offset", names(X), ignore.case = TRUE)
-        if (length(of.st.cl) > 1) 
-          of.st.cl <- names(X)[of.st.cl][which(sapply(X[,of.st.cl], is.numeric))[1]]
+        if (length(of.st.cl) > 1) {
+          of.st.cl2 <- names(X)[of.st.cl][which(sapply(X[,of.st.cl], is.numeric))[1]]
+        
+        # fix if column not found and use first column    
+        of.st.cl <- if (is.na(of.st.cl2)) of.st.cl[1] else of.st.cl2
+        }
         
         X[, grepl("^begin time", names(X), ignore.case = TRUE)] <- as.numeric(X[, of.st.cl])
         X[, grepl("^end time", names(X), ignore.case = TRUE)] <- X[, grepl("^end time", names(X), ignore.case = TRUE)] + X[, grepl("^begin time", names(X), ignore.case = TRUE)]

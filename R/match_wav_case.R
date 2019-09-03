@@ -3,7 +3,7 @@
 #' \code{match_wav_case} fixes the extension case of sound files in a selection table.
 #' @usage match_wav_case(X, path = NULL, output = "data.frame", verbose = TRUE)
 #' @param X Data frame containing columns for sound file (sound.files) and selection
-#'  (selec). See example data 'selec.table' in the \code{\link{warbleR}}) package.
+#'  (selec). See example data 'lbh_selec_table' in the \code{\link{warbleR}}) package.
 #' @param path A character string indicating the path of the directory in which to look for sound files. 
 #' If not provided (default) the function searches into the current working directory.
 #' @param output Character string. Controls whether a complete data frame ('data.frame') 
@@ -16,28 +16,28 @@
 #' @seealso \code{\link{relabel_colms}} 
 #' @export
 #' @name match_wav_case
-#' @examples
+#' @examples{
 #' library(warbleR)
 #' data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", 
-#' "selec.table"))
+#' "lbh_selec_table"))
 #' 
-#' writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE) #save sound files 
-#' writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
-#' writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
-#' writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
+#' writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE) #save sound files 
+#' writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
+#' writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
+#' writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)
 #'
 #' # change one extension
-#' selec.table$sound.files <- as.character(selec.table$sound.files)
-#' selec.table$sound.files[1] <- gsub("\\.wav$", ".WAV", selec.table$sound.files[1]) 
+#' lbh_selec_table$sound.files <- as.character(lbh_selec_table$sound.files)
+#' lbh_selec_table$sound.files[1] <- gsub("\\.wav$", ".WAV", lbh_selec_table$sound.files[1]) 
 #'  
 #'  # fixed extension an return data frame
-#'  match_wav_case(X = selec.table)
+#'  match_wav_case(X = lbh_selec_table, path = tempdir())
 #'   
 #'  # fixed extension an return sound file names
-#'  match_wav_case(X = selec.table, output = "names")
-#'     
+#'  match_wav_case(X = lbh_selec_table, output = "names", path = tempdir())
+#'  }   
 #' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
-#last modification on mar-10-2018
+#last modification on sep-02-2019
 match_wav_case <- function(X, path = NULL, output = "data.frame", verbose = TRUE){
 
 # get path if not provided    
@@ -48,7 +48,7 @@ wvs <- list.files(path = path, pattern = "\\.wav$", ignore.case = TRUE)
 
 if (length(wvs) == 0) stop("no sound files are found in working directory")
 
-# remove extension for both names in selec.table and wavs
+# remove extension for both names in lbh_selec_table and wavs
 sf.no.ext <- gsub(".wav", "", X$sound.files, ignore.case = TRUE)
 wvs.no.ext <- gsub(".wav", "", wvs, ignore.case = TRUE)
 

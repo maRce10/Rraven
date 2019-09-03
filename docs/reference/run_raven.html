@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rraven</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.7</span>
       </span>
     </div>
 
@@ -147,8 +147,8 @@ batch is opened. Default is 10. Not available in OSX (mac).</p></td>
       <th>import</th>
       <td><p>Logical. Controls if the selection tables generated should be returned as a 
 data frame into the R environment. This only works if the selections are saved in the 
-"Selections" folder in the 'Raven' directory. This argument calls the <code>imp_raven</code>
-internally. Additional arguments can be passed to <code>imp_raven</code> to control the way the data is imported.</p></td>
+"Selections" folder in the 'Raven' directory. This argument calls the <code><a href='imp_raven.html'>imp_raven</a></code>
+internally. Additional arguments can be passed to <code><a href='imp_raven.html'>imp_raven</a></code> to control the way the data is imported.</p></td>
     </tr>
     <tr>
       <th>redo</th>
@@ -166,14 +166,14 @@ It should match exactly the name of the present in the 'Raven' folder 'Presets/S
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional arguments to be passed to <code>imp_raven</code> for customizing
+      <td><p>Additional arguments to be passed to <code><a href='imp_raven.html'>imp_raven</a></code> for customizing
 how selections are imported (ignored if <code>import = FALSE</code>).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>If <code>import = TRUE</code> a data frame with the selections produced during the analysis will be return as an data frame. See <code>imp_raven</code> for more details on how selections are imported.</p>
+    <p>If <code>import = TRUE</code> a data frame with the selections produced during the analysis will be return as an data frame. See <code><a href='imp_raven.html'>imp_raven</a></code> for more details on how selections are imported.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -186,19 +186,16 @@ argument. 'Raven' Pro must be installed. Note that 'Raven' can also take sound f
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>imp_raven</code>; <code>imp_syrinx</code></p></div>
+    <div class='dont-index'><p><code><a href='imp_raven.html'>imp_raven</a></code>; <code><a href='imp_syrinx.html'>imp_syrinx</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># First set temporary folder</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>setwd</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>())
-
 <span class='co'># save sound files</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>warbleR</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>))
-<span class='fu'>writeWave</span>(<span class='no'>Phae.long1</span>, <span class='st'>"Phae.long1.wav"</span>, <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'>writeWave</span>(<span class='no'>Phae.long2</span>, <span class='st'>"Phae.long2.wav"</span>, <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>writeWave</span>(<span class='no'>Phae.long1</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(), <span class='st'>"Phae.long1.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>writeWave</span>(<span class='no'>Phae.long2</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(), <span class='st'>"Phae.long2.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># here replace with the path where 'Raven' is install in your computer</span>
 <span class='no'>raven.path</span> <span class='kw'>&lt;-</span> <span class='st'>"PATH_TO_RAVEN_DIRECTORY_HERE"</span>
@@ -212,8 +209,8 @@ argument. 'Raven' Pro must be installed. Note that 'Raven' can also take sound f
 <span class='no'>rav.dat</span><span class='kw'>&lt;-</span><span class='fu'>run_raven</span>(<span class='kw'>all.data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='no'>raven.path</span>)
 <span class='co'># View(rav.dat)</span>
 
-<span class='fu'>writeWave</span>(<span class='no'>Phae.long3</span>, <span class='st'>"Phae.long3.wav"</span>, <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'>writeWave</span>(<span class='no'>Phae.long4</span>, <span class='st'>"Phae.long4.wav"</span>, <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>writeWave</span>(<span class='no'>Phae.long3</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(), <span class='st'>"Phae.long3.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>writeWave</span>(<span class='no'>Phae.long4</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(), <span class='st'>"Phae.long4.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># run function on all the wav files in the working directory 3 at the time</span>
 <span class='fu'>run_raven</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='no'>raven.path</span>, <span class='kw'>sound.files</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list.files'>list.files</a></span>(<span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"\\.wav$"</span>,

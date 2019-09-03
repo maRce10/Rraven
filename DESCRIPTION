@@ -1,9 +1,9 @@
 Type: Package
 Package: Rraven
 Title: Connecting R and 'Raven' Sound Analysis Software
-Version: 1.0.6
-Date: 2019-05-22
-Author: Marcelo Araya-Salas [aut, cre]
+Version: 1.0.7
+Date: 2019-09-03
+Authors@R: person("Marcelo", "Araya-Salas", role = c("aut", "cre"), email = "marceloa27@gmail.com", comment = c(ORCID = "0000-0003-3594-619X"))
 Maintainer: Marcelo Araya-Salas <marceloa27@gmail.com>
 Description: A tool to exchange data between R and 'Raven' sound analysis software (Cornell Lab of Ornithology). Functions work on data formats compatible with the R package 'warbleR'.
 License: GPL (>= 2)
@@ -18,5 +18,4 @@ VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 Packaged: 2018-09-27 23:45:31 UTC; m
 Repository: CRAN
-Authors@R: person("Marcelo", "Araya-Salas", role = c("aut", "cre"), email = "marceloa27@gmail.com")
 Date/Publication: 2017-11-17 08:12:11

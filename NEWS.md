@@ -1,8 +1,9 @@
-# Version 1.0.y
+# Version 1.0.7
 
 ## Changes and additions
 
-* imp_raven: error message when not all selections have a sound file name column
+* changes required by CRAN for saving files in examples
+* imp_raven() error message when not all selections have a sound file name column
 
 # Version 1.0.6
 

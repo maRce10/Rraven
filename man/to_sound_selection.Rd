@@ -13,7 +13,7 @@ If not provided (default) the function searches into the current working directo
 
 \item{dest.path}{A character string indicating the path of the directory in which
 sound selection tables will be saved. 
-If not provided (default) files will be save in the current directory.}
+If not provided (default) files will be saved in directory where the original raven selections were found.}
 
 \item{recursive}{Logical. If \code{TRUE} the listing recurse into sub-directories.}
 
@@ -50,18 +50,15 @@ imported into the R environment.
 #load data 
 data(selection_files)
 
-# set temporary directory
-# setwd(tempdir())
-
 # save 'Raven' selection tables in the temporary directory
 out <- lapply(1:2, function(x)
-writeLines(selection_files[[x]], con = names(selection_files)[x]))
+writeLines(selection_files[[x]], con = file.path(tempdir(), names(selection_files)[x])))
 
 # try drag and drop selection files into Raven (shouldn't work)
 
 # now convert files
-to_sound_selection(sound.file.path = getwd(), 
-sound.file.col = "Begin Path")
+to_sound_selection(sound.file.path = tempdir(), 
+sound.file.col = "Begin Path", path = tempdir())
 
 # try drag and drop into Raven again (should work now)
 }

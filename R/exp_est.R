@@ -24,9 +24,6 @@
 #' @export
 #' @name exp_est
 #' @examples {
-#' # First set temporary folder
-#' # setwd(tempdir())
-#' 
 #'# load example data
 #'data(list = "Phae.long.est", package = "NatureSounds")
 #' 
@@ -34,13 +31,13 @@
 #' X <- Phae.long.est[1:10, ]
 #' 
 #' # Export data to a single sound file
-#' exp_est(X, file.name = "test", single.file = TRUE)
+#' exp_est(X, file.name = "test", single.file = TRUE, path = tempdir())
 #' 
 #' # Export data to a single sound file and normalizing, no pb
-#' exp_est(X, file.name = "test2", single.file = TRUE, normalize = TRUE, pb = FALSE)
+#' exp_est(X, file.name = "test2", single.file = TRUE, normalize = TRUE, pb = FALSE, path = tempdir())
 #' 
 #' # several files
-#' exp_est(X, single.file = FALSE, file.name = "test3")
+#' exp_est(X, single.file = FALSE, file.name = "test3", path = tempdir())
 #' }
 #' 
 #' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
@@ -54,11 +51,6 @@ exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,
   #check path to working directory
   if (is.null(path)) path <- getwd() else if (!dir.exists(path)) stop("'path' provided does not exist") 
   
-  # reset working directory 
-  wd <- getwd()
-  on.exit(setwd(wd), add = TRUE)
-  setwd(path)
-  
   # if file.name 
   if(is.null(file.name) & selection.table) stop("'file.name' must be provided when 'selection.table' is TRUE")
   
@@ -71,7 +63,8 @@ exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,
       stop("X must be of class 'extended_selection_table'")
     
   # set progress bar
-  if (pb) pbapply::pboptions(type = "timer") else pbapply::pboptions(type = "none")
+  if (pb) pbapply::pboptions(type = "timer") else 
+    pbapply::pboptions(type = "none")
     
   # all wave objects in a list
   wvs <- attributes(X)$wave.objects
@@ -95,7 +88,7 @@ exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,
       sngl.wv <- seewave::pastew(wave1 = wvs[[i]], wave2 = sngl.wv, output = "Wave")
   
     # save single wave
-    suppressWarnings(tuneR::writeWave(object = sngl.wv, filename = file.name, extensible = FALSE))
+    suppressWarnings(tuneR::writeWave(object = sngl.wv, filename = file.path(path, file.name), extensible = FALSE))
     } else
 
   # if no single file
@@ -108,7 +101,7 @@ exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,
     if(normalize)
       wv <- tuneR::normalize(wvs[[x]], unit = "16", rescale = TRUE) else wv <- wvs[[x]]
     
-    suppressWarnings(tuneR::writeWave(object = wv, filename = file.name, extensible = FALSE))
+    suppressWarnings(tuneR::writeWave(object = wv, filename = file.path(path, file.name), extensible = FALSE))
     }
     )
   
@@ -127,9 +120,23 @@ exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,
         # get durations of individual waves
         durs <- sapply(wvs, duration)
         
+        # get cummulative duration
+        cumdur <- c(0, cumsum(durs)[-length(durs)])
+        
+        # if est was created by song
+        if (attributes(X)$by.song$by.song){
+          sls.x.rec <- tapply(X$sound.files, X$sound.files, length)
+          
+          # order as in wvs order
+          sls.x.rec <- sls.x.rec[match(names(sls.x.rec), names(wvs))]
+          
+          cumdur <- as.vector(rep(cumdur, sls.x.rec))
+            }  
+          
+            
         # add cummulative time
-        st$start <- st$start + c(0, cumsum(durs)[-length(durs)])
-        st$end <- st$end + c(0, cumsum(durs)[-length(durs)])
+        st$start <- st$start + cumdur
+        st$end <- st$end + cumdur
         
         # export data
         if (selection.table)

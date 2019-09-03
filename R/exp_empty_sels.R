@@ -19,36 +19,31 @@
 #' 
 #' # Load data
 #' library(warbleR)
-#' data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table"))
+#' data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "lbh_selec_table"))
 #' 
 #' # Export a single selection table including multiple files
-#' writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE) #save sound files 
-#' writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
-#' writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
-#' writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
+#' writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE) #save sound files 
+#' writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
+#' writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
+#' writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)
 #' 
 #' # export with no file name
-#' exp_empty_sels()
+#' exp_empty_sels(path = tempdir())
 #' 
 #' # export with file name
-#' exp_empty_sels(file.name = "Phaethornis.longirostris")
+#' exp_empty_sels(file.name = "Phaethornis.longirostris", path = tempdir())
 #' 
 #' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
 #last modification on oct-12-2018
 
 exp_empty_sels <- function(path = NULL, file.name = NULL, pb = TRUE){
-
-  # reset working directory 
-  wd <- getwd()
-  on.exit(setwd(wd))
   
   #check path to working directory
-  if (is.null(path)) path <- wd else {if (!dir.exists(path)) stop("'path' provided does not exist") else
-    setwd(path)
-  }  
+  if (is.null(path)) path <- getwd() else 
+    if (!dir.exists(path)) stop("'path' provided does not exist") 
   
   # create a selection table for each sound file
-  st <- selection_table(whole.recs = TRUE, pb = FALSE)
+  st <- warbleR::selection_table(whole.recs = TRUE, pb = FALSE, path = path)
   
   # set start end at 0 and top bottom at 1 kHz
   st$end <- 0
@@ -60,9 +55,9 @@ exp_empty_sels <- function(path = NULL, file.name = NULL, pb = TRUE){
   st$Rraven.labels <- st$sound.files
   
   # set file name as folder name if not provided
-  if (is.null(file.name)) file.name <- paste0(basename(getwd()), ".selection.table")
+  if (is.null(file.name)) file.name <- paste0(basename(path), ".selection.table")
   
   # export selection
-  exp_raven(X = st, sound.file.path = path, file.name = file.name)
+  exp_raven(X = st, sound.file.path = path, file.name = file.name, path = path)
   
 }

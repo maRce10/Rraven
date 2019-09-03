@@ -30,18 +30,19 @@ imported.
 \dontrun{ 
 # Load data
 library(warbleR)
-data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table"))
+data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "lbh_selec_table"))
 
-writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE) #save sound files 
-writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
-writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
-writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
+writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE) #save sound files 
+writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
+writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
+writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)
 
 #create new folder to put cuts
-dir.create("cuts")
+dir.create(file.path(tempdir(), "cuts"))
 
 # cut files
-cut_sels(X = selec.table, mar = 0.05, path = tempdir(), dest.path = file.path(tempdir(), "cuts"))
+cut_sels(X = lbh_selec_table, mar = 0.05, path = tempdir(),
+ dest.path = file.path(tempdir(), "cuts"))
 
 #Now run 'Raven' batch correlator un the cuts and save the output in the same folder
 

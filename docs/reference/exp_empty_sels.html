@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rraven</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.7</span>
       </span>
     </div>
 
@@ -150,7 +150,7 @@ directory (argument 'path'). Useful to simplify the making of selections from se
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>exp_raven</code></p></div>
+    <div class='dont-index'><p><code><a href='exp_raven.html'>exp_raven</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -158,19 +158,19 @@ directory (argument 'path'). Useful to simplify the making of selections from se
 <span class='co'># Load data</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>warbleR</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: maps</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: tuneR</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: seewave</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: NatureSounds</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>NOTE: functions are being renamed (run 'print(new_function_names)' to see new names). Both old and new names are available in this version </span>
-#&gt; <span class='message'> Please see citation('warbleR') for use in publication</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>, <span class='st'>"selec.table"</span>))
+#&gt; <span class='message'> Please see citation('warbleR') for use in publication</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>, <span class='st'>"lbh_selec_table"</span>))
 
 <span class='co'># Export a single selection table including multiple files</span>
-<span class='fu'>writeWave</span>(<span class='no'>Phae.long1</span>, <span class='st'>"Phae.long1.wav"</span>, <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='co'>#save sound files </span>
-<span class='fu'>writeWave</span>(<span class='no'>Phae.long2</span>, <span class='st'>"Phae.long2.wav"</span>, <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'>writeWave</span>(<span class='no'>Phae.long3</span>, <span class='st'>"Phae.long3.wav"</span>, <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'>writeWave</span>(<span class='no'>Phae.long4</span>, <span class='st'>"Phae.long4.wav"</span>, <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>writeWave</span>(<span class='no'>Phae.long1</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(), <span class='st'>"Phae.long1.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='co'>#save sound files </span>
+<span class='fu'>writeWave</span>(<span class='no'>Phae.long2</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(), <span class='st'>"Phae.long2.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>writeWave</span>(<span class='no'>Phae.long3</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(), <span class='st'>"Phae.long3.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>writeWave</span>(<span class='no'>Phae.long4</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(), <span class='st'>"Phae.long4.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># export with no file name</span>
-<span class='fu'>exp_empty_sels</span>()</div><div class='output co'>#&gt; all selections are OK 
+<span class='fu'>exp_empty_sels</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>())</div><div class='output co'>#&gt; all selections are OK 
 #&gt;    |                                                  | 0 % ~calculating     |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed = 00s</div><div class='input'>
 <span class='co'># export with file name</span>
-<span class='fu'>exp_empty_sels</span>(<span class='kw'>file.name</span> <span class='kw'>=</span> <span class='st'>"Phaethornis.longirostris"</span>)</div><div class='output co'>#&gt; all selections are OK 
+<span class='fu'>exp_empty_sels</span>(<span class='kw'>file.name</span> <span class='kw'>=</span> <span class='st'>"Phaethornis.longirostris"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>())</div><div class='output co'>#&gt; all selections are OK 
 #&gt;    |                                                  | 0 % ~calculating     |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed = 00s</div><div class='input'>
 </div></pre>
   </div>

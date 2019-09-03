@@ -8,7 +8,7 @@ match_wav_case(X, path = NULL, output = "data.frame", verbose = TRUE)
 }
 \arguments{
 \item{X}{Data frame containing columns for sound file (sound.files) and selection
-(selec). See example data 'selec.table' in the \code{\link{warbleR}}) package.}
+(selec). See example data 'lbh_selec_table' in the \code{\link{warbleR}}) package.}
 
 \item{path}{A character string indicating the path of the directory in which to look for sound files. 
 If not provided (default) the function searches into the current working directory.}
@@ -30,25 +30,26 @@ names in the 'sound.files' column matching those of the sound files (in case the
 any mismatch). The function needs the path to the sound files to compare extension names.
 }
 \examples{
+{
 library(warbleR)
 data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", 
-"selec.table"))
+"lbh_selec_table"))
 
-writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE) #save sound files 
-writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
-writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
-writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
+writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE) #save sound files 
+writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
+writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
+writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)
 
 # change one extension
-selec.table$sound.files <- as.character(selec.table$sound.files)
-selec.table$sound.files[1] <- gsub("\\\\.wav$", ".WAV", selec.table$sound.files[1]) 
+lbh_selec_table$sound.files <- as.character(lbh_selec_table$sound.files)
+lbh_selec_table$sound.files[1] <- gsub("\\\\.wav$", ".WAV", lbh_selec_table$sound.files[1]) 
  
  # fixed extension an return data frame
- match_wav_case(X = selec.table)
+ match_wav_case(X = lbh_selec_table, path = tempdir())
   
  # fixed extension an return sound file names
- match_wav_case(X = selec.table, output = "names")
-    
+ match_wav_case(X = lbh_selec_table, output = "names", path = tempdir())
+ }   
 }
 \seealso{
 \code{\link{relabel_colms}}

@@ -65,23 +65,22 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
 {
   
   #check path to working directory
-  if (is.null(path)) path <- getwd() else if (!dir.exists(path)) stop("'path' provided does not exist") 
+  if (is.null(path)) path <- getwd() else 
+    if (!dir.exists(path)) 
+      stop("'path' provided does not exist") 
   
   # set progress bar back to original
   on.exit(pbapply::pboptions(type = .Options$pboptions$type), 
           add = TRUE)
   
-  # reset working directory 
-  wd <- getwd()
-  on.exit(setwd(wd), add = TRUE)
   on.exit(suppressWarnings(file.remove(list.files(path = raven.path, pattern = "temp.bcv.txt$", full.names = TRUE))), add = TRUE)
 
   # check path
     if (is.null(raven.path))
-    stop("Path to 'Raven' folder must be provided")  else
-      if (!dir.exists(raven.path)) stop("'raven.path' provided does not exist")
-  
-  setwd(raven.path)
+    stop("Path to 'Raven' folder must be provided")  
+  else
+      if (!dir.exists(raven.path)) 
+        stop("'raven.path' provided does not exist")
 
   # check detector type
    if (!detector.type %in% c("Amplitude Detector", "Band Limited Energy Detector", "Band Limited Entropy Detector")) stop("'detector.type' not recognized")
@@ -123,9 +122,12 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
       tmp.txt <- paste0(gsub("[[:punct:]]", "", x), ".temp.bcv.txt")
       
       # in case file exists add random number to name
-      if(file.exists(file.path(raven.path, tmp.txt)))
+      if(file.exists(file.path(tempdir(), tmp.txt)))
         tmp.txt <- paste0(sample(1:1000000, 1), tmp.txt)
         
+      # add temporary directory to name
+      tmp.txt <- file.path(tempdir(), tmp.txt)
+      
       # view and detector preset together to fix it when view preset not need it  
    view.detector <- if (detector.type == "Amplitude Detector")  paste0("-detPreset:", detector.preset) else
      paste(paste0("-viewPreset:", view.preset), paste0("-detPreset:", detector.preset))

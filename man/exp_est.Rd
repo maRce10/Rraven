@@ -42,9 +42,6 @@ tables and saves them as sound files in '.wav' format. A single or several sound
 }
 \examples{
 {
-# First set temporary folder
-# setwd(tempdir())
-
 # load example data
 data(list = "Phae.long.est", package = "NatureSounds")
 
@@ -52,13 +49,13 @@ data(list = "Phae.long.est", package = "NatureSounds")
 X <- Phae.long.est[1:10, ]
 
 # Export data to a single sound file
-exp_est(X, file.name = "test", single.file = TRUE)
+exp_est(X, file.name = "test", single.file = TRUE, path = tempdir())
 
 # Export data to a single sound file and normalizing, no pb
-exp_est(X, file.name = "test2", single.file = TRUE, normalize = TRUE, pb = FALSE)
+exp_est(X, file.name = "test2", single.file = TRUE, normalize = TRUE, pb = FALSE, path = tempdir())
 
 # several files
-exp_est(X, single.file = FALSE, file.name = "test3")
+exp_est(X, single.file = FALSE, file.name = "test3", path = tempdir())
 }
 
 }

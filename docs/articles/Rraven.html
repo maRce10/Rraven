@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rraven</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.7</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
 </center></h4>
             
             <h4 class="date"><center>
-“2019-08-27”
+“2019-09-03”
 </center></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/maRce10/Rraven/blob/master/vignettes/Rraven.Rmd"><code>vignettes/Rraven.Rmd</code></a></small>
@@ -120,10 +120,10 @@
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="dt">list =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Phae.long1"</span>, <span class="st">"Phae.long2"</span>, <span class="st">"Phae.long3"</span>, <span class="st">"Phae.long4"</span>, <span class="st">"selec.table"</span>, <span class="st">"selection_files"</span>))</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#save sound files  in temporary directory</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">writeWave</span>(Phae.long1,<span class="st">"Phae.long1.wav"</span>)</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">writeWave</span>(Phae.long2,<span class="st">"Phae.long2.wav"</span>)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">writeWave</span>(Phae.long3,<span class="st">"Phae.long3.wav"</span>)</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">writeWave</span>(Phae.long4,<span class="st">"Phae.long4.wav"</span>)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">writeWave</span>(Phae.long1, <span class="st">"Phae.long1.wav"</span>, <span class="dt">extensible =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">writeWave</span>(Phae.long2, <span class="st">"Phae.long2.wav"</span>, <span class="dt">extensible =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">writeWave</span>(Phae.long3, <span class="st">"Phae.long3.wav"</span>, <span class="dt">extensible =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">writeWave</span>(Phae.long4, <span class="st">"Phae.long4.wav"</span>, <span class="dt">extensible =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb3-11" data-line-number="11"></a>
 <a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#save Raven selection tables in the temporary directory</span></a>
 <a class="sourceLine" id="cb3-13" data-line-number="13">out &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">lapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="cf">function</span>(x)</a>
@@ -146,7 +146,7 @@
 <p> </p>
 <p>This code shows how to import all the data contained in those files into R:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"> <span class="co">#providing the name of the column with the sound file names</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">all.data =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">all.data =</span> <span class="ot">TRUE</span>, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(rvn.dat)</a></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:808px; ">
@@ -444,11 +444,11 @@ LBH 3 selection table example.txt
 </div>
 <p> </p>
 <p>Note that the ‘waveform’ view data has been removed. It can also be imported as follows (but note that the example selection tables have no waveform data):</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">all.data =</span> <span class="ot">TRUE</span>, <span class="dt">waveform =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">all.data =</span> <span class="ot">TRUE</span>, <span class="dt">waveform =</span> <span class="ot">TRUE</span>, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())</a></code></pre></div>
 <p> </p>
 <p><a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> selections can also be imported in a ‘selection.table’ format so it can be directly input into <a href="https://cran.r-project.org/package=warbleR">warbleR</a> functions. To do this you need to set <code>warbler.format = FALSE</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"> <span class="co">#providing the name of the column with the sound file names</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">sound.file.col =</span> <span class="st">"End.File"</span>, <span class="dt">warbler.format =</span>  <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">sound.file.col =</span> <span class="st">"End.File"</span>, <span class="dt">warbler.format =</span>  <span class="ot">TRUE</span>, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())</a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(rvn.dat)</a></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -661,9 +661,9 @@ LBH 3 selection table example.txt
 <p> </p>
 <p>The data frame contains the following columns: sound.files, channel, selec, start, end, and selec.file. You can also import the frequency range parameters in the ‘selection.table’ by setting ‘freq.cols’ tp <code>TRUE</code>. The data frame returned by “imp_raven” (when in the ‘warbleR’ format) can be input into several <a href="https://cran.r-project.org/package=warbleR">warbleR</a> functions for further analysis. For instance, the following code runs additional parameter measurements on the imported selections:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># convert to class selection.table</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">rvn.dat.st &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/warbleR/topics/make.selection.table">make.selection.table</a></span>(rvn.dat)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">rvn.dat.st &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/warbleR/topics/selection_table">selection_table</a></span>(rvn.dat, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">sp &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/warbleR/topics/specan">specan</a></span>(<span class="dt">X =</span> rvn.dat, <span class="dt">bp =</span> <span class="st">"frange"</span>, <span class="dt">wl =</span> <span class="dv">150</span>, <span class="dt">pb =</span> <span class="ot">FALSE</span>, <span class="dt">ovlp =</span> <span class="dv">90</span>)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">sp &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/warbleR/topics/specan">specan</a></span>(<span class="dt">X =</span> rvn.dat, <span class="dt">bp =</span> <span class="st">"frange"</span>, <span class="dt">wl =</span> <span class="dv">150</span>, <span class="dt">pb =</span> <span class="ot">FALSE</span>, <span class="dt">ovlp =</span> <span class="dv">90</span>, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())</a>
 <a class="sourceLine" id="cb9-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb9-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(sp)</a></code></pre></div>
 <pre><code>checking selections (step 1 of 2):
@@ -1322,7 +1322,7 @@ Phae.long3.wav
 <p>And this code creates song catalogs:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/warbleR/topics/catalog">catalog</a></span>(<span class="dt">X =</span> rvn.dat.st[<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, ], <span class="dt">flim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">same.time.scale =</span> F,</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"> <span class="dt">ovlp =</span> <span class="dv">90</span>, <span class="dt">parallel =</span> <span class="dv">1</span>, <span class="dt">mar =</span> <span class="fl">0.01</span>, <span class="dt">wl =</span> <span class="dv">200</span>, <span class="dt">pal =</span> reverse.heat.colors, <span class="dt">width =</span> <span class="dv">20</span>,  <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"sound.files"</span>, <span class="st">"selec"</span>), <span class="dt">legend =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"> <span class="dt">tag.pal =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(terrain.colors), <span class="dt">tags =</span> <span class="st">"sound.files"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb11-3" data-line-number="3"> <span class="dt">tag.pal =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(terrain.colors), <span class="dt">tags =</span> <span class="st">"sound.files"</span>, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())</a></code></pre></div>
 </div>
 </div>
 <div id="catalog" class="section level2">
@@ -1337,12 +1337,12 @@ Phae.long3.wav
 </h3>
 <p>The function extracts parameters encoded as time series in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> selection tables. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as in the <a href="https://cran.r-project.org/package=warbleR">warbleR</a> function <code>dfDTW</code>. The function needs an R data frame, so the data should have been previously imported using <code>imp_raven</code>. This example uses the <code>selection_file.ts</code> example data that comes with <code>Rraven</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">#remove previous raven data files</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unlink">unlink</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list.files">list.files</a></span>(<span class="dt">pattern =</span> <span class="st">"</span><span class="ch">\\</span><span class="st">.txt$"</span>))</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unlink">unlink</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list.files">list.files</a></span>(<span class="dt">pattern =</span> <span class="st">"</span><span class="ch">\\</span><span class="st">.txt$"</span>, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>()))</a>
 <a class="sourceLine" id="cb12-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#save Raven selection table in the temporary directory</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/writeLines">writeLines</a></span>(selection_files[[<span class="dv">5</span>]], <span class="dt">con =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(selection_files)[<span class="dv">5</span>])</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/writeLines">writeLines</a></span>(selection_files[[<span class="dv">5</span>]], <span class="dt">con =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/file.path">file.path</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>(), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(selection_files)[<span class="dv">5</span>]))</a>
 <a class="sourceLine" id="cb12-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7">rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">all.data =</span> <span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">rvn.dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/imp_raven.html">imp_raven</a></span>(<span class="dt">all.data =</span> <span class="ot">TRUE</span>, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>()) </a>
 <a class="sourceLine" id="cb12-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co"># Peak freq contour dif length</span></a>
 <a class="sourceLine" id="cb12-10" data-line-number="10">fcts &lt;-<span class="st"> </span><span class="kw"><a href="../reference/extract_ts.html">extract_ts</a></span>(<span class="dt">X =</span> rvn.dat, <span class="dt">ts.column =</span> <span class="st">"Peak Freq Contour (Hz)"</span>)</a>
@@ -3459,7 +3459,7 @@ Phae.long3.wav
 </table>
 <p> </p>
 <p>The time series data frame can be directly input into the <code>dfDTW</code> <a href="https://cran.r-project.org/package=warbleR">warbleR</a> function to calculate <a href="https://en.wikipedia.org/wiki/Dynamic_time_warping">Dynamic Time Warping</a> distances:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/warbleR/topics/dfDTW">dfDTW</a></span>(<span class="dt">ts.df =</span> fcts)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/warbleR/topics/dfDTW">dfDTW</a></span>(<span class="dt">ts.df =</span> fcts, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())</a></code></pre></div>
 <p> </p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:808px; ">
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -4231,7 +4231,7 @@ Spectrogram 1
 <p>The function imports the output of a batch correlation routine in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a>. Both the correlation and lag matrices contained in the output ‘.txt’ file are read and both waveform and spectrogram (cross-correlation) correlations can be imported.</p>
 <p>This example shows how to input the sound files into <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> and how to bring the results back to R. First, the selections need to be cut as single sound files for the <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> correlator to be able to read it. We can do this using the <code>cut_sels</code> function from <a href="https://cran.r-project.org/package=warbleR">warbleR</a>:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co">#create new folder to put cuts</span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/files2">dir.create</a></span>(<span class="st">"cuts"</span>)</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/files2">dir.create</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/file.path">file.path</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>(), <span class="st">"cuts"</span>))</a>
 <a class="sourceLine" id="cb19-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb19-4" data-line-number="4"><span class="co"># add a rowname column to be able to match cuts and selections</span></a>
 <a class="sourceLine" id="cb19-5" data-line-number="5">selec.table<span class="op">$</span>rownames &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sprintf">sprintf</a></span>(<span class="st">"%02d"</span>,<span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(selec.table))</a>
@@ -5189,7 +5189,7 @@ Spectrogram 1
 <a class="sourceLine" id="cb23-8" data-line-number="8">xcorr.rvn &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">as.dist</a></span>(xcorr.rvn)</a>
 <a class="sourceLine" id="cb23-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb23-10" data-line-number="10"><span class="co"># measure acoustic parameters</span></a>
-<a class="sourceLine" id="cb23-11" data-line-number="11">sp.wrblR &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/warbleR/topics/specan">specan</a></span>(selec.table, <span class="dt">bp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">11</span>), <span class="dt">wl =</span> <span class="dv">150</span>, <span class="dt">pb =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb23-11" data-line-number="11">sp.wrblR &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/warbleR/topics/specan">specan</a></span>(selec.table, <span class="dt">bp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">11</span>), <span class="dt">wl =</span> <span class="dv">150</span>, <span class="dt">pb =</span> <span class="ot">FALSE</span>, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())</a>
 <a class="sourceLine" id="cb23-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb23-13" data-line-number="13"><span class="co">#convert them to distance matrix</span></a>
 <a class="sourceLine" id="cb23-14" data-line-number="14">dist.sp.wrblR &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(sp.wrblR)</a></code></pre></div>
@@ -5206,7 +5206,7 @@ Mantel statistic r: 0.259
 
 Upper quantiles of permutations (null model):
   90%   95% 97.5%   99% 
-0.143 0.180 0.226 0.272 
+0.148 0.190 0.229 0.278 
 Permutation: free
 Number of permutations: 999</code></pre>
 <p> </p>
@@ -5223,23 +5223,23 @@ Number of permutations: 999</code></pre>
 </h3>
 <p><em>exp_raven</em> saves a selection table in ‘.txt’ format that can be directly opened in Raven. No objects are returned into the R environment. The following code exports a data table from a single sound file:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># Select data for a single sound file</span></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">st1 &lt;-<span class="st"> </span>selec.table[selec.table<span class="op">$</span>sound.files <span class="op">==</span><span class="st"> "Phae.long1.wav"</span>,]</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">st1 &lt;-<span class="st"> </span>selec.table[selec.table<span class="op">$</span>sound.files <span class="op">==</span><span class="st"> "Phae.long1.wav"</span>, ]</a>
 <a class="sourceLine" id="cb27-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb27-4" data-line-number="4"><span class="co"># Export data of a single sound file</span></a>
-<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(st1, <span class="dt">file.name =</span> <span class="st">"Phaethornis 1"</span>, <span class="dt">khz.to.hz =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(st1, <span class="dt">file.name =</span> <span class="st">"Phaethornis 1"</span>, <span class="dt">khz.to.hz =</span> <span class="ot">TRUE</span>, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())</a></code></pre></div>
 <p> </p>
 <p>If the path to the sound file is provided, the functions exports a ‘sound selection table’ which can be directly open by <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> (and which will also open the associated sound file):</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># Select data for a single sound file</span></a>
 <a class="sourceLine" id="cb28-2" data-line-number="2">st1 &lt;-<span class="st"> </span>selec.table[selec.table<span class="op">$</span>sound.files <span class="op">==</span><span class="st"> "Phae.long1.wav"</span>,]</a>
 <a class="sourceLine" id="cb28-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb28-4" data-line-number="4"><span class="co"># Export data of a single sound file</span></a>
-<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(st1, <span class="dt">file.name =</span> <span class="st">"Phaethornis 1"</span>, <span class="dt">khz.to.hz =</span> <span class="ot">TRUE</span>, <span class="dt">sound.file.path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())</a></code></pre></div>
+<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(st1, <span class="dt">file.name =</span> <span class="st">"Phaethornis 1"</span>, <span class="dt">khz.to.hz =</span> <span class="ot">TRUE</span>, <span class="dt">sound.file.path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>(), <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())</a></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven1.gif" alt="gif2">  </p>
 <p>This is useful to add new selections or even new measurements:</p>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven2.gif" alt="gif3">  </p>
 <p>If several sound files are available, users can either export them as a single selection file or as multiple selection files (one for each sound file). This example creates a multiple sound file selection:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw"><a href="../reference/exp_raven.html">exp_raven</a></span>(<span class="dt">X =</span> selec.table, <span class="dt">file.name =</span> <span class="st">"Phaethornis multiple sound files"</span>, </a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="dt">sound.file.path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>(), <span class="dt">single.file =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="dt">sound.file.path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>(), <span class="dt">single.file =</span> <span class="ot">TRUE</span>, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())</a></code></pre></div>
 <p> </p>
 <p>These type of tables can be opened as a multiple file display in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a>:</p>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven3.gif" alt="gif4">  </p>
@@ -5259,7 +5259,7 @@ Number of permutations: 999</code></pre>
 <a class="sourceLine" id="cb30-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb30-4" data-line-number="4"><span class="co"># run function </span></a>
 <a class="sourceLine" id="cb30-5" data-line-number="5"><span class="kw"><a href="../reference/run_raven.html">run_raven</a></span>(<span class="dt">raven.path =</span> raven.path, <span class="dt">sound.files =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Phae.long1.wav"</span>, <span class="st">"Phae.long2.wav"</span>, <span class="st">"Phae.long3.wav"</span>, <span class="st">"Phae.long4.wav"</span>), <span class="dt">import =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb30-6" data-line-number="6"> <span class="dt">all.data =</span> <span class="ot">TRUE</span>)  </a></code></pre></div>
+<a class="sourceLine" id="cb30-6" data-line-number="6"> <span class="dt">all.data =</span> <span class="ot">TRUE</span>, <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>())  </a></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_run_raven1.gif" alt="gif5">  </p>
 <p>See <code>imp_raven</code> above for more details on additional settings when importing selections.</p>
 <hr>

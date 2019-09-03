@@ -27,30 +27,26 @@
 #' @export
 #' @name fix_path
 #' @examples{
-#' 
 #' # load warbleR for sound file examples
 #' library(warbleR)
 #' 
 #' #load data 
 #' data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selection_files"))
-#' 
-#' # set temporary directory
-#' # setwd(tempdir())
 #'
 #' # save sound files
-#' writeWave(Phae.long1,"Phae.long1.wav")
-#' writeWave(Phae.long2,"Phae.long2.wav")
-#' writeWave(Phae.long3,"Phae.long3.wav")
-#' writeWave(Phae.long4,"Phae.long4.wav")   
+#' writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE)
+#' writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
+#' writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
+#' writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)   
 
 #' # save 'Raven' selection tables in the temporary directory
 #' out <- lapply(1:2, function(x)
-#' writeLines(selection_files[[x]], con = names(selection_files)[x]))
+#' writeLines(selection_files[[x]], con = file.path(tempdir(), names(selection_files)[x])))
 #' 
 #' # try drag and drop selection files into Raven (shouldn't work)
 #' 
 #' # now fix files
-#' fix_path(path = getwd(), 
+#' fix_path(path = tempdir(), 
 #' sound.file.col = "Begin File", new.begin.path = "YOUR NEW LOCATION HERE")
 #' 
 #' # try drag and drop into Raven again (should work now)
@@ -62,19 +58,16 @@
 fix_path <- function(path = NULL, dest.path = NULL, recursive = FALSE, parallel = 1, pb = TRUE, new.begin.path, sound.file.col)
 {
   
-  # reset working directory 
-  wd <- getwd()
-  on.exit(setwd(wd))
-  
   #check path to working directory
-  if (is.null(path)) path <- getwd() else {if (!dir.exists(path)) stop("'path' provided does not exist") else
-    setwd(path)
-  }  
+  if (is.null(path)) path <- getwd() else 
+    if (!dir.exists(path)) stop("'path' provided does not exist") 
   
+  # check dest.path
   if (is.null(dest.path)) dest.path <- path else 
     if (!dir.exists(dest.path)) stop("'path' provided does not exist") 
   
-  sel.txt <- list.files(pattern = ".txt$", full.names = TRUE, recursive = recursive, ignore.case = TRUE)
+  # read selection file names
+  sel.txt <- list.files(pattern = ".txt$", full.names = TRUE, recursive = recursive, ignore.case = TRUE, path = path)
   
   if (length(sel.txt) == 0) stop("No selection .txt files in working directory/'path' provided")
   
@@ -101,10 +94,9 @@ fix_path <- function(path = NULL, dest.path = NULL, recursive = FALSE, parallel 
           rf[-1] <- sapply(2:length(rf), function(y)
             repl.colm(x = rf[y], index =  which(strsplit(rf[1], "\t",fixed=TRUE)[[1]] == "Begin Path"), rpl = file.path(new.begin.path, basename(strsplit(rf[y], "\t",fixed=TRUE)[[1]][which(strsplit(rf[1], "\t",fixed=TRUE)[[1]] == sound.file.col)])))) 
         
-        if (!is.null(dest.path)) name <- file.path(dest.path, basename(sel.txt[i])) else name <- basename(sel.txt[i])
+        name <- file.path(dest.path, basename(sel.txt[i])) 
         
         writeLines(rf, con = name)
-      
     }
   }
   }

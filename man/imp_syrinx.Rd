@@ -41,7 +41,7 @@ All files must have the same columns.
 data(selection_files)
 
 #save 'Raven' selection tables in the temporary directory 
-writeLines(selection_files[[7]], con = names(selection_files)[7])
+writeLines(selection_files[[7]], con = file.path(tempdir(), names(selection_files)[7]))
 
 syr.dat <- imp_syrinx(all.data = FALSE)
 

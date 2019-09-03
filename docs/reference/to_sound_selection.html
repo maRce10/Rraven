@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rraven</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.7</span>
       </span>
     </div>
 
@@ -131,7 +131,7 @@ If not provided (default) the function searches into the current working directo
       <th>dest.path</th>
       <td><p>A character string indicating the path of the directory in which
 sound selection tables will be saved. 
-If not provided (default) files will be save in the current directory.</p></td>
+If not provided (default) files will be saved in directory where the original raven selections were found.</p></td>
     </tr>
     <tr>
       <th>recursive</th>
@@ -175,7 +175,7 @@ imported into the R environment.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>imp_syrinx</code>; <code>imp_raven</code></p></div>
+    <div class='dont-index'><p><code><a href='imp_syrinx.html'>imp_syrinx</a></code>; <code><a href='imp_raven.html'>imp_raven</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -184,21 +184,18 @@ imported into the R environment.</p>
 <span class='co'>#load data </span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>selection_files</span>)
 
-<span class='co'># set temporary directory</span>
-<span class='co'># setwd(tempdir())</span>
-
 <span class='co'># save 'Raven' selection tables in the temporary directory</span>
 <span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>function</span>(<span class='no'>x</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/writeLines'>writeLines</a></span>(<span class='no'>selection_files</span><span class='kw'>[[</span><span class='no'>x</span>]], <span class='kw'>con</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>selection_files</span>)[<span class='no'>x</span>]))
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/writeLines'>writeLines</a></span>(<span class='no'>selection_files</span><span class='kw'>[[</span><span class='no'>x</span>]], <span class='kw'>con</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>selection_files</span>)[<span class='no'>x</span>])))
 
 <span class='co'># try drag and drop selection files into Raven (shouldn't work)</span>
 
 <span class='co'># now convert files</span>
-<span class='fu'>to_sound_selection</span>(<span class='kw'>sound.file.path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(),
-<span class='kw'>sound.file.col</span> <span class='kw'>=</span> <span class='st'>"Begin Path"</span>)
+<span class='fu'>to_sound_selection</span>(<span class='kw'>sound.file.path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(),
+<span class='kw'>sound.file.col</span> <span class='kw'>=</span> <span class='st'>"Begin Path"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>())
 
 <span class='co'># try drag and drop into Raven again (should work now)</span>
-}</div><div class='output co'>#&gt;    |                                                  | 0 % ~calculating     |++                                                | 4 % ~00s             |++++                                              | 8 % ~00s             |++++++                                            | 12% ~00s             |++++++++                                          | 15% ~00s             |++++++++++                                        | 19% ~00s             |++++++++++++                                      | 23% ~00s             |++++++++++++++                                    | 27% ~00s             |++++++++++++++++                                  | 31% ~00s          'sound.file.col' not found in at least 1 selection file   |++++++++++++++++++                                | 35% ~00s             |++++++++++++++++++++                              | 38% ~00s             |++++++++++++++++++++++                            | 42% ~00s             |++++++++++++++++++++++++                          | 46% ~00s             |+++++++++++++++++++++++++                         | 50% ~00s             |+++++++++++++++++++++++++++                       | 54% ~00s             |+++++++++++++++++++++++++++++                     | 58% ~00s             |+++++++++++++++++++++++++++++++                   | 62% ~00s             |+++++++++++++++++++++++++++++++++                 | 65% ~00s             |+++++++++++++++++++++++++++++++++++               | 69% ~00s             |+++++++++++++++++++++++++++++++++++++             | 73% ~00s             |+++++++++++++++++++++++++++++++++++++++           | 77% ~00s             |+++++++++++++++++++++++++++++++++++++++++         | 81% ~00s             |+++++++++++++++++++++++++++++++++++++++++++       | 85% ~00s             |+++++++++++++++++++++++++++++++++++++++++++++     | 88% ~00s             |+++++++++++++++++++++++++++++++++++++++++++++++   | 92% ~00s             |+++++++++++++++++++++++++++++++++++++++++++++++++ | 96% ~00s             |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed = 00s</div><div class='input'>
+}</div><div class='output co'>#&gt;    |                                                  | 0 % ~calculating     |+++++                                             | 10% ~00s             |++++++++++                                        | 20% ~00s             |+++++++++++++++                                   | 30% ~00s          'sound.file.col' not found in at least 1 selection file   |++++++++++++++++++++                              | 40% ~00s             |+++++++++++++++++++++++++                         | 50% ~00s             |++++++++++++++++++++++++++++++                    | 60% ~00s             |+++++++++++++++++++++++++++++++++++               | 70% ~00s             |++++++++++++++++++++++++++++++++++++++++         | 80% ~00s             |+++++++++++++++++++++++++++++++++++++++++++++    | 90% ~00s             |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed = 00s</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

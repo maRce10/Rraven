@@ -85,10 +85,10 @@ setwd(tempdir())
 data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table", "selection_files"))
 
 #save sound files  in temporary directory
-writeWave(Phae.long1,"Phae.long1.wav")
-writeWave(Phae.long2,"Phae.long2.wav")
-writeWave(Phae.long3,"Phae.long3.wav")
-writeWave(Phae.long4,"Phae.long4.wav")
+writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE)
+writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
+writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
+writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
 
 #save Raven selection tables in the temporary directory
 out <- lapply(1:4, function(x)
@@ -101,20 +101,18 @@ getwd()
 
 ```{r eval= T, echo=F}
 
-setwd(tempdir())
-
 #load example data
 data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table", "selection_files"))
 
 #save sound files  in temporary directory
-writeWave(Phae.long1,"Phae.long1.wav", extensible = FALSE)
-writeWave(Phae.long2,"Phae.long2.wav", extensible = FALSE)
-writeWave(Phae.long3,"Phae.long3.wav", extensible = FALSE)
-writeWave(Phae.long4,"Phae.long4.wav", extensible = FALSE)
+writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE) #save sound files
+writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
+writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
+writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)
 
 #save Raven selection tables in temporary directory
 out <- lapply(1:4, function(x)
-writeLines(selection_files[[x]], con = names(selection_files)[x]))
+writeLines(selection_files[[x]], con = file.path(tempdir(), names(selection_files)[x])))
 
 #providing the name of the column with the sound file names
 # rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE)
@@ -146,7 +144,7 @@ This code shows how to import all the data contained in those files into R:
 ```{r, eval=FALSE}
 
  #providing the name of the column with the sound file names
-rvn.dat <- imp_raven(all.data = TRUE)
+rvn.dat <- imp_raven(all.data = TRUE, path = tempdir())
 
 head(rvn.dat)
 
@@ -171,7 +169,7 @@ Note that the 'waveform' view data has been removed. It can also be imported as 
 
 ```{r, eval=FALSE}
 
-rvn.dat <- imp_raven(all.data = TRUE, waveform = TRUE)
+rvn.dat <- imp_raven(all.data = TRUE, waveform = TRUE, path = tempdir())
 
 ```
  &nbsp; 
@@ -180,7 +178,7 @@ rvn.dat <- imp_raven(all.data = TRUE, waveform = TRUE)
 
 ```{r, eval=FALSE}
  #providing the name of the column with the sound file names
-rvn.dat <- imp_raven(sound.file.col = "End.File", warbler.format =  TRUE)
+rvn.dat <- imp_raven(sound.file.col = "End.File", warbler.format =  TRUE, path = tempdir())
 
 head(rvn.dat)
 
@@ -189,7 +187,7 @@ head(rvn.dat)
 ```{r, eval=TRUE, echo=FALSE}
 
  #providing the name of the column with the sound file names
-rvn.dat <- imp_raven(sound.file.col = "End.File", warbler.format =  TRUE)
+rvn.dat <- imp_raven(sound.file.col = "End.File", warbler.format =  TRUE, path = tempdir())
 
 kbl <- kable(head(rvn.dat), align = "c", row.names = F, escape = FALSE)
 
@@ -205,9 +203,9 @@ The data frame contains the following columns: sound.files, channel, selec, star
 ```{r, eval=FALSE, echo=TRUE}
 
 # convert to class selection.table
-rvn.dat.st <- make.selection.table(rvn.dat)
+rvn.dat.st <- selection_table(rvn.dat, path = tempdir())
 
-sp <- specan(X = rvn.dat, bp = "frange", wl = 150, pb = FALSE, ovlp = 90)
+sp <- specan(X = rvn.dat, bp = "frange", wl = 150, pb = FALSE, ovlp = 90, path = tempdir())
 
 head(sp)
 
@@ -216,9 +214,9 @@ head(sp)
 ```{r, eval=TRUE, echo=FALSE}
 
 # convert to class selection.table
-rvn.dat.st <- make.selection.table(rvn.dat)
+rvn.dat.st <- selection_table(rvn.dat)
 
-sp <- specan(X = rvn.dat, bp = "frange", wl = 150, pb = FALSE, ovlp = 90)
+sp <- specan(X = rvn.dat, bp = "frange", wl = 150, pb = FALSE, ovlp = 90, path = tempdir())
 
 kbl <- kable(head(sp), align = "c", row.names = F, escape = FALSE)
 
@@ -238,7 +236,7 @@ And this code creates song catalogs:
 
 catalog(X = rvn.dat.st[1:9, ], flim = c(1, 10), nrow = 3, ncol = 3, same.time.scale = F,
  ovlp = 90, parallel = 1, mar = 0.01, wl = 200, pal = reverse.heat.colors, width = 20,  labels = c("sound.files", "selec"), legend = 1, 
- tag.pal = list(terrain.colors), tags = "sound.files")
+ tag.pal = list(terrain.colors), tags = "sound.files", path = tempdir())
 
 ```
 
@@ -258,12 +256,12 @@ The function extracts parameters encoded as time series in [Raven](http://www.bi
 ```{r, eval=FALSE}
 
 #remove previous raven data files
-unlink(list.files(pattern = "\\.txt$"))
+unlink(list.files(pattern = "\\.txt$", path = tempdir()))
 
 #save Raven selection table in the temporary directory
-writeLines(selection_files[[5]], con = names(selection_files)[5])
+writeLines(selection_files[[5]], con = file.path(tempdir(), names(selection_files)[5]))
 
-rvn.dat <- imp_raven(all.data = TRUE) 
+rvn.dat <- imp_raven(all.data = TRUE, path = tempdir()) 
 
 # Peak freq contour dif length
 fcts <- extract_ts(X = rvn.dat, ts.column = "Peak Freq Contour (Hz)")
@@ -275,13 +273,13 @@ head(fcts)
 ```{r, eval=T, echo=FALSE}
 
 #remove previous raven data files
-unlink(list.files(pattern = "\\.txt$"))
+unlink(list.files(pattern = "\\.txt$", path = tempdir()))
 
 #save Raven selection table in the temporary directory
-writeLines(selection_files[[5]], con = names(selection_files)[5])
+writeLines(selection_files[[5]], con = file.path(tempdir(), names(selection_files)[5]))
 
 #save Raven selection table in the temporary directory
-rvn.dat <- imp_raven(all.data = TRUE) 
+rvn.dat <- imp_raven(all.data = TRUE, path = tempdir()) 
 
 # Peak freq contour dif length
 fcts <- extract_ts(X = rvn.dat, ts.column = "Peak Freq Contour (Hz)")
@@ -356,14 +354,14 @@ The time series data frame can be directly input into the `dfDTW` [warbleR](http
 
 ```{r, eval=F, echo=T}
 
-dfDTW(ts.df = fcts)
+dfDTW(ts.df = fcts, path = tempdir())
 
 ```
 &nbsp;
 
 ```{r, eval=T, echo=F}
 
-kbl <- kable(dfDTW(ts.df = fcts), align = "c", row.names = T, escape = FALSE)
+kbl <- kable(dfDTW(ts.df = fcts, path = tempdir()), align = "c", row.names = T, escape = FALSE)
 
 kbl <- kable_styling(kbl, bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = T, font_size = 12)
 
@@ -452,7 +450,7 @@ This example shows how to input the sound files into [Raven](http://www.birds.co
 ```{r, eval=F, echo=T}
 
 #create new folder to put cuts
-dir.create("cuts")
+dir.create(file.path(tempdir(), "cuts"))
 
 # add a rowname column to be able to match cuts and selections
 selec.table$rownames <- sprintf("%02d",1:nrow(selec.table))
@@ -483,7 +481,7 @@ xcorr.rav <- imp_corr_mat(file = "BatchCorrOutput.txt", path = tempdir())
 ```{r, eval=T, echo=F}
 
 #save Raven selection table in the temporary directory
-writeLines(selection_files[[6]], con = names(selection_files)[6])
+writeLines(selection_files[[6]], con = file.path(tempdir(), names(selection_files)[6]))
 
 # Import output (change the name of the file if you used a different one)
 xcorr.rav <- imp_corr_mat(file = "BatchCorrOutput.txt", path = tempdir())
@@ -548,7 +546,7 @@ xcorr.rvn <- xcorr.rvn[order(rownames(xcorr.rvn)), order(colnames(xcorr.rvn))]
 xcorr.rvn <- as.dist(xcorr.rvn)
 
 # measure acoustic parameters
-sp.wrblR <- specan(selec.table, bp = c(1, 11), wl = 150, pb = FALSE)
+sp.wrblR <- specan(selec.table, bp = c(1, 11), wl = 150, pb = FALSE, path = tempdir())
 
 #convert them to distance matrix
 dist.sp.wrblR <- dist(sp.wrblR)
@@ -571,10 +569,10 @@ There is actually a good match between the two methods!
 
 ```{r, eval=FALSE, echo=T}
 # Select data for a single sound file
-st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav",]
+st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav", ]
 
 # Export data of a single sound file
-exp_raven(st1, file.name = "Phaethornis 1", khz.to.hz = TRUE)
+exp_raven(st1, file.name = "Phaethornis 1", khz.to.hz = TRUE, path = tempdir())
 ```
  &nbsp; 
  
@@ -585,7 +583,7 @@ If the path to the sound file is provided, the functions exports a 'sound select
 st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav",]
 
 # Export data of a single sound file
-exp_raven(st1, file.name = "Phaethornis 1", khz.to.hz = TRUE, sound.file.path = tempdir())
+exp_raven(st1, file.name = "Phaethornis 1", khz.to.hz = TRUE, sound.file.path = tempdir(), path = tempdir())
 
 ```
 ![gif2](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven1.gif)
@@ -601,7 +599,7 @@ If several sound files are available, users can either export them as a single s
 ```{r, eval=FALSE, echo=T}
 
 exp_raven(X = selec.table, file.name = "Phaethornis multiple sound files", 
-sound.file.path = tempdir(), single.file = TRUE)
+sound.file.path = tempdir(), single.file = TRUE, path = tempdir())
 ```
  &nbsp; 
 
@@ -625,7 +623,7 @@ raven.path <- "PATH_TO_RAVEN_DIRECTORY_HERE"
 
 # run function 
 run_raven(raven.path = raven.path, sound.files = c("Phae.long1.wav", "Phae.long2.wav", "Phae.long3.wav", "Phae.long4.wav"), import = TRUE, 
- all.data = TRUE)  
+ all.data = TRUE, path = tempdir())  
 
 ``` 
 
@@ -660,7 +658,7 @@ Araya-Salas, M. (2017), *Rraven: connecting R and Raven bioacoustic software*. R
 
 ```{r, eval=T, echo=F}
 
-unlink(list.files(pattern = "\\.wav$|\\.txt$", ignore.case = TRUE))
+unlink(list.files(pattern = "\\.wav$|\\.txt$", ignore.case = TRUE, path = tempdir()))
 
 ```
 

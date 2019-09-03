@@ -31,19 +31,19 @@ directory (argument 'path'). Useful to simplify the making of selections from se
 
 # Load data
 library(warbleR)
-data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table"))
+data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "lbh_selec_table"))
 
 # Export a single selection table including multiple files
-writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE) #save sound files 
-writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
-writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
-writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
+writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE) #save sound files 
+writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
+writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
+writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)
 
 # export with no file name
-exp_empty_sels()
+exp_empty_sels(path = tempdir())
 
 # export with file name
-exp_empty_sels(file.name = "Phaethornis.longirostris")
+exp_empty_sels(file.name = "Phaethornis.longirostris", path = tempdir())
 
 }
 \seealso{

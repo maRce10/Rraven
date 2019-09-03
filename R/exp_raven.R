@@ -41,40 +41,36 @@
 #' 
 #' # Load data
 #' library(warbleR)
-#' data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table"))
+#' data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "lbh_selec_table"))
 #' 
 #' # Select data for a single sound file
-#' st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav", ]
+#' st1 <- lbh_selec_table[lbh_selec_table$sound.files == "Phae.long1.wav", ]
 #' 
 #' # Export data of a single sound file
-#' exp_raven(st1, file.name = "Phaethornis 1")
+#' exp_raven(st1, file.name = "Phaethornis 1", path = tempdir())
 #' 
 #' # Export a single selection table including multiple files
-#' writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE) #save sound files 
-#' writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
-#' writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
-#' writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
+#' writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE) #save sound files 
+#' writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
+#' writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
+#' writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)
 #' 
-#' exp_raven(X = selec.table, file.name = "Phaethornis multiple sound files",
-#'  single.file = TRUE, sound.file.path = getwd())
+#' # export raven selection as single file
+#' exp_raven(X = lbh_selec_table, file.name = "Phaethornis multiple sound files",
+#' single.file = TRUE, sound.file.path = tempdir(), path = tempdir())
 #' 
 #' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
-#last modification on oct-12-2018
+#last modification on oct-2-2019
 exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.file.path = NULL, single.file = TRUE, parallel = 1, pb = TRUE){
   
-  # reset working directory 
-  wd <- getwd()
-  on.exit(setwd(wd))
-  
   #check path to working directory
-  if (is.null(path)) path <- wd else {if (!dir.exists(path)) stop("'path' provided does not exist") else
-    setwd(path)
-  }  
+  if (is.null(path)) path <- getwd() else 
+    if (!dir.exists(path)) stop("'path' provided does not exist") 
   
   #if X is not a data frame
-  if (!any(is.data.frame(X), is_selection_table(X))) stop("X is not of a class 'data.frame', 'selection_table'")
+  if (!any(is.data.frame(X), warbleR::is_selection_table(X))) stop("X is not of a class 'data.frame', 'selection_table'")
   
-  if (is_selection_table(X)) X <- as.data.frame(X)
+  if (warbleR::is_selection_table(X)) X <- as.data.frame(X)
   
   if (!all(c("sound.files", "selec", 
              "start", "end") %in% colnames(X))) 
@@ -180,7 +176,7 @@ if (single.file | nrow(X) == 1)
   
   if (is.null(file.name)) file.name2 <- "" else file.name2 <- file.name
   
-  if (!is.null(path))
+  # add path to file name
     file.name2 <- file.path(path, file.name2)
   
   if (nrow(row.list) > 1)

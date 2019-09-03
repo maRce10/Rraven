@@ -42,7 +42,7 @@ The function extracts parameters enconded as time series in 'Raven' selection fi
 data(selection_files)
 
 #save 'Raven' selection tables in the temporary directory 
-writeLines(selection_files[[5]], con = names(selection_files)[5])
+writeLines(selection_files[[5]], con = file.path(tempdir(), names(selection_files)[5]))
 
 \donttest{
 # import data to R

@@ -7,7 +7,7 @@
 #' If not provided (default) the function searches into the current working directory.
 #' @param dest.path A character string indicating the path of the directory in which
 #' sound selection tables will be saved. 
-#' If not provided (default) files will be save in the current directory.
+#' If not provided (default) files will be saved in directory where the original raven selections were found.
 #' @param recursive Logical. If \code{TRUE} the listing recurse into sub-directories.
 #' @param parallel Numeric. Controls whether parallel computing is applied.
 #' It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
@@ -33,18 +33,15 @@
 #' #load data 
 #' data(selection_files)
 #' 
-#' # set temporary directory
-#' # setwd(tempdir())
-#' 
 #' # save 'Raven' selection tables in the temporary directory
 #' out <- lapply(1:2, function(x)
-#' writeLines(selection_files[[x]], con = names(selection_files)[x]))
+#' writeLines(selection_files[[x]], con = file.path(tempdir(), names(selection_files)[x])))
 #' 
 #' # try drag and drop selection files into Raven (shouldn't work)
 #' 
 #' # now convert files
-#' to_sound_selection(sound.file.path = getwd(), 
-#' sound.file.col = "Begin Path")
+#' to_sound_selection(sound.file.path = tempdir(), 
+#' sound.file.col = "Begin Path", path = tempdir())
 #' 
 #' # try drag and drop into Raven again (should work now)
 #' }
@@ -55,19 +52,16 @@
 to_sound_selection <- function(path = NULL, dest.path = NULL, recursive = FALSE, parallel = 1, pb = TRUE, sound.file.path, sound.file.col)
 {
   
-  # reset working directory 
-  wd <- getwd()
-  on.exit(setwd(wd))
-  
   #check path to working directory
-  if (is.null(path)) path <- getwd() else {if (!dir.exists(path)) stop("'path' provided does not exist") else
-    setwd(path)
-  }  
-
+  if (is.null(path)) path <- getwd() else 
+    if (!dir.exists(path)) 
+      stop("'path' provided does not exist") 
+ 
+  # check dest.path
   if (is.null(dest.path)) dest.path <- path else 
     if (!dir.exists(dest.path)) stop("'path' provided does not exist") 
 
-  sel.txt <- list.files(pattern = ".txt$", full.names = TRUE, recursive = recursive, ignore.case = TRUE)
+  sel.txt <- list.files(pattern = ".txt$", full.names = TRUE, recursive = recursive, ignore.case = TRUE, path = path)
 
   if (length(sel.txt) == 0) stop("No selection .txt files in working directory/'path' provided")
   
@@ -114,8 +108,6 @@ to_sound_selection <- function(path = NULL, dest.path = NULL, recursive = FALSE,
     
     if (newname == sel.txt[i]) newname <- gsub("\\.txt$", "-2.txt",sel.txt[i])
 
-    if (!is.null(dest.path)) newname <- file.path(dest.path, newname)
-    
     writeLines(rf, con = newname)
       }
     }

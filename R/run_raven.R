@@ -35,14 +35,11 @@
 #' @name run_raven
 #' @examples
 #' \dontrun{
-#' # First set temporary folder
-#' setwd(tempdir())
-#' 
 #'# save sound files
 #' library(warbleR) 
 #' data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4"))
-#' writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE)
-#' writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
+#' writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE)
+#' writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
 #' 
 #' # here replace with the path where 'Raven' is install in your computer
 #' raven.path <- "PATH_TO_RAVEN_DIRECTORY_HERE" 
@@ -56,8 +53,8 @@
 #' rav.dat<-run_raven(all.data = TRUE, raven.path = raven.path)
 #' # View(rav.dat)
 #' 
-#' writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
-#' writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
+#' writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
+#' writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)
 #' 
 #' # run function on all the wav files in the working directory 3 at the time
 #' run_raven(raven.path = raven.path, sound.files = list.files(pattern = "\\.wav$", 
@@ -80,11 +77,6 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
   if (is.null(raven.path))
     stop("Path to 'Raven' folder must be provided")  else
       if (!dir.exists(raven.path)) stop("'raven.path' provided does not exist")
-
-  # reset working directory 
-  wd <- getwd()
-  on.exit(setwd(wd), add = TRUE)
-  setwd(raven.path)
     
   # set progress bar back to original
   on.exit(pbapply::pboptions(type = .Options$pboptions$type), 

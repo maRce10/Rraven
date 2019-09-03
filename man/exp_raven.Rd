@@ -58,22 +58,23 @@ relabeled the selections and the previous selection labels will be retained in a
 
 # Load data
 library(warbleR)
-data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selec.table"))
+data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "lbh_selec_table"))
 
 # Select data for a single sound file
-st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav", ]
+st1 <- lbh_selec_table[lbh_selec_table$sound.files == "Phae.long1.wav", ]
 
 # Export data of a single sound file
-exp_raven(st1, file.name = "Phaethornis 1")
+exp_raven(st1, file.name = "Phaethornis 1", path = tempdir())
 
 # Export a single selection table including multiple files
-writeWave(Phae.long1, "Phae.long1.wav", extensible = FALSE) #save sound files 
-writeWave(Phae.long2, "Phae.long2.wav", extensible = FALSE)
-writeWave(Phae.long3, "Phae.long3.wav", extensible = FALSE)
-writeWave(Phae.long4, "Phae.long4.wav", extensible = FALSE)
+writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE) #save sound files 
+writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
+writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
+writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)
 
-exp_raven(X = selec.table, file.name = "Phaethornis multiple sound files",
- single.file = TRUE, sound.file.path = getwd())
+# export raven selection as single file
+exp_raven(X = lbh_selec_table, file.name = "Phaethornis multiple sound files",
+single.file = TRUE, sound.file.path = tempdir(), path = tempdir())
 
 }
 \seealso{
