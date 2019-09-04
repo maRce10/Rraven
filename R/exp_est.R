@@ -10,7 +10,7 @@
 #' function uses the current working directory. Default is \code{NULL}.
 #' @param single.file Logical argument to control if all wave objects are pooled together in a 
 #' single sound file (if \code{TRUE}) or each one as an individual sound file (default). If 
-#' exporting a single sound file the files are pasted in the same sequences as in the extended selection table.
+#' exporting a single sound file the files are pasted in the same sequences as in the extended selection table. Note that to create a single sound file ALL WAVE OBJECTS IN 'X" MUST HAVE THE SAME SAMPLE RATE (check \code{attributes(X)$check.res$sample.rate}) and ideally the same bit depth (although not strictly required). If that is not the case, sample rate can be homogenize using the \code{\link[warbleR]{resample_est}} from the warbleR package.
 #' @param selection.table Logical argument to determine if a Raven sound selection table ('.txt' file) is also exported. 
 #' Default is \code{TRUE}. If \code{FALSE} then selection table is return as an object in the R environment. If exporting multiple sound files (if \code{single.file = FALSE}) the function stil exports a single selection table (in this case a multiple sound selection table).
 #' @param pb Logical argument to control progress bar when exporting multiple sound files. Default is \code{TRUE}.
@@ -72,6 +72,10 @@ exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,
   # if exporting 1 sound file
   if (single.file)
   {
+    # check if all wavs have the same sample rate
+    if (length(unique(attributes(X)$check.res$sample.rate)) > 1)
+      stop("to create a single file all wave objets in the extended selection table must have the same sample rate (check 'attributes(X)$check.res$sample.rate', use warbleR's resample_est() function to homogenize sample rate)")
+      
     # normalize
     if (normalize)
       wvs <- lapply(wvs, tuneR::normalize, unit = "16", rescale = TRUE)

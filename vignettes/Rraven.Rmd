@@ -245,7 +245,7 @@ catalog(X = rvn.dat.st[1:9, ], flim = c(1, 10), nrow = 3, ncol = 3, same.time.sc
 
 This is just to mention a few analysis that can be implemented in [warbleR](https://cran.r-project.org/package=warbleR).
 
-`Rraven` also contains the function `imp_syrinx` to import selections from [Syrinx sound analyis software](www.syrinxpc.com) (although this program is not been maintained any longer).
+`Rraven` also contains the function `imp_syrinx` to import selections from Syrinx sound analyis software (although this program is not been maintained any longer).
 
 
 ### *extract_ts*

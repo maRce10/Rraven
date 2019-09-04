@@ -140,7 +140,7 @@ function uses the current working directory. Default is <code>NULL</code>.</p></
       <th>single.file</th>
       <td><p>Logical argument to control if all wave objects are pooled together in a 
 single sound file (if <code>TRUE</code>) or each one as an individual sound file (default). If 
-exporting a single sound file the files are pasted in the same sequences as in the extended selection table.</p></td>
+exporting a single sound file the files are pasted in the same sequences as in the extended selection table. Note that to create a single sound file ALL WAVE OBJECTS IN 'X" MUST HAVE THE SAME SAMPLE RATE (check <code>attributes(X)$check.res$sample.rate</code>) and ideally the same bit depth (although not strictly required). If that is not the case, sample rate can be homogenize using the <code><a href='https://www.rdocumentation.org/packages/warbleR/topics/resample_est'>resample_est</a></code> from the warbleR package.</p></td>
     </tr>
     <tr>
       <th>selection.table</th>
