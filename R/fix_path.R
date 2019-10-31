@@ -8,7 +8,7 @@
 #' @param dest.path A character string indicating the path of the directory in which
 #' sound selection tables will be saved. 
 #' If not provided (default) files will be save in the current directory.
-#' @param recursive Logical. If \code{TRUE} the listing recurse into sub-directories.
+#' @param recursive Logical. If \code{TRUE} the listing recurses into sub-directories.
 #' @param parallel Numeric. Controls whether parallel computing is applied.
 #' It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
 #' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
@@ -18,10 +18,10 @@
 #' the selection text files. Required.
 #' @return Selection table file(s) saved in 'dest.path' or in the working 
 #' directory (by default, which overwrites existing files). 
-#' @details The function modifiies the path field in Raven's selection tables or 
+#' @details The function modifies the path field in Raven's selection tables or 
 #' sound selection tables. This is useful when sound files have been moved to a 
-#' different location (or computer). Note the abililty to open selections and sound files
-#' simultaneously works as long as the "begin.path" column is refering to the directory
+#' different location (or computer). Note the ability to open selections and sound files
+#' simultaneously works as long as the "begin.path" column is referring to the directory
 #' containing the sound files.  
 #' @seealso \code{\link{to_sound_selection}}; \code{\link{imp_raven}} 
 #' @export

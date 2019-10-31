@@ -2,7 +2,7 @@
 
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/Rraven)](https://cran.r-project.org/package=Rraven)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/Rraven)](http://www.r-pkg.org/pkg/Rraven)
-[![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/Rraven)](http://www.r-pkg.org/badges/grand-total/Rraven)
+[![Total Downloads](https://cranlogs.r-pkg.org/badges/grand-total/Rraven)](https://cranlogs.r-pkg.org/badges/grand-total/Rraven)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
 The `Rraven` package is designed to facilitate the exchange of data between R and  [Raven sound analysis software](http://ravensoundsoftware.com) ([Cornell Lab of Ornithology](http://www.birds.cornell.edu)). [Raven](http://ravensoundsoftware.com) provides very  powerful tools for the analysis of (animal) sounds. R can simplify the automatization of complex routines of analyses. Furthermore, R packages as [warbleR](https://cran.r-project.org/package=warbleR), [seewave](https://cran.r-project.org/package=seewave) and [monitoR](https://cran.r-project.org/package=monitoR) (among others) provide additional methods of analysis, working as a perfect complement for those found in [Raven](http://ravensoundsoftware.com). Hence, bridging these applications can largely expand the bioacoustician's toolkit.
@@ -44,7 +44,7 @@ vignette("Rraven")
 
 ```
 
-Note that the vignette available on [github](http://github.com) [(which can be downloaded from here)](https://github.com/maRce10/Rraven/raw/master/gifs/Rraven.hitgub.html) has more detailed animations of the [Raven](http://ravensoundsoftware.com) steps. The animations explaining additional steps in [Raven](http://ravensoundsoftware.com) are shown in more detail in the [github](https://github.com/maRce10/Rraven) version of this vignette, which can be downloaded as follows (saves the file "Rraven.hitgub.html" in your current working directory):
+Note that the vignette available on [github](http://github.com) [(which can be downloaded from here)](https://github.com/maRce10/Rraven/raw/master/gifs/Rraven.github.html) has more detailed animations of the [Raven](http://ravensoundsoftware.com) steps. The animations explaining additional steps in [Raven](http://ravensoundsoftware.com) are shown in more detail in the [github](https://github.com/maRce10/Rraven) version of this vignette, which can be downloaded as follows (saves the file "Rraven.github.html" in your current working directory):
 
 
 ```r

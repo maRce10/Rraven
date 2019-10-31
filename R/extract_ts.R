@@ -16,7 +16,7 @@
 #'  It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
 #' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
 #' @return A data frame with columns for sound file name (sound.files), selection label (selec) and the time series for each selection.
-#' @details The function extracts parameters enconded as time series in 'Raven' selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as \code{\link[warbleR]{dfDTW}}.
+#' @details The function extracts parameters encoded as time series in 'Raven' selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as \code{\link[warbleR]{dfDTW}}.
 #' @seealso \code{\link{imp_raven}}; \code{\link{exp_raven}} 
 #' @export
 #' @name extract_ts

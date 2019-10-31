@@ -21,12 +21,12 @@ be filled with NA's. This argument WILL BE DEPRECATED as it is being replaced by
 
 \item{files}{Character vector indicating the name of selection files (in .txt format) to be imported. Optional. Default is \code{NULL}.}
 
-\item{only.spectro.view}{Logical. If \code{TRUE} (default) only the mesaurements in the Raven spectrogram view ('View' column) are returned. Ignored if \code{warbler.format == TRUE} (only spectrogram view measurements are kept).}
+\item{only.spectro.view}{Logical. If \code{TRUE} (default) only the measurements in the Raven spectrogram view ('View' column) are returned. Ignored if \code{warbler.format == TRUE} (only spectrogram view measurements are kept).}
 
-\item{recursive}{Logical. If \code{TRUE} the listing recurse into sub-directories.}
+\item{recursive}{Logical. If \code{TRUE} the listing recurses into sub-directories.}
 
 \item{name.from.file}{Logical. If \code{TRUE} the sound file names are extracted from the selection text file name. 
-It asssumes that selections files contained the suffix "Table.1.selections.txt" or "selections.txt". 
+It assumes that selections files contained the suffix "Table.1.selections.txt" or "selections.txt". 
 Note that by default it will assume that the extension file name is ".wav". This can be control using the
 argument 'ext.case'. Default is \code{FALSE}). Ignored if sound.file.col' is provided and/or all.data is \code{TRUE}). Note that
 the time information for selection tables with multiple sound files won't be corrected if \code{name.from.file = TRUE}.}
@@ -46,7 +46,7 @@ It specifies the number of cores to be used. Default is 1 (i.e. no parallel comp
 \item{unread}{Logical. If \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections
 whole data. The second and third elements are character vectors with the names of sound files that could not be read or that contain multiple sound files but no 'File Offset' column and could not be imported. Default is \code{FALSE}.}
 
-\item{rm.dup}{Logical. If \code{TRUE} duplicated rows and columns are removed. Usefull when 
+\item{rm.dup}{Logical. If \code{TRUE} duplicated rows and columns are removed. Useful when 
 selection files have been duplicated. Default is \code{FALSE}.}
 
 \item{sound.file.col}{A character string with the name of the column containing the sound files in 
@@ -64,7 +64,7 @@ A single data frame with information of the selection files. If \code{unread = T
 }
 \details{
 The function import 'Raven' selection data from many files simultaneously. All selection files in the working directory or 'path' supplied will be imported (unless 'files' argument is also supplied). It has been created using Raven Pro 1.5 so selection tables created with other versions might not be read properly. Files must be in '.txt' format. Selection 
-files including data from mulitple recordings can also be imported, although they must contained a 'File Offset (s)' column. Selections that span across multiple sound files are not recommended as they will be assigned to the first sound file, which would produce errors for downstream analyses as those from the 'warbleR' package.
+files including data from multiple recordings can also be imported, although they must contained a 'File Offset (s)' column. Selections that span across multiple sound files are not recommended as they will be assigned to the first sound file, which would produce errors for downstream analyses as those from the 'warbleR' package.
 }
 \examples{
 

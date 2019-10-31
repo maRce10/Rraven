@@ -34,7 +34,7 @@ A data frame with columns for sound file name (sound.files), selection label (se
 \code{extract_ts} extracts time series parameters from data imported from 'Raven' bioacoustic software.
 }
 \details{
-The function extracts parameters enconded as time series in 'Raven' selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as \code{\link[warbleR]{dfDTW}}.
+The function extracts parameters encoded as time series in 'Raven' selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as \code{\link[warbleR]{dfDTW}}.
 }
 \examples{
 

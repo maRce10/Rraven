@@ -1,3 +1,7 @@
+# Version 1.0.8
+
+* Package resubmission requested by CRAN
+
 # Version 1.0.7
 
 ## Changes and additions
@@ -46,7 +50,7 @@
 ## Changes and additions
 
 * 'rm_dup' argument to remove duplicated rows in 'imp_raven' function
-* Small changes in vignette table appereance
+* Small changes in vignette table appearance
 * Parallel and progress bar available in 'imp_raven' function
 * 'hz.to.khz' and 'khz.to.hz' arguments available in 'relabel_colms' function
 
@@ -54,7 +58,7 @@
 
 ## Changes and additions
 
-* Small changes in vignette table appereance
+* Small changes in vignette table appearance
 
 # Version 1.0.0
 

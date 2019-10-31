@@ -15,7 +15,7 @@ If not provided (default) the function searches into the current working directo
 sound selection tables will be saved. 
 If not provided (default) files will be save in the current directory.}
 
-\item{recursive}{Logical. If \code{TRUE} the listing recurse into sub-directories.}
+\item{recursive}{Logical. If \code{TRUE} the listing recurses into sub-directories.}
 
 \item{parallel}{Numeric. Controls whether parallel computing is applied.
 It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).}
@@ -36,10 +36,10 @@ directory (by default, which overwrites existing files).
 \code{fix_path} modifies the path column in selection tables and sound selection tables
 }
 \details{
-The function modifiies the path field in Raven's selection tables or 
+The function modifies the path field in Raven's selection tables or 
 sound selection tables. This is useful when sound files have been moved to a 
-different location (or computer). Note the abililty to open selections and sound files
-simultaneously works as long as the "begin.path" column is refering to the directory
+different location (or computer). Note the ability to open selections and sound files
+simultaneously works as long as the "begin.path" column is referring to the directory
 containing the sound files.
 }
 \examples{

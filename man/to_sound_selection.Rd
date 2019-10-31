@@ -15,7 +15,7 @@ If not provided (default) the function searches into the current working directo
 sound selection tables will be saved. 
 If not provided (default) files will be saved in directory where the original raven selections were found.}
 
-\item{recursive}{Logical. If \code{TRUE} the listing recurse into sub-directories.}
+\item{recursive}{Logical. If \code{TRUE} the listing recurses into sub-directories.}
 
 \item{parallel}{Numeric. Controls whether parallel computing is applied.
 It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).}
@@ -40,7 +40,7 @@ The function converts Raven's selection tables to sound selection tables.
  Sound selection table is a more convenient format as it can be open directly in Raven (or drag-and-drop) and 
  will automatically open the associated sound file. Multiple files can be 
  simultaneously converted. Files must be in '.txt' format. Selection 
-files including data from mulitple recordings can be converted only if all the 
+files including data from multiple recordings can be converted only if all the 
 correspondent sound files are found in the same directory. Note that no data is 
 imported into the R environment.
 }

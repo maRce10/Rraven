@@ -8,7 +8,7 @@
 #' @param dest.path A character string indicating the path of the directory in which
 #' sound selection tables will be saved. 
 #' If not provided (default) files will be saved in directory where the original raven selections were found.
-#' @param recursive Logical. If \code{TRUE} the listing recurse into sub-directories.
+#' @param recursive Logical. If \code{TRUE} the listing recurses into sub-directories.
 #' @param parallel Numeric. Controls whether parallel computing is applied.
 #' It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
 #' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
@@ -22,7 +22,7 @@
 #'  Sound selection table is a more convenient format as it can be open directly in Raven (or drag-and-drop) and 
 #'  will automatically open the associated sound file. Multiple files can be 
 #'  simultaneously converted. Files must be in '.txt' format. Selection 
-#' files including data from mulitple recordings can be converted only if all the 
+#' files including data from multiple recordings can be converted only if all the 
 #' correspondent sound files are found in the same directory. Note that no data is 
 #' imported into the R environment.
 #' @seealso \code{\link{imp_syrinx}}; \code{\link{imp_raven}} 

@@ -8,7 +8,7 @@
 #' @param path A character string indicating the path of the directory in which to look for
 #' the sound files. If not provided (default) the function searches into the current working 
 #' directory. Default is \code{NULL}.
-#' @param at.the.time Numeric vector of length 1 controling how many files will be open in
+#' @param at.the.time Numeric vector of length 1 controlling how many files will be open in
 #'  'Raven' at the same time. Note that opening too many files at once could make 'Raven' run out
 #'  of memory. You need to close 'Raven' every time the batch of files is analyzed, so the next
 #'  batch is opened. Default is 10. Not available in OSX (mac).
