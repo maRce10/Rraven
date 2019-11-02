@@ -50,7 +50,7 @@ Currently, most analyses in [Raven](http://www.birds.cornell.edu/brp/raven/Raven
 
 ```{r eval = FALSE}
 
-download.file(url = "https://github.com/maRce10/Rraven/raw/master/gifs/Rraven.github.html", destfile = "Rraven.github.html")
+download.file(url = "https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/Rraven.hitgub.html", destfile = "Rraven.github.html")
 
 ```
  &nbsp; 

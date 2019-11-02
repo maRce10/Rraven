@@ -82,7 +82,7 @@
 </center></h4>
             
             <h4 class="date"><center>
-“2019-10-31”
+“2019-11-01”
 </center></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/maRce10/Rraven/blob/master/../R%20package%20testing/vignettes/Rraven.Rmd"><code>../R package testing/vignettes/Rraven.Rmd</code></a></small>
@@ -95,7 +95,7 @@
 <p> </p>
 <p>The <code>Rraven</code> package is designed to facilitate the exchange of data between R and <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven sound analysis software</a> (<a href="http://www.birds.cornell.edu">Cornell Lab of Ornithology</a>). <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> provides very powerful tools for the analysis of (animal) sounds. R can simplify the automatization of complex routines of analyses. Furthermore, R packages as <a href="https://cran.r-project.org/package=warbleR">warbleR</a>, <a href="https://cran.r-project.org/package=seewave">seewave</a> and <a href="https://cran.r-project.org/package=monitoR">monitoR</a> (among others) provide additional methods of analysis, working as a perfect complement for those found in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a>. Hence, bridging these applications can largely expand the bioacoustician’s toolkit.</p>
 <p>Currently, most analyses in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> cannot be run in the background from a command terminal. Thus, most <code>Rraven</code> functions are design to simplify the exchange of data between the two programs, and in some cases, export files to <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> for further analysis. This vignette provides detailed examples for each function in <code>Rraven</code>, including both the R code as well as the additional steps in <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> required to fully accomplished the analyses. Raven Pro must be installed to be able to run some of the code. Note that the animations explaining these additional <a href="http://www.birds.cornell.edu/brp/raven/RavenOverview.html">Raven</a> steps are shown in more detail in the <a href="https://github.com/maRce10/Rraven">github</a> version of this vignette, which can be downloaded as follows (saves the file “Rraven.github.html” in your current working directory):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span>(<span class="dt">url =</span> <span class="st">"https://github.com/maRce10/Rraven/raw/master/gifs/Rraven.github.html"</span>, <span class="dt">destfile =</span> <span class="st">"Rraven.github.html"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span>(<span class="dt">url =</span> <span class="st">"https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/Rraven.hitgub.html"</span>, <span class="dt">destfile =</span> <span class="st">"Rraven.github.html"</span>)</a></code></pre></div>
 <p> </p>
 <p>The downloaded file can be opened by any internet browser.</p>
 <p>Before getting into the functions, the packages must be installed and loaded. I recommend using the latest developmental version, which is found in <a href="https://github.com/maRce10/Rraven">github</a>. To do so, you need the R package <a href="https://cran.r-project.org/package=devtools">devtools</a> (which of course should be installed!). Some <a href="https://cran.r-project.org/package=warbleR">warbleR</a> functions and example data sets will be used, so <a href="https://cran.r-project.org/package=warbleR">warbleR</a> should be installed as well:</p>
@@ -5198,11 +5198,11 @@ Call:
 vegan::mantel(xdis = xcorr.rvn, ydis = dist.sp.wrblR) 
 
 Mantel statistic r: 0.259 
-      Significance: 0.017 
+      Significance: 0.018 
 
 Upper quantiles of permutations (null model):
   90%   95% 97.5%   99% 
-0.147 0.188 0.225 0.301 
+0.141 0.191 0.225 0.291 
 Permutation: free
 Number of permutations: 999</code></pre>
 <p> </p>
