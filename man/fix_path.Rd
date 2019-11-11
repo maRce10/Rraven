@@ -45,16 +45,16 @@ containing the sound files.
 \examples{
 {
 # load warbleR for sound file examples
-library(warbleR)
+library(NatureSounds)
 
 #load data 
 data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selection_files"))
 
 # save sound files
-writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE)
-writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
-writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
-writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)   
+tuneR::writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE)
+tuneR::writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
+tuneR::writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
+tuneR::writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)   
 # save 'Raven' selection tables in the temporary directory
 out <- lapply(1:2, function(x)
 writeLines(selection_files[[x]], con = file.path(tempdir(), names(selection_files)[x])))

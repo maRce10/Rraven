@@ -21,10 +21,14 @@
 #' data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", 
 #' "lbh_selec_table"))
 #' 
-#' writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE) #save sound files 
-#' writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
-#' writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
-#' writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)
+#' tuneR::writeWave(Phae.long1, file.path(tempdir(), 
+#' "Phae.long1.wav"), extensible = FALSE) #save sound files 
+#' tuneR::writeWave(Phae.long2, file.path(tempdir(), 
+#' "Phae.long2.wav"), extensible = FALSE)
+#' tuneR::writeWave(Phae.long3, file.path(tempdir(), 
+#' "Phae.long3.wav"), extensible = FALSE)
+#' tuneR::writeWave(Phae.long4, file.path(tempdir(), 
+#' "Phae.long4.wav"), extensible = FALSE)
 #'
 #' # change one extension
 #' lbh_selec_table$sound.files <- as.character(lbh_selec_table$sound.files)

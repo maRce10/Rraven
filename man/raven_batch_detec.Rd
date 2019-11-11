@@ -52,7 +52,7 @@ installed. Note that batch detection in 'Raven' can also take
 sound files in 'mp3', 'flac' and 'aif' format.
 }
 \examples{
-\dontrun{
+\donttest{
 
 # here replace with the path where 'Raven' is install in your computer
 raven.path <- "PATH_TO_RAVEN_DIRECTORY_HERE" 

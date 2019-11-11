@@ -31,7 +31,7 @@
 #' package \code{\link{warbleR}}) into the 'Raven' selection file format ('.txt').
 #'  This can be useful to obtain additional Raven
 #' measurements on existing selections by adding new measurements to the 
-#' selection table once in Raven. Note that selection labels must be numeric and unduplicated 
+#' selection table once in Raven. Note that selection labels must be numeric and non-duplicated 
 #' when exporting them to Raven. If that is not the case the function will
 #' relabeled the selections and the previous selection labels will be retained in a new column ('old.selec').
 #' @seealso \code{\link{imp_raven}}; \code{\link{imp_syrinx}} 
@@ -50,10 +50,14 @@
 #' exp_raven(st1, file.name = "Phaethornis 1", path = tempdir())
 #' 
 #' # Export a single selection table including multiple files
-#' writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE) #save sound files 
-#' writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
-#' writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
-#' writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)
+#' tuneR::writeWave(Phae.long1, file.path(tempdir(), 
+#' "Phae.long1.wav"), extensible = FALSE) #save sound files 
+#' tuneR::writeWave(Phae.long2, file.path(tempdir(), 
+#' "Phae.long2.wav"), extensible = FALSE)
+#' tuneR::writeWave(Phae.long3, file.path(tempdir(), 
+#' "Phae.long3.wav"), extensible = FALSE)
+#' tuneR::writeWave(Phae.long4, file.path(tempdir(), 
+#' "Phae.long4.wav"), extensible = FALSE)
 #' 
 #' # export raven selection as single file
 #' exp_raven(X = lbh_selec_table, file.name = "Phaethornis multiple sound files",

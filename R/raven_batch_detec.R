@@ -34,7 +34,7 @@
 #' @export
 #' @name raven_batch_detec
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' 
 #' # here replace with the path where 'Raven' is install in your computer
 #' raven.path <- "PATH_TO_RAVEN_DIRECTORY_HERE" 
@@ -73,6 +73,10 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
   on.exit(pbapply::pboptions(type = .Options$pboptions$type), 
           add = TRUE)
   
+  # return to current wd on exit
+  cwd <- getwd()
+  on.exit(setwd(cwd), add = TRUE)
+  
   on.exit(suppressWarnings(file.remove(list.files(path = raven.path, pattern = "temp.bcv.txt$", full.names = TRUE))), add = TRUE)
 
   # check path
@@ -80,7 +84,8 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
     stop("Path to 'Raven' folder must be provided")  
   else
       if (!dir.exists(raven.path)) 
-        stop("'raven.path' provided does not exist")
+        stop("'raven.path' provided does not exist") else
+          setwd(raven.path)
 
   # check detector type
    if (!detector.type %in% c("Amplitude Detector", "Band Limited Energy Detector", "Band Limited Entropy Detector")) stop("'detector.type' not recognized")

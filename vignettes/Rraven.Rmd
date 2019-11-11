@@ -1,5 +1,6 @@
 ---
 title: <center><font size="7"><b>Rraven&#58; Connecting R and Raven Sound Analysis Software</b></font></center>
+pagetitle: Rraven, connecting R and Raven Sound Analysis Software
 author: <center><a href="http://marceloarayasalas.weebly.com/">Marcelo Araya-Salas, PhD</a> </center>
  &nbsp; 
 date:  <center>"`r Sys.Date()`"</center>

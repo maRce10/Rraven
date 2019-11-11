@@ -184,7 +184,7 @@ No objects are returned in the R environment.</p>
 package <code><a href='https://rdrr.io/pkg/warbleR/man/warbleR.html'>warbleR</a></code>) into the 'Raven' selection file format ('.txt').
  This can be useful to obtain additional Raven
 measurements on existing selections by adding new measurements to the 
-selection table once in Raven. Note that selection labels must be numeric and unduplicated 
+selection table once in Raven. Note that selection labels must be numeric and non-duplicated 
 when exporting them to Raven. If that is not the case the function will
 relabeled the selections and the previous selection labels will be retained in a new column ('old.selec').</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -194,8 +194,9 @@ relabeled the selections and the previous selection labels will be retained in a
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Load data</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>warbleR</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>, <span class='st'>"lbh_selec_table"</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>warbleR</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: tuneR</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: seewave</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>NOTE: functions are being renamed (run 'print(new_function_names)' to see new names). Both old and new names are available in this version </span>
+#&gt; <span class='message'> Please see citation('warbleR') for use in publication</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>, <span class='st'>"lbh_selec_table"</span>))
 
 <span class='co'># Select data for a single sound file</span>
 <span class='no'>st1</span> <span class='kw'>&lt;-</span> <span class='no'>lbh_selec_table</span>[<span class='no'>lbh_selec_table</span>$<span class='no'>sound.files</span> <span class='kw'>==</span> <span class='st'>"Phae.long1.wav"</span>, ]
@@ -203,10 +204,14 @@ relabeled the selections and the previous selection labels will be retained in a
 <span class='co'># Export data of a single sound file</span>
 <span class='fu'>exp_raven</span>(<span class='no'>st1</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='st'>"Phaethornis 1"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</div><div class='output co'>#&gt;   |                                                  | 0 % ~calculating    |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed=00s  </div><div class='input'>
 <span class='co'># Export a single selection table including multiple files</span>
-<span class='fu'>writeWave</span>(<span class='no'>Phae.long1</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"Phae.long1.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='co'>#save sound files </span>
-<span class='fu'>writeWave</span>(<span class='no'>Phae.long2</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"Phae.long2.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'>writeWave</span>(<span class='no'>Phae.long3</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"Phae.long3.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'>writeWave</span>(<span class='no'>Phae.long4</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"Phae.long4.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long1</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+<span class='st'>"Phae.long1.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='co'>#save sound files </span>
+<span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long2</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+<span class='st'>"Phae.long2.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long3</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+<span class='st'>"Phae.long3.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long4</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+<span class='st'>"Phae.long4.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># export raven selection as single file</span>
 <span class='fu'>exp_raven</span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>lbh_selec_table</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='st'>"Phaethornis multiple sound files"</span>,
