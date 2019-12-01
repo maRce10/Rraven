@@ -81,8 +81,7 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
 
   # check path
     if (is.null(raven.path))
-    stop("Path to 'Raven' folder must be provided")  
-  else
+    stop("Path to 'Raven' folder must be provided") else
       if (!dir.exists(raven.path)) 
         stop("'raven.path' provided does not exist") else
           setwd(raven.path)
