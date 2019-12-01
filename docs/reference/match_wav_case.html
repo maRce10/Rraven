@@ -175,7 +175,7 @@ any mismatch). The function needs the path to the sound files to compare extensi
 
 <span class='co'># change one extension</span>
 <span class='no'>lbh_selec_table</span>$<span class='no'>sound.files</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='no'>lbh_selec_table</span>$<span class='no'>sound.files</span>)
-<span class='no'>lbh_selec_table</span>$<span class='no'>sound.files</span>[<span class='fl'>1</span>] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"\\.wav$"</span>, <span class='st'>".WAV"</span>, <span class='no'>lbh_selec_table</span>$<span class='no'>sound.files</span>[<span class='fl'>1</span>])
+<span class='no'>lbh_selec_table</span>$<span class='no'>sound.files</span>[<span class='fl'>1</span>] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>".wav$"</span>, <span class='st'>".WAV"</span>, <span class='no'>lbh_selec_table</span>$<span class='no'>sound.files</span>[<span class='fl'>1</span>])
 
  <span class='co'># fixed extension an return data frame</span>
  <span class='fu'>match_wav_case</span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>lbh_selec_table</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())

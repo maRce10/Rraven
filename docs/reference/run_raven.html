@@ -191,33 +191,7 @@ argument. 'Raven' Pro must be installed. Note that 'Raven' can also take sound f
     <div class='dont-index'><p><code><a href='imp_raven.html'>imp_raven</a></code>; <code><a href='imp_syrinx.html'>imp_syrinx</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># save sound files</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>NatureSounds</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>))
-<span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long1</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"Phae.long1.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long2</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"Phae.long2.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='co'># here replace with the path where 'Raven' is install in your computer</span>
-<span class='no'>raven.path</span> <span class='kw'>&lt;-</span> <span class='st'>"PATH_TO_RAVEN_DIRECTORY_HERE"</span>
-
-<span class='co'># run function </span>
-<span class='fu'>run_raven</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='no'>raven.path</span>, <span class='kw'>sound.files</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Phae.long1.wav"</span>, <span class='st'>"Phae.long2.wav"</span>),
- <span class='kw'>at.the.time</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>import</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>name.from.file</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>ext.case</span> <span class='kw'>=</span> <span class='st'>"upper"</span>,
- <span class='kw'>all.data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</div><div class='output co'>#&gt; <span class='error'>Error in run_raven(raven.path = raven.path, sound.files = c("Phae.long1.wav",     "Phae.long2.wav"), at.the.time = 2, import = T, name.from.file = T,     ext.case = "upper", all.data = TRUE, path = tempdir()): 'raven.path' provided does not exist</span></div><div class='input'>
-<span class='co'>#getting all the data</span>
-<span class='no'>rav.dat</span><span class='kw'>&lt;-</span><span class='fu'>run_raven</span>(<span class='kw'>all.data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='no'>raven.path</span>)</div><div class='output co'>#&gt; <span class='error'>Error in run_raven(all.data = TRUE, raven.path = raven.path): 'raven.path' provided does not exist</span></div><div class='input'><span class='co'># View(rav.dat)</span>
-
-<span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long3</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"Phae.long3.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long4</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"Phae.long4.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='co'># run function on all the wav files in the working directory 3 at the time</span>
-<span class='fu'>run_raven</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='no'>raven.path</span>, <span class='kw'>sound.files</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"\\.wav$"</span>,
-<span class='kw'>ignore.case</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>()), <span class='kw'>at.the.time</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>import</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</div><div class='output co'>#&gt; <span class='error'>Error in run_raven(raven.path = raven.path, sound.files = list.files(pattern = "\\.wav$",     ignore.case = TRUE, path = tempdir()), at.the.time = 3, import = FALSE,     path = tempdir()): 'raven.path' provided does not exist</span></div><div class='input'>  
-# }
-
-</div></pre>
+    <pre class="examples"></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

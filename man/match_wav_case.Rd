@@ -46,7 +46,7 @@ tuneR::writeWave(Phae.long4, file.path(tempdir(),
 
 # change one extension
 lbh_selec_table$sound.files <- as.character(lbh_selec_table$sound.files)
-lbh_selec_table$sound.files[1] <- gsub("\\\\.wav$", ".WAV", lbh_selec_table$sound.files[1]) 
+lbh_selec_table$sound.files[1] <- gsub(".wav$", ".WAV", lbh_selec_table$sound.files[1]) 
  
  # fixed extension an return data frame
  match_wav_case(X = lbh_selec_table, path = tempdir())

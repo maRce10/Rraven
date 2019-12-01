@@ -3,7 +3,6 @@
 \docType{package}
 \name{Rraven}
 \alias{Rraven}
-\alias{Rraven-package}
 \title{Rraven: Exchange data and open sound files in 'Raven' from R}
 \description{
 Rraven is a package designed to facilitate the exchange of data

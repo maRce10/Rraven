@@ -75,7 +75,7 @@ tuneR::writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible 
 tuneR::writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)
 
 # run function on all the wav files in the working directory 3 at the time
-run_raven(raven.path = raven.path, sound.files = list.files(pattern = "\\\\.wav$", 
+run_raven(raven.path = raven.path, sound.files = list.files(pattern = "\\.wav$", 
 ignore.case = TRUE, path = tempdir()), at.the.time = 3, import = FALSE, 
 path = tempdir())
   

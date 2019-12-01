@@ -15,7 +15,7 @@ BugReports: https://github.com/maRce10/Rraven/issues
 NeedsCompilation: no
 Suggests: knitr, vegan, dplyr, kableExtra
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1
 Packaged: 2018-09-27 23:45:31 UTC; m
 Repository: CRAN
 Language: en-US
