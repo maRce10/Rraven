@@ -8,6 +8,10 @@
 #'   
 #'   \code{\link{exp_raven}}: Export R selection tables into 'Raven' selection file format
 #'  
+#'   \code{\link{exp_empty_sels}}: Export a 'Raven' selection for all sound files in a folder
+#'
+#'   \code{\link{exp_est}}: Export wave objects of extended selection tables as sound files
+#'   
 #'   \code{\link{extract_ts}}: Extract time series parameters from data imported from Raven
 #'   
 #'   \code{\link{imp_corr_mat}}: Import 'Raven' batch correlator output 
@@ -27,6 +31,7 @@
 #'   \code{\link{to_sound_selection}}: Convert Raven's selection files into sound selection files
 #'      
 #' @import warbleR 
+#' @import NatureSounds 
 #' @import pbapply
 #' @importFrom seewave duration pastew
 #' @importFrom tuneR normalize writeWave

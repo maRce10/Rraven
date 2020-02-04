@@ -12,7 +12,7 @@
 #' single sound file (if \code{TRUE}) or each one as an individual sound file (default). If 
 #' exporting a single sound file the files are pasted in the same sequences as in the extended selection table. Note that to create a single sound file ALL WAVE OBJECTS IN 'X" MUST HAVE THE SAME SAMPLE RATE (check \code{attributes(X)$check.res$sample.rate}) and ideally the same bit depth (although not strictly required). If that is not the case, sample rate can be homogenize using the \code{\link[warbleR]{resample_est}} from the warbleR package.
 #' @param selection.table Logical argument to determine if a Raven sound selection table ('.txt' file) is also exported. 
-#' Default is \code{TRUE}. If \code{FALSE} then selection table is return as an object in the R environment. If exporting multiple sound files (if \code{single.file = FALSE}) the function stil exports a single selection table (in this case a multiple sound selection table).
+#' Default is \code{TRUE}. If \code{FALSE} then selection table is return as an object in the R environment. If exporting multiple sound files (if \code{single.file = FALSE}) the function still exports a single selection table (in this case a multiple sound selection table).
 #' @param pb Logical argument to control progress bar when exporting multiple sound files. Default is \code{TRUE}.
 #' @param normalize Logical argument to control if wave objects are individually normalized before exporting (or before being pasted together if \code{single.file = TRUE}). Normalization rescales amplitude values to a 16 bit dynamic range. Default is \code{FALSE}.
 #' @param parallel Numeric. Controls whether parallel computing is applied.
@@ -125,7 +125,7 @@ exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,
         st$selec <- 1:nrow(st)
         
         # get durations of individual waves
-        durs <- sapply(wvs, duration)
+        durs <- sapply(wvs, seewave::duration)
         
         # get cummulative duration
         cumdur <- c(0, cumsum(durs)[-length(durs)])

@@ -52,9 +52,9 @@ installed. Note that batch detection in 'Raven' can also take
 sound files in 'mp3', 'flac' and 'aif' format.
 }
 \examples{
-\donttest{
+\dontrun{
 
-# here replace with the path where 'Raven' is install in your computer
+# here replace with path where 'Raven' is installed in your computer
 raven.path <- "PATH_TO_RAVEN_DIRECTORY_HERE" 
 
 # Run detector on raven example sound files
@@ -77,7 +77,7 @@ path = file.path(raven.path, "Examples"), detector = "Band Limited Energy Detect
 
 }
 \seealso{
-\code{\link{imp_raven}}; \code{\link{imp_syrinx}};  \code{\link{run_raven}}
+\code{\link{imp_raven}}; \code{\link{imp_syrinx}}; \code{\link{run_raven}}
 }
 \author{
 Marcelo Araya-Salas (\email{marceloa27@gmail.com})

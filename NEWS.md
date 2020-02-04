@@ -1,3 +1,9 @@
+# Version 1.0.9
+
+## Changes and additions
+
+* Fix bug on raven_batch_detec() when reading output Raven files
+
 # Version 1.0.8
 
 * Package resubmission requested by CRAN
