@@ -115,6 +115,9 @@ exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,
      { 
       if (single.file)
       {
+        # add extension
+        if(!grepl("\\.wav$", file.name, ignore.case = TRUE)) file.name <- paste0(file.name, ".wav")
+        
         # use single name 
         st$sound.files <- file.name
         
@@ -148,13 +151,19 @@ exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,
         } else
         {
         #fix sound file names in st
-        st$sound.files <- paste0(st$sound.files, ".wav")
+        st$sound.files <- ifelse(grepl("\\.wav$", st$sound.files, ignore.case = TRUE), st$sound.files, paste0( st$sound.files, ".wav"))
         
         # export selection table
         if (selection.table)
           exp_raven(X = st, path = path, file.name = gsub("\\.wav$", ".txt", file.name, ignore.case = TRUE), sound.file.path = path, pb = FALSE, parallel = 1, single.file = TRUE)
         }
     } else
-    # return something if no selection table
-         return(st)
+    {
+      # return something if no selection table
+      #fix sound file names in st
+      st$sound.files <- ifelse(grepl("\\.wav$", st$sound.files, ignore.case = TRUE), st$sound.files, paste0( st$sound.files, ".wav"))
+    
+      
+               return(st)
+      }
 }

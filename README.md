@@ -44,7 +44,7 @@ vignette("Rraven")
 
 ```
 
-Note that the vignette available on [github](http://github.com) [(which can be downloaded from here)](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/Rraven.hitgub.html) has more detailed animations of the [Raven](http://ravensoundsoftware.com) steps. The animations explaining additional steps in [Raven](http://ravensoundsoftware.com) are shown in more detail in the [github](https://github.com/maRce10/Rraven) version of this vignette, which can be downloaded as follows (saves the file "Rraven.github.html" in your current working directory):
+The animations explaining additional steps in [Raven](http://ravensoundsoftware.com) are shown in more detail on the [github](https://github.com/maRce10/Rraven) version of this vignette, which can be downloaded as follows (saves the file "Rraven.github.html" in your current working directory):
 
 
 ```r
