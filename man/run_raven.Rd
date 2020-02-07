@@ -68,17 +68,8 @@ run_raven(raven.path = raven.path, sound.files = c("Phae.long1.wav", "Phae.long2
  all.data = TRUE, path = tempdir())  
  
 #getting all the data
-rav.dat<-run_raven(all.data = TRUE, raven.path = raven.path)
+rav.dat <- run_raven(all.data = TRUE, raven.path = raven.path)
 # View(rav.dat)
-
-tuneR::writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
-tuneR::writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)
-
-# run function on all the wav files in the working directory 3 at the time
-run_raven(raven.path = raven.path, sound.files = list.files(pattern = "\\.wav$", 
-ignore.case = TRUE, path = tempdir()), at.the.time = 3, import = FALSE, 
-path = tempdir())
-  
 }
 
 }

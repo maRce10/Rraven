@@ -21,9 +21,10 @@
 #' library(NatureSounds)
 #' data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "lbh_selec_table"))
 #' 
-#' # Export a single selection table including multiple files
+#' ## Export a single selection table including multiple files
+#' #save sound files 
 #' tuneR::writeWave(Phae.long1, file.path(tempdir(), 
-#' "Phae.long1.wav"), extensible = FALSE) #save sound files 
+#' "Phae.long1.wav"), extensible = FALSE) 
 #' tuneR::writeWave(Phae.long2, file.path(tempdir(), 
 #' "Phae.long2.wav"), extensible = FALSE)
 #' tuneR::writeWave(Phae.long3, file.path(tempdir(), 

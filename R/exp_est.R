@@ -20,15 +20,14 @@
 #' @return Sound file(s) are saved in the provided path or current working directory. If \code{selection.table = TRUE} a Raven sound selection table with the data in 'X' will also be saved.
 #' @details The function takes wave objects contained as attributes in extended selection 
 #' tables and saves them as sound files in '.wav' format. A single or several sound files can be produced (see 'single.file' argument).  In addition, a Raven sound selection table can be saved along with the sound files. The exported selection table can be open in Raven for exploring/manipulating selections in 'X'. 
-#' @seealso \code{\link{exp_raven}};
+#' @seealso \code{\link{exp_raven}}
 #' @export
-#' @name exp_est
-#' @examples {
+#' @examples \dontrun{
 #'# load example data
-#'data(list = "Phae.long.est", package = "NatureSounds")
+#'data(list = "lbh.est", package = "NatureSounds")
 #' 
 #' # subset to 10 selections
-#' X <- Phae.long.est[1:10, ]
+#' X <- lbh.est[1:10, ]
 #' 
 #' # Export data to a single sound file
 #' exp_est(X, file.name = "test", single.file = TRUE, path = tempdir())
@@ -39,6 +38,7 @@
 #' # several files
 #' exp_est(X, single.file = FALSE, file.name = "test3", path = tempdir())
 #' }
+#' @name exp_est
 #' 
 #' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
 #last modification on mar-11-2019

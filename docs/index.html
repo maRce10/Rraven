@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">Rraven</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.9</span>
       </span>
     </div>
 
@@ -79,29 +79,29 @@
 <p>The <code>Rraven</code> package is designed to facilitate the exchange of data between R and <a href="http://ravensoundsoftware.com">Raven sound analysis software</a> (<a href="http://www.birds.cornell.edu">Cornell Lab of Ornithology</a>). <a href="http://ravensoundsoftware.com">Raven</a> provides very powerful tools for the analysis of (animal) sounds. R can simplify the automatization of complex routines of analyses. Furthermore, R packages as <a href="https://cran.r-project.org/package=warbleR">warbleR</a>, <a href="https://cran.r-project.org/package=seewave">seewave</a> and <a href="https://cran.r-project.org/package=monitoR">monitoR</a> (among others) provide additional methods of analysis, working as a perfect complement for those found in <a href="http://ravensoundsoftware.com">Raven</a>. Hence, bridging these applications can largely expand the bioacoustician’s toolkit.</p>
 <p>Currently, most analyses in <a href="http://ravensoundsoftware.com">Raven</a> cannot be run in the background from a command terminal. Thus, most <code>Rraven</code> functions are design to simplify the exchange of data between the two programs, and in some cases, export files to <a href="http://ravensoundsoftware.com">Raven</a> for further analysis.</p>
 <p>Install/load the package from CRAN as follows:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># From CRAN would be</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">#install.packages("Rraven")</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#load package</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(Rraven)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="co"># From CRAN would be</span>
+<span class="co">#install.packages("Rraven")</span>
+
+<span class="co">#load package</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(Rraven)</code></pre></div>
 <p>To install the latest developmental version from <a href="http://github.com/">github</a> you will need the R package <a href="https://cran.r-project.org/package=devtools">devtools</a>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># From CRAN would be</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#install.packages("Rraven")</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># From github</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"maRce10/Rraven"</span>)</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#load package</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(Rraven)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># From CRAN would be</span>
+<span class="co">#install.packages("Rraven")</span>
+
+<span class="co"># From github</span>
+devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"maRce10/Rraven"</span>)
+
+<span class="co">#load package</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(Rraven)</code></pre></div>
 <p>The package vignette provides detailed examples for each function in <code>Rraven</code>, including both the R code as well as the additional steps in <a href="http://ravensoundsoftware.com">Raven</a> required to fully accomplished the analyses. You can pull it up as follows:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span>(<span class="st">"Rraven"</span>)</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"></a></code></pre></div>
-<p>Note that the vignette available on <a href="http://github.com">github</a> <a href="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/Rraven.hitgub.html">(which can be downloaded from here)</a> has more detailed animations of the <a href="http://ravensoundsoftware.com">Raven</a> steps. The animations explaining additional steps in <a href="http://ravensoundsoftware.com">Raven</a> are shown in more detail in the <a href="https://github.com/maRce10/Rraven">github</a> version of this vignette, which can be downloaded as follows (saves the file “Rraven.github.html” in your current working directory):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span>(<span class="dt">url =</span> <span class="st">"https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/Rraven.hitgub.html"</span>, </a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="dt">destfile =</span> <span class="st">"Rraven.hitgub.html"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="kw"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span>(<span class="st">"Rraven"</span>)
+</code></pre></div>
+<p>The animations explaining additional steps in <a href="http://ravensoundsoftware.com">Raven</a> are shown in more detail on the <a href="https://github.com/maRce10/Rraven">github</a> version of this vignette, which can be downloaded as follows (saves the file “Rraven.github.html” in your current working directory):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="kw"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span>(<span class="dt">url =</span> <span class="st">"https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/Rraven.hitgub.html"</span>, 
+<span class="dt">destfile =</span> <span class="st">"Rraven.hitgub.html"</span>)</code></pre></div>
 <p> </p>
 <p>The downloaded file can be opened by any internet browser.</p>
 </div>

@@ -1,4 +1,0 @@
-Begin Time (s)	End Time (s)	Begin File	Selection	View	Channel	Low Freq (Hz)	High Freq (Hz)	channel	sel.comment	rec.comment
-1.16935492686256	1.34238837651785	Phae.long1.wav	1	Spectrogram 1	1	2220.10539116336	8604.37778678557	1	c24	NA
-2.15840849019842	2.32145650374094	Phae.long1.wav	2	Spectrogram 1	1	2169.43656262667	8807.05310093231	1	c25	NA
-0.343336570405113	0.518255314152904	Phae.long1.wav	3	Spectrogram 1	1	2218.29412537784	8756.60402155342	1	c26	NA

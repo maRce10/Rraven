@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rraven</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.9</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@ exporting a single sound file the files are pasted in the same sequences as in t
     <tr>
       <th>selection.table</th>
       <td><p>Logical argument to determine if a Raven sound selection table ('.txt' file) is also exported. 
-Default is <code>TRUE</code>. If <code>FALSE</code> then selection table is return as an object in the R environment. If exporting multiple sound files (if <code>single.file = FALSE</code>) the function stil exports a single selection table (in this case a multiple sound selection table).</p></td>
+Default is <code>TRUE</code>. If <code>FALSE</code> then selection table is return as an object in the R environment. If exporting multiple sound files (if <code>single.file = FALSE</code>) the function still exports a single selection table (in this case a multiple sound selection table).</p></td>
     </tr>
     <tr>
       <th>pb</th>
@@ -175,15 +175,15 @@ It specifies the number of cores to be used. Default is 1 (i.e. no parallel comp
 tables and saves them as sound files in '.wav' format. A single or several sound files can be produced (see 'single.file' argument).  In addition, a Raven sound selection table can be saved along with the sound files. The exported selection table can be open in Raven for exploring/manipulating selections in 'X'.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='exp_raven.html'>exp_raven</a></code>;</p></div>
+    <div class='dont-index'><p><code><a href='exp_raven.html'>exp_raven</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>{
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># load example data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='st'>"Phae.long.est"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"NatureSounds"</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='st'>"lbh.est"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"NatureSounds"</span>)
 
 <span class='co'># subset to 10 selections</span>
-<span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='no'>Phae.long.est</span>[<span class='fl'>1</span>:<span class='fl'>10</span>, ]
+<span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='no'>lbh.est</span>[<span class='fl'>1</span>:<span class='fl'>10</span>, ]
 
 <span class='co'># Export data to a single sound file</span>
 <span class='fu'>exp_est</span>(<span class='no'>X</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='st'>"test"</span>, <span class='kw'>single.file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
@@ -193,9 +193,7 @@ tables and saves them as sound files in '.wav' format. A single or several sound
 
 <span class='co'># several files</span>
 <span class='fu'>exp_est</span>(<span class='no'>X</span>, <span class='kw'>single.file</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='st'>"test3"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-}</div><div class='output co'>#&gt;   |                                                  | 0 % ~calculating    |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed=00s  
-#&gt;   |                                                  | 0 % ~calculating    |+++++                                             | 10% ~00s            |++++++++++                                        | 20% ~00s            |+++++++++++++++                                   | 30% ~00s            |++++++++++++++++++++                              | 40% ~00s            |+++++++++++++++++++++++++                         | 50% ~00s            |++++++++++++++++++++++++++++++                    | 60% ~00s            |+++++++++++++++++++++++++++++++++++               | 70% ~00s            |++++++++++++++++++++++++++++++++++++++++          | 80% ~00s            |+++++++++++++++++++++++++++++++++++++++++++++     | 90% ~00s            |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed=00s  </div><div class='input'>
-</div></pre>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

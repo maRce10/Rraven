@@ -84,7 +84,7 @@ extract_ts <- function(X, ts.column, equal.length = FALSE, as.time.series = FALS
   
   Y <- as.data.frame(do.call(rbind, out))
   names(Y) <- paste(abbreviate(ts.column), 1:ncol(Y))
-  names(Y) <- gsub("\\. ", "\\.", names(Y))
+  names(Y) <- gsub("\\. ", ".", names(Y))
     
   if (as.time.series) {
     Y <- stats::as.ts(Y)

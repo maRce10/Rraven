@@ -33,7 +33,8 @@
 #' @seealso \code{\link{imp_raven}}; \code{\link{imp_syrinx}}; \code{\link{run_raven}}  
 #' @export
 #' @name raven_batch_detec
-#' @examples \dontrun{
+#' @examples 
+#' \dontrun{
 #' 
 #' # here replace with path where 'Raven' is installed in your computer
 #' raven.path <- "PATH_TO_RAVEN_DIRECTORY_HERE" 

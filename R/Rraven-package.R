@@ -16,9 +16,9 @@
 #'   
 #'   \code{\link{imp_corr_mat}}: Import 'Raven' batch correlator output 
 #'   
-#'   \code{\link{imp_raven}}: Importing 'Raven' selections
+#'   \code{\link{imp_raven}}: Import 'Raven' selections
 #'   
-#'   \code{\link{imp_syrinx}}: Importing 'Syrinx' selections
+#'   \code{\link{imp_syrinx}}: Import 'Syrinx' selections
 #'
 #'   \code{\link{match_wav_case}}: Fix the extension case of sound files
 #'
@@ -39,10 +39,7 @@
 #' @importFrom utils read.table write.table
 #' @author Marcelo Araya-Salas
 #'   
-#'  Maintainer: Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
+#' Maintainer: Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
 #'   
 #' @docType package
 #' @name Rraven
-NULL
-#> NULL 
-#'

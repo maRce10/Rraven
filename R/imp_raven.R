@@ -44,15 +44,15 @@
 #' @name imp_raven
 #' @examples
 #' 
-#' #load data 
+#' # load data 
 #' data(selection_files)
 #' 
-#' #save 'Raven' selection tables in the temporary directory 
+#' # save 'Raven' selection tables in the temporary directory 
 #' out <- lapply(1:2, function(x) 
 #' writeLines(selection_files[[x]], con = file.path(tempdir(), names(selection_files)[x])))
 #' 
 #' \donttest{
-#'#providing the name of the column with the sound file names
+#'# providing the name of the column with the sound file names
 #'rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE, path = tempdir())
 #' 
 #' # View(rvn.dat)
