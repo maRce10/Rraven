@@ -73,6 +73,7 @@ devtools::install_github("maRce10/Rraven")
 #load packages
 library(warbleR)
 library(Rraven)
+
 ```
  &nbsp; 
  
@@ -175,7 +176,7 @@ rvn.dat <- imp_raven(all.data = TRUE, waveform = TRUE, path = tempdir())
 ```
  &nbsp; 
  
-[Raven](http://ravensoundsoftware.com) selections can also be imported in a 'selection.table' format so it can be directly input into [warbleR](https://cran.r-project.org/package=warbleR) functions. To do this you need to set `warbler.format = FALSE`: 
+[Raven](http://ravensoundsoftware.com) selections can also be imported in a 'selection.table' format so it can be directly input into [warbleR](https://cran.r-project.org/package=warbleR) functions. To do this you need to set `warbler.format = TRUE`: 
 
 ```{r, eval=FALSE}
  #providing the name of the column with the sound file names
@@ -235,13 +236,17 @@ And this code creates song catalogs:
 
 ```{r, eval = FALSE}
 
-catalog(X = rvn.dat.st[1:9, ], flim = c(1, 10), nrow = 3, ncol = 3, same.time.scale = F,
+# create a color palette
+trc <- function(n) terrain.colors(n = n, alpha = 0.3)
+
+# plot catalog
+catalog(X = rvn.dat.st[1:9, ], flim = c(1, 10), nrow = 3, ncol = 3, same.time.scale = TRUE,  spec.mar = 1, box = FALSE,
  ovlp = 90, parallel = 1, mar = 0.01, wl = 200, pal = reverse.heat.colors, width = 20,  labels = c("sound.files", "selec"), legend = 1, 
- tag.pal = list(terrain.colors), tags = "sound.files", path = tempdir())
+ tag.pal = list(trc),  group.tag = "sound.files", path = tempdir())
 
 ```
 
-![catalog](Catalog.jpeg)
+![](Catalog.jpeg)
 
 ---
 
@@ -605,10 +610,10 @@ sound.file.path = tempdir(), single.file = TRUE, path = tempdir())
 ```
  &nbsp; 
 
-These type of tables can be opened as a multiple file display in [Raven](http://ravensoundsoftware.com):
+These type of tables can be opened as a multiple file display in [Raven](http://ravensoundsoftware.com).
 
-![gif4](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven3.gif)
- &nbsp; 
+<!-- ![gif4](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven3.gif) -->
+<!--  &nbsp;  -->
 
 ---
 
