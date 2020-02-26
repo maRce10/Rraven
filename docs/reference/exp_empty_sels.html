@@ -120,7 +120,7 @@
     <p><code>exp_empty_sels</code> exports a 'Raven' selection data in .txt format that includes empty selections for all sound files in a folder.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>exp_empty_sels</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pb</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>exp_empty_sels</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>file.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sound.files</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pb</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -133,6 +133,10 @@ If not provided (default) the function will use the current working directory.</
     <tr>
       <th>file.name</th>
       <td><p>Name of the output .txt file. If <code>NULL</code> then the folder name is used instead.</p></td>
+    </tr>
+    <tr>
+      <th>sound.files</th>
+      <td><p>character vector indicating the sound files that will be included. If <code>NULL</code> (default) then all .wav files in the working directory (or 'path') will be included.</p></td>
     </tr>
     <tr>
       <th>pb</th>
@@ -157,7 +161,10 @@ directory (argument 'path'). Useful to simplify the making of selections from se
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Load data</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>NatureSounds</span>)</div><div class='output co'>#&gt; <span class='message'>Carregando pacotes exigidos: knitr</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>, <span class='st'>"lbh_selec_table"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: data set ‘lbh_selec_table’ not found</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>NatureSounds</span>)</div><div class='output co'>#&gt; <span class='message'>Carregando pacotes exigidos: knitr</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>warbleR</span>)</div><div class='output co'>#&gt; <span class='message'>Carregando pacotes exigidos: tuneR</span></div><div class='output co'>#&gt; <span class='message'>Carregando pacotes exigidos: seewave</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>NOTE: functions are being renamed (run 'print(new_function_names)' to see new names). Both old and new names are available in this version </span>
+#&gt; <span class='message'> Please see citation('warbleR') for use in publication</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>, <span class='st'>"lbh_selec_table"</span>))
+
 <span class='co'>## Export a single selection table including multiple files</span>
 <span class='co'>#save sound files </span>
 <span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long1</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),

@@ -4,13 +4,15 @@
 \alias{exp_empty_sels}
 \title{Export a 'Raven' selection for all sound files in a folder}
 \usage{
-exp_empty_sels(path = NULL, file.name = NULL, pb = TRUE)
+exp_empty_sels(path = NULL, file.name = NULL, sound.files = NULL, pb = TRUE)
 }
 \arguments{
 \item{path}{A character string indicating the path of the directory in which to look for sound files.
 If not provided (default) the function will use the current working directory.}
 
 \item{file.name}{Name of the output .txt file. If \code{NULL} then the folder name is used instead.}
+
+\item{sound.files}{character vector indicating the sound files that will be included. If \code{NULL} (default) then all .wav files in the working directory (or 'path') will be included.}
 
 \item{pb}{Logical argument to control progress bar. Default is \code{TRUE}.}
 }
@@ -31,6 +33,7 @@ directory (argument 'path'). Useful to simplify the making of selections from se
 
 # Load data
 library(NatureSounds)
+library(warbleR)
 data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "lbh_selec_table"))
 
 ## Export a single selection table including multiple files
