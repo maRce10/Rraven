@@ -49,7 +49,8 @@ exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,
 {
   
   #check path to working directory
-  if (is.null(path)) path <- getwd() else if (!dir.exists(path)) stop("'path' provided does not exist") 
+  if (is.null(path)) path <- getwd() else if (!dir.exists(path)) stop("'path' provided does not exist") else
+    path <- normalizePath(path)
   
   # if file.name 
   if(is.null(file.name) & selection.table) stop("'file.name' must be provided when 'selection.table' is TRUE")

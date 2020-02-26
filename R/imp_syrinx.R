@@ -49,7 +49,8 @@ imp_syrinx <- function(path = NULL, all.data = FALSE, recursive = FALSE,
   #check path to working directory
   if (is.null(path)) path <- getwd() else 
     if (!dir.exists(path)) 
-      stop("'path' provided does not exist")
+      stop("'path' provided does not exist") else
+        path <- normalizePath(path)
 
 sel.txt <- list.files(full.names = TRUE, path = path)
 sel.txt2 <- list.files(full.names = FALSE, path = path)

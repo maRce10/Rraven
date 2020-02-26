@@ -14,7 +14,7 @@ sound.file.path = NULL, single.file = TRUE, parallel = 1, pb = TRUE)
 If not provided (default) the function saves the file into the current working directory.}
 
 \item{file.name}{Name of the output .txt file. If \code{NULL} then the sound file names are used instead. If multiple
-selection files are generated (see 'single.file') then the sound files names are added to the provided 'file.name'.}
+selection files are generated (see 'single.file') then the sound files names are added to the provided 'file.name'. Ignored if \code{single.file = FALSE}.}
 
 \item{khz.to.hz}{Logical. Controls if frequency variables should be converted from kHz (the unit used by other bioacoustic analysis R packages like \code{\link{warbleR}}) to Hz (the unit used by Raven). Default is \code{TRUE}.}
 

@@ -59,7 +59,8 @@ imp_corr_mat <- function(file, path = NULL){
   #check path to working directory
   if (is.null(path)) path <- getwd() else 
     if (!dir.exists(path)) 
-      stop("'path' provided does not exist") 
+      stop("'path' provided does not exist") else
+        path <- normalizePath(path)
   
   lns <- readLines(file.path(path, file))
   lbks <- which(lns == "")

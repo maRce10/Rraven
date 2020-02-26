@@ -64,8 +64,9 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
                               detector.preset = "Default", view.preset = "Default", relabel_colms = TRUE, pb = TRUE, parallel = 1)
 {
   
-  #check path to working directory
-  if (is.null(path)) path <- getwd() else if (!dir.exists(path)) stop("'path' provided does not exist") 
+  # check path to working directory
+  if (is.null(path)) path <- getwd() else if (!dir.exists(path)) stop("'path' provided does not exist") else
+    path <- normalizePath(path)
   
   # set progress bar back to original
   on.exit(pbapply::pboptions(type = .Options$pboptions$type), 

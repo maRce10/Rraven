@@ -45,8 +45,9 @@ exp_empty_sels <- function(path = NULL, file.name = NULL, pb = TRUE){
   
   #check path to working directory
   if (is.null(path)) path <- getwd() else 
-    if (!dir.exists(path)) stop("'path' provided does not exist") 
-  
+    if (!dir.exists(path)) stop("'path' provided does not exist") else
+      path <- normalizePath(path)
+    
   # create a selection table for each sound file
   st <- warbleR::selection_table(whole.recs = TRUE, pb = FALSE, path = path)
   
