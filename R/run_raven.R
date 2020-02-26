@@ -150,6 +150,9 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
   
   if (pb) pbapply::pboptions(type = "timer") else pbapply::pboptions(type = "none")
   
+  # check if raven executable is "Raven" or "RavenPro" (changed in RavenPro 1.6)
+  rav.exe <- list.files(path = raven.path, pattern =  "Raven$|RavenPro$")
+  
   # run loop over files
   out <- pbapply::pblapply(sq, function(x)
     {
@@ -160,10 +163,10 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
     fls <- paste(fls, collapse = " ")
     
     if (Sys.info()[1] == "Windows")
-      comnd <- paste(shQuote(file.path(raven.path, "Raven"), type = "cmd"), fls) else
+      comnd <- paste(shQuote(file.path(raven.path, rav.exe), type = "cmd"), fls) else
         {
           if (Sys.info()[1] == "Linux")
-        comnd <- paste(paste("cd", raven.path, ";"), paste(file.path(raven.path, "Raven"), fls)) else
+        comnd <- paste(paste("cd", raven.path, ";"), paste(file.path(raven.path, rav.exe), fls)) else
           comnd <- paste("Open Raven.app --args", fls)
         }
     

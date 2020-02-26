@@ -7,7 +7,7 @@
 #' @param path A character string indicating the path of the directory in which to save the selection files.
 #' If not provided (default) the function saves the file into the current working directory.
 #' @param file.name Name of the output .txt file. If \code{NULL} then the sound file names are used instead. If multiple
-#' selection files are generated (see 'single.file') then the sound files names are added to the provided 'file.name'.
+#' selection files are generated (see 'single.file') then the sound files names are added to the provided 'file.name'. Ignored if \code{single.file = FALSE}.
 #' @param khz.to.hz Logical. Controls if frequency variables should be converted from kHz (the unit used by other bioacoustic analysis R packages like \code{\link{warbleR}}) to Hz (the unit used by Raven). Default is \code{TRUE}.
 #' @param sound.file.path A character string indicating the path of the 
 #' directory containing the sound file(s). Providing this information allows
@@ -84,7 +84,8 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
   #stop if more than 1 sound file is found in X
   if (length(unique(X$sound.files)) > 1 & is.null(sound.file.path)) stop("'sound.file.path' must be provided when including selections from multiple sound files")
   
-  if (length(unique(X$sound.files)) == 1) single.file <- TRUE
+  if (length(unique(X$sound.files)) == 1) single.file <- TRUE else
+    if(!single.file) file.name <- NULL
   
   if (!is.null(sound.file.path))
   {    
