@@ -67,6 +67,11 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
     if (!dir.exists(path)) stop("'path' provided does not exist") else
       path <- normalizePath(path)
   
+    # return to current wd on exit
+    cwd <- getwd()
+    on.exit(setwd(cwd), add = TRUE)
+    
+    
   if (is.null(raven.path))
     stop("Path to 'Raven' folder must be provided")  else
       if (!dir.exists(raven.path)) stop("'raven.path' provided does not exist") else 
@@ -75,10 +80,6 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
   # set progress bar back to original
   on.exit(pbapply::pboptions(type = .Options$pboptions$type), 
           add = TRUE)
-  
-  # return to current wd on exit
-  cwd <- getwd()
-  on.exit(setwd(cwd), add = TRUE)
   
    
   if (!is.null(view.preset))
@@ -152,8 +153,8 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
   
   if (pb) pbapply::pboptions(type = "timer") else pbapply::pboptions(type = "none")
   
-  # check if raven executable is "Raven" or "RavenPro" (changed in RavenPro 1.6)
-  rav.exe <- list.files(path = raven.path, pattern =  "Raven$|RavenPro$")
+  # check if raven executable is "Raven" or "RavenPro" (changed in Raven Pro 1.6)
+  rav.exe <- list.files(path = raven.path, pattern =  "Raven$|Raven.app$|Raven.exe$|Raven\ Pro$|Raven\ Pro.app$|Raven\ Pro.exe$")
   
   # run loop over files
   out <- pbapply::pblapply(sq, function(x)
@@ -169,7 +170,7 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
         {
           if (Sys.info()[1] == "Linux")
         comnd <- paste(paste("cd", raven.path, ";"), paste(file.path(raven.path, rav.exe), fls)) else
-          comnd <- paste("Open Raven.app --args", fls)
+          comnd <- paste("Open",  rav.exe, "--args", fls)
         }
     
     # run raven
