@@ -55,4 +55,10 @@ destfile = "Rraven.hitgub.html")
 ```
  &nbsp; 
  
+
 The downloaded file can be opened by any internet browser.
+
+
+Please cite `Rraven` as follows:
+
+Araya-Salas. (2020), *Rraven: connecting R and Raven bioacoustic software*. R package version 1.0.9.

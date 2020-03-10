@@ -1,8 +1,8 @@
 citHeader("Please cite 'Rraven' as follows:")
 
 citEntry(entry = "MISC",
-        title = "Rraven: connecting R and Raven bioacoustic software. R package version 1.0.0.",
+        title = "Rraven: connecting R and Raven bioacoustic software. R package version 1.0.9.",
         author = personList(as.person("M. Araya-Salas")),
-        year = "2017",
-        textVersion = "Araya-Salas. (2017), Rraven: connecting R and Raven bioacoustic software. R package version 1.0.2."
+        year = "2020",
+        textVersion = "Araya-Salas. (2020), Rraven: connecting R and Raven bioacoustic software. R package version 1.0.9."
 )
