@@ -39,6 +39,12 @@ h1 {
 
 pre {
     border: 0;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
     overflow: inherit;
     background: #FAFAFA;
     padding-top: 0.5em;

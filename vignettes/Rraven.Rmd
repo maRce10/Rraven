@@ -18,6 +18,15 @@ editor_options:
   chunk_output_type: console
 ---
 
+<style>
+pre {
+  overflow-x: auto;
+}
+pre code {
+  word-wrap: normal;
+  white-space: pre;
+}
+</style>
 
 ```{r, echo = FALSE, message = FALSE}
 
@@ -51,7 +60,9 @@ Currently, most analyses in [Raven](http://ravensoundsoftware.com) cannot be run
 
 ```{r eval = FALSE}
 
-download.file(url = "https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/Rraven.hitgub.html", destfile = "Rraven.github.html")
+download.file(
+  url = "https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/Rraven.hitgub.html", 
+  destfile = "Rraven.github.html")
 
 ```
  &nbsp; 
@@ -171,7 +182,8 @@ Note that the 'waveform' view data has been removed. It can also be imported as 
 
 ```{r, eval=FALSE}
 
-rvn.dat <- imp_raven(all.data = TRUE, waveform = TRUE, path = tempdir())
+rvn.dat <- imp_raven(all.data = TRUE, waveform = TRUE, 
+                     path = tempdir())
 
 ```
  &nbsp; 
@@ -180,7 +192,8 @@ rvn.dat <- imp_raven(all.data = TRUE, waveform = TRUE, path = tempdir())
 
 ```{r, eval=FALSE}
  #providing the name of the column with the sound file names
-rvn.dat <- imp_raven(sound.file.col = "End.File", warbler.format =  TRUE, path = tempdir())
+rvn.dat <- imp_raven(sound.file.col = "End.File", 
+                     warbler.format =  TRUE, path = tempdir())
 
 head(rvn.dat)
 
@@ -189,7 +202,8 @@ head(rvn.dat)
 ```{r, eval=TRUE, echo=FALSE}
 
  #providing the name of the column with the sound file names
-rvn.dat <- imp_raven(sound.file.col = "End.File", warbler.format =  TRUE, path = tempdir())
+rvn.dat <- imp_raven(sound.file.col = "End.File", 
+                     warbler.format =  TRUE, path = tempdir())
 
 kbl <- kable(head(rvn.dat), align = "c", row.names = F, escape = FALSE)
 
@@ -207,7 +221,8 @@ The data frame contains the following columns: sound.files, channel, selec, star
 # convert to class selection.table
 rvn.dat.st <- selection_table(rvn.dat, path = tempdir())
 
-sp <- specan(X = rvn.dat, bp = "frange", wl = 150, pb = FALSE, ovlp = 90, path = tempdir())
+sp <- specan(X = rvn.dat, bp = "frange", wl = 150, 
+             pb = FALSE, ovlp = 90, path = tempdir())
 
 head(sp)
 
@@ -240,9 +255,12 @@ And this code creates song catalogs:
 trc <- function(n) terrain.colors(n = n, alpha = 0.3)
 
 # plot catalog
-catalog(X = rvn.dat.st[1:9, ], flim = c(1, 10), nrow = 3, ncol = 3, same.time.scale = TRUE,  spec.mar = 1, box = FALSE,
- ovlp = 90, parallel = 1, mar = 0.01, wl = 200, pal = reverse.heat.colors, width = 20,  labels = c("sound.files", "selec"), legend = 1, 
- tag.pal = list(trc),  group.tag = "sound.files", path = tempdir())
+catalog(X = rvn.dat.st[1:9, ], flim = c(1, 10), nrow = 3, ncol = 3, 
+        same.time.scale = TRUE,  spec.mar = 1, box = FALSE,
+        ovlp = 90, parallel = 1, mar = 0.01, wl = 200, 
+        pal = reverse.heat.colors, width = 20,
+        labels = c("sound.files", "selec"), legend = 1, 
+        tag.pal = list(trc),  group.tag = "sound.files", path = tempdir())
 
 ```
 
@@ -266,7 +284,8 @@ The function extracts parameters encoded as time series in [Raven](http://ravens
 unlink(list.files(pattern = "\\.txt$", path = tempdir()))
 
 #save Raven selection table in the temporary directory
-writeLines(selection_files[[5]], con = file.path(tempdir(), names(selection_files)[5]))
+writeLines(selection_files[[5]], con = file.path(tempdir(), 
+                                        names(selection_files)[5]))
 
 rvn.dat <- imp_raven(all.data = TRUE, path = tempdir()) 
 
@@ -463,7 +482,9 @@ dir.create(file.path(tempdir(), "cuts"))
 selec.table$rownames <- sprintf("%02d",1:nrow(selec.table))
 
 # cut files
-cut_sels(X = selec.table, mar = 0.05, path = tempdir(), dest.path = file.path(tempdir(), "cuts"), labels = c("rownames", "sound.files", "selec"), pb = FALSE)
+cut_sels(X = selec.table, mar = 0.05, path = tempdir(), dest.path = 
+           file.path(tempdir(), "cuts"), 
+         labels = c("rownames", "sound.files", "selec"), pb = FALSE)
 
 #list cuts
 list.files(path = file.path(tempdir(), "cuts"))
@@ -553,7 +574,8 @@ xcorr.rvn <- xcorr.rvn[order(rownames(xcorr.rvn)), order(colnames(xcorr.rvn))]
 xcorr.rvn <- as.dist(xcorr.rvn)
 
 # measure acoustic parameters
-sp.wrblR <- specan(selec.table, bp = c(1, 11), wl = 150, pb = FALSE, path = tempdir())
+sp.wrblR <- specan(selec.table, bp = c(1, 11), wl = 150, 
+                   pb = FALSE, path = tempdir())
 
 #convert them to distance matrix
 dist.sp.wrblR <- dist(sp.wrblR)
@@ -590,7 +612,8 @@ If the path to the sound file is provided, the functions exports a 'sound select
 st1 <- selec.table[selec.table$sound.files == "Phae.long1.wav",]
 
 # Export data of a single sound file
-exp_raven(st1, file.name = "Phaethornis 1", khz.to.hz = TRUE, sound.file.path = tempdir(), path = tempdir())
+exp_raven(st1, file.name = "Phaethornis 1", khz.to.hz = TRUE,
+          sound.file.path = tempdir(), path = tempdir())
 
 ```
 ![gif2](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven1.gif)
@@ -606,7 +629,7 @@ If several sound files are available, users can either export them as a single s
 ```{r, eval=FALSE, echo=T}
 
 exp_raven(X = selec.table, file.name = "Phaethornis multiple sound files", 
-sound.file.path = tempdir(), single.file = TRUE, path = tempdir())
+          sound.file.path = tempdir(), single.file = TRUE, path = tempdir())
 ```
  &nbsp; 
 
@@ -629,8 +652,8 @@ The function opens multiple sound files simultaneously in  [Raven](http://ravens
 raven.path <- "PATH_TO_RAVEN_DIRECTORY_HERE" 
 
 # run function 
-run_raven(raven.path = raven.path, sound.files = c("Phae.long1.wav", "Phae.long2.wav", "Phae.long3.wav", "Phae.long4.wav"), import = TRUE, 
- all.data = TRUE, path = tempdir())  
+run_raven(raven.path = raven.path, sound.files = c("Phae.long1.wav", "Phae.long2.wav", "Phae.long3.wav", "Phae.long4.wav"), 
+          import = TRUE, all.data = TRUE, path = tempdir())  
 
 ``` 
 
@@ -650,7 +673,8 @@ This is example runs the detector on one of the example sound files that comes b
 ```{r, eval=FALSE, echo=T}
 
 detec.res <- raven_batch_detec(raven.path = raven.path, 
-sound.files = "BlackCappedVireo.aif", path = file.path(raven.path, "Examples"))
+                               sound.files = "BlackCappedVireo.aif",
+                               path = file.path(raven.path, "Examples"))
 
 ```
 
