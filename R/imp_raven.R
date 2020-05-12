@@ -171,6 +171,7 @@ pbapply::pboptions(type = ifelse(pb, "timer", "none"))
     # temporary put together to check sound file name column
     temp.sls <- do.call("rbind", sl.list2)
   
+    if (!name.from.file){
     # check if file containing sound file name columns and choose sound file column
     sfcls <- names(temp.sls)[names(temp.sls) %in% c("Begin File", "End File", "Begin Path",  "End Path")]
     
@@ -182,6 +183,7 @@ pbapply::pboptions(type = ifelse(pb, "timer", "none"))
     
     if((length(sfcl) == 0 | is.na(sfcl)) & !name.from.file) 
       stop("No column containing sound file names was shared by all selection table files")
+    }
     
     # fix time in multiple file selection table
     #### ERROR HERE #######
