@@ -26,7 +26,7 @@ be filled with NA's. This argument WILL BE DEPRECATED as it is being replaced by
 \item{recursive}{Logical. If \code{TRUE} the listing recurses into sub-directories.}
 
 \item{name.from.file}{Logical. If \code{TRUE} the sound file names are extracted from the selection text file name. 
-It assumes that selections files contained the suffix "Table.1.selections.txt" or "selections.txt". 
+It assumes that selections files contained the suffix "Table.1.selections.txt", "selections.txt" or ".txt" (in that order). 
 Note that by default it will assume that the extension file name is ".wav". This can be control using the
 argument 'ext.case'. Default is \code{FALSE}). Ignored if sound.file.col' is provided and/or all.data is \code{TRUE}). Note that
 the time information for selection tables with multiple sound files won't be corrected if \code{name.from.file = TRUE}.}
