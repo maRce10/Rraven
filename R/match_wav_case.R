@@ -40,7 +40,7 @@
 #'  # fixed extension an return sound file names
 #'  match_wav_case(X = lbh_selec_table, output = "names", path = tempdir())
 #'  }   
-#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
+#' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 #last modification on sep-02-2019
 match_wav_case <- function(X, path = NULL, output = "data.frame", verbose = TRUE){
 

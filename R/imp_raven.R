@@ -58,7 +58,7 @@
 #' # View(rvn.dat)
 #' }
 #' 
-#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
+#' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 #last modification on nov-7-2017
 
 imp_raven <- function(path = NULL, warbler.format = FALSE, all.data = FALSE, files = NULL,  

@@ -8,3 +8,5 @@
 ^Rproj.user$
 ^git$
 ^giignore$
+^docs$
+^pkgdown$

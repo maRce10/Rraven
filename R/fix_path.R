@@ -52,7 +52,7 @@
 #' # try drag and drop into Raven again (should work now)
 #' }
 #' 
-#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
+#' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 #last modification on nov-7-2017
 
 fix_path <- function(path = NULL, dest.path = NULL, recursive = FALSE, parallel = 1, pb = TRUE, new.begin.path, sound.file.col)

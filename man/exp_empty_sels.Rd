@@ -58,5 +58,5 @@ exp_empty_sels(file.name = "Phaethornis.longirostris", path = tempdir())
 \code{\link{exp_raven}}
 }
 \author{
-Marcelo Araya-Salas (\email{marceloa27@gmail.com})
+Marcelo Araya-Salas (\email{marcelo.araya@ucr.ac.cr})
 }

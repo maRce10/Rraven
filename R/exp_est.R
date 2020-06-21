@@ -17,7 +17,7 @@
 #' @param normalize Logical argument to control if wave objects are individually normalized before exporting (or before being pasted together if \code{single.file = TRUE}). Normalization rescales amplitude values to a 16 bit dynamic range. Default is \code{FALSE}.
 #' @param parallel Numeric. Controls whether parallel computing is applied.
 #'  It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
-#'  @param wave.object Logical argument to control if ONLY a single wave object is returned in the R environment (TRUE) instead of a wave file (and a selection table if \code{selection.table = TRUE}) in the working directory. Default is \code{FALSE}.
+#' @param wave.object Logical argument to control if ONLY a single wave object is returned in the R environment (TRUE) instead of a wave file in the working directory (and a selection table if \code{selection.table = TRUE}). Default is \code{FALSE}.
 #' @return Sound file(s) are saved in the provided path or current working directory. If \code{selection.table = TRUE} a Raven sound selection table with the data in 'X' will also be saved.
 #' @details The function takes wave objects contained as attributes in extended selection 
 #' tables and saves them as sound files in '.wav' format. A single or several sound files can be produced (see 'single.file' argument).  In addition, a Raven sound selection table can be saved along with the sound files. The exported selection table can be open in Raven for exploring/manipulating selections in 'X'. 
@@ -41,7 +41,7 @@
 #' }
 #' @name exp_est
 #' 
-#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
+#' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 #last modification on mar-11-2019
 
 exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,  

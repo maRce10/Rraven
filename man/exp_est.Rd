@@ -28,8 +28,9 @@ Default is \code{TRUE}. If \code{FALSE} then selection table is return as an obj
 \item{normalize}{Logical argument to control if wave objects are individually normalized before exporting (or before being pasted together if \code{single.file = TRUE}). Normalization rescales amplitude values to a 16 bit dynamic range. Default is \code{FALSE}.}
 
 \item{parallel}{Numeric. Controls whether parallel computing is applied.
-It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
-@param wave.object Logical argument to control if ONLY a single wave object is returned in the R environment (TRUE) instead of a wave file (and a selection table if \code{selection.table = TRUE}) in the working directory. Default is \code{FALSE}.}
+It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).}
+
+\item{wave.object}{Logical argument to control if ONLY a single wave object is returned in the R environment (TRUE) instead of a wave file in the working directory (and a selection table if \code{selection.table = TRUE}). Default is \code{FALSE}.}
 }
 \value{
 Sound file(s) are saved in the provided path or current working directory. If \code{selection.table = TRUE} a Raven sound selection table with the data in 'X' will also be saved.
@@ -63,5 +64,5 @@ exp_est(X, single.file = FALSE, file.name = "test3", path = tempdir())
 \code{\link{exp_raven}}
 }
 \author{
-Marcelo Araya-Salas (\email{marceloa27@gmail.com})
+Marcelo Araya-Salas (\email{marcelo.araya@ucr.ac.cr})
 }

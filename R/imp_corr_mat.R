@@ -52,7 +52,7 @@
 #' xcorr.rav[[2]]
 #' }
 #' 
-#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
+#' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 #last modification on sep-2-2019
 imp_corr_mat <- function(file, path = NULL){
   

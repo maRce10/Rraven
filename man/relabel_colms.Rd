@@ -71,5 +71,5 @@ names(rvn.dat2)
 \code{\link{imp_raven}}; \code{\link{exp_raven}}
 }
 \author{
-Marcelo Araya-Salas (\email{marceloa27@gmail.com})
+Marcelo Araya-Salas (\email{marcelo.araya@ucr.ac.cr})
 }

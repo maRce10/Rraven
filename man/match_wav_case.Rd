@@ -59,5 +59,5 @@ lbh_selec_table$sound.files[1] <- gsub(".wav$", ".WAV", lbh_selec_table$sound.fi
 \code{\link{relabel_colms}}
 }
 \author{
-Marcelo Araya-Salas (\email{marceloa27@gmail.com})
+Marcelo Araya-Salas (\email{marcelo.araya@ucr.ac.cr})
 }

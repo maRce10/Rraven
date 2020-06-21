@@ -3,6 +3,7 @@
 ## Changes and additions
 
 * Fix bug on raven_batch_detec() when reading output Raven files
+* Added 'wave.object' argument to return a single wave object in 'exp_est()'
 
 # Version 1.0.8
 

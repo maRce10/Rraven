@@ -77,5 +77,5 @@ rav.dat <- run_raven(all.data = TRUE, raven.path = raven.path)
 \code{\link{imp_raven}}; \code{\link{imp_syrinx}}
 }
 \author{
-Marcelo Araya-Salas (\email{marceloa27@gmail.com})
+Marcelo Araya-Salas (\email{marcelo.araya@ucr.ac.cr})
 }

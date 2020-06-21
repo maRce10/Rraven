@@ -39,7 +39,7 @@
 #' # View(syr.dat)
 #' }
 #' 
-#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
+#' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 #last modification on nov-7-2017
 
 imp_syrinx <- function(path = NULL, all.data = FALSE, recursive = FALSE,

@@ -87,5 +87,5 @@ rvn.dat <- imp_raven(sound.file.col = "Begin.File", all.data = FALSE, path = tem
 \code{\link{imp_syrinx}}
 }
 \author{
-Marcelo Araya-Salas (\email{marceloa27@gmail.com})
+Marcelo Araya-Salas (\email{marcelo.araya@ucr.ac.cr})
 }

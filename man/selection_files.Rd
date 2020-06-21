@@ -4,8 +4,10 @@
 \name{selection_files}
 \alias{selection_files}
 \title{A list of 'Raven' selection tables.}
-\format{List of 7 selection tables. The first 5 items are 'Raven' selection tables of Long billed hermit songs. The 5th table contains a multiple sound file selection 
-table. The 6th item is a 'Raven' correlation matrix and the last one a table in 'Syrinx' format.}
+\format{
+List of 7 selection tables. The first 5 items are 'Raven' selection tables of Long billed hermit songs. The 5th table contains a multiple sound file selection 
+table. The 6th item is a 'Raven' correlation matrix and the last one a table in 'Syrinx' format.
+}
 \source{
 Marcelo Araya-Salas
 }

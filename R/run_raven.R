@@ -54,7 +54,7 @@
 #' # View(rav.dat)
 #' }
 #' 
-#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
+#' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 #last modification on nov-7-2017
 
 run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the.time = 10,

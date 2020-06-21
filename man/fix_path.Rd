@@ -73,5 +73,5 @@ sound.file.col = "Begin File", new.begin.path = "YOUR NEW LOCATION HERE")
 \code{\link{to_sound_selection}}; \code{\link{imp_raven}}
 }
 \author{
-Marcelo Araya-Salas (\email{marceloa27@gmail.com})
+Marcelo Araya-Salas (\email{marcelo.araya@ucr.ac.cr})
 }

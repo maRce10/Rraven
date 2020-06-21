@@ -85,5 +85,5 @@ single.file = TRUE, sound.file.path = tempdir(), path = tempdir())
 \code{\link{imp_raven}}; \code{\link{imp_syrinx}}
 }
 \author{
-Marcelo Araya-Salas (\email{marceloa27@gmail.com})
+Marcelo Araya-Salas (\email{marcelo.araya@ucr.ac.cr})
 }

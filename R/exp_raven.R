@@ -63,7 +63,7 @@
 #' exp_raven(X = lbh_selec_table, file.name = "Phaethornis multiple sound files",
 #' single.file = TRUE, sound.file.path = tempdir(), path = tempdir())
 #' 
-#' @author Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
+#' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 #last modification on oct-2-2019
 exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.file.path = NULL, single.file = TRUE, parallel = 1, pb = TRUE){
   

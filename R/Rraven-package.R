@@ -41,7 +41,7 @@
 #' @importFrom utils read.table write.table
 #' @author Marcelo Araya-Salas
 #'   
-#' Maintainer: Marcelo Araya-Salas (\email{marceloa27@@gmail.com})
+#' Maintainer: Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 #'   
 #' @docType package
 #' @name Rraven
