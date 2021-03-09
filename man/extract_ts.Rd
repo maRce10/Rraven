@@ -37,14 +37,13 @@ A data frame with columns for sound file name (sound.files), selection label (se
 The function extracts parameters encoded as time series in 'Raven' selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as \code{\link[warbleR]{dfDTW}}.
 }
 \examples{
-
+\dontrun{
 # Load data
 data(selection_files)
 
 #save 'Raven' selection tables in the temporary directory 
 writeLines(selection_files[[5]], con = file.path(tempdir(), names(selection_files)[5]))
 
-\donttest{
 # import data to R
 rvn.dat <- imp_raven(all.data = TRUE) 
 

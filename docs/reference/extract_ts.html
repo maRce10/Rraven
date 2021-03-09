@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rraven</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.12</span>
       </span>
     </div>
 
@@ -128,8 +128,8 @@
     <p><code>extract_ts</code> extracts time series parameters from data imported from 'Raven' bioacoustic software.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>extract_ts</span>(<span class='no'>X</span>, <span class='no'>ts.column</span>, <span class='kw'>equal.length</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>as.time.series</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-<span class='kw'>length.out</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>pb</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>extract_ts</span><span class='op'>(</span><span class='va'>X</span>, <span class='va'>ts.column</span>, equal.length <span class='op'>=</span> <span class='cn'>FALSE</span>, as.time.series <span class='op'>=</span> <span class='cn'>FALSE</span>, 
+length.out <span class='op'>=</span> <span class='fl'>30</span>, parallel <span class='op'>=</span> <span class='fl'>1</span>, pb <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,29 +174,35 @@ It specifies the number of cores to be used. Default is 1 (i.e. no parallel comp
     <p>A data frame with columns for sound file name (sound.files), selection label (selec) and the time series for each selection.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The function extracts parameters encoded as time series in 'Raven' selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as <code><a href='https://rdrr.io/pkg/warbleR/man/dfDTW.html'>dfDTW</a></code>.</p>
+    <p>The function extracts parameters encoded as time series in 'Raven' selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as <code><a href='https://marce10.github.io/warbleR/reference/dfDTW.html'>dfDTW</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='imp_raven.html'>imp_raven</a></code>; <code><a href='exp_raven.html'>exp_raven</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Marcelo Araya-Salas (<a href='mailto:marcelo.araya@ucr.ac.cr'>marcelo.araya@ucr.ac.cr</a>)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># Load data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>selection_files</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>selection_files</span><span class='op'>)</span>
 
 <span class='co'>#save 'Raven' selection tables in the temporary directory </span>
-<span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span>(<span class='no'>selection_files</span><span class='kw'>[[</span><span class='fl'>5</span>]], <span class='kw'>con</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>selection_files</span>)[<span class='fl'>5</span>]))
+<span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span><span class='op'>(</span><span class='va'>selection_files</span><span class='op'>[[</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>]</span>, con <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>selection_files</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='co'># \donttest{</span>
 <span class='co'># import data to R</span>
-<span class='no'>rvn.dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='imp_raven.html'>imp_raven</a></span>(<span class='kw'>all.data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in imp_raven(all.data = TRUE): No selection .txt files in working directory/'path' provided</span></div><div class='input'>
+<span class='va'>rvn.dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='imp_raven.html'>imp_raven</a></span><span class='op'>(</span>all.data <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> 
+
 <span class='co'># Peak freq dif length</span>
-<span class='fu'>extract_ts</span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>rvn.dat</span>, <span class='kw'>ts.column</span> <span class='kw'>=</span> <span class='st'>"Peak.Freq.Contour..Hz."</span>)</div><div class='output co'>#&gt; <span class='error'>Error in extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz."): objeto 'rvn.dat' no encontrado</span></div><div class='input'>
+<span class='fu'>extract_ts</span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>rvn.dat</span>, ts.column <span class='op'>=</span> <span class='st'>"Peak.Freq.Contour..Hz."</span><span class='op'>)</span>
+
 <span class='co'># Peak freq equal length</span>
-<span class='fu'>extract_ts</span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>rvn.dat</span>, <span class='kw'>ts.column</span> <span class='kw'>=</span> <span class='st'>"Peak.Freq.Contour..Hz."</span>, <span class='kw'>equal.length</span> <span class='kw'>=</span> <span class='no'>T</span>)</div><div class='output co'>#&gt; <span class='error'>Error in extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.",     equal.length = T): objeto 'rvn.dat' no encontrado</span></div><div class='input'>
+<span class='fu'>extract_ts</span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>rvn.dat</span>, ts.column <span class='op'>=</span> <span class='st'>"Peak.Freq.Contour..Hz."</span>, equal.length <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>
+ 
 <span class='co'># Peak freq equal length 10 measurements</span>
-<span class='fu'>extract_ts</span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>rvn.dat</span>, <span class='kw'>ts.column</span> <span class='kw'>=</span> <span class='st'>"Peak.Freq.Contour..Hz."</span>,
-<span class='kw'>equal.length</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>length.out</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; <span class='error'>Error in extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.",     equal.length = TRUE, length.out = 10): objeto 'rvn.dat' no encontrado</span></div><div class='input'># } 
+<span class='fu'>extract_ts</span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>rvn.dat</span>, ts.column <span class='op'>=</span> <span class='st'>"Peak.Freq.Contour..Hz."</span>, 
+equal.length <span class='op'>=</span> <span class='cn'>TRUE</span>, length.out <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span> 
+<span class='op'>}</span> 
 
 </div></pre>
   </div>
@@ -214,7 +220,7 @@ It specifies the number of cores to be used. Default is 1 (i.e. no parallel comp
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

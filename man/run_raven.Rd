@@ -52,7 +52,7 @@ argument. 'Raven' Pro must be installed. Note that 'Raven' can also take sound f
 'aif' format.
 }
 \examples{
-\donttest{
+\dontrun{
 # save sound files
 library(NatureSounds) 
 data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4"))

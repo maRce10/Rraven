@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rraven</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.12</span>
       </span>
     </div>
 
@@ -128,8 +128,8 @@
     <p><code>run_raven</code> opens several sound files in 'Raven' sound analysis software</p>
     </div>
 
-    <pre class="usage"><span class='fu'>run_raven</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sound.files</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>at.the.time</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-<span class='kw'>import</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>redo</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>view.preset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pb</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>run_raven</span><span class='op'>(</span>raven.path <span class='op'>=</span> <span class='cn'>NULL</span>, sound.files <span class='op'>=</span> <span class='cn'>NULL</span>, path <span class='op'>=</span> <span class='cn'>NULL</span>, at.the.time <span class='op'>=</span> <span class='fl'>10</span>,
+import <span class='op'>=</span> <span class='cn'>FALSE</span>, redo <span class='op'>=</span> <span class='cn'>FALSE</span>, view.preset <span class='op'>=</span> <span class='cn'>NULL</span>, pb <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -197,25 +197,30 @@ argument. 'Raven' Pro must be installed. Note that 'Raven' can also take sound f
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='imp_raven.html'>imp_raven</a></code>; <code><a href='imp_syrinx.html'>imp_syrinx</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Marcelo Araya-Salas (<a href='mailto:marcelo.araya@ucr.ac.cr'>marcelo.araya@ucr.ac.cr</a>)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># save sound files</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>NatureSounds</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>))
-<span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long1</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"Phae.long1.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long2</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"Phae.long2.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/maRce10/NatureSounds'>NatureSounds</a></span><span class='op'>)</span> 
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span>list <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>tuneR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span><span class='op'>(</span><span class='va'>Phae.long1</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"Phae.long1.wav"</span><span class='op'>)</span>, extensible <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'>tuneR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span><span class='op'>(</span><span class='va'>Phae.long2</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"Phae.long2.wav"</span><span class='op'>)</span>, extensible <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
 <span class='co'># here replace with the path where 'Raven' is install in your computer</span>
-<span class='no'>raven.path</span> <span class='kw'>&lt;-</span> <span class='st'>"PATH_TO_RAVEN_DIRECTORY_HERE"</span>
+<span class='va'>raven.path</span> <span class='op'>&lt;-</span> <span class='st'>"PATH_TO_RAVEN_DIRECTORY_HERE"</span> 
 
 <span class='co'># run function </span>
-<span class='fu'>run_raven</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='no'>raven.path</span>, <span class='kw'>sound.files</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Phae.long1.wav"</span>, <span class='st'>"Phae.long2.wav"</span>),
- <span class='kw'>at.the.time</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>import</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>name.from.file</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>ext.case</span> <span class='kw'>=</span> <span class='st'>"upper"</span>,
- <span class='kw'>all.data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</div><div class='output co'>#&gt; <span class='error'>Error in run_raven(raven.path = raven.path, sound.files = c("Phae.long1.wav",     "Phae.long2.wav"), at.the.time = 2, import = T, name.from.file = T,     ext.case = "upper", all.data = TRUE, path = tempdir()): 'raven.path' provided does not exist</span></div><div class='input'>
+<span class='fu'>run_raven</span><span class='op'>(</span>raven.path <span class='op'>=</span> <span class='va'>raven.path</span>, sound.files <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Phae.long1.wav"</span>, <span class='st'>"Phae.long2.wav"</span><span class='op'>)</span>,
+ at.the.time <span class='op'>=</span> <span class='fl'>2</span>, import <span class='op'>=</span> <span class='cn'>T</span>, name.from.file <span class='op'>=</span> <span class='cn'>T</span>, ext.case <span class='op'>=</span> <span class='st'>"upper"</span>, 
+ all.data <span class='op'>=</span> <span class='cn'>TRUE</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>  
+ 
 <span class='co'>#getting all the data</span>
-<span class='no'>rav.dat</span> <span class='kw'>&lt;-</span> <span class='fu'>run_raven</span>(<span class='kw'>all.data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='no'>raven.path</span>)</div><div class='output co'>#&gt; <span class='error'>Error in run_raven(all.data = TRUE, raven.path = raven.path): 'raven.path' provided does not exist</span></div><div class='input'># View(rav.dat)
-# }
+<span class='va'>rav.dat</span> <span class='op'>&lt;-</span> <span class='fu'>run_raven</span><span class='op'>(</span>all.data <span class='op'>=</span> <span class='cn'>TRUE</span>, raven.path <span class='op'>=</span> <span class='va'>raven.path</span><span class='op'>)</span>
+<span class='co'># View(rav.dat)</span>
+<span class='op'>}</span>
 
 </div></pre>
   </div>
@@ -233,7 +238,7 @@ argument. 'Raven' Pro must be installed. Note that 'Raven' can also take sound f
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
