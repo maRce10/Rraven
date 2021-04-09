@@ -90,6 +90,8 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
   
   if (!is.null(sound.file.path))
   {    
+    # normalize path
+    
     #count number of sound files in working directory and if 0 stop
     recs.wd <- list.files(path = sound.file.path, pattern = "\\.wav$", ignore.case = TRUE)
     if (!all(unique(X$sound.files) %in% recs.wd)) 
@@ -125,7 +127,7 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
   
   if (!is.null(sound.file.path))
   {
-    X$'Begin Path' <- file.path(path.expand(sound.file.path), X$'Begin File')
+    X$'Begin Path' <- file.path(normalizePath(sound.file.path), X$'Begin File')
     
     X$'File Offset (s)' <- X$'Begin Time (s)'
     
