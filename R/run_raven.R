@@ -120,11 +120,11 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
   #count number of sound files in working directory and if 0 stop
   sound.files <- sound.files[sound.files %in% recs.wd]
   if (length(sound.files) == 0)
-    stop("The .wav files are not in the working directory")
+    stop("The sound files are not in the working directory")
   
   # remove sound files not found
   if (length(sound.files) != length(sf)) 
-   cat(paste(length(sf) - length(sound.files), ".wav file(s) not found"))
+   cat(paste(length(sf) - length(sound.files), "sound file(s) not found"))
   
   if (!redo) {
     # get names of files from selections
@@ -133,7 +133,7 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
     
     # remove those that have a selection table
     if (!is.null(sls))
-    sound.files <- sound.files[!gsub("\\.wav", "", basename(sound.files), ignore.case = TRUE) %in% sapply(strsplit(unique(sls[,names(sls) == "selec.file"]), ".Table"), "[", 1)]
+    sound.files <- sound.files[!gsub("\\.wav$|\\.aif$|\\.flac$|\\.mp3$", "", basename(sound.files), ignore.case = TRUE) %in% sapply(strsplit(unique(sls[,names(sls) == "selec.file"]), ".Table"), "[", 1)]
   
     if (length(sound.files) == 0) 
     {
@@ -189,7 +189,7 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
     
     # find selection tables for only target recordings among 'Raven' selection tables in Selections directory
     if (!is.null(sf)){
-    sf <- gsub("\\.wav", "", sf, ignore.case = TRUE)
+    sf <- gsub("\\.wav$|\\.aif$|\\.flac$|\\.mp3$", "", sf, ignore.case = TRUE)
     
      if (any(rec.nms %in% sf)) sels <- sels[grep(paste(sf, collapse = "|"), rec.nms), ]
      }

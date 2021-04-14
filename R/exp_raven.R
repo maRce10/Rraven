@@ -93,9 +93,9 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
     # normalize path
     
     #count number of sound files in working directory and if 0 stop
-    recs.wd <- list.files(path = sound.file.path, pattern = "\\.wav$", ignore.case = TRUE)
+    recs.wd <- list.files(path = sound.file.path, pattern = "\\.wav$|\\.aif$|\\.flac$|\\.mp3$", ignore.case = TRUE)
     if (!all(unique(X$sound.files) %in% recs.wd)) 
-      stop("Some (or all) .wav files are not in the working directory")
+      stop("Some (or all) sound files are not in the working directory")
   }
   
   if (any(is.na(X$start), is.na(X$end))) stop("'NAs' found in start and/or end column")

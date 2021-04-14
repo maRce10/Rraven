@@ -105,7 +105,7 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
   
   # remove sound files not found
   if (length(sound.files) != length(sf)) 
-    cat(paste(length(sf) - length(sound.files), ".wav file(s) not found"))
+    cat(paste(length(sf) - length(sound.files), "sound file(s) not found"))
   
   # check if sound file names contains directory and fix
   if (basename(sound.files[1]) == sound.files[1])

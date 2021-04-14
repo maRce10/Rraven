@@ -12,7 +12,7 @@ If not provided (default) the function will use the current working directory.}
 
 \item{file.name}{Name of the output .txt file. If \code{NULL} then the folder name is used instead.}
 
-\item{sound.files}{character vector indicating the sound files that will be included. If \code{NULL} (default) then all .wav files in the working directory (or 'path') will be included.}
+\item{sound.files}{character vector indicating the sound files that will be included. If \code{NULL} (default) then all sound files in the working directory (or 'path') will be included.}
 
 \item{pb}{Logical argument to control progress bar. Default is \code{TRUE}.}
 }
