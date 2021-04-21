@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rraven</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.13</span>
       </span>
     </div>
 
@@ -128,10 +128,10 @@
     <p><code>imp_raven</code> imports several 'Raven' selection files simultaneously. Files must be in '.txt' format.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>imp_raven</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>warbler.format</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,  <span class='kw'>all.data</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>files</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-<span class='kw'>only.spectro.view</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>name.from.file</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-<span class='kw'>ext.case</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>freq.cols</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>waveform</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>pb</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-<span class='kw'>unread</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>rm.dup</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,  <span class='kw'>sound.file.col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>imp_raven</span><span class='op'>(</span>path <span class='op'>=</span> <span class='cn'>NULL</span>, warbler.format <span class='op'>=</span> <span class='cn'>FALSE</span>,  all.data <span class='op'>=</span> <span class='cn'>FALSE</span>, files <span class='op'>=</span> <span class='cn'>NULL</span>,
+only.spectro.view <span class='op'>=</span> <span class='cn'>TRUE</span>, recursive <span class='op'>=</span> <span class='cn'>FALSE</span>, name.from.file <span class='op'>=</span> <span class='cn'>FALSE</span>, 
+ext.case <span class='op'>=</span> <span class='cn'>NULL</span>, freq.cols <span class='op'>=</span> <span class='cn'>TRUE</span>, waveform <span class='op'>=</span> <span class='cn'>FALSE</span>, parallel <span class='op'>=</span> <span class='fl'>1</span>, pb <span class='op'>=</span> <span class='cn'>TRUE</span>, 
+unread <span class='op'>=</span> <span class='cn'>FALSE</span>, rm.dup <span class='op'>=</span> <span class='cn'>FALSE</span>,  sound.file.col <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -224,21 +224,25 @@ files including data from multiple recordings can also be imported, although the
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='imp_syrinx.html'>imp_syrinx</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Marcelo Araya-Salas (<a href='mailto:marcelo.araya@ucr.ac.cr'>marcelo.araya@ucr.ac.cr</a>)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># load data </span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>selection_files</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>selection_files</span><span class='op'>)</span>
 
 <span class='co'># save 'Raven' selection tables in the temporary directory </span>
-<span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>function</span>(<span class='no'>x</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span>(<span class='no'>selection_files</span><span class='kw'>[[</span><span class='no'>x</span>]], <span class='kw'>con</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>selection_files</span>)[<span class='no'>x</span>])))
+<span class='va'>out</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> 
+<span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span><span class='op'>(</span><span class='va'>selection_files</span><span class='op'>[[</span><span class='va'>x</span><span class='op'>]</span><span class='op'>]</span>, con <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>selection_files</span><span class='op'>)</span><span class='op'>[</span><span class='va'>x</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># \donttest{</span>
 <span class='co'># providing the name of the column with the sound file names</span>
-<span class='no'>rvn.dat</span> <span class='kw'>&lt;-</span> <span class='fu'>imp_raven</span>(<span class='kw'>sound.file.col</span> <span class='kw'>=</span> <span class='st'>"Begin.File"</span>, <span class='kw'>all.data</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</div><div class='output co'>#&gt;   |                                                  | 0 % ~calculating    |++++++++                                          | 14% ~00s            |+++++++++++++++                                   | 29% ~00s            |++++++++++++++++++++++                            | 43% ~00s            |+++++++++++++++++++++++++++++                     | 57% ~00s            |++++++++++++++++++++++++++++++++++++              | 71% ~00s            |+++++++++++++++++++++++++++++++++++++++++++       | 86% ~00s            |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed=00s  </div><div class='input'>
-# View(rvn.dat)
-# }
+<span class='va'>rvn.dat</span> <span class='op'>&lt;-</span> <span class='fu'>imp_raven</span><span class='op'>(</span>sound.file.col <span class='op'>=</span> <span class='st'>"Begin.File"</span>, all.data <span class='op'>=</span> <span class='cn'>FALSE</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   |                                                  | 0 % ~calculating    |+++++++++                                         | 17% ~00s            |+++++++++++++++++                                 | 33% ~00s            |+++++++++++++++++++++++++                         | 50% ~00s            |++++++++++++++++++++++++++++++++++                | 67% ~00s            |++++++++++++++++++++++++++++++++++++++++++        | 83% ~00s            |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed=00s  </div><div class='input'>
+<span class='co'># View(rvn.dat)</span>
+<span class='co'># }</span>
 
 </div></pre>
   </div>
@@ -256,7 +260,7 @@ files including data from multiple recordings can also be imported, although the
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

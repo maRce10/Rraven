@@ -5,15 +5,18 @@ author: <center><a href="https://marceloarayasalas.weebly.com/">Marcelo Araya-Sa
  &nbsp; 
 date:  <center>"`r Sys.Date()`"</center>
 output:
-  html_document:
-    toc: yes
+  rmarkdown::html_document:
+    self_contained: yes
+    toc: true
+    toc_depth: 3
     toc_float:
       collapsed: false
       smooth_scroll: true
 vignette: >
-  \usepackage[utf8]{inputenc}
-  %\VignetteIndexEntry{Rraven: Connecting R and Raven Sound Analysis Software}
-  %\VignetteEngine{knitr::rmarkdown}
+   %\VignetteIndexEntry{Rraven: Connecting R and Raven Sound Analysis Software}
+   %\usepackage[utf8]{inputenc}
+   %\VignetteEncoding{UTF-8}
+   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
   chunk_output_type: console
 ---

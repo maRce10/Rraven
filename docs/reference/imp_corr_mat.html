@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rraven</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.13</span>
       </span>
     </div>
 
@@ -128,7 +128,7 @@
     <p><code>imp_corr_mat</code> imports the output of 'Raven' batch correlator.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>imp_corr_mat</span>(<span class='no'>file</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>imp_corr_mat</span><span class='op'>(</span><span class='va'>file</span>, path <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,43 +158,48 @@ imported.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='imp_raven.html'>imp_raven</a></code>; <code><a href='exp_raven.html'>exp_raven</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Marcelo Araya-Salas (<a href='mailto:marcelo.araya@ucr.ac.cr'>marcelo.araya@ucr.ac.cr</a>)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span> 
 <span class='co'># Load data</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>NatureSounds</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>, <span class='st'>"lbh_selec_table"</span>))
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/maRce10/NatureSounds'>NatureSounds</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span>list <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Phae.long1"</span>, <span class='st'>"Phae.long2"</span>, <span class='st'>"Phae.long3"</span>, <span class='st'>"Phae.long4"</span>, <span class='st'>"lbh_selec_table"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long1</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
-<span class='st'>"Phae.long1.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='co'>#save sound files </span>
-<span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long2</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
-<span class='st'>"Phae.long2.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long3</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
-<span class='st'>"Phae.long3.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='kw pkg'>tuneR</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span>(<span class='no'>Phae.long4</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
-<span class='st'>"Phae.long4.wav"</span>), <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>tuneR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span><span class='op'>(</span><span class='va'>Phae.long1</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, 
+<span class='st'>"Phae.long1.wav"</span><span class='op'>)</span>, extensible <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='co'>#save sound files </span>
+<span class='fu'>tuneR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span><span class='op'>(</span><span class='va'>Phae.long2</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, 
+<span class='st'>"Phae.long2.wav"</span><span class='op'>)</span>, extensible <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'>tuneR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span><span class='op'>(</span><span class='va'>Phae.long3</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, 
+<span class='st'>"Phae.long3.wav"</span><span class='op'>)</span>, extensible <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'>tuneR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>writeWave</a></span><span class='op'>(</span><span class='va'>Phae.long4</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, 
+<span class='st'>"Phae.long4.wav"</span><span class='op'>)</span>, extensible <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
 <span class='co'>#create new folder to put cuts</span>
-<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"cuts"</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"cuts"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># cut files</span>
-<span class='fu'>cut_sels</span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>lbh_selec_table</span>, <span class='kw'>mar</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
- <span class='kw'>dest.path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"cuts"</span>))
+<span class='fu'><a href='https://marce10.github.io/warbleR/reference/cut_sels.html'>cut_sels</a></span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>lbh_selec_table</span>, mar <span class='op'>=</span> <span class='fl'>0.05</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>,
+ dest.path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"cuts"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'>#Now run 'Raven' batch correlator un the cuts and save the output in the same folder</span>
 
 <span class='co'># Import output (change the name of the file if you used a different one)</span>
-<span class='no'>xcorr.rav</span> <span class='kw'>&lt;-</span> <span class='fu'>imp_corr_mat</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"BatchCorrOutput.txt"</span>,
-<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"cuts"</span>))
+<span class='va'>xcorr.rav</span> <span class='op'>&lt;-</span> <span class='fu'>imp_corr_mat</span><span class='op'>(</span>file <span class='op'>=</span> <span class='st'>"BatchCorrOutput.txt"</span>, 
+path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"cuts"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># check results</span>
-
+  
 <span class='co'>## correlation matrix</span>
-<span class='no'>xcorr.rav</span><span class='kw'>[[</span><span class='fl'>1</span>]]
+<span class='va'>xcorr.rav</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
 
 <span class='co'>## time lag matrix</span>
-<span class='no'>xcorr.rav</span><span class='kw'>[[</span><span class='fl'>2</span>]]
-}</div></pre>
+<span class='va'>xcorr.rav</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -210,7 +215,7 @@ imported.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

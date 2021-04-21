@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rraven</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.13</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@
 </center></h4>
             
             <h4 class="date"><center>
-“2021-03-09”
+“2021-04-20”
 </center></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/maRce10/Rraven/blob/master/vignettes/Rraven.Rmd"><code>vignettes/Rraven.Rmd</code></a></small>
@@ -117,9 +117,9 @@ pre code {
 <p>The downloaded file can be opened by any internet browser.</p>
 <p>Before getting into the functions, the packages must be installed and loaded. I recommend using the latest developmental version, which is found in <a href="https://github.com/maRce10/Rraven">github</a>. To do so, you need the R package <a href="https://cran.r-project.org/package=devtools">devtools</a> (which of course should be installed!). Some <a href="https://cran.r-project.org/package=warbleR">warbleR</a> functions and example data sets will be used, so <a href="https://cran.r-project.org/package=warbleR">warbleR</a> should be installed as well:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"maRce10/warbleR"</span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"maRce10/warbleR"</span><span class="op">)</span>
 
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"maRce10/Rraven"</span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"maRce10/Rraven"</span><span class="op">)</span>
 
 <span class="co">#from CRAN would be</span>
 <span class="co">#install.packages("warbleR")</span>
@@ -684,9 +684,9 @@ LBH 3 selection table example.txt
 <p>The data frame contains the following columns: sound.files, channel, selec, start, end, and selec.file. You can also import the frequency range parameters in the ‘selection.table’ by setting ‘freq.cols’ tp <code>TRUE</code>. The data frame returned by “imp_raven” (when in the ‘warbleR’ format) can be input into several <a href="https://cran.r-project.org/package=warbleR">warbleR</a> functions for further analysis. For instance, the following code runs additional parameter measurements on the imported selections:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="co"># convert to class selection.table</span>
-<span class="va">rvn.dat.st</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/warbleR/man/selection_table.html">selection_table</a></span><span class="op">(</span><span class="va">rvn.dat</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="va">rvn.dat.st</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://marce10.github.io/warbleR/reference/selection_table.html">selection_table</a></span><span class="op">(</span><span class="va">rvn.dat</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/warbleR/man/spectro_analysis.html">spectro_analysis</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">rvn.dat</span>, bp <span class="op">=</span> <span class="st">"frange"</span>, wl <span class="op">=</span> <span class="fl">150</span>, 
+<span class="va">sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://marce10.github.io/warbleR/reference/spectro_analysis.html">spectro_analysis</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">rvn.dat</span>, bp <span class="op">=</span> <span class="st">"frange"</span>, wl <span class="op">=</span> <span class="fl">150</span>, 
              pb <span class="op">=</span> <span class="cn">FALSE</span>, ovlp <span class="op">=</span> <span class="fl">90</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">sp</span><span class="op">)</span></pre></div>
@@ -700,12 +700,6 @@ sound.files
 </th>
 <th style="text-align:center;">
 selec
-</th>
-<th style="text-align:center;">
-top.freq
-</th>
-<th style="text-align:center;">
-bottom.freq
 </th>
 <th style="text-align:center;">
 duration
@@ -795,12 +789,6 @@ Phae.long1.wav
 1
 </td>
 <td style="text-align:center;">
-8.60438
-</td>
-<td style="text-align:center;">
-2.22011
-</td>
-<td style="text-align:center;">
 0.173033
 </td>
 <td style="text-align:center;">
@@ -885,12 +873,6 @@ Phae.long1.wav
 </td>
 <td style="text-align:center;">
 2
-</td>
-<td style="text-align:center;">
-8.80705
-</td>
-<td style="text-align:center;">
-2.16944
 </td>
 <td style="text-align:center;">
 0.163048
@@ -979,12 +961,6 @@ Phae.long1.wav
 3
 </td>
 <td style="text-align:center;">
-8.75660
-</td>
-<td style="text-align:center;">
-2.21829
-</td>
-<td style="text-align:center;">
 0.174919
 </td>
 <td style="text-align:center;">
@@ -1069,12 +1045,6 @@ Phae.long2.wav
 </td>
 <td style="text-align:center;">
 1
-</td>
-<td style="text-align:center;">
-8.82232
-</td>
-<td style="text-align:center;">
-2.31686
 </td>
 <td style="text-align:center;">
 0.132571
@@ -1163,12 +1133,6 @@ Phae.long2.wav
 2
 </td>
 <td style="text-align:center;">
-8.88803
-</td>
-<td style="text-align:center;">
-2.28401
-</td>
-<td style="text-align:center;">
 0.126150
 </td>
 <td style="text-align:center;">
@@ -1253,12 +1217,6 @@ Phae.long3.wav
 </td>
 <td style="text-align:center;">
 1
-</td>
-<td style="text-align:center;">
-8.82232
-</td>
-<td style="text-align:center;">
-3.00683
 </td>
 <td style="text-align:center;">
 0.131220
@@ -1349,7 +1307,7 @@ Phae.long3.wav
 <span class="va">trc</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>
 
 <span class="co"># plot catalog</span>
-<span class="fu"><a href="https://rdrr.io/pkg/warbleR/man/catalog.html">catalog</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">rvn.dat.st</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span>, <span class="op">]</span>, flim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">3</span>, 
+<span class="fu"><a href="https://marce10.github.io/warbleR/reference/catalog.html">catalog</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">rvn.dat.st</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span>, <span class="op">]</span>, flim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">3</span>, 
         same.time.scale <span class="op">=</span> <span class="cn">TRUE</span>,  spec.mar <span class="op">=</span> <span class="fl">1</span>, box <span class="op">=</span> <span class="cn">FALSE</span>,
         ovlp <span class="op">=</span> <span class="fl">90</span>, parallel <span class="op">=</span> <span class="fl">1</span>, mar <span class="op">=</span> <span class="fl">0.01</span>, wl <span class="op">=</span> <span class="fl">200</span>, 
         pal <span class="op">=</span> <span class="va">reverse.heat.colors</span>, width <span class="op">=</span> <span class="fl">20</span>,
@@ -3493,7 +3451,7 @@ Phae.long3.wav
 <p> </p>
 <p>The time series data frame can be directly input into the <code>freq_DTW</code> <a href="https://cran.r-project.org/package=warbleR">warbleR</a> function to calculate <a href="https://en.wikipedia.org/wiki/Dynamic_time_warping">Dynamic Time Warping</a> distances:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/warbleR/man/freq_DTW.html">freq_DTW</a></span><span class="op">(</span>ts.df <span class="op">=</span> <span class="va">fcts</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://marce10.github.io/warbleR/reference/freq_DTW.html">freq_DTW</a></span><span class="op">(</span>ts.df <span class="op">=</span> <span class="va">fcts</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p> </p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:808px; ">
 <table class="table table table-striped table-hover table-condensed table-responsive">
@@ -4275,7 +4233,7 @@ Spectrogram 1
 <span class="va">selec.table</span><span class="op">$</span><span class="va">rownames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%02d"</span>,<span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">selec.table</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># cut files</span>
-<span class="fu"><a href="https://rdrr.io/pkg/warbleR/man/cut_sels.html">cut_sels</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">selec.table</span>, mar <span class="op">=</span> <span class="fl">0.05</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>, dest.path <span class="op">=</span> 
+<span class="fu"><a href="https://marce10.github.io/warbleR/reference/cut_sels.html">cut_sels</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">selec.table</span>, mar <span class="op">=</span> <span class="fl">0.05</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>, dest.path <span class="op">=</span> 
            <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"cuts"</span><span class="op">)</span>, 
          labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rownames"</span>, <span class="st">"sound.files"</span>, <span class="st">"selec"</span><span class="op">)</span>, pb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
@@ -5233,7 +5191,7 @@ Spectrogram 1
 <span class="va">xcorr.rvn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">as.dist</a></span><span class="op">(</span><span class="va">xcorr.rvn</span><span class="op">)</span>
 
 <span class="co"># measure acoustic parameters</span>
-<span class="va">sp.wrblR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/warbleR/man/specan.html">specan</a></span><span class="op">(</span><span class="va">selec.table</span>, bp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">11</span><span class="op">)</span>, wl <span class="op">=</span> <span class="fl">150</span>, 
+<span class="va">sp.wrblR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://marce10.github.io/warbleR/reference/specan.html">specan</a></span><span class="op">(</span><span class="va">selec.table</span>, bp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">11</span><span class="op">)</span>, wl <span class="op">=</span> <span class="fl">150</span>, 
                    pb <span class="op">=</span> <span class="cn">FALSE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co">#convert them to distance matrix</span>
@@ -5248,11 +5206,11 @@ Call:
 vegan::mantel(xdis = xcorr.rvn, ydis = dist.sp.wrblR) 
 
 Mantel statistic r: 0.259 
-      Significance: 0.018 
+      Significance: 0.014 
 
 Upper quantiles of permutations (null model):
   90%   95% 97.5%   99% 
-0.149 0.185 0.225 0.288 
+0.142 0.181 0.231 0.274 
 Permutation: free
 Number of permutations: 999</code></pre>
 <p> </p>
@@ -5349,15 +5307,15 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] kableExtra_1.3.1   Rraven_1.0.12      warbleR_1.1.26     NatureSounds_1.0.3 knitr_1.31         seewave_2.1.6      tuneR_1.3.3       
+[1] kableExtra_1.3.1   Rraven_1.0.13      warbleR_1.1.27     NatureSounds_1.0.3 knitr_1.31         seewave_2.1.6      tuneR_1.3.3       
 
 loaded via a namespace (and not attached):
- [1] xfun_0.21         pbapply_1.4-3     splines_4.0.3     lattice_0.20-41   colorspace_1.4-1  htmltools_0.5.1.1 viridisLite_0.3.0 yaml_2.2.1       
+ [1] xfun_0.22         pbapply_1.4-3     splines_4.0.3     lattice_0.20-41   colorspace_1.4-1  htmltools_0.5.1.1 viridisLite_0.3.0 yaml_2.2.1       
  [9] mgcv_1.8-33       rlang_0.4.10      pkgdown_1.6.1     glue_1.4.2        lifecycle_0.2.0   stringr_1.4.0     munsell_0.5.0     ragg_0.4.0       
 [17] rvest_0.3.6       memoise_1.1.0     evaluate_0.14     permute_0.9-5     fftw_1.0-6        parallel_4.0.3    Rcpp_1.0.6        backports_1.1.10 
 [25] scales_1.1.1      vegan_2.5-6       desc_1.2.0        webshot_0.5.2     soundgen_1.8.2    systemfonts_0.3.2 fs_1.5.0          textshaping_0.1.2
 [33] rjson_0.2.20      digest_0.6.27     stringi_1.5.3     dtw_1.22-3        rprojroot_1.3-2   grid_4.0.3        tools_4.0.3       bitops_1.0-6     
-[41] magrittr_2.0.1    RCurl_1.98-1.2    proxy_0.4-25      cluster_2.1.0     crayon_1.4.1      Matrix_1.2-18     MASS_7.3-53       xml2_1.3.2       
+[41] magrittr_2.0.1    RCurl_1.98-1.3    proxy_0.4-25      cluster_2.1.0     crayon_1.4.1      Matrix_1.2-18     MASS_7.3-53       xml2_1.3.2       
 [49] shinyBS_0.61      assertthat_0.2.1  rmarkdown_2.4     httr_1.4.2        rstudioapi_0.11   R6_2.5.0          nlme_3.1-149      signal_0.7-6     
 [57] compiler_4.0.3   </code></pre>
 </div>

@@ -1,3 +1,7 @@
+# Version 1.0.13
+
+* Update requested by CRAN
+
 # Version 1.0.12
 
 * Update requested by CRAN

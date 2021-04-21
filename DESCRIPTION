@@ -2,7 +2,7 @@ Type: Package
 Package: Rraven
 Title: Connecting R and 'Raven' Sound Analysis Software
 Version: 1.0.13
-Date: 2021-04-10
+Date: 2021-04-20
 Authors@R: person("Marcelo", "Araya-Salas", role = c("aut", "cre"), email = "marcelo.araya@ucr.ac.cr", comment = c(ORCID = "0000-0003-3594-619X"))
 Maintainer: Marcelo Araya-Salas <marcelo.araya@ucr.ac.cr>
 Description: A tool to exchange data between R and 'Raven' sound analysis software (Cornell Lab of Ornithology). Functions work on data formats compatible with the R package 'warbleR'.
@@ -13,7 +13,7 @@ LazyData: TRUE
 URL: https://github.com/maRce10/Rraven 
 BugReports: https://github.com/maRce10/Rraven/issues
 NeedsCompilation: no
-Suggests: knitr, vegan, dplyr, kableExtra
+Suggests: knitr, vegan, dplyr, kableExtra, rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 Packaged: 2018-09-27 23:45:31 UTC; m

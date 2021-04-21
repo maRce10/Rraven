@@ -75,7 +75,7 @@ All files must have the same columns." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rraven</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.13</span>
       </span>
     </div>
 
@@ -130,8 +130,8 @@ All files must have the same columns." />
 All files must have the same columns.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>imp_syrinx</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>all.data</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-<span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hz.to.khz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>pb</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>imp_syrinx</span><span class='op'>(</span>path <span class='op'>=</span> <span class='cn'>NULL</span>, all.data <span class='op'>=</span> <span class='cn'>FALSE</span>, recursive <span class='op'>=</span> <span class='cn'>FALSE</span>, 
+exclude <span class='op'>=</span> <span class='cn'>FALSE</span>, hz.to.khz <span class='op'>=</span> <span class='cn'>TRUE</span>, parallel <span class='op'>=</span> <span class='fl'>1</span>, pb <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,24 +178,29 @@ columns in selection files are returned.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='imp_raven.html'>imp_raven</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Marcelo Araya-Salas (<a href='mailto:marcelo.araya@ucr.ac.cr'>marcelo.araya@ucr.ac.cr</a>)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'>#load data </span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>selection_files</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>selection_files</span><span class='op'>)</span>
 
 <span class='co'>#save 'Raven' selection tables in the temporary directory </span>
-<span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span>(<span class='no'>selection_files</span><span class='kw'>[[</span><span class='fl'>7</span>]], <span class='kw'>con</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>selection_files</span>)[<span class='fl'>7</span>]))
+<span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span><span class='op'>(</span><span class='va'>selection_files</span><span class='op'>[[</span><span class='fl'>7</span><span class='op'>]</span><span class='op'>]</span>, con <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>selection_files</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>7</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='no'>syr.dat</span> <span class='kw'>&lt;-</span> <span class='fu'>imp_syrinx</span>(<span class='kw'>all.data</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='va'>syr.dat</span> <span class='op'>&lt;-</span> <span class='fu'>imp_syrinx</span><span class='op'>(</span>all.data <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
 <span class='co'># View(syr.dat)</span>
 
 <span class='co'>#getting all the data</span>
-<span class='no'>syr.dat</span> <span class='kw'>&lt;-</span> <span class='fu'>imp_syrinx</span>(<span class='kw'>all.data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='va'>syr.dat</span> <span class='op'>&lt;-</span> <span class='fu'>imp_syrinx</span><span class='op'>(</span>all.data <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'># View(syr.dat)</span>
-}</div></pre>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -211,7 +216,7 @@ columns in selection files are returned.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

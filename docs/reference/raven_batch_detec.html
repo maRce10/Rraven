@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rraven</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.13</span>
       </span>
     </div>
 
@@ -128,9 +128,9 @@
     <p><code>raven_batch_detec</code> Runs 'Raven' batch detector on multiple sound files sequentially</p>
     </div>
 
-    <pre class="usage"><span class='fu'>raven_batch_detec</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>sound.files</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-<span class='no'>detector.type</span>, <span class='kw'>detector.preset</span> <span class='kw'>=</span> <span class='st'>"Default"</span>,
-<span class='kw'>view.preset</span> <span class='kw'>=</span> <span class='st'>"Default"</span>, <span class='kw'>relabel_colms</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>pb</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>raven_batch_detec</span><span class='op'>(</span>raven.path <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>sound.files</span>, path <span class='op'>=</span> <span class='cn'>NULL</span>, 
+<span class='va'>detector.type</span>, detector.preset <span class='op'>=</span> <span class='st'>"Default"</span>,
+view.preset <span class='op'>=</span> <span class='st'>"Default"</span>, relabel_colms <span class='op'>=</span> <span class='cn'>TRUE</span>, pb <span class='op'>=</span> <span class='cn'>TRUE</span>, parallel <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,7 +172,7 @@ If <code>NULL</code> (default) then the 'Default' window preset is used.</p></td
     <tr>
       <th>relabel_colms</th>
       <td><p>Logical. If  <code>TRUE</code> (default) columns are labeled to 
-match the selection table format from the acoustic analysis package <code>warbleR</code></p></td>
+match the selection table format from the acoustic analysis package <code><a href='https://marce10.github.io/warbleR/reference/warbleR.html'>warbleR</a></code></p></td>
     </tr>
     <tr>
       <th>pb</th>
@@ -197,30 +197,35 @@ sound files in 'mp3', 'flac' and 'aif' format.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='imp_raven.html'>imp_raven</a></code>; <code><a href='imp_syrinx.html'>imp_syrinx</a></code>; <code><a href='run_raven.html'>run_raven</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Marcelo Araya-Salas (<a href='mailto:marcelo.araya@ucr.ac.cr'>marcelo.araya@ucr.ac.cr</a>)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
 <span class='co'># here replace with path where 'Raven' is installed in your computer</span>
-<span class='no'>raven.path</span> <span class='kw'>&lt;-</span> <span class='st'>"PATH_TO_RAVEN_DIRECTORY_HERE"</span>
+<span class='va'>raven.path</span> <span class='op'>&lt;-</span> <span class='st'>"PATH_TO_RAVEN_DIRECTORY_HERE"</span> 
 
 <span class='co'># Run detector on raven example sound files</span>
 
 <span class='co'># single sound file using 'Amplitude Detector' </span>
-<span class='no'>detec.res</span> <span class='kw'>&lt;-</span> <span class='fu'>raven_batch_detec</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='no'>raven.path</span>,
-<span class='kw'>sound.files</span> <span class='kw'>=</span> <span class='st'>"BlackCappedVireo.aif"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>raven.path</span>, <span class='st'>"Examples"</span>),
-<span class='kw'>detector.type</span> <span class='kw'>=</span> <span class='st'>"Amplitude Detector"</span>)
+<span class='va'>detec.res</span> <span class='op'>&lt;-</span> <span class='fu'>raven_batch_detec</span><span class='op'>(</span>raven.path <span class='op'>=</span> <span class='va'>raven.path</span>, 
+sound.files <span class='op'>=</span> <span class='st'>"BlackCappedVireo.aif"</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>raven.path</span>, <span class='st'>"Examples"</span><span class='op'>)</span>, 
+detector.type <span class='op'>=</span> <span class='st'>"Amplitude Detector"</span><span class='op'>)</span>
 
 <span class='co'># on raven examples  2 files</span>
-<span class='no'>detec.res</span> <span class='kw'>&lt;-</span> <span class='fu'>raven_batch_detec</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='no'>raven.path</span>,
-<span class='kw'>sound.files</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"BlackCappedVireo.aif"</span>, <span class='st'>"CanyonWren.wav"</span>),
-<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>raven.path</span>, <span class='st'>"Examples"</span>), <span class='kw'>detector.type</span> <span class='kw'>=</span> <span class='st'>"Amplitude Detector"</span>)
+<span class='va'>detec.res</span> <span class='op'>&lt;-</span> <span class='fu'>raven_batch_detec</span><span class='op'>(</span>raven.path <span class='op'>=</span> <span class='va'>raven.path</span>, 
+sound.files <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"BlackCappedVireo.aif"</span>, <span class='st'>"CanyonWren.wav"</span><span class='op'>)</span>, 
+path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>raven.path</span>, <span class='st'>"Examples"</span><span class='op'>)</span>, detector.type <span class='op'>=</span> <span class='st'>"Amplitude Detector"</span><span class='op'>)</span>
 
 <span class='co'># using 'Band Limited Energy Detector' </span>
-<span class='no'>detec.res</span> <span class='kw'>&lt;-</span> <span class='fu'>raven_batch_detec</span>(<span class='kw'>raven.path</span> <span class='kw'>=</span> <span class='no'>raven.path</span>,
-<span class='kw'>sound.files</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"BlackCappedVireo.aif"</span>, <span class='st'>"CanyonWren.wav"</span>),
-<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>raven.path</span>, <span class='st'>"Examples"</span>), <span class='kw'>detector</span> <span class='kw'>=</span> <span class='st'>"Band Limited Energy Detector"</span>)
-}</div></pre>
+<span class='va'>detec.res</span> <span class='op'>&lt;-</span> <span class='fu'>raven_batch_detec</span><span class='op'>(</span>raven.path <span class='op'>=</span> <span class='va'>raven.path</span>, 
+sound.files <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"BlackCappedVireo.aif"</span>, <span class='st'>"CanyonWren.wav"</span><span class='op'>)</span>, 
+path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>raven.path</span>, <span class='st'>"Examples"</span><span class='op'>)</span>, detector <span class='op'>=</span> <span class='st'>"Band Limited Energy Detector"</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -236,7 +241,7 @@ sound files in 'mp3', 'flac' and 'aif' format.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
