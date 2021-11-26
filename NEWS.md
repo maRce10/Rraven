@@ -1,3 +1,9 @@
+# Version 1.0.14
+
+## Changes and additions
+
+* Fix error when selection files have no rows. Now they are omitted and an be shown if `unread = TRUE` 
+
 # Version 1.0.13
 
 * Update requested by CRAN

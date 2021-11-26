@@ -228,10 +228,19 @@ pbapply::pboptions(type = ifelse(pb, "timer", "none"))
     # remove NAs again    
     sl.list <- sl.list[sapply(sl.list, is.data.frame)]
     
+    # save names
+    list.names <- names(sl.list)
+        
     # add selec file column
     sl.list <- lapply(1:length(sl.list), function(x)
-      data.frame(sl.list[[x]], selec.file = names(sl.list)[x], check.names = FALSE)
+      data.frame(sl.list[[x]], selec.file = if (nrow(sl.list[[x]])) names(sl.list)[x] else NULL, check.names = FALSE)
       )
+    
+    # add names again
+    names(sl.list) <- list.names
+    
+    if (unread)
+    error.files <- c(error.files, names(sl.list)[sapply(sl.list, nrow) == 0])
     
     # pool in a single data frame
     sls <- do.call("rbind", sl.list)
