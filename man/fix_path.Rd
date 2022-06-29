@@ -12,7 +12,7 @@ new.begin.path, sound.file.col)
 If not provided (default) the function searches into the current working directory.}
 
 \item{dest.path}{A character string indicating the path of the directory in which
-sound selection tables will be saved. 
+sound selection tables will be saved. If not supplied selection files will be overwritten with the new begin path.
 If not provided (default) files will be save in the current directory.}
 
 \item{recursive}{Logical. If \code{TRUE} the listing recurses into sub-directories.}
@@ -38,7 +38,7 @@ directory (by default, which overwrites existing files).
 \details{
 The function modifies the path field in Raven's selection tables or 
 sound selection tables. This is useful when sound files have been moved to a 
-different location (or computer). Note the ability to open selections and sound files
+different location (or computer). Note that the ability to open selections and sound files
 simultaneously works as long as the "begin.path" column is referring to the directory
 containing the sound files.
 }
