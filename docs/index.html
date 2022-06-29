@@ -20,6 +20,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -32,18 +34,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">Rraven</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.14</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/Rraven.html">Get started</a>
 </li>
@@ -51,16 +47,13 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="articles/index.html">Articles</a>
-</li>
-<li>
   <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/maRce10/Rraven/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/maRce10/Rraven/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -76,40 +69,40 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="rraven" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#rraven" class="anchor"></a>Rraven</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="rraven">Rraven<a class="anchor" aria-label="anchor" href="#rraven"></a>
+</h1></div>
 
-<p>The <code>Rraven</code> package is designed to facilitate the exchange of data between R and <a href="https://ravensoundsoftware.com">Raven sound analysis software</a> (<a href="https://www.birds.cornell.edu/home">Cornell Lab of Ornithology</a>). <a href="https://ravensoundsoftware.com">Raven</a> provides very powerful tools for the analysis of (animal) sounds. R can simplify the automatization of complex routines of analyses. Furthermore, R packages as <a href="https://cran.r-project.org/package=warbleR">warbleR</a>, <a href="https://cran.r-project.org/package=seewave">seewave</a> and <a href="https://cran.r-project.org/package=monitoR">monitoR</a> (among others) provide additional methods of analysis, working as a perfect complement for those found in <a href="https://ravensoundsoftware.com">Raven</a>. Hence, bridging these applications can largely expand the bioacoustician’s toolkit.</p>
-<p>Currently, most analyses in <a href="https://ravensoundsoftware.com">Raven</a> cannot be run in the background from a command terminal. Thus, most <code>Rraven</code> functions are design to simplify the exchange of data between the two programs, and in some cases, export files to <a href="https://ravensoundsoftware.com">Raven</a> for further analysis.</p>
+<p>The <code>Rraven</code> package is designed to facilitate the exchange of data between R and <a href="https://ravensoundsoftware.com" class="external-link">Raven sound analysis software</a> (<a href="https://www.birds.cornell.edu/home" class="external-link">Cornell Lab of Ornithology</a>). <a href="https://ravensoundsoftware.com" class="external-link">Raven</a> provides very powerful tools for the analysis of (animal) sounds. R can simplify the automatization of complex routines of analyses. Furthermore, R packages as <a href="https://cran.r-project.org/package=warbleR" class="external-link">warbleR</a>, <a href="https://cran.r-project.org/package=seewave" class="external-link">seewave</a> and <a href="https://cran.r-project.org/package=monitoR" class="external-link">monitoR</a> (among others) provide additional methods of analysis, working as a perfect complement for those found in <a href="https://ravensoundsoftware.com" class="external-link">Raven</a>. Hence, bridging these applications can largely expand the bioacoustician’s toolkit.</p>
+<p>Currently, most analyses in <a href="https://ravensoundsoftware.com" class="external-link">Raven</a> cannot be run in the background from a command terminal. Thus, most <code>Rraven</code> functions are design to simplify the exchange of data between the two programs, and in some cases, export files to <a href="https://ravensoundsoftware.com" class="external-link">Raven</a> for further analysis.</p>
 <p>Install/load the package from CRAN as follows:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
 <span class="co"># From CRAN would be</span>
 <span class="co">#install.packages("Rraven")</span>
 
 <span class="co">#load package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maRce10/Rraven">Rraven</a></span><span class="op">)</span></pre></div>
-<p>To install the latest developmental version from <a href="https://github.com/">github</a> you will need the R package <a href="https://cran.r-project.org/package=devtools">devtools</a>:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># From CRAN would be</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maRce10/Rraven" class="external-link">Rraven</a></span><span class="op">)</span></code></pre></div>
+<p>To install the latest developmental version from <a href="https://github.com/" class="external-link">github</a> you will need the R package <a href="https://cran.r-project.org/package=devtools" class="external-link">devtools</a>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># From CRAN would be</span>
 <span class="co">#install.packages("Rraven")</span>
 
 <span class="co"># From github</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"maRce10/Rraven"</span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"maRce10/Rraven"</span><span class="op">)</span>
 
 <span class="co">#load package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maRce10/Rraven">Rraven</a></span><span class="op">)</span></pre></div>
-<p>The package vignette provides detailed examples for each function in <code>Rraven</code>, including both the R code as well as the additional steps in <a href="https://ravensoundsoftware.com">Raven</a> required to fully accomplished the analyses. You can pull it up as follows:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-
-<span class="fu"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span><span class="op">(</span><span class="st">"Rraven"</span><span class="op">)</span>
-</pre></div>
-<p>The animations explaining additional steps in <a href="https://ravensoundsoftware.com">Raven</a> are shown in more detail on the <a href="https://github.com/maRce10/Rraven">github</a> version of this vignette, which can be downloaded as follows (saves the file “Rraven.github.html” in your current working directory):</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-
-<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/Rraven.hitgub.html"</span>, 
-destfile <span class="op">=</span> <span class="st">"Rraven.hitgub.html"</span><span class="op">)</span></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maRce10/Rraven" class="external-link">Rraven</a></span><span class="op">)</span></code></pre></div>
+<p>The package vignette provides detailed examples for each function in <code>Rraven</code>, including both the R code as well as the additional steps in <a href="https://ravensoundsoftware.com" class="external-link">Raven</a> required to fully accomplished the analyses. You can pull it up as follows:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"Rraven"</span><span class="op">)</span>
+</code></pre></div>
+<p>The animations explaining additional steps in <a href="https://ravensoundsoftware.com" class="external-link">Raven</a> are shown in more detail on the <a href="https://github.com/maRce10/Rraven" class="external-link">github</a> version of this vignette, which can be downloaded as follows (saves the file “Rraven.github.html” in your current working directory):</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/Rraven.hitgub.html"</span>, 
+destfile <span class="op">=</span> <span class="st">"Rraven.hitgub.html"</span><span class="op">)</span></code></pre></div>
 <p> </p>
 <p>The downloaded file can be opened by any internet browser.</p>
 <hr>
@@ -120,54 +113,58 @@ destfile <span class="op">=</span> <span class="st">"Rraven.hitgub.html"</span><
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=Rraven">https://​cloud.r-project.org/​package=Rraven</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/maRce10/Rraven/">https://​github.com/​maRce10/​Rraven/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/maRce10/Rraven/issues">https://​github.com/​maRce10/​Rraven/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=Rraven" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/maRce10/Rraven/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/maRce10/Rraven/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>GPL (&gt;= 2)</li>
 </ul>
 </div>
+
+
 <div class="citation">
-<h2>Citation</h2>
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing Rraven</a></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Marcelo Araya-Salas <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-3594-619X" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing Rraven</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=Rraven"><img src="https://www.r-pkg.org/badges/version/Rraven" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://www.r-pkg.org:443/pkg/Rraven"><img src="https://cranlogs.r-pkg.org/badges/Rraven" alt="CRAN RStudio mirror downloads"></a></li>
-<li><a href="https://cranlogs.r-pkg.org/badges/grand-total/Rraven"><img src="https://cranlogs.r-pkg.org/badges/grand-total/Rraven" alt="Total Downloads"></a></li>
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html"><img src="https://img.shields.io/badge/lifecycle-maturing-brightgreen.svg" alt="lifecycle"></a></li>
+<li>Marcelo Araya-Salas <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-3594-619X" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=Rraven" class="external-link"><img src="https://www.r-pkg.org/badges/version/Rraven" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://www.r-pkg.org:443/pkg/Rraven" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/Rraven" alt="CRAN RStudio mirror downloads"></a></li>
+<li><a href="https://cranlogs.r-pkg.org/badges/grand-total/Rraven" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/Rraven" alt="Total Downloads"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-brightgreen.svg" alt="lifecycle"></a></li>
+</ul>
 </div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Marcelo Araya-Salas.</p>
+  <p></p>
+<p>Developed by Marcelo Araya-Salas.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer>
@@ -175,6 +172,8 @@ destfile <span class="op">=</span> <span class="st">"Rraven.hitgub.html"</span><
 
   
 
+
+  
 
   </body>
 </html>

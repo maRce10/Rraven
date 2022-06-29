@@ -10,3 +10,4 @@
 ^giignore$
 ^docs$
 ^pkgdown$
+^testing$
