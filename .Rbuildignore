@@ -8,3 +8,6 @@ testing
 docs
 pkgdown
 README\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
