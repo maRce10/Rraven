@@ -13,9 +13,9 @@ output:
       collapsed: false
       smooth_scroll: true
 vignette: >
-   %\VignetteIndexEntry{Rraven: Connecting R and Raven Sound Analysis Software}
    %\usepackage[utf8]{inputenc}
    %\VignetteEncoding{UTF-8}
+   %\VignetteIndexEntry{Rraven: Connecting R and Raven Sound Analysis Software}
    %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
   chunk_output_type: console
@@ -73,13 +73,13 @@ download.file(
 The downloaded file can be opened by any internet browser.
 
 
-Before getting into the functions, the packages must be installed and loaded. I recommend using the latest developmental version, which is found in [github](https://github.com/maRce10/Rraven). To do so, you need the R package [devtools](https://cran.r-project.org/package=devtools) (which of course should be installed!). Some [warbleR](https://cran.r-project.org/package=warbleR) functions and example data sets will be used, so [warbleR](https://cran.r-project.org/package=warbleR) should be installed as well:
+Before getting into the functions, the packages must be installed and loaded. I recommend using the latest developmental version, which is found in [github](https://github.com/maRce10/Rraven). To do so, you need the R package [remotes](https://cran.r-project.org/package=remotes) (which of course should be installed!). Some [warbleR](https://cran.r-project.org/package=warbleR) functions and example data sets will be used, so [warbleR](https://cran.r-project.org/package=warbleR) should be installed as well:
 
 ```{r, eval = FALSE}
 
-devtools::install_github("maRce10/warbleR")
+remotes::install_github("maRce10/warbleR")
 
-devtools::install_github("maRce10/Rraven")
+remotes::install_github("maRce10/Rraven")
 
 #from CRAN would be
 #install.packages("warbleR")

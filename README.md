@@ -3,20 +3,6 @@ Rraven: connecting R and Raven sound analysis software
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-[![Dependencies](https://tinyverse.netlify.com/badge/Rraven)](https://cran.r-project.org/package=Rraven)
-[![Project Status: Active The project has reached a stable, usable state
-and is being actively
-developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![minimal R
-version](https://img.shields.io/badge/R%3E%3D-%3E=%203.2.1-6666ff.svg)](https://cran.r-project.org/)
-[![packageversion](https://img.shields.io/badge/Package%20version-1.0.14-orange.svg?style=flat-square)](commits/develop)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2022--07--01-yellowgreen.svg)](/commits/master)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/Rraven)](https://cran.r-project.org/package=Rraven)
-[![Total
-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/Rraven)](https://cranlogs.r-pkg.org/badges/grand-total/Rraven)
-
 The `Rraven` package is designed to facilitate the exchange of data
 between R and [Raven sound analysis
 software](https://ravensoundsoftware.com) ([Cornell Lab of
@@ -50,14 +36,14 @@ library(Rraven)
 
 To install the latest developmental version from
 [github](https://github.com/) you will need the R package
-[devtools](https://cran.r-project.org/package=devtools):
+[remotes](https://cran.r-project.org/package=devtools):
 
 ``` r
 # From CRAN would be
 #install.packages("Rraven")
 
 # From github
-devtools::install_github("maRce10/Rraven")
+remotes::install_github("maRce10/Rraven")
 
 #load package
 library(Rraven)
