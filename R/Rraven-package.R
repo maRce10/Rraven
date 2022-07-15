@@ -12,7 +12,7 @@
 #'
 #'   \code{\link{exp_est}}: Export wave objects of extended selection tables as sound files
 #'   
-#'   \code{\link{extract_ts}}: Extract time series parameters from data imported from Raven
+#'   \code{\link{extract_ts}}: Extract time series parameters from data imported froNm Raven
 #'   
 #'   \code{\link{fix_path}}: Modify sound file path in Raven's selection tables 
 #'   
@@ -33,7 +33,7 @@
 #'   \code{\link{to_sound_selection}}: Convert Raven's selection files into sound selection files
 #'      
 #' @import warbleR 
-#' @import NatureSounds 
+#' @import NatureSounds
 #' @import pbapply
 #' @importFrom seewave duration pastew
 #' @importFrom tuneR normalize writeWave
