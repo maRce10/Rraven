@@ -53,8 +53,8 @@ selection files have been duplicated. Default is \code{FALSE}.}
 the selection text files. Default is \code{NULL}. Ignored if 'name.from.file' is \code{TRUE} and/or all.data is \code{TRUE}. This argument WILL BE DEPRECATED as the function now searches for columns containing the sound file names.}
 }
 \value{
-A single data frame with information of the selection files. If \code{unread = TRUE} the function returns a list of length 3 with
- the selection data frame and a vector with the names of files that could not be read (see 'unread' argument).
+A single data frame with information of the selection files. If \code{unread = TRUE} the function returns a list  with
+ the selection data frame and 1 vector with the names of files that could not be read (see 'unread' argument).
  If 'warbler.format' argument is set to \code{TRUE} the data frame contains the following columns: sound.files, selec, channel,start, end, top.freq, bottom.freq and selec.file. If all.data is set to \code{TRUE} then all columns in the 'Raven' selection files are returned.
  If individual selection files contain information about multiple sound files the function will import the file and correct the time
  parameters (start and end) only if 1) the 'File Offset (s)' is found in the selection table.
@@ -63,8 +63,8 @@ A single data frame with information of the selection files. If \code{unread = T
 \code{imp_raven} imports several 'Raven' selection files simultaneously. Files must be in '.txt' format.
 }
 \details{
-The function import 'Raven' selection data from many files simultaneously. All selection files in the working directory or 'path' supplied will be imported (unless 'files' argument is also supplied). It has been created using Raven Pro 1.5 so selection tables created with other versions might not be read properly. Files must be in '.txt' format. Selection
-files including data from multiple recordings can also be imported, although they must contained a 'File Offset (s)' column. Selections that span across multiple sound files are not recommended as they will be assigned to the first sound file, which would produce errors for downstream analyses as those from the 'warbleR' package.
+The function import 'Raven' selection data from many files simultaneously. All selection files in the working directory or 'path' supplied will be imported (unless 'files' argument is also supplied). It has been created using Raven Pro 1.5 and tested on Raven 1.6. Selection tables created with other versions might not be read properly. Files must be in '.txt' format. Selection
+files including data from multiple recordings can also be imported although they must contained a 'File Offset (s)' column. Selections that span across multiple sound files are not recommended as they will be assigned to the first sound file, which would produce errors for downstream analyses as those from the 'warbleR' package. Empty '.txt' files are ignored.
 }
 \examples{
 

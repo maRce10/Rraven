@@ -32,13 +32,13 @@
 #' selection files have been duplicated. Default is \code{FALSE}.
 #' @param sound.file.col A character string with the name of the column containing the sound files in
 #' the selection text files. Default is \code{NULL}. Ignored if 'name.from.file' is \code{TRUE} and/or all.data is \code{TRUE}. This argument WILL BE DEPRECATED as the function now searches for columns containing the sound file names.
-#' @return A single data frame with information of the selection files. If \code{unread = TRUE} the function returns a list of length 3 with
-#'  the selection data frame and a vector with the names of files that could not be read (see 'unread' argument).
+#' @return A single data frame with information of the selection files. If \code{unread = TRUE} the function returns a list  with
+#'  the selection data frame and 1 vector with the names of files that could not be read (see 'unread' argument).
 #'  If 'warbler.format' argument is set to \code{TRUE} the data frame contains the following columns: sound.files, selec, channel,start, end, top.freq, bottom.freq and selec.file. If all.data is set to \code{TRUE} then all columns in the 'Raven' selection files are returned.
 #'  If individual selection files contain information about multiple sound files the function will import the file and correct the time
 #'  parameters (start and end) only if 1) the 'File Offset (s)' is found in the selection table.
-#' @details The function import 'Raven' selection data from many files simultaneously. All selection files in the working directory or 'path' supplied will be imported (unless 'files' argument is also supplied). It has been created using Raven Pro 1.5 so selection tables created with other versions might not be read properly. Files must be in '.txt' format. Selection
-#' files including data from multiple recordings can also be imported, although they must contained a 'File Offset (s)' column. Selections that span across multiple sound files are not recommended as they will be assigned to the first sound file, which would produce errors for downstream analyses as those from the 'warbleR' package.
+#' @details The function import 'Raven' selection data from many files simultaneously. All selection files in the working directory or 'path' supplied will be imported (unless 'files' argument is also supplied). It has been created using Raven Pro 1.5 and tested on Raven 1.6. Selection tables created with other versions might not be read properly. Files must be in '.txt' format. Selection
+#' files including data from multiple recordings can also be imported although they must contained a 'File Offset (s)' column. Selections that span across multiple sound files are not recommended as they will be assigned to the first sound file, which would produce errors for downstream analyses as those from the 'warbleR' package. Empty '.txt' files are ignored.
 #' @seealso \code{\link{imp_syrinx}}
 #' @export
 #' @name imp_raven
@@ -80,21 +80,16 @@ imp_raven <-
   {
     #check path to working directory
     if (is.null(path))
-      path <- getwd()
-    else
+      path <- getwd()  else
       if (!dir.exists(path))
-        stop("'path' provided does not exist")
-    else
+        stop("'path' provided does not exist") else
       path <- normalizePath(path)
     
     if (!is.null(ext.case))
       if (!ext.case %in% c("upper", "lower"))
-        stop("'ext.case' should be either 'upper' or 'lower'")
-    else
+        stop("'ext.case' should be either 'upper' or 'lower'") else
       ext <- if (ext.case == "upper")
-        "WAV"
-    else
-      "wav"
+        "WAV" else "wav"
     
     if (is.null(ext.case) &
         name.from.file)
@@ -137,9 +132,7 @@ imp_raven <-
     
     # set clusters for windows OS
     if (Sys.info()[1] == "Windows" & parallel > 1)
-      cl <-
-      parallel::makePSOCKcluster(getOption("cl.cores", parallel))
-    else
+      cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else
       cl <- parallel
     
     # apply reading function over .txt files
@@ -166,6 +159,11 @@ imp_raven <-
     # remove errors
     sl.list <- sl.list[sapply(sl.list, class) != "try-error"]
     
+    # remove empty files
+    if (any(sapply(sl.list, nrow) == 0)){
+      cat(paste(sum(sapply(sl.list, nrow) == 0), "empty .txt file(s) found"))
+      sl.list <- sl.list[sapply(sl.list, nrow) > 0]
+    }
     ## check if basic Raven columns are found
     sl.list <- lapply(sl.list, function(x)
     {
@@ -175,8 +173,7 @@ imp_raven <-
         ignore.case = TRUE
       ))
       >= 2)
-        return(x)
-      else
+        return(x) else
         return(NA)
     })
     
@@ -286,8 +283,7 @@ imp_raven <-
                 
                 # fix if column not found and use first column
                 of.st.cl <- if (is.na(of.st.cl2))
-                  of.st.cl[1]
-                else
+                  of.st.cl[1] else
                   of.st.cl2
               }
               
@@ -320,8 +316,7 @@ imp_raven <-
         data.frame(
           sl.list[[x]],
           selec.file = if (nrow(sl.list[[x]]))
-            names(sl.list)[x]
-          else
+            names(sl.list)[x] else
             NULL,
           check.names = FALSE
         ))
@@ -348,8 +343,7 @@ imp_raven <-
               pattern = "\\.Table\\.[[:digit:]].selections.txt$|\\.selections.txt$|\\.txt$",
               replacement = ".wav",
               x = sls$selec.file
-            )
-        else
+            ) else
           sls$sound.files <-
             gsub(
               pattern = "\\.Table\\.[[:digit:]].selections.txt$|\\.selections.txt$|\\.txt$",
@@ -415,8 +409,7 @@ imp_raven <-
     
     # warning for files that could not be read
     if (length(error.files) == length(sel.txt2))
-      cat("Not a single file could be read")
-    else
+      cat("Not a single file could be read") else
       if (length(error.files) > 0 &
           !unread)
         cat(paste(
@@ -429,8 +422,7 @@ imp_raven <-
     if (length(error.multiple.files) == length(sel.txt2))
       cat(
         "All selection tables contained data from multiple sound files but couldn't be imported  (missing 'File offset' column)"
-      )
-    else
+      ) else
       if (length(error.multiple.files) > 0 &
           !unread)
         cat(
@@ -446,9 +438,8 @@ imp_raven <-
         list(
           selections = sls,
           unread_files = error.files,
-          multiple.sound.file.unread = error.multiple.files
+          multiple_sound_file_unread_files = error.multiple.files
         )
-      )
-    else
+      ) else
       return(sls)
   }
