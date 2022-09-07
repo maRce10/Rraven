@@ -60,17 +60,17 @@ fix_path <- function(path = NULL, dest.path = NULL, recursive = FALSE, parallel 
   
   #check path to working directory
   if (is.null(path)) path <- getwd() else 
-    if (!dir.exists(path)) stop("'path' provided does not exist") else
+    if (!dir.exists(path)) stop2("'path' provided does not exist") else
       path <- normalizePath(path)
   
   # check dest.path
   if (is.null(dest.path)) dest.path <- path else 
-    if (!dir.exists(dest.path)) stop("'path' provided does not exist") 
+    if (!dir.exists(dest.path)) stop2("'path' provided does not exist") 
   
   # read selection file names
   sel.txt <- list.files(pattern = ".txt$", full.names = TRUE, recursive = recursive, ignore.case = TRUE, path = path)
   
-  if (length(sel.txt) == 0) stop("No selection .txt files in working directory/'path' provided")
+  if (length(sel.txt) == 0) stop2("No selection .txt files in working directory/'path' provided")
   
   options(warn = -1)
   

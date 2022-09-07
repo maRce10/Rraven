@@ -47,7 +47,7 @@ exp_empty_sels <- function(path = NULL, file.name = NULL, sound.files = NULL, pb
   
   #check path to working directory
   if (is.null(path)) path <- getwd() else 
-    if (!dir.exists(path)) stop("'path' provided does not exist") else
+    if (!dir.exists(path)) stop2("'path' provided does not exist") else
       path <- normalizePath(path)
     
   # create a selection table for each sound file
@@ -62,7 +62,7 @@ exp_empty_sels <- function(path = NULL, file.name = NULL, sound.files = NULL, pb
   # include only "sound.files"
   if (!is.null(sound.files))
     # check if sound files are found in st
-    if (!all(sound.files %in% st$sound.files)) stop("not all 'sound.files' were found") else
+    if (!all(sound.files %in% st$sound.files)) stop2("not all 'sound.files' were found") else
       st <- st[st$sound.files %in% sound.files, ]
     
   # add an extra column with sound file names

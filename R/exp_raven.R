@@ -69,21 +69,21 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
   
   #check path to working directory
   if (is.null(path)) path <- getwd() else 
-    if (!dir.exists(path)) stop("'path' provided does not exist") else
+    if (!dir.exists(path)) stop2("'path' provided does not exist") else
       path <- normalizePath(path)
   
   #if X is not a data frame
-  if (!any(is.data.frame(X), warbleR::is_selection_table(X))) stop("X is not of a class 'data.frame', 'selection_table'")
+  if (!any(is.data.frame(X), warbleR::is_selection_table(X))) stop2("X is not of a class 'data.frame', 'selection_table'")
   
   if (warbleR::is_selection_table(X)) X <- as.data.frame(X)
   
   if (!all(c("sound.files", "selec", 
              "start", "end") %in% colnames(X))) 
-    stop(paste(paste(c("sound.files", "selec", "start", "end")[!(c("sound.files", "selec", 
+    stop2(paste(paste(c("sound.files", "selec", "start", "end")[!(c("sound.files", "selec", 
                                                                    "start", "end") %in% colnames(X))], collapse=", "), "column(s) not found in data frame"))
   
   #stop if more than 1 sound file is found in X
-  if (length(unique(X$sound.files)) > 1 & is.null(sound.file.path)) stop("'sound.file.path' must be provided when including selections from multiple sound files")
+  if (length(unique(X$sound.files)) > 1 & is.null(sound.file.path)) stop2("'sound.file.path' must be provided when including selections from multiple sound files")
   
   if (length(unique(X$sound.files)) == 1) single.file <- TRUE else
     if(!single.file) file.name <- NULL
@@ -95,12 +95,12 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
     #count number of sound files in working directory and if 0 stop
     recs.wd <- list.files(path = sound.file.path, pattern = "\\.wav$|\\.aif$|\\.flac$|\\.mp3$", ignore.case = TRUE)
     if (!all(unique(X$sound.files) %in% recs.wd)) 
-      stop("Some (or all) sound files are not in the working directory")
+      stop2("Some (or all) sound files are not in the working directory")
   }
   
-  if (any(is.na(X$start), is.na(X$end))) stop("'NAs' found in start and/or end column")
+  if (any(is.na(X$start), is.na(X$end))) stop2("'NAs' found in start and/or end column")
   
-  if (any(!is.numeric(X$start), !is.numeric(X$end))) stop("start and/or end column(s) are not numeric")
+  if (any(!is.numeric(X$start), !is.numeric(X$end))) stop2("start and/or end column(s) are not numeric")
   
   # convert to Hz
   if ("bottom.freq" %in% names(X) & khz.to.hz)

@@ -64,7 +64,7 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
   
   #check path to working directory
   if (is.null(path)) path <- getwd() else 
-    if (!dir.exists(path)) stop("'path' provided does not exist") else
+    if (!dir.exists(path)) stop2("'path' provided does not exist") else
       path <- normalizePath(path)
   
     # return to current wd on exit
@@ -73,8 +73,8 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
     
     
   if (is.null(raven.path))
-    stop("Path to 'Raven' folder must be provided")  else
-      if (!dir.exists(raven.path)) stop("'raven.path' provided does not exist") else 
+    stop2("Path to 'Raven' folder must be provided")  else
+      if (!dir.exists(raven.path)) stop2("'raven.path' provided does not exist") else 
         setwd(raven.path)
     
   # set progress bar back to original
@@ -84,7 +84,7 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
    
   if (!is.null(view.preset))
    {
-    if (!any(view.preset %in% list.files(path = file.path(raven.path, "Presets/Sound Window")))) stop("'view.preset' provided not found")
+    if (!any(view.preset %in% list.files(path = file.path(raven.path, "Presets/Sound Window")))) stop2("'view.preset' provided not found")
     
   def.view.p <- grep("^Default", value = TRUE,  list.files(path = file.path(raven.path, "Presets/Sound Window")))
 
@@ -120,7 +120,7 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
   #count number of sound files in working directory and if 0 stop
   sound.files <- sound.files[sound.files %in% recs.wd]
   if (length(sound.files) == 0)
-    stop("The sound files are not in the working directory")
+    stop2("The sound files are not in the working directory")
   
   # remove sound files not found
   if (length(sound.files) != length(sf)) 
@@ -138,7 +138,7 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
     if (length(sound.files) == 0) 
     {
       cat("All sound files have a selection table in Raven's selection folder")
-      stop("")}
+      stop2("")}
     }
    
     # check if sound file names contains directory and fix

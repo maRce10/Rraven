@@ -49,7 +49,7 @@ imp_syrinx <- function(path = NULL, all.data = FALSE, recursive = FALSE,
   #check path to working directory
   if (is.null(path)) path <- getwd() else 
     if (!dir.exists(path)) 
-      stop("'path' provided does not exist") else
+      stop2("'path' provided does not exist") else
         path <- normalizePath(path)
 
 sel.txt <- list.files(full.names = TRUE, path = path)
@@ -58,7 +58,7 @@ sel.txt2 <- list.files(full.names = FALSE, path = path)
 sel.txt <- sel.txt[grep(".log$|.txt$",ignore.case = TRUE, sel.txt)]
 sel.txt2 <- sel.txt2[grep(".log$|.txt$",ignore.case = TRUE, sel.txt2)]
 
-if (length(sel.txt) == 0) stop("No selection files in working directory/'path' provided")
+if (length(sel.txt) == 0) stop2("No selection files in working directory/'path' provided")
 
 b<-NULL
 if (substring(text = readLines(sel.txt[1])[1], first = 0, last = 9) == "fieldkey:") field <- T else field <- F
@@ -75,7 +75,7 @@ clist <- pbapply::pblapply(1:length(sel.txt), cl = cl, function(i)
   if (field)  {
     
     a <- try(utils::read.table(sel.txt[i], header = TRUE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE), silent = TRUE) 
-    if (!exclude & class(a) == "try-error") stop(paste("The selection file",sel.txt[i], "cannot be read"))
+    if (!exclude & class(a) == "try-error") stop2(paste("The selection file",sel.txt[i], "cannot be read"))
     
   if (!class(a) == "try-error" & !all.data) { c <- data.frame(selec.file = sel.txt2[i], sound.files = a[, grep("soundfile",colnames(a))],
                                 selec = 1,
@@ -87,7 +87,7 @@ clist <- pbapply::pblapply(1:length(sel.txt), cl = cl, function(i)
   } else c<-a 
                                 } else {
             a <- try(utils::read.table(sel.txt[i], header = FALSE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE), silent = TRUE) 
-            if (!exclude & class(a) == "try-error") stop(paste("The selection file",sel.txt[i], "cannot be read"))
+            if (!exclude & class(a) == "try-error") stop2(paste("The selection file",sel.txt[i], "cannot be read"))
             
             if (!class(a) == "try-error") 
               { 

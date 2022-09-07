@@ -48,10 +48,10 @@ extract_ts <- function(X, ts.column, equal.length = FALSE, as.time.series = FALS
                        length.out = 30, parallel = 1, pb = TRUE){
   
   #if X is not a data frame
-  if (!any(class(X) == "data.frame")) stop("X is not a data frame")
+  if (!any(class(X) == "data.frame")) stop2("X is not a data frame")
   
   #check if ts.column exists
-  if (!any(names(X) == ts.column)) stop("'ts.column' not found")
+  if (!any(names(X) == ts.column)) stop2("'ts.column' not found")
   
   #remove waveform rows
   if (any(names(X) == "View"))

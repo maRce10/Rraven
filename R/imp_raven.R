@@ -82,18 +82,18 @@ imp_raven <-
     if (is.null(path))
       path <- getwd()  else
       if (!dir.exists(path))
-        stop("'path' provided does not exist") else
+        stop2("'path' provided does not exist") else
       path <- normalizePath(path)
     
     if (!is.null(ext.case))
       if (!ext.case %in% c("upper", "lower"))
-        stop("'ext.case' should be either 'upper' or 'lower'") else
+        stop2("'ext.case' should be either 'upper' or 'lower'") else
       ext <- if (ext.case == "upper")
         "WAV" else "wav"
     
     if (is.null(ext.case) &
         name.from.file)
-      stop("'ext.case' must be provided when name.from.file is TRUE")
+      stop2("'ext.case' must be provided when name.from.file is TRUE")
     
     # read name and path
     sel.txt <-
@@ -116,7 +116,7 @@ imp_raven <-
       )
     
     if (length(sel.txt) == 0)
-      stop("No selection .txt files in working directory/'path' provided")
+      stop2("No selection .txt files in working directory/'path' provided")
     
     # subset
     if (!is.null(files)) {
@@ -124,7 +124,7 @@ imp_raven <-
       sel.txt <- sel.txt[basename(sel.txt) %in% files]
       
       if (length(sel.txt) == 0)
-        stop("Files provided not found")
+        stop2("Files provided not found")
     }
     
     # set pb options
@@ -242,13 +242,13 @@ imp_raven <-
           names(temp.sls)[names(temp.sls) %in% c("Begin File", "End File", "Begin Path",  "End Path")]
         
         if (length(sfcls) == 0)
-          stop("No column containing sound file names was found in any selection table file")
+          stop2("No column containing sound file names was found in any selection table file")
         
         # sound file column
         sfcl <- sfcls[!(sapply(temp.sls[, sfcls], anyNA))][1]
         
         if ((length(sfcl) == 0 | is.na(sfcl)) & !name.from.file)
-          stop("No column containing sound file names was shared by all selection table files")
+          stop2("No column containing sound file names was shared by all selection table files")
       }
       
       # fix time in multiple file selection table

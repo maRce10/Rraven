@@ -65,7 +65,7 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
 {
   
   # check path to working directory
-  if (is.null(path)) path <- getwd() else if (!dir.exists(path)) stop("'path' provided does not exist") else
+  if (is.null(path)) path <- getwd() else if (!dir.exists(path)) stop2("'path' provided does not exist") else
     path <- normalizePath(path)
   
   # set progress bar back to original
@@ -79,19 +79,19 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
   
   # check path
   if (is.null(raven.path))
-    stop("Path to 'Raven' folder must be provided")  else
-      if (!dir.exists(raven.path)) stop("'raven.path' provided does not exist")
+    stop2("Path to 'Raven' folder must be provided")  else
+      if (!dir.exists(raven.path)) stop2("'raven.path' provided does not exist")
   
   setwd(raven.path)
   
   # check detector type
-  if (!detector.type %in% c("Amplitude Detector", "Band Limited Energy Detector", "Band Limited Entropy Detector")) stop("'detector.type' not recognized")
+  if (!detector.type %in% c("Amplitude Detector", "Band Limited Energy Detector", "Band Limited Entropy Detector")) stop2("'detector.type' not recognized")
   
   # check detector name
-  if (!file.exists(file.path(raven.path, "Presets/Detector", detector.type, detector.preset))) stop("'detector.preset' file not found")
+  if (!file.exists(file.path(raven.path, "Presets/Detector", detector.type, detector.preset))) stop2("'detector.preset' file not found")
   
   # check view  preset name
-  # if (!file.exists(file.path(raven.path, "Presets/Sound Window", view.preset))) stop("'view.preset' file not found")
+  # if (!file.exists(file.path(raven.path, "Presets/Sound Window", view.preset))) stop2("'view.preset' file not found")
   
   sf <- sound.files <- as.character(sound.files)
   
@@ -101,7 +101,7 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
   #count number of sound files in working directory and if 0 stop
   sound.files <- sound.files[sound.files %in% recs.wd]
   if (length(sound.files) == 0)
-    stop("The sound files are not in the working directory")
+    stop2("The sound files are not in the working directory")
   
   # remove sound files not found
   if (length(sound.files) != length(sf)) 

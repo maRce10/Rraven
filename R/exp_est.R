@@ -50,7 +50,7 @@ exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,
 {
   
   #check path to working directory
-  if (is.null(path)) path <- getwd() else if (!dir.exists(path)) stop("'path' provided does not exist") else
+  if (is.null(path)) path <- getwd() else if (!dir.exists(path)) stop2("'path' provided does not exist") else
     path <- normalizePath(path)
  
   # if wave object then single file and no selection table
@@ -65,14 +65,14 @@ exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,
   
   
   # if file.name 
-  if (is.null(file.name) & selection.table) stop("'file.name' must be provided when 'selection.table' is TRUE")
+  if (is.null(file.name) & selection.table) stop2("'file.name' must be provided when 'selection.table' is TRUE")
   # set progress bar back to original
   on.exit(pbapply::pboptions(type = .Options$pboptions$type), 
           add = TRUE)
   
   # check X is data.frame
   if (!warbleR::is_extended_selection_table(X))
-      stop("X must be of class 'extended_selection_table'")
+      stop2("X must be of class 'extended_selection_table'")
     
   # set progress bar
   if (pb) pbapply::pboptions(type = "timer") else 
@@ -86,7 +86,7 @@ exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,
   {
     # check if all wavs have the same sample rate
     if (length(unique(attributes(X)$check.res$sample.rate)) > 1)
-      stop("to create a single file all wave objets in the extended selection table must have the same sample rate (check 'attributes(X)$check.res$sample.rate', use warbleR's resample_est() function to homogenize sample rate)")
+      stop2("to create a single file all wave objets in the extended selection table must have the same sample rate (check 'attributes(X)$check.res$sample.rate', use warbleR's resample_est() function to homogenize sample rate)")
       
     # normalize
     if (normalize)
