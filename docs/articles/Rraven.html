@@ -9,8 +9,8 @@
 <title>
 <center><font size="7"><b>Rraven: Connecting R and Raven Sound Analysis Software</b></font></center> • Rraven</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="&lt;center&gt;&lt;font size=">
@@ -69,17 +69,14 @@
 
 <script src="Rraven_files/kePrint-0.0.1/kePrint.js"></script><link href="Rraven_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1><center><font size="7"><b>Rraven: Connecting R and Raven Sound Analysis Software</b></font></center></h1>
                         <h4 data-toc-skip class="author">
-<center>
+<center> ¶
 <a href="https://marceloarayasalas.weebly.com/" class="external-link">Marcelo Araya-Salas,
-PhD</a>
-</center>
- </h4>
+PhD</a> ¶ </center> ¶  </h4>
             
-            <h4 data-toc-skip class="date"><center>
-“2022-08-31”
+            <h4 data-toc-skip class="date"><center> ¶ “2022-12-20” ¶
 </center></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/maRce10/Rraven/blob/HEAD/vignettes/Rraven.Rmd" class="external-link"><code>vignettes/Rraven.Rmd</code></a></small>
@@ -98,6 +95,7 @@ pre code {
 }
 </style>
 <p> </p>
+<p><img src="Rraven_sticker.png" alt="warbleR logo" align="right" width="25%" height="25%"></p>
 <p>The <code>Rraven</code> package is designed to facilitate the
 exchange of data between R and <a href="https://ravensoundsoftware.com" class="external-link">Raven sound analysis software</a>
 (<a href="https://www.birds.cornell.edu/home" class="external-link">Cornell Lab of
@@ -122,9 +120,9 @@ shown in more detail in the <a href="https://github.com/maRce10/Rraven" class="e
 vignette, which can be downloaded as follows (saves the file
 “Rraven.github.html” in your current working directory):</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span>
-  url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/Rraven.hitgub.html"</span>, 
-  destfile <span class="op">=</span> <span class="st">"Rraven.github.html"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span></span>
+<span>  url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/Rraven.hitgub.html"</span>, </span>
+<span>  destfile <span class="op">=</span> <span class="st">"Rraven.github.html"</span><span class="op">)</span></span></code></pre></div>
 <p> </p>
 <p>The downloaded file can be opened by any internet browser.</p>
 <p>Before getting into the functions, the packages must be installed and
@@ -135,37 +133,37 @@ course should be installed!). Some <a href="https://cran.r-project.org/package=w
 and example data sets will be used, so <a href="https://cran.r-project.org/package=warbleR" class="external-link">warbleR</a> should be
 installed as well:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"maRce10/warbleR"</span><span class="op">)</span>
-
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"maRce10/Rraven"</span><span class="op">)</span>
-
-<span class="co">#from CRAN would be</span>
-<span class="co">#install.packages("warbleR")</span>
-
-<span class="co">#load packages</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://marce10.github.io/warbleR/" class="external-link">warbleR</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maRce10/Rraven" class="external-link">Rraven</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"maRce10/warbleR"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"maRce10/Rraven"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#from CRAN would be</span></span>
+<span><span class="co">#install.packages("warbleR")</span></span>
+<span></span>
+<span><span class="co">#load packages</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://marce10.github.io/warbleR/" class="external-link">warbleR</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maRce10/Rraven" class="external-link">Rraven</a></span><span class="op">)</span></span></code></pre></div>
 <p> </p>
 <p>Let’s also use a temporary folder as the working directory in which
 to save all sound files and data files:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">#load example data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span>list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Phae.long1"</span>, <span class="st">"Phae.long2"</span>, <span class="st">"Phae.long3"</span>, <span class="st">"Phae.long4"</span>, <span class="st">"selec.table"</span>, <span class="st">"selection_files"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">#save sound files  in temporary directory</span>
-<span class="fu"><a href="https://rdrr.io/pkg/tuneR/man/writeWave.html" class="external-link">writeWave</a></span><span class="op">(</span><span class="va">Phae.long1</span>, <span class="st">"Phae.long1.wav"</span>, extensible <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/tuneR/man/writeWave.html" class="external-link">writeWave</a></span><span class="op">(</span><span class="va">Phae.long2</span>, <span class="st">"Phae.long2.wav"</span>, extensible <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/tuneR/man/writeWave.html" class="external-link">writeWave</a></span><span class="op">(</span><span class="va">Phae.long3</span>, <span class="st">"Phae.long3.wav"</span>, extensible <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/tuneR/man/writeWave.html" class="external-link">writeWave</a></span><span class="op">(</span><span class="va">Phae.long4</span>, <span class="st">"Phae.long4.wav"</span>, extensible <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="co">#save Raven selection tables in the temporary directory</span>
-<span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">selection_files</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span>, con <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">selection_files</span><span class="op">)</span><span class="op">[</span><span class="va">x</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">#this is the temporary directory location (of course different each time is run)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#load example data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span>list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Phae.long1"</span>, <span class="st">"Phae.long2"</span>, <span class="st">"Phae.long3"</span>, <span class="st">"Phae.long4"</span>, <span class="st">"selec.table"</span>, <span class="st">"selection_files"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#save sound files  in temporary directory</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/tuneR/man/writeWave.html" class="external-link">writeWave</a></span><span class="op">(</span><span class="va">Phae.long1</span>, <span class="st">"Phae.long1.wav"</span>, extensible <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/tuneR/man/writeWave.html" class="external-link">writeWave</a></span><span class="op">(</span><span class="va">Phae.long2</span>, <span class="st">"Phae.long2.wav"</span>, extensible <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/tuneR/man/writeWave.html" class="external-link">writeWave</a></span><span class="op">(</span><span class="va">Phae.long3</span>, <span class="st">"Phae.long3.wav"</span>, extensible <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/tuneR/man/writeWave.html" class="external-link">writeWave</a></span><span class="op">(</span><span class="va">Phae.long4</span>, <span class="st">"Phae.long4.wav"</span>, extensible <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#save Raven selection tables in the temporary directory</span></span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">selection_files</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span>, con <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">selection_files</span><span class="op">)</span><span class="op">[</span><span class="va">x</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#this is the temporary directory location (of course different each time is run)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div>
 <p> </p>
 <hr>
 <div class="section level2">
@@ -182,16 +180,16 @@ a single data frame with the information contained in the selection
 files. We already have 2 <a href="https://ravensoundsoftware.com" class="external-link">Raven</a> selection tables in the
 working directory:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, pattern <span class="op">=</span> <span class="st">"\\.txt$"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, pattern <span class="op">=</span> <span class="st">"\\.txt$"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>[1] "LBH 1 selection table example.txt" "LBH 2 selection table example.txt" "LBH 3 selection table example.txt" "LBH 4 selection table example.txt"</code></pre>
 <p> </p>
 <p>This code shows how to import all the data contained in those files
 into R:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"> <span class="co">#providing the name of the column with the sound file names</span>
-<span class="va">rvn.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/imp_raven.html">imp_raven</a></span><span class="op">(</span>all.data <span class="op">=</span> <span class="cn">TRUE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">rvn.dat</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span> <span class="co">#providing the name of the column with the sound file names</span></span>
+<span><span class="va">rvn.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/imp_raven.html">imp_raven</a></span><span class="op">(</span>all.data <span class="op">=</span> <span class="cn">TRUE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">rvn.dat</span><span class="op">)</span></span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:808px; ">
 <table class="table table table-striped table-hover table-condensed table-responsive" style="font-size: 11px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
@@ -490,19 +488,19 @@ LBH 3 selection table example.txt
 imported as follows (but note that the example selection tables have no
 waveform data):</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">rvn.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/imp_raven.html">imp_raven</a></span><span class="op">(</span>all.data <span class="op">=</span> <span class="cn">TRUE</span>, waveform <span class="op">=</span> <span class="cn">TRUE</span>, 
-                     path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">rvn.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/imp_raven.html">imp_raven</a></span><span class="op">(</span>all.data <span class="op">=</span> <span class="cn">TRUE</span>, waveform <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>                     path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p> </p>
 <p><a href="https://ravensoundsoftware.com" class="external-link">Raven</a> selections can
 also be imported in a ‘selection.table’ format so it can be directly
 input into <a href="https://cran.r-project.org/package=warbleR" class="external-link">warbleR</a> functions.
 To do this you need to set <code>warbler.format = TRUE</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"> <span class="co">#providing the name of the column with the sound file names</span>
-<span class="va">rvn.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/imp_raven.html">imp_raven</a></span><span class="op">(</span>sound.file.col <span class="op">=</span> <span class="st">"End.File"</span>, 
-                     warbler.format <span class="op">=</span>  <span class="cn">TRUE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">rvn.dat</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span> <span class="co">#providing the name of the column with the sound file names</span></span>
+<span><span class="va">rvn.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/imp_raven.html">imp_raven</a></span><span class="op">(</span>sound.file.col <span class="op">=</span> <span class="st">"End.File"</span>, </span>
+<span>                     warbler.format <span class="op">=</span>  <span class="cn">TRUE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">rvn.dat</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:center;">
@@ -719,13 +717,13 @@ range parameters in the ‘selection.table’ by setting ‘freq.cols’ tp
 for further analysis. For instance, the following code runs additional
 parameter measurements on the imported selections:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># convert to class selection.table</span>
-<span class="va">rvn.dat.st</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://marce10.github.io/warbleR/reference/selection_table.html" class="external-link">selection_table</a></span><span class="op">(</span><span class="va">rvn.dat</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://marce10.github.io/warbleR/reference/spectro_analysis.html" class="external-link">spectro_analysis</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">rvn.dat</span>, bp <span class="op">=</span> <span class="st">"frange"</span>, wl <span class="op">=</span> <span class="fl">150</span>, 
-             pb <span class="op">=</span> <span class="cn">FALSE</span>, ovlp <span class="op">=</span> <span class="fl">90</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sp</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># convert to class selection.table</span></span>
+<span><span class="va">rvn.dat.st</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://marce10.github.io/warbleR/reference/selection_table.html" class="external-link">selection_table</a></span><span class="op">(</span><span class="va">rvn.dat</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://marce10.github.io/warbleR/reference/spectro_analysis.html" class="external-link">spectro_analysis</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">rvn.dat</span>, bp <span class="op">=</span> <span class="st">"frange"</span>, wl <span class="op">=</span> <span class="fl">150</span>, </span>
+<span>             pb <span class="op">=</span> <span class="cn">FALSE</span>, ovlp <span class="op">=</span> <span class="fl">90</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sp</span><span class="op">)</span></span></code></pre></div>
 <pre><code>checking selections (step 1 of 2):</code></pre>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:808px; ">
 <table class="table table table-striped table-hover table-condensed table-responsive" style="font-size: 11px; width: auto !important; margin-left: auto; margin-right: auto;">
@@ -1338,16 +1336,16 @@ Phae.long3.wav
 <p> </p>
 <p>And this code creates song catalogs:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># create a color palette</span>
-<span class="va">trc</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">terrain.colors</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>
-
-<span class="co"># plot catalog</span>
-<span class="fu"><a href="https://marce10.github.io/warbleR/reference/catalog.html" class="external-link">catalog</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">rvn.dat.st</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span>, <span class="op">]</span>, flim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">3</span>, 
-        same.time.scale <span class="op">=</span> <span class="cn">TRUE</span>,  spec.mar <span class="op">=</span> <span class="fl">1</span>, box <span class="op">=</span> <span class="cn">FALSE</span>,
-        ovlp <span class="op">=</span> <span class="fl">90</span>, parallel <span class="op">=</span> <span class="fl">1</span>, mar <span class="op">=</span> <span class="fl">0.01</span>, wl <span class="op">=</span> <span class="fl">200</span>, 
-        pal <span class="op">=</span> <span class="va">reverse.heat.colors</span>, width <span class="op">=</span> <span class="fl">20</span>,
-        labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sound.files"</span>, <span class="st">"selec"</span><span class="op">)</span>, legend <span class="op">=</span> <span class="fl">1</span>, 
-        tag.pal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">trc</span><span class="op">)</span>,  group.tag <span class="op">=</span> <span class="st">"sound.files"</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># create a color palette</span></span>
+<span><span class="va">trc</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">terrain.colors</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># plot catalog</span></span>
+<span><span class="fu"><a href="https://marce10.github.io/warbleR/reference/catalog.html" class="external-link">catalog</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">rvn.dat.st</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span>, <span class="op">]</span>, flim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">3</span>, </span>
+<span>        same.time.scale <span class="op">=</span> <span class="cn">TRUE</span>,  spec.mar <span class="op">=</span> <span class="fl">1</span>, box <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>        ovlp <span class="op">=</span> <span class="fl">90</span>, parallel <span class="op">=</span> <span class="fl">1</span>, mar <span class="op">=</span> <span class="fl">0.01</span>, wl <span class="op">=</span> <span class="fl">200</span>, </span>
+<span>        pal <span class="op">=</span> <span class="va">reverse.heat.colors</span>, width <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>        labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sound.files"</span>, <span class="st">"selec"</span><span class="op">)</span>, legend <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>        tag.pal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">trc</span><span class="op">)</span>,  group.tag <span class="op">=</span> <span class="st">"sound.files"</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Catalog.jpeg"></p>
 <hr>
 <p>This is just to mention a few analysis that can be implemented in <a href="https://cran.r-project.org/package=warbleR" class="external-link">warbleR</a>.</p>
@@ -1367,19 +1365,19 @@ should have been previously imported using <code>imp_raven</code>. This
 example uses the <code>selection_file.ts</code> example data that comes
 with <code>Rraven</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#remove previous raven data files</span>
-<span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"\\.txt$"</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">#save Raven selection table in the temporary directory</span>
-<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">selection_files</span><span class="op">[[</span><span class="fl">5</span><span class="op">]</span><span class="op">]</span>, con <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, 
-                                        <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">selection_files</span><span class="op">)</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">rvn.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/imp_raven.html">imp_raven</a></span><span class="op">(</span>all.data <span class="op">=</span> <span class="cn">TRUE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> 
-
-<span class="co"># Peak freq contour dif length</span>
-<span class="va">fcts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_ts.html">extract_ts</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">rvn.dat</span>, ts.column <span class="op">=</span> <span class="st">"Peak Freq Contour (Hz)"</span><span class="op">)</span>
- 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fcts</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#remove previous raven data files</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"\\.txt$"</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#save Raven selection table in the temporary directory</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">selection_files</span><span class="op">[[</span><span class="fl">5</span><span class="op">]</span><span class="op">]</span>, con <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>                                        <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">selection_files</span><span class="op">)</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">rvn.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/imp_raven.html">imp_raven</a></span><span class="op">(</span>all.data <span class="op">=</span> <span class="cn">TRUE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co"># Peak freq contour dif length</span></span>
+<span><span class="va">fcts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_ts.html">extract_ts</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">rvn.dat</span>, ts.column <span class="op">=</span> <span class="st">"Peak Freq Contour (Hz)"</span><span class="op">)</span></span>
+<span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fcts</span><span class="op">)</span></span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:808px; ">
 <table class="table table table-striped table-hover table-condensed table-responsive" style="font-size: 11px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
@@ -2518,11 +2516,11 @@ NA
 the end). <code>extract_ts</code> can also interpolate values so all
 time series have the same length:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Peak freq contour equal length</span>
-<span class="va">fcts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_ts.html">extract_ts</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">rvn.dat</span>, ts.column <span class="op">=</span> <span class="st">"Peak Freq Contour (Hz)"</span>,  equal.length <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#look at the last rows wit no NAs</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fcts</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Peak freq contour equal length</span></span>
+<span><span class="va">fcts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_ts.html">extract_ts</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">rvn.dat</span>, ts.column <span class="op">=</span> <span class="st">"Peak Freq Contour (Hz)"</span>,  equal.length <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#look at the last rows wit no NAs</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fcts</span><span class="op">)</span></span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:808px; ">
 <table class="table table table-striped table-hover table-condensed table-responsive" style="font-size: 11px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
@@ -3218,11 +3216,11 @@ Phae.long3.wav
 <p> </p>
 <p>And the length of the series can also be specified:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Peak freq contour equal length 10 measurements</span>
-<span class="va">fcts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_ts.html">extract_ts</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">rvn.dat</span>, ts.column <span class="op">=</span> <span class="st">"Peak Freq Contour (Hz)"</span>,
-equal.length <span class="op">=</span> <span class="cn">T</span>, length.out <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>  
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fcts</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Peak freq contour equal length 10 measurements</span></span>
+<span><span class="va">fcts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_ts.html">extract_ts</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">rvn.dat</span>, ts.column <span class="op">=</span> <span class="st">"Peak Freq Contour (Hz)"</span>,</span>
+<span>equal.length <span class="op">=</span> <span class="cn">T</span>, length.out <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fcts</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:center;">
@@ -3499,7 +3497,7 @@ Phae.long3.wav
 to calculate <a href="https://en.wikipedia.org/wiki/Dynamic_time_warping" class="external-link">Dynamic Time
 Warping</a> distances:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://marce10.github.io/warbleR/reference/freq_DTW.html" class="external-link">freq_DTW</a></span><span class="op">(</span>ts.df <span class="op">=</span> <span class="va">fcts</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://marce10.github.io/warbleR/reference/freq_DTW.html" class="external-link">freq_DTW</a></span><span class="op">(</span>ts.df <span class="op">=</span> <span class="va">fcts</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p> </p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:808px; ">
 <table class="table table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;">
@@ -3971,20 +3969,20 @@ Phae.long4.wav-11
 <p>This is a simple function to relabel columns so they match the
 selection table format used in <a href="https://cran.r-project.org/package=warbleR" class="external-link">warbleR</a>:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#to simplify the example select a subset of the columns </span>
-<span class="va">st1</span> <span class="op">&lt;-</span> <span class="va">rvn.dat</span><span class="op">[</span> ,<span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span>
-
-<span class="co">#check original column names</span>
-<span class="va">st1</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#to simplify the example select a subset of the columns </span></span>
+<span><span class="va">st1</span> <span class="op">&lt;-</span> <span class="va">rvn.dat</span><span class="op">[</span> ,<span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co">#check original column names</span></span>
+<span><span class="va">st1</span></span></code></pre></div>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Relabel the basic columns required by warbleR</span>
-<span class="fu"><a href="../reference/relabel_colms.html">relabel_colms</a></span><span class="op">(</span><span class="va">st1</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Relabel the basic columns required by warbleR</span></span>
+<span><span class="fu"><a href="../reference/relabel_colms.html">relabel_colms</a></span><span class="op">(</span><span class="va">st1</span><span class="op">)</span></span></code></pre></div>
 <p> </p>
 <p>Additional columns can also be relabeled:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># 2 additional column </span>
-<span class="fu"><a href="../reference/relabel_colms.html">relabel_colms</a></span><span class="op">(</span><span class="va">st1</span>, extra.cols.name <span class="op">=</span> <span class="st">"View"</span>,
-              extra.cols.new.name <span class="op">=</span> <span class="st">"Raven view"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># 2 additional column </span></span>
+<span><span class="fu"><a href="../reference/relabel_colms.html">relabel_colms</a></span><span class="op">(</span><span class="va">st1</span>, extra.cols.name <span class="op">=</span> <span class="st">"View"</span>,</span>
+<span>              extra.cols.new.name <span class="op">=</span> <span class="st">"Raven view"</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:center;">
@@ -4282,19 +4280,19 @@ files for the <a href="https://ravensoundsoftware.com" class="external-link">Rav
 correlator to be able to read it. We can do this using the
 <code>cut_sels</code> function from <a href="https://cran.r-project.org/package=warbleR" class="external-link">warbleR</a>:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#create new folder to put cuts</span>
-<span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"cuts"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># add a rowname column to be able to match cuts and selections</span>
-<span class="va">selec.table</span><span class="op">$</span><span class="va">rownames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%02d"</span>,<span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">selec.table</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># cut files</span>
-<span class="fu"><a href="https://marce10.github.io/warbleR/reference/cut_sels.html" class="external-link">cut_sels</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">selec.table</span>, mar <span class="op">=</span> <span class="fl">0.05</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, dest.path <span class="op">=</span> 
-           <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"cuts"</span><span class="op">)</span>, 
-         labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rownames"</span>, <span class="st">"sound.files"</span>, <span class="st">"selec"</span><span class="op">)</span>, pb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="co">#list cuts</span>
-<span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"cuts"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#create new folder to put cuts</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"cuts"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># add a rowname column to be able to match cuts and selections</span></span>
+<span><span class="va">selec.table</span><span class="op">$</span><span class="va">rownames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%02d"</span>,<span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">selec.table</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># cut files</span></span>
+<span><span class="fu"><a href="https://marce10.github.io/warbleR/reference/cut_sels.html" class="external-link">cut_sels</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">selec.table</span>, mar <span class="op">=</span> <span class="fl">0.05</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, dest.path <span class="op">=</span> </span>
+<span>           <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"cuts"</span><span class="op">)</span>, </span>
+<span>         labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rownames"</span>, <span class="st">"sound.files"</span>, <span class="st">"selec"</span><span class="op">)</span>, pb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#list cuts</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"cuts"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p> </p>
 <p>Every selection is in its own sound file (labeled as
 <code>paste("rownames", "sound.files", "selec")</code>). Now open <a href="https://ravensoundsoftware.com" class="external-link">Raven</a> and run the batch
@@ -4302,12 +4300,12 @@ correlator on the ‘cuts’ folder as follows:</p>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_raven_correlator.gif" alt="gif1">  </p>
 <p>And then import the output file into R:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Import output (change the name of the file if you used a different one)</span>
-<span class="va">xcorr.rav</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/imp_corr_mat.html">imp_corr_mat</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"BatchCorrOutput.txt"</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Import output (change the name of the file if you used a different one)</span></span>
+<span><span class="va">xcorr.rav</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/imp_corr_mat.html">imp_corr_mat</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"BatchCorrOutput.txt"</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p> </p>
 <p>The function returns a list containing the correlation matrix:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">xcorr.rav</span><span class="op">$</span><span class="va">correlation</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">xcorr.rav</span><span class="op">$</span><span class="va">correlation</span></span></code></pre></div>
 <p> </p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:808px; ">
 <table class="table table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;">
@@ -4773,7 +4771,7 @@ correlator on the ‘cuts’ folder as follows:</p>
 <p> </p>
 <p>and the time lag matrix:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">xcorr.rav</span><span class="op">$</span><span class="va">`lag (s)`</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">xcorr.rav</span><span class="op">$</span><span class="va">`lag (s)`</span></span></code></pre></div>
 <p> </p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:808px; ">
 <table class="table table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;">
@@ -5241,24 +5239,24 @@ correlator on the ‘cuts’ folder as follows:</p>
 a mantel test between cross-correlation (converted to distances) and <a href="https://cran.r-project.org/package=warbleR" class="external-link">warbleR</a> spectral
 parameter pairwise dissimilarities:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#convert cross-corr to distance</span>
-<span class="va">xcorr.rvn</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">-</span> <span class="va">xcorr.rav</span><span class="op">$</span><span class="va">correlation</span>
-
-<span class="co">#sort matrix to match selection table</span>
-<span class="va">xcorr.rvn</span> <span class="op">&lt;-</span> <span class="va">xcorr.rvn</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">xcorr.rvn</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">xcorr.rvn</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
-
-<span class="co">#convert it to distance matrix</span>
-<span class="va">xcorr.rvn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">as.dist</a></span><span class="op">(</span><span class="va">xcorr.rvn</span><span class="op">)</span>
-
-<span class="co"># measure acoustic parameters</span>
-<span class="va">sp.wrblR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://marce10.github.io/warbleR/reference/specan.html" class="external-link">specan</a></span><span class="op">(</span><span class="va">selec.table</span>, bp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">11</span><span class="op">)</span>, wl <span class="op">=</span> <span class="fl">150</span>, 
-                   pb <span class="op">=</span> <span class="cn">FALSE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">#convert them to distance matrix</span>
-<span class="va">dist.sp.wrblR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="va">sp.wrblR</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#convert cross-corr to distance</span></span>
+<span><span class="va">xcorr.rvn</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">-</span> <span class="va">xcorr.rav</span><span class="op">$</span><span class="va">correlation</span></span>
+<span></span>
+<span><span class="co">#sort matrix to match selection table</span></span>
+<span><span class="va">xcorr.rvn</span> <span class="op">&lt;-</span> <span class="va">xcorr.rvn</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">xcorr.rvn</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">xcorr.rvn</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co">#convert it to distance matrix</span></span>
+<span><span class="va">xcorr.rvn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">as.dist</a></span><span class="op">(</span><span class="va">xcorr.rvn</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># measure acoustic parameters</span></span>
+<span><span class="va">sp.wrblR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://marce10.github.io/warbleR/reference/specan.html" class="external-link">specan</a></span><span class="op">(</span><span class="va">selec.table</span>, bp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">11</span><span class="op">)</span>, wl <span class="op">=</span> <span class="fl">150</span>, </span>
+<span>                   pb <span class="op">=</span> <span class="cn">FALSE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#convert them to distance matrix</span></span>
+<span><span class="va">dist.sp.wrblR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="va">sp.wrblR</span><span class="op">)</span></span></code></pre></div>
 <pre><code>Warning in dist(sp.wrblR): NAs introduced by coercion</code></pre>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/mantel.html" class="external-link">mantel</a></span><span class="op">(</span><span class="va">xcorr.rvn</span>, <span class="va">dist.sp.wrblR</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/mantel.html" class="external-link">mantel</a></span><span class="op">(</span><span class="va">xcorr.rvn</span>, <span class="va">dist.sp.wrblR</span><span class="op">)</span></span></code></pre></div>
 <pre><code>
 Mantel statistic based on Pearson's product-moment correlation 
 
@@ -5266,11 +5264,11 @@ Call:
 vegan::mantel(xdis = xcorr.rvn, ydis = dist.sp.wrblR) 
 
 Mantel statistic r: 0.259 
-      Significance: 0.012 
+      Significance: 0.019 
 
 Upper quantiles of permutations (null model):
   90%   95% 97.5%   99% 
-0.149 0.186 0.230 0.262 
+0.142 0.193 0.242 0.294 
 Permutation: free
 Number of permutations: 999</code></pre>
 <p> </p>
@@ -5290,22 +5288,22 @@ be directly opened in Raven. No objects are returned into the R
 environment. The following code exports a data table from a single sound
 file:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Select data for a single sound file</span>
-<span class="va">st1</span> <span class="op">&lt;-</span> <span class="va">selec.table</span><span class="op">[</span><span class="va">selec.table</span><span class="op">$</span><span class="va">sound.files</span> <span class="op">==</span> <span class="st">"Phae.long1.wav"</span>, <span class="op">]</span>
-
-<span class="co"># Export data of a single sound file</span>
-<span class="fu"><a href="../reference/exp_raven.html">exp_raven</a></span><span class="op">(</span><span class="va">st1</span>, file.name <span class="op">=</span> <span class="st">"Phaethornis 1"</span>, khz.to.hz <span class="op">=</span> <span class="cn">TRUE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Select data for a single sound file</span></span>
+<span><span class="va">st1</span> <span class="op">&lt;-</span> <span class="va">selec.table</span><span class="op">[</span><span class="va">selec.table</span><span class="op">$</span><span class="va">sound.files</span> <span class="op">==</span> <span class="st">"Phae.long1.wav"</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Export data of a single sound file</span></span>
+<span><span class="fu"><a href="../reference/exp_raven.html">exp_raven</a></span><span class="op">(</span><span class="va">st1</span>, file.name <span class="op">=</span> <span class="st">"Phaethornis 1"</span>, khz.to.hz <span class="op">=</span> <span class="cn">TRUE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p> </p>
 <p>If the path to the sound file is provided, the functions exports a
 ‘sound selection table’ which can be directly open by <a href="https://ravensoundsoftware.com" class="external-link">Raven</a> (and which will also
 open the associated sound file):</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Select data for a single sound file</span>
-<span class="va">st1</span> <span class="op">&lt;-</span> <span class="va">selec.table</span><span class="op">[</span><span class="va">selec.table</span><span class="op">$</span><span class="va">sound.files</span> <span class="op">==</span> <span class="st">"Phae.long1.wav"</span>,<span class="op">]</span>
-
-<span class="co"># Export data of a single sound file</span>
-<span class="fu"><a href="../reference/exp_raven.html">exp_raven</a></span><span class="op">(</span><span class="va">st1</span>, file.name <span class="op">=</span> <span class="st">"Phaethornis 1"</span>, khz.to.hz <span class="op">=</span> <span class="cn">TRUE</span>,
-          sound.file.path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Select data for a single sound file</span></span>
+<span><span class="va">st1</span> <span class="op">&lt;-</span> <span class="va">selec.table</span><span class="op">[</span><span class="va">selec.table</span><span class="op">$</span><span class="va">sound.files</span> <span class="op">==</span> <span class="st">"Phae.long1.wav"</span>,<span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Export data of a single sound file</span></span>
+<span><span class="fu"><a href="../reference/exp_raven.html">exp_raven</a></span><span class="op">(</span><span class="va">st1</span>, file.name <span class="op">=</span> <span class="st">"Phaethornis 1"</span>, khz.to.hz <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>          sound.file.path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven1.gif" alt="gif2">  </p>
 <p>This is useful to add new selections or even new measurements:</p>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven2.gif" alt="gif3">  </p>
@@ -5313,8 +5311,8 @@ open the associated sound file):</p>
 a single selection file or as multiple selection files (one for each
 sound file). This example creates a multiple sound file selection:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/exp_raven.html">exp_raven</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">selec.table</span>, file.name <span class="op">=</span> <span class="st">"Phaethornis multiple sound files"</span>, 
-          sound.file.path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, single.file <span class="op">=</span> <span class="cn">TRUE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/exp_raven.html">exp_raven</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">selec.table</span>, file.name <span class="op">=</span> <span class="st">"Phaethornis multiple sound files"</span>, </span>
+<span>          sound.file.path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, single.file <span class="op">=</span> <span class="cn">TRUE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p> </p>
 <p>These type of tables can be opened as a multiple file display in <a href="https://ravensoundsoftware.com" class="external-link">Raven</a>.</p>
 <!-- ![gif4](https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_exp_raven3.gif) -->
@@ -5335,12 +5333,12 @@ window is closed) the data can be automatically imported back into R
 using the ‘import’ argument. Note that <a href="https://ravensoundsoftware.com" class="external-link">Raven</a>, unlike R, can also
 handle files in ‘mp3’, ‘flac’ and ‘aif’ format .</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># here replace with the path where Raven is install in your computer</span>
-<span class="va">raven.path</span> <span class="op">&lt;-</span> <span class="st">"PATH_TO_RAVEN_DIRECTORY_HERE"</span> 
-
-<span class="co"># run function </span>
-<span class="fu"><a href="../reference/run_raven.html">run_raven</a></span><span class="op">(</span>raven.path <span class="op">=</span> <span class="va">raven.path</span>, sound.files <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Phae.long1.wav"</span>, <span class="st">"Phae.long2.wav"</span>, <span class="st">"Phae.long3.wav"</span>, <span class="st">"Phae.long4.wav"</span><span class="op">)</span>, 
-          import <span class="op">=</span> <span class="cn">TRUE</span>, all.data <span class="op">=</span> <span class="cn">TRUE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>  </code></pre></div>
+<code class="sourceCode R"><span><span class="co"># here replace with the path where Raven is install in your computer</span></span>
+<span><span class="va">raven.path</span> <span class="op">&lt;-</span> <span class="st">"PATH_TO_RAVEN_DIRECTORY_HERE"</span> </span>
+<span></span>
+<span><span class="co"># run function </span></span>
+<span><span class="fu"><a href="../reference/run_raven.html">run_raven</a></span><span class="op">(</span>raven.path <span class="op">=</span> <span class="va">raven.path</span>, sound.files <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Phae.long1.wav"</span>, <span class="st">"Phae.long2.wav"</span>, <span class="st">"Phae.long3.wav"</span>, <span class="st">"Phae.long4.wav"</span><span class="op">)</span>, </span>
+<span>          import <span class="op">=</span> <span class="cn">TRUE</span>, all.data <span class="op">=</span> <span class="cn">TRUE</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>  </span></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_run_raven1.gif" alt="gif5">  </p>
 <p>See <code>imp_raven</code> above for more details on additional
 settings when importing selections.</p>
@@ -5357,9 +5355,9 @@ analyzed in R!).</p>
 <p>This is example runs the detector on one of the example sound files
 that comes by default with <a href="https://ravensoundsoftware.com" class="external-link">Raven</a>:</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">detec.res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/raven_batch_detec.html">raven_batch_detec</a></span><span class="op">(</span>raven.path <span class="op">=</span> <span class="va">raven.path</span>, 
-                               sound.files <span class="op">=</span> <span class="st">"BlackCappedVireo.aif"</span>,
-                               path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">raven.path</span>, <span class="st">"Examples"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">detec.res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/raven_batch_detec.html">raven_batch_detec</a></span><span class="op">(</span>raven.path <span class="op">=</span> <span class="va">raven.path</span>, </span>
+<span>                               sound.files <span class="op">=</span> <span class="st">"BlackCappedVireo.aif"</span>,</span>
+<span>                               path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">raven.path</span>, <span class="st">"Examples"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/opt2_short_raven_batch_detec.gif" alt="gif6">  </p>
 <hr>
 <p>Please report any bugs <a href="https://github.com/maRce10/Rraven/issues" class="external-link">here</a>. The
@@ -5368,35 +5366,35 @@ that comes by default with <a href="https://ravensoundsoftware.com" class="exter
 bioacoustic software</em>. R package version 1.0.0.</p>
 <hr>
 <p><font size="4">Session information</font></p>
-<pre><code>R version 4.2.0 (2022-04-22)
+<pre><code>R version 4.2.1 (2022-06-23)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 22.04 LTS
+Running under: Ubuntu 20.04.5 LTS
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.0
-LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.10.0
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
 locale:
- [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=es_CR.UTF-8        LC_COLLATE=en_US.UTF-8     LC_MONETARY=es_CR.UTF-8   
- [6] LC_MESSAGES=en_US.UTF-8    LC_PAPER=es_CR.UTF-8       LC_NAME=C                  LC_ADDRESS=C               LC_TELEPHONE=C            
+ [1] LC_CTYPE=es_ES.UTF-8       LC_NUMERIC=C               LC_TIME=es_CR.UTF-8        LC_COLLATE=es_ES.UTF-8     LC_MONETARY=es_CR.UTF-8   
+ [6] LC_MESSAGES=es_ES.UTF-8    LC_PAPER=es_CR.UTF-8       LC_NAME=C                  LC_ADDRESS=C               LC_TELEPHONE=C            
 [11] LC_MEASUREMENT=es_CR.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] kableExtra_1.3.4   Rraven_1.0.14      warbleR_1.1.28     NatureSounds_1.0.4 knitr_1.39         seewave_2.2.0      tuneR_1.4.0       
+[1] kableExtra_1.3.4   Rraven_1.0.14      warbleR_1.1.28     NatureSounds_1.0.4 knitr_1.41         seewave_2.2.0      tuneR_1.4.1       
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.9        svglite_2.1.0     lattice_0.20-45   fftw_1.0-7        rprojroot_2.0.3   digest_0.6.29     foreach_1.5.2     R6_2.5.1         
- [9] signal_0.7-7      evaluate_0.16     httr_1.4.3        rlang_1.0.4       rstudioapi_0.13   vegan_2.5-7       jquerylib_0.1.4   Matrix_1.4-1     
-[17] rmarkdown_2.14    pkgdown_2.0.3     textshaping_0.3.6 desc_1.4.1        splines_4.2.0     webshot_0.5.3     stringr_1.4.0     RCurl_1.98-1.8   
-[25] munsell_0.5.0     proxy_0.4-27      compiler_4.2.0    xfun_0.32         systemfonts_1.0.4 mgcv_1.8-40       htmltools_0.5.3   dtw_1.22-3       
-[33] codetools_0.2-18  permute_0.9-7     viridisLite_0.4.0 shinyBS_0.61.1    MASS_7.3-57       bitops_1.0-7      grid_4.2.0        nlme_3.1-157     
-[41] jsonlite_1.8.0    lifecycle_1.0.1   magrittr_2.0.3    scales_1.2.0      cli_3.3.0         stringi_1.7.8     cachem_1.0.6      pbapply_1.5-0    
-[49] fs_1.5.2          xml2_1.3.3        bslib_0.3.1       ragg_1.2.2        rjson_0.2.21      iterators_1.0.14  tools_4.2.0       glue_1.6.2       
-[57] purrr_0.3.4       parallel_4.2.0    fastmap_1.1.0     yaml_2.3.5        colorspace_2.0-3  cluster_2.1.3     soundgen_2.5.1    rvest_1.0.2      
-[65] memoise_2.0.1     sass_0.4.1       </code></pre>
+ [1] xfun_0.35         bslib_0.4.2       purrr_0.3.5       pbapply_1.6-0     splines_4.2.1     lattice_0.20-45   colorspace_2.0-3  vctrs_0.5.1      
+ [9] htmltools_0.5.4   viridisLite_0.4.1 mgcv_1.8-41       yaml_2.3.6        rlang_1.0.6       pkgdown_2.0.6     jquerylib_0.1.4   glue_1.6.2       
+[17] foreach_1.5.2     lifecycle_1.0.3   stringr_1.5.0     munsell_0.5.0     ragg_1.2.4        rvest_1.0.3       codetools_0.2-18  memoise_2.0.1    
+[25] evaluate_0.19     permute_0.9-7     fastmap_1.1.0     fftw_1.0-7        parallel_4.2.1    Rcpp_1.0.9        scales_1.2.1      cachem_1.0.6     
+[33] vegan_2.6-4       desc_1.4.2        webshot_0.5.4     jsonlite_1.8.4    soundgen_2.5.2    systemfonts_1.0.4 fs_1.5.2          textshaping_0.3.6
+[41] rjson_0.2.21      digest_0.6.31     stringi_1.7.8     grid_4.2.1        dtw_1.23-1        rprojroot_2.0.3   cli_3.5.0         tools_4.2.1      
+[49] bitops_1.0-7      magrittr_2.0.3    sass_0.4.4        RCurl_1.98-1.9    proxy_0.4-27      cluster_2.1.4     Matrix_1.5-1      MASS_7.3-58      
+[57] xml2_1.3.3        shinyBS_0.61.1    iterators_1.0.14  rmarkdown_2.19    svglite_2.1.0     httr_1.4.4        rstudioapi_0.14   R6_2.5.1         
+[65] nlme_3.1-160      signal_0.7-7      compiler_4.2.1   </code></pre>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -5412,7 +5410,7 @@ loaded via a namespace (and not attached):
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>
