@@ -2,7 +2,7 @@
 
 ## Changes and additions
 
-* Fix error when selection files have no "selections" colum
+* Fix error when selection files have no "selections" column
 * Fix error when selection files have no rows. Now they are omitted and an be shown if `unread = TRUE` 
 
 # Version 1.0.13
