@@ -2,6 +2,7 @@ Rraven: connecting R and Raven sound analysis software
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start -->
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![Dependencies](https://tinyverse.netlify.com/badge/Rraven)](https://cran.r-project.org/package=Rraven)
@@ -12,10 +13,11 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-%3E=%203.2.1-6666ff.svg)](https://cran.r-project.org/)
 [![packageversion](https://img.shields.io/badge/Package%20version-1.0.14-orange.svg?style=flat-square)](commits/develop)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2022--12--22-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2023--01--24-yellowgreen.svg)](/commits/master)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/Rraven)](https://cran.r-project.org/package=Rraven)
 [![Total
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/Rraven)](https://cranlogs.r-pkg.org/badges/grand-total/Rraven)
+<!-- badges: end -->
 
 <img src="vignettes/Rraven_sticker.png" alt="warbleR logo" align="right" width = "25%" height="25%"/>
 
