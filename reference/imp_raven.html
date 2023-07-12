@@ -120,7 +120,7 @@ It specifies the number of cores to be used. Default is 1 (i.e. no parallel comp
 
 
 <dt>unread</dt>
-<dd><p>Logical. If <code>TRUE</code> a list (instead of a data frame). The first element of the list contains the selections
+<dd><p>DEPRECATED. Logical. If <code>TRUE</code> a list (instead of a data frame). The first element of the list contains the selections. This argument has been deprecated. Name of unread files are now kept in <code>.Options$Rraven</code>.
 whole data. The second and third elements are character vectors with the names of sound files that could not be read or that contain multiple sound files but no 'File Offset' column and could not be imported. Default is <code>FALSE</code>.</p></dd>
 
 
@@ -138,8 +138,7 @@ the selection text files. Default is <code>NULL</code>. Ignored if 'name.from.fi
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A single data frame with information of the selection files. If <code>unread = TRUE</code> the function returns a list  with
- the selection data frame and 1 vector with the names of files that could not be read (see 'unread' argument).
+<p>A single data frame with information of the selection files. If some selection files were not read they will be listed in  <code>.Options$Rraven</code>.
  If 'warbler.format' argument is set to <code>TRUE</code> the data frame contains the following columns: sound.files, selec, channel,start, end, top.freq, bottom.freq and selec.file. If all.data is set to <code>TRUE</code> then all columns in the 'Raven' selection files are returned.
  If individual selection files contain information about multiple sound files the function will import the file and correct the time
  parameters (start and end) only if 1) the 'File Offset (s)' is found in the selection table.</p>

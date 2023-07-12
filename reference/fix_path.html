@@ -55,7 +55,7 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fix_path</span><span class="op">(</span>path <span class="op">=</span> <span class="cn">NULL</span>, dest.path <span class="op">=</span> <span class="cn">NULL</span>, recursive <span class="op">=</span> <span class="cn">FALSE</span>, parallel <span class="op">=</span> <span class="fl">1</span>, pb <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span><span class="va">new.begin.path</span>, <span class="va">sound.file.col</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">new.begin.path</span>, <span class="va">sound.file.col</span>, files <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -92,6 +92,10 @@ would be located. This argument is required.</p></dd>
 <dt>sound.file.col</dt>
 <dd><p>A character string with the name of the column containing the sound file names in 
 the selection text files. Required.</p></dd>
+
+
+<dt>files</dt>
+<dd><p>Character vector indicating the name of selection files (in .txt format) to be imported. Optional. Default is <code>NULL</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
