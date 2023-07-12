@@ -4,3 +4,8 @@ stop2 <- function (...)
 {
   stop(..., call. = FALSE)
 }
+
+warning2 <- function (...) 
+{
+  warning(..., call. = FALSE)
+}

@@ -26,14 +26,13 @@
 #' @param parallel Numeric. Controls whether parallel computing is applied.
 #' It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
 #' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
-#' @param unread Logical. If \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections
+#' @param unread DEPRECATED. Logical. If \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections. This argument has been deprecated. Name of unread files are now kept in \code{.Options$Rraven}.
 #' whole data. The second and third elements are character vectors with the names of sound files that could not be read or that contain multiple sound files but no 'File Offset' column and could not be imported. Default is \code{FALSE}.
 #' @param rm.dup Logical. If \code{TRUE} duplicated rows and columns are removed. Useful when
 #' selection files have been duplicated. Default is \code{FALSE}.
 #' @param sound.file.col A character string with the name of the column containing the sound files in
 #' the selection text files. Default is \code{NULL}. Ignored if 'name.from.file' is \code{TRUE} and/or all.data is \code{TRUE}. This argument WILL BE DEPRECATED as the function now searches for columns containing the sound file names.
-#' @return A single data frame with information of the selection files. If \code{unread = TRUE} the function returns a list  with
-#'  the selection data frame and 1 vector with the names of files that could not be read (see 'unread' argument).
+#' @return A single data frame with information of the selection files. If some selection files were not read they will be listed in  \code{.Options$Rraven}.
 #'  If 'warbler.format' argument is set to \code{TRUE} the data frame contains the following columns: sound.files, selec, channel,start, end, top.freq, bottom.freq and selec.file. If all.data is set to \code{TRUE} then all columns in the 'Raven' selection files are returned.
 #'  If individual selection files contain information about multiple sound files the function will import the file and correct the time
 #'  parameters (start and end) only if 1) the 'File Offset (s)' is found in the selection table.
@@ -161,9 +160,10 @@ imp_raven <-
     
     # remove empty files
     if (any(sapply(sl.list, nrow) == 0)){
-      cat(paste(sum(sapply(sl.list, nrow) == 0), "empty .txt file(s) found"))
+      empty.files <- names(sl.list)[sapply(sl.list, nrow) == 0]
       sl.list <- sl.list[sapply(sl.list, nrow) > 0]
-    }
+    } else empty.files <- NULL
+    
     ## check if basic Raven columns are found
     sl.list <- lapply(sl.list, function(x)
     {
@@ -325,7 +325,9 @@ imp_raven <-
       names(sl.list) <- list.names
       
       if (unread)
-        error.files <-
+        message("'unread' argument has been deprecated")
+        
+      error.files <-
         c(error.files, names(sl.list)[sapply(sl.list, nrow) == 0])
       
       # pool in a single data frame
@@ -409,37 +411,25 @@ imp_raven <-
     
     # warning for files that could not be read
     if (length(error.files) == length(sel.txt2))
-      cat("Not a single file could be read") else
-      if (length(error.files) > 0 &
-          !unread)
-        cat(paste(
-          length(error.files),
-          "file(s) could not be read: ",
-          paste(error.files, collapse = "/")
-        ))
+      cat("Not a single file could be read") 
     
     # warning for multiple sound file selections that could not be imported
     if (length(error.multiple.files) == length(sel.txt2))
       cat(
-        "All selection tables contained data from multiple sound files but couldn't be imported  (missing 'File offset' column)"
-      ) else
-      if (length(error.multiple.files) > 0 &
-          !unread)
-        cat(
-          paste(
-            length(error.multiple.files),
-            "selection table(s) with multiple files could not be imported (missing 'File offset' column): ",
-            paste(error.multiple.files, collapse = "/")
-          )
-        )
+        "All selection tables contained data from multiple sound files but couldn't be imported (missing 'File offset' column)"
+      ) 
     
-    if (unread)
-      return(
-        list(
-          selections = sls,
-          unread_files = error.files,
-          multiple_sound_file_unread_files = error.multiple.files
-        )
-      ) else
-      return(sls)
+    # add error files to Rraven options
+    error_file_list <-  list(
+      `unread selection table files` = error.files,
+      `unread multiple sound selection table files` = error.multiple.files,
+      `empty selection table files` = empty.files
+    )
+    
+    if(any(sapply(error_file_list, length) > 0))
+      warning2("Some .txt files could not be read (run .Options$Rraven to see which ones)")
+    
+    on.exit(options(Rraven = error_file_list))
+    
+    return(sls)
   }

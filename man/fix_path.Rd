@@ -5,7 +5,7 @@
 \title{Modify sound file path in Raven's selection tables}
 \usage{
 fix_path(path = NULL, dest.path = NULL, recursive = FALSE, parallel = 1, pb = TRUE, 
-new.begin.path, sound.file.col)
+new.begin.path, sound.file.col, files = NULL)
 }
 \arguments{
 \item{path}{A character string indicating the path of the directory in which to look for the 'Raven' selection (text) files. 
@@ -27,6 +27,8 @@ would be located. This argument is required.}
 
 \item{sound.file.col}{A character string with the name of the column containing the sound file names in 
 the selection text files. Required.}
+
+\item{files}{Character vector indicating the name of selection files (in .txt format) to be imported. Optional. Default is \code{NULL}.}
 }
 \value{
 Selection table file(s) saved in 'dest.path' or in the working 

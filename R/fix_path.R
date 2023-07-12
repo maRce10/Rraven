@@ -2,7 +2,7 @@
 #' 
 #' \code{fix_path} modifies the path column in selection tables and sound selection tables 
 #' @usage fix_path(path = NULL, dest.path = NULL, recursive = FALSE, parallel = 1, pb = TRUE, 
-#' new.begin.path, sound.file.col)  
+#' new.begin.path, sound.file.col, files = NULL)  
 #' @param path A character string indicating the path of the directory in which to look for the 'Raven' selection (text) files. 
 #' If not provided (default) the function searches into the current working directory.
 #' @param dest.path A character string indicating the path of the directory in which
@@ -16,6 +16,7 @@
 #' would be located. This argument is required.
 #' @param sound.file.col A character string with the name of the column containing the sound file names in 
 #' the selection text files. Required.
+#' @param files Character vector indicating the name of selection files (in .txt format) to be imported. Optional. Default is \code{NULL}.
 #' @return Selection table file(s) saved in 'dest.path' or in the working 
 #' directory (by default, which overwrites existing files). 
 #' @details The function modifies the path field in Raven's selection tables or 
@@ -55,7 +56,7 @@
 #' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 #last modification on nov-7-2017
 
-fix_path <- function(path = NULL, dest.path = NULL, recursive = FALSE, parallel = 1, pb = TRUE, new.begin.path, sound.file.col)
+fix_path <- function(path = NULL, dest.path = NULL, recursive = FALSE, parallel = 1, pb = TRUE, new.begin.path, sound.file.col, files = NULL)
 {
   
   #check path to working directory
@@ -69,6 +70,13 @@ fix_path <- function(path = NULL, dest.path = NULL, recursive = FALSE, parallel 
   
   # read selection file names
   sel.txt <- list.files(pattern = ".txt$", full.names = TRUE, recursive = recursive, ignore.case = TRUE, path = path)
+  
+  if (!is.null(files)) {
+    sel.txt <- sel.txt[basename(sel.txt) %in% files]
+    
+    if (length(sel.txt) == 0)
+      stop2("Files provided not found")
+  }
   
   if (length(sel.txt) == 0) stop2("No selection .txt files in working directory/'path' provided")
   

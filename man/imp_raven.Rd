@@ -43,7 +43,7 @@ It specifies the number of cores to be used. Default is 1 (i.e. no parallel comp
 
 \item{pb}{Logical argument to control progress bar. Default is \code{TRUE}.}
 
-\item{unread}{Logical. If \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections
+\item{unread}{DEPRECATED. Logical. If \code{TRUE} a list (instead of a data frame). The first element of the list contains the selections. This argument has been deprecated. Name of unread files are now kept in \code{.Options$Rraven}.
 whole data. The second and third elements are character vectors with the names of sound files that could not be read or that contain multiple sound files but no 'File Offset' column and could not be imported. Default is \code{FALSE}.}
 
 \item{rm.dup}{Logical. If \code{TRUE} duplicated rows and columns are removed. Useful when
@@ -53,8 +53,7 @@ selection files have been duplicated. Default is \code{FALSE}.}
 the selection text files. Default is \code{NULL}. Ignored if 'name.from.file' is \code{TRUE} and/or all.data is \code{TRUE}. This argument WILL BE DEPRECATED as the function now searches for columns containing the sound file names.}
 }
 \value{
-A single data frame with information of the selection files. If \code{unread = TRUE} the function returns a list  with
- the selection data frame and 1 vector with the names of files that could not be read (see 'unread' argument).
+A single data frame with information of the selection files. If some selection files were not read they will be listed in  \code{.Options$Rraven}.
  If 'warbler.format' argument is set to \code{TRUE} the data frame contains the following columns: sound.files, selec, channel,start, end, top.freq, bottom.freq and selec.file. If all.data is set to \code{TRUE} then all columns in the 'Raven' selection files are returned.
  If individual selection files contain information about multiple sound files the function will import the file and correct the time
  parameters (start and end) only if 1) the 'File Offset (s)' is found in the selection table.
