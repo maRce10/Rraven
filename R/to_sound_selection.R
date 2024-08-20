@@ -77,7 +77,7 @@ to_sound_selection <- function(path = NULL, dest.path = NULL, recursive = FALSE,
   read_sels2_FUN <- function(i, sel.txt)
   {  
     a <- try(utils::read.table(sel.txt[i], header = TRUE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE)
-    if (class(a) != "try-error")
+    if (!methods::is(a, "try-error"))
       {
     
     rf <- readLines(sel.txt[i])  
@@ -113,14 +113,11 @@ to_sound_selection <- function(path = NULL, dest.path = NULL, recursive = FALSE,
     }
 }
     
-  # set pb options 
-  pbapply::pboptions(type = ifelse(pb, "timer", "none"))
-  
   # set clusters for windows OS
   if (Sys.info()[1] == "Windows" & parallel > 1)
     cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else cl <- parallel  
   
-  out <- pbapply::pblapply(seq_len(length(sel.txt)), cl = cl, function(i) {
+  out <- warbleR:::.pblapply(pbar = pb, X = seq_len(length(sel.txt)), cl = cl, message = "converting into sound selection table", total = 1, function(i) {
     read_sels2_FUN(i, sel.txt = sel.txt)
   })
   

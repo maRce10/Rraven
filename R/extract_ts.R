@@ -16,7 +16,7 @@
 #'  It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
 #' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
 #' @return A data frame with columns for sound file name (sound.files), selection label (selec) and the time series for each selection.
-#' @details The function extracts parameters encoded as time series in 'Raven' selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as \code{\link[warbleR]{dfDTW}}.
+#' @details The function extracts parameters encoded as time series in 'Raven' selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as \code{\link[warbleR]{freq_DTW}}.
 #' @seealso \code{\link{imp_raven}}; \code{\link{exp_raven}} 
 #' @export
 #' @name extract_ts
@@ -29,16 +29,16 @@
 #' writeLines(selection_files[[5]], con = file.path(tempdir(), names(selection_files)[5]))
 #' 
 #' # import data to R
-#'rvn.dat <- imp_raven(all.data = TRUE) 
+#' rvn.dat <- imp_raven(all.data = TRUE, path = tempdir())
 #'
 #'# Peak freq dif length
-#'extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.")
+#'extract_ts(X = rvn.dat, ts.column = "Peak Freq Contour (Hz)")
 #' 
 #'# Peak freq equal length
-#'extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", equal.length = T)
+#'extract_ts(X = rvn.dat, ts.column = "Peak Freq Contour (Hz)", equal.length = T)
 #'  
 #' # Peak freq equal length 10 measurements
-#' extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", 
+#' extract_ts(X = rvn.dat, ts.column = "Peak Freq Contour (Hz)", 
 #' equal.length = TRUE, length.out = 10) 
 #'} 
 #' 
@@ -48,7 +48,7 @@ extract_ts <- function(X, ts.column, equal.length = FALSE, as.time.series = FALS
                        length.out = 30, parallel = 1, pb = TRUE){
   
   #if X is not a data frame
-  if (!any(class(X) == "data.frame")) stop2("X is not a data frame")
+  if (!methods::is(X, "data.frame")) stop2("X is not a data frame")
   
   #check if ts.column exists
   if (!any(names(X) == ts.column)) stop2("'ts.column' not found")
@@ -63,22 +63,20 @@ extract_ts <- function(X, ts.column, equal.length = FALSE, as.time.series = FALS
   out <- strsplit(as.character(X[, ncol(X)]), ";",fixed=T)
   out <- lapply(out, as.numeric)
   
-  # set pb options 
-  pbapply::pboptions(type = ifelse(pb, "timer", "none"))
-  
   # set clusters for windows OS
   if (Sys.info()[1] == "Windows" & parallel > 1)
     cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else cl <- parallel
   
-  if (equal.length)
-    out <-  pbapply::pblapply(out, cl = cl, function(x) {
+  if (equal.length) {
+    out <-  warbleR:::.pblapply(pbar = pb, X = out, message = "extracting time series", total = 1, cl = cl, function(x) {
       if (length(x) > 1)
       return(stats::approx(x = x, n = length.out)$y) 
         if (length(x) == 1)
       return(rep(x, length.out))
           if (length(x) == 0)
             return(rep(NA, length.out))
-        })  else out <-  pbapply::pblapply(out, cl = cl, function(x) c(x, rep(NA, max(sapply(out, length)) - length(x))))
+        }) } else 
+          out <-  warbleR:::.pblapply(pbar = pb, X = out, message = "extracting time series", total = 1, cl = cl, function(x) c(x, rep(NA, max(sapply(out, length)) - length(x))))
     
   
   Y <- as.data.frame(do.call(rbind, out))

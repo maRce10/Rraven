@@ -76,11 +76,6 @@ run_raven <- function(raven.path = NULL, sound.files = NULL, path = NULL, at.the
     stop2("Path to 'Raven' folder must be provided")  else
       if (!dir.exists(raven.path)) stop2("'raven.path' provided does not exist") else 
         setwd(raven.path)
-    
-  # set progress bar back to original
-  on.exit(pbapply::pboptions(type = .Options$pboptions$type), 
-          add = TRUE)
-  
    
   if (!is.null(view.preset))
    {
@@ -151,13 +146,11 @@ on.exit(unlink(file.path(raven.path, "Presets/Sound Window", grep("^temp.Default
   # subset by groups of sound files according to at the time
   sq <- unique(c(seq(1, length(sound.files), by = at.the.time)))
   
-  if (pb) pbapply::pboptions(type = "timer") else pbapply::pboptions(type = "none")
-  
   # check if raven executable is "Raven" or "RavenPro" (changed in Raven Pro 1.6)
   rav.exe <- list.files(path = raven.path, pattern =  "Raven$|Raven.app$|Raven.exe$|Raven\ Pro$|Raven\ Pro.app$|Raven\ Pro.exe$")
   
   # run loop over files
-  out <- pbapply::pblapply(sq, function(x)
+  out <- warbleR:::.pblapply(pbar = pb, X = sq, message = "running raven", total = 1, function(x)
     {
  
     fls <- sound.files[x:(x + at.the.time - 1)]

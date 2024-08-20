@@ -133,7 +133,7 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
     
     if (length(unique(X$'Begin File')) > 1 & single.file)
     {
-      durs <- warbleR::wavdur(path = sound.file.path, files = as.character(X$'Begin File'[!duplicated(X$'Begin File')]))
+      durs <- warbleR::duration_sound_files(path = sound.file.path, files = as.character(X$'Begin File'[!duplicated(X$'Begin File')]))
       durs$cumdur <- cumsum(durs$duration)
      durs <- durs[durs$sound.files %in% X$'Begin File', ]
     
@@ -173,14 +173,11 @@ if (single.file | nrow(X) == 1)
   rvn_msr_nms <-  c("Begin Time (s)", "End Time (s)", "Low Frequency (Hz)", "High Frequency (Hz)", "File Offset (s)", "Begin File", "Begin Path", "1st Quartile Frequency (Hz)", "1st Quartile Frequency Relative", "1st Quartile Time (s)", "1st Quartile Time Relative", "3rd Quartile Frequency (Hz)", "3rd Quartile Frequency Relative", "3rd Quartile Time (s)", "3rd Quartile Time Relative", "Aggregate Entropy (bits)", "Average Amplitude (u)", "Average Entropy (bits)", "Average Power (dB)", "Bandwidth 90% (Hz)", "Begin Clock Time", "Begin Date", "Begin Date Time", "Begin File Sample (samples)", "Begin Hour", "Begin Sample (samples)", "Center Frequency (Hz)", "Center Time (s)", "Center Time Relative", " Delta Frequency (Hz)", "Delta Power (dB)", "Delta Time (s)", "Duration 90% (s)", "End Clock Time", "End Date", "End File", "End File Sample (samples)",
                     "End Path", "End Sample (samples)", "Energy (dB)", "Filtered RMS Amplitude (U)", "Frequency 5% (Hz)", "Frequency 5% Relative", "Frequency 95% (Hz)", "Frequency 95% Relative", "Frequency Contour Percentile  5% (Hz)", "Frequency Contour Percentile 25% (Hz)", "Frequency Contour Percentile 50% (Hz)", "Frequency Contour Percentile 75% (Hz)", "Frequency Contour Percentile 95% (Hz)", "IQR Bandwidth (Hz)", "IQR Duration (s)", "Inband Power (dB)", "Length (frames)", "Leq (dB)", "Max Amplitude (U)", "Max Bearing (deg)", "Max Entropy (bits)", "Max Frequency (Hz)", "Max Power (dB)", "Max Time (s)", "Min Amplitude (U)", "Min Entropy (bits)", "Min Time (s)", "Peak Amplitude (U)", "Peak Correlation (U)", "Peak Frequency (Hz)", "Peak Frequency Contour (Hz)", "Peak Frequency Contour Average Slope (Hz/ms)", "Peak Frequency Contour Max Frequency (Hz)", "Peak Frequency Contour Max Slope (Hz/ms)", "Peak Frequency Contour Min Frequency (Hz)", "Peak Frequency Contour Min Slope (Hz/ms)", "Peak Frequency Contour Number of Inflection Points", "Peak Frequency Contour Slope (Hz/ms)", "Peak Lag (s)", "Peak Power (dB)", "Peak Time (s)", "Peak Time Relative", "RMS Amplitude (U)", "SEL (dB)", "Sample Length (samples)", "Time 5% (s)", "Time 5% Relative", "Time 95% (s)", "Time 95% Relative")
   
-  # set pb options 
-  pbapply::pboptions(type = ifelse(pb, "timer", "none"))
-  
   # set clusters for windows OS
   if (Sys.info()[1] == "Windows" & parallel > 1)
     cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else cl <- parallel  
   
-  out <- pbapply::pblapply(seq_len(nrow(row.list)), cl = cl, function(x){
+  out <- warbleR:::.pblapply(pbar = pb, X = seq_len(nrow(row.list)), cl = cl,  message = "exporting annotations", total = 1, function(x){
   
   if (is.null(file.name)) file.name2 <- "" else file.name2 <- file.name
   

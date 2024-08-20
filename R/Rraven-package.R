@@ -4,7 +4,7 @@
 #' between R and 'Raven' sound analysis software (Cornell Lab of Ornithology)
 #' @details License: GPL (>= 2)  
 #' 
-#'  @section Functions:
+#' @section Functions:
 #'   
 #'   \code{\link{exp_raven}}: Export R selection tables into 'Raven' selection file format
 #'  
@@ -33,8 +33,9 @@
 #'   \code{\link{to_sound_selection}}: Convert Raven's selection files into sound selection files
 #'      
 #' @import warbleR 
-#' @import NatureSounds
 #' @import pbapply
+#' @import methods
+#' @importFrom methods is
 #' @importFrom seewave duration pastew
 #' @importFrom tuneR normalize writeWave
 #' @importFrom stats approx as.ts

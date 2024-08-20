@@ -3,14 +3,14 @@
 #' \code{exp_est} exports wave objects of an extended selection table as sound files
 #' @usage exp_est(X, file.name = NULL, path = NULL, single.file = FALSE, 
 #' selection.table = TRUE, pb = TRUE, normalize = TRUE, parallel = 1, wave.object = FALSE)  
-#' @param  X object of class 'extended_selection_table' (objects produced by \code{\link[warbleR]{selection_table}}). More details about these objects can be found on \href{https://marce10.github.io/2018/05/15/Extended_selection_tables.html}{this link}.
+#' @param  X object of class 'extended_selection_table' (objects produced by \code{\link[warbleR]{selection_table}}). More details about these objects can be found on \href{https://marce10.github.io/warbleR/articles/annotation_data_format.html#extended-selection-tables}{this link}.
 #' @param file.name character string indicating the name of the sound file (if \code{single.file = TRUE}) 
 #' and/or the selection table (if \code{selection.table = TRUE}). Default is \code{NULL}.
 #' @param path A character string indicating the path of the directory where sound files and/or selection table will be saved. If not provided the
 #' function uses the current working directory. Default is \code{NULL}.
 #' @param single.file Logical argument to control if all wave objects are pooled together in a 
 #' single sound file (if \code{TRUE}) or each one as an individual sound file (if \code{FALSE}, default). If 
-#' exporting a single sound file the files are pasted in the same sequences as in the extended selection table. Note that to create a single sound file ALL WAVE OBJECTS IN 'X" MUST HAVE THE SAME SAMPLE RATE (check \code{attributes(X)$check.res$sample.rate}) and ideally the same bit depth (although not strictly required). If that is not the case, sample rate can be homogenize using the \code{\link[warbleR]{resample_est_waves}} from the warbleR package.
+#' exporting a single sound file the files are pasted in the same sequences as in the extended selection table. Note that to create a single sound file ALL WAVE OBJECTS IN 'X" MUST HAVE THE SAME SAMPLE RATE (check \code{attributes(X)$check.res$sample.rate}) and ideally the same bit depth (although not strictly required). If that is not the case, sample rate can be homogenize using the \code{\link[warbleR]{resample_est}} from the warbleR package.
 #' @param selection.table Logical argument to determine if a Raven sound selection table ('.txt' file) is also exported. 
 #' Default is \code{TRUE}. If \code{FALSE} then selection table is return as an object in the R environment. If exporting multiple sound files (if \code{single.file = FALSE}) the function still exports a single selection table (in this case a multiple sound selection table).
 #' @param pb Logical argument to control progress bar when exporting multiple sound files. Default is \code{TRUE}.
@@ -67,16 +67,9 @@ exp_est <- function(X, file.name = NULL, path = NULL, single.file = FALSE,
   # if file.name 
   if (is.null(file.name) & selection.table) stop2("'file.name' must be provided when 'selection.table' is TRUE")
   # set progress bar back to original
-  on.exit(pbapply::pboptions(type = .Options$pboptions$type), 
-          add = TRUE)
-  
   # check X is data.frame
   if (!warbleR::is_extended_selection_table(X))
       stop2("X must be of class 'extended_selection_table'")
-    
-  # set progress bar
-  if (pb) pbapply::pboptions(type = "timer") else 
-    pbapply::pboptions(type = "none")
     
   # all wave objects in a list
   wvs <- attributes(X)$wave.objects

@@ -60,7 +60,7 @@
    op.dig <- options(digits = 6)
    
   #if X is not a data frame
-  if (!class(X) == "data.frame") stop2("X is not a data frame")
+  if (!methods::is(X, "data.frame")) stop2("X is not a data frame")
   
   # if not extra.cols.new.name and extra.cols.name are provided
   if (any(!is.null(extra.cols.name) & is.null(extra.cols.new.name), is.null(extra.cols.name) & !is.null(extra.cols.new.name))) stop2("if either 'extra.cols.name' or 'extra.cols.new.name' are provided the other must be provided as well")

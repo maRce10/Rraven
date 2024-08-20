@@ -63,21 +63,18 @@ if (length(sel.txt) == 0) stop2("No selection files in working directory/'path' 
 b<-NULL
 if (substring(text = readLines(sel.txt[1])[1], first = 0, last = 9) == "fieldkey:") field <- T else field <- F
 
-# set pb options 
-pbapply::pboptions(type = ifelse(pb, "timer", "none"))
-
 # set clusters for windows OS
 if (Sys.info()[1] == "Windows" & parallel > 1)
   cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else cl <- parallel  
 
-clist <- pbapply::pblapply(1:length(sel.txt), cl = cl, function(i)
+clist <- warbleR:::.pblapply(pbar = pb, X = 1:length(sel.txt), cl = cl, message = "importing syrinx files", total = 1, function(i)
   {    
   if (field)  {
     
     a <- try(utils::read.table(sel.txt[i], header = TRUE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE), silent = TRUE) 
-    if (!exclude & class(a) == "try-error") stop2(paste("The selection file",sel.txt[i], "cannot be read"))
+    if (!exclude & methods::is(a, "try-error")) stop2(paste("The selection file",sel.txt[i], "cannot be read"))
     
-  if (!class(a) == "try-error" & !all.data) { c <- data.frame(selec.file = sel.txt2[i], sound.files = a[, grep("soundfile",colnames(a))],
+  if (!methods::is(a, "try-error") & !all.data) { c <- data.frame(selec.file = sel.txt2[i], sound.files = a[, grep("soundfile",colnames(a))],
                                 selec = 1,
                                 start = a[, grep("lefttimesec",colnames(a))],
                                 end = a[, grep("righttimesec",colnames(a))],
@@ -87,9 +84,9 @@ clist <- pbapply::pblapply(1:length(sel.txt), cl = cl, function(i)
   } else c<-a 
                                 } else {
             a <- try(utils::read.table(sel.txt[i], header = FALSE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE), silent = TRUE) 
-            if (!exclude & class(a) == "try-error") stop2(paste("The selection file",sel.txt[i], "cannot be read"))
+            if (!exclude & methods::is(a, "try-error")) stop2(paste("The selection file",sel.txt[i], "cannot be read"))
             
-            if (!class(a) == "try-error") 
+            if (!methods::is(a, "try-error")) 
               { 
               c <- a[, seq(2, ncol(a), by =2)]
            colnames(c) <- gsub(":", "", unlist(a[1, seq(1,ncol(a), by =2)]), fixed = TRUE)

@@ -30,24 +30,24 @@
 #' @examples{
 #' # load warbleR for sound file examples
 #' library(NatureSounds)
-#' 
-#' #load data 
+#'
+#' #load data
 #' data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", "selection_files"))
 #'
 #' # save sound files
 #' tuneR::writeWave(Phae.long1, file.path(tempdir(), "Phae.long1.wav"), extensible = FALSE)
 #' tuneR::writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"), extensible = FALSE)
 #' tuneR::writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"), extensible = FALSE)
-#' tuneR::writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)   
+#' tuneR::writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav"), extensible = FALSE)
 
 #' # save 'Raven' selection tables in the temporary directory
 #' out <- lapply(1:2, function(x)
 #' writeLines(selection_files[[x]], con = file.path(tempdir(), names(selection_files)[x])))
-#' 
+#'
 #' # try drag and drop selection files into Raven (shouldn't work)
-#' 
+#'
 #' # now fix files
-#' fix_path(path = tempdir(), 
+#' fix_path(path = tempdir(),
 #' sound.file.col = "Begin File", new.begin.path = "YOUR NEW LOCATION HERE")
 #' 
 #' # try drag and drop into Raven again (should work now)
@@ -92,7 +92,7 @@ fix_path <- function(path = NULL, dest.path = NULL, recursive = FALSE, parallel 
   read_sels2_FUN <- function(i, sel.txt)
   {  
     a <- try(utils::read.table(sel.txt[i], header = TRUE, sep = "\t", fill = TRUE, stringsAsFactors = FALSE, check.names = FALSE), silent = TRUE)
-    if (class(a) != "try-error")
+    if (!methods::is(a, "try-error"))
     {
       
       rf <- readLines(sel.txt[i])  
@@ -110,14 +110,11 @@ fix_path <- function(path = NULL, dest.path = NULL, recursive = FALSE, parallel 
   }
   }
   
-  # set pb options 
-  pbapply::pboptions(type = ifelse(pb, "timer", "none"))
-  
   # set clusters for windows OS
   if (Sys.info()[1] == "Windows" & parallel > 1)
     cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else cl <- parallel  
   
-  out <- pbapply::pblapply(seq_len(length(sel.txt)), cl = cl, function(i) {
+  out <- warbleR:::.pblapply(pbar = pb, X = seq_len(length(sel.txt)), cl = cl, message = "fixing paths", total = 1, function(i) {
     read_sels2_FUN(i, sel.txt = sel.txt)
   })
   

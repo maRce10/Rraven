@@ -68,10 +68,6 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
   if (is.null(path)) path <- getwd() else if (!dir.exists(path)) stop2("'path' provided does not exist") else
     path <- normalizePath(path)
   
-  # set progress bar back to original
-  on.exit(pbapply::pboptions(type = .Options$pboptions$type), 
-          add = TRUE)
-  
   # reset working directory 
   wd <- getwd()
   on.exit(setwd(wd), add = TRUE)
@@ -114,14 +110,11 @@ raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detec
   # check if raven executable is "Raven" or "RavenPro" (changed in Raven Pro 1.6)
   rav.exe <- list.files(path = raven.path, pattern =  "Raven$|Raven.app$|Raven.exe$|Raven\ Pro$|Raven\ Pro.app$|Raven\ Pro.exe$")
   
-  
-  if (pb) pbapply::pboptions(type = "timer") else pbapply::pboptions(type = "none")
-  
   # set clusters for windows OS
   if (Sys.info()[1] == "Windows" & parallel > 1)
     cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else cl <- parallel  
   
-  out <- pbapply::pblapply(sound.files,  cl = cl, function(x) {
+  out <- warbleR:::.pblapply(pbar = pb, X = sound.files, cl = cl, message = "running raven batch detection", total = 1, function(x) {
     
     # view and detector preset together to fix it when view preset not need it  
     view.detector <- if (detector.type == "Amplitude Detector")  paste0("-detPreset:", detector.preset) else

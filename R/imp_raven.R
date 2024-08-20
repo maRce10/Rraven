@@ -126,16 +126,15 @@ imp_raven <-
         stop2("Files provided not found")
     }
     
-    # set pb options
-    pbapply::pboptions(type = ifelse(pb, "timer", "none"))
-    
     # set clusters for windows OS
     if (Sys.info()[1] == "Windows" & parallel > 1)
       cl <- parallel::makePSOCKcluster(getOption("cl.cores", parallel)) else
       cl <- parallel
     
     # apply reading function over .txt files
-    sl.list <- pbapply::pblapply(seq_len(length(sel.txt)), cl = cl,
+    sl.list <- warbleR:::.pblapply(pbar = pb, X = seq_len(length(sel.txt)), cl = cl,
+                                   message = "importing Raven files",
+                                   total = 1,
                                  function(i)
                                    try(utils::read.delim(
                                      sel.txt[i],

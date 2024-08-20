@@ -34,7 +34,7 @@ A data frame with columns for sound file name (sound.files), selection label (se
 \code{extract_ts} extracts time series parameters from data imported from 'Raven' bioacoustic software.
 }
 \details{
-The function extracts parameters encoded as time series in 'Raven' selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as \code{\link[warbleR]{dfDTW}}.
+The function extracts parameters encoded as time series in 'Raven' selection files. The resulting data frame can be directly input into functions for time series analysis of acoustic signals as \code{\link[warbleR]{freq_DTW}}.
 }
 \examples{
 \dontrun{
@@ -45,16 +45,16 @@ data(selection_files)
 writeLines(selection_files[[5]], con = file.path(tempdir(), names(selection_files)[5]))
 
 # import data to R
-rvn.dat <- imp_raven(all.data = TRUE) 
+rvn.dat <- imp_raven(all.data = TRUE, path = tempdir())
 
 # Peak freq dif length
-extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.")
+extract_ts(X = rvn.dat, ts.column = "Peak Freq Contour (Hz)")
 
 # Peak freq equal length
-extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", equal.length = T)
+extract_ts(X = rvn.dat, ts.column = "Peak Freq Contour (Hz)", equal.length = T)
  
 # Peak freq equal length 10 measurements
-extract_ts(X = rvn.dat, ts.column = "Peak.Freq.Contour..Hz.", 
+extract_ts(X = rvn.dat, ts.column = "Peak Freq Contour (Hz)", 
 equal.length = TRUE, length.out = 10) 
 } 
 
