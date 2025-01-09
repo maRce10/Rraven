@@ -3,15 +3,15 @@
 #' \code{exp_raven} exports selection tables as 'Raven' selection data in .txt format.
 #' @usage exp_raven(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, 
 #' sound.file.path = NULL, single.file = TRUE, parallel = 1, pb = TRUE)
-#' @param X Object of class data frame or \code{\link[warbleR]{selection_table}} containing columns for sound file (sound.files), selection (selec), start and end time of signals ('start' and 'end') and low and high frequency ('bottom.freq' and 'top.freq', optional). See example data 'selec_table' in the \code{\link{warbleR}}) package.
+#' @param X Object of class data frame or \code{\link[warbleR]{selection_table}} containing columns for sound file (sound.files), selection (selec), start and end time of signals ('start' and 'end') and low and high frequency ('bottom.freq' and 'top.freq', optional). See example data 'selec_table' in the \href{https://cran.r-project.org/package=warbleR}{warbleR}) package.
 #' @param path A character string indicating the path of the directory in which to save the selection files.
 #' If not provided (default) the function saves the file into the current working directory.
 #' @param file.name Name of the output .txt file. If \code{NULL} then the sound file names are used instead. If multiple
 #' selection files are generated (see 'single.file') then the sound files names are added to the provided 'file.name'. Ignored if \code{single.file = FALSE}.
-#' @param khz.to.hz Logical. Controls if frequency variables should be converted from kHz (the unit used by other bioacoustic analysis R packages like \code{\link{warbleR}}) to Hz (the unit used by Raven). Default is \code{TRUE}.
+#' @param khz.to.hz Logical. Controls if frequency variables should be converted from kHz (the unit used by other bioacoustic analysis R packages like \href{https://cran.r-project.org/package=warbleR}{warbleR}) to Hz (the unit used by Raven). Default is \code{TRUE}.
 #' @param sound.file.path A character string indicating the path of the 
-#' directory containing the sound file(s). Providing this information allows
-#'  to open both sound file and selection table simultaneously. This can be
+#' directory containing the sound file(s). Providing this information allows 
+#' to open both sound file and selection table simultaneously. This can be
 #'  done by using the 'File > Open selection table' option in 'Raven' (or drag/drop the 
 #' selection file into Raven). Default is \code{NULL}. This argument is required when
 #' exporting selections from multiple sound files.
@@ -28,7 +28,7 @@
 #' export them as a single selection file or as multiple selection files (one for each sound file). 
 #' No objects are returned in the R environment.
 #' @details The function exports selection tables (as the ones used in the R 
-#' package \code{\link{warbleR}}) into the 'Raven' selection file format ('.txt').
+#' package \href{https://cran.r-project.org/package=warbleR}{warbleR}) into the 'Raven' selection file format ('.txt').
 #'  This can be useful to obtain additional Raven
 #' measurements on existing selections by adding new measurements to the 
 #' selection table once in Raven. Note that selection labels must be numeric and non-duplicated 

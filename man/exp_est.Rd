@@ -18,14 +18,14 @@ function uses the current working directory. Default is \code{NULL}.}
 
 \item{single.file}{Logical argument to control if all wave objects are pooled together in a 
 single sound file (if \code{TRUE}) or each one as an individual sound file (if \code{FALSE}, default). If 
-exporting a single sound file the files are pasted in the same sequences as in the extended selection table. Note that to create a single sound file ALL WAVE OBJECTS IN 'X" MUST HAVE THE SAME SAMPLE RATE (check \code{attributes(X)$check.res$sample.rate}) and ideally the same bit depth (although not strictly required). If that is not the case, sample rate can be homogenize using the \code{\link[warbleR]{resample_est}} from the warbleR package.}
+exporting a single sound file the files are concatenated in the same sequences as in the extended selection table. Note that to create a single sound file ALL WAVE OBJECTS IN 'X" MUST HAVE THE SAME SAMPLE RATE (check \code{attributes(X)$check.res$sample.rate}) and ideally the same bit depth (although not strictly required). If that is not the case, sample rate can be homogenize using the \code{\link[warbleR]{resample_est}} from the warbleR package.}
 
 \item{selection.table}{Logical argument to determine if a Raven sound selection table ('.txt' file) is also exported. 
 Default is \code{TRUE}. If \code{FALSE} then selection table is return as an object in the R environment. If exporting multiple sound files (if \code{single.file = FALSE}) the function still exports a single selection table (in this case a multiple sound selection table).}
 
 \item{pb}{Logical argument to control progress bar when exporting multiple sound files. Default is \code{TRUE}.}
 
-\item{normalize}{Logical argument to control if wave objects are individually normalized before exporting (or before being pasted together if \code{single.file = TRUE}). Normalization rescales amplitude values to a 16 bit dynamic range. Default is \code{FALSE}.}
+\item{normalize}{Logical argument to control if wave objects are individually normalized before exporting (or before being concatenated if \code{single.file = TRUE}). Normalization rescales amplitude values to a 16 bit dynamic range. Default is \code{FALSE}.}
 
 \item{parallel}{Numeric. Controls whether parallel computing is applied.
 It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).}
@@ -39,8 +39,8 @@ Sound file(s) are saved in the provided path or current working directory. If \c
 \code{exp_est} exports wave objects of an extended selection table as sound files
 }
 \details{
-The function takes wave objects contained as attributes in extended selection 
-tables and saves them as sound files in '.wav' format. A single or several sound files can be produced (see 'single.file' argument).  In addition, a Raven sound selection table can be saved along with the sound files. The exported selection table can be open in Raven for exploring/manipulating selections in 'X'.
+Extended selection tables are annotations that include both the acoustic and annotation data. This is an specific object class, \code{extended_selection_table} (from the package \href{https://cran.r-project.org/package=warbleR}{warbleR}), that includes a list of 'wave' objects corresponding to each the annotations in the data (\href{https://marce10.github.io/warbleR/articles/annotation_data_format.html#extended-selection-tables}{see a full description here}). The function \code{exp_est} takes the wave objects contained as attributes in extended selection tables and saves them as sound files in '.wav' format. A single sound file containing all the annotations or several sound files (one for each wave object) can be produced (see 'single.file' argument). In addition, a Raven sound selection table can be saved along with the sound files. The exported selection table can be open in Raven for exploring/manipulating selections in 'X'. Note that the background noise margin (if any) that is found on each wave object before and/or after the annotated sound is also exported.
+Note that for extended selection tables created 'by song' (\href{https://marce10.github.io/warbleR/articles/annotation_data_format.html#by-element-vs-by-song-extended-selection-tables}{described here}; see argument 'by.song' in the warbleR function \code{\link[warbleR]{selection_table}}) when using the argument \code{single.file = FALSE} the function will export a single sound file for every 'song' in the selection table. In other words exported sound files will contain all the annotations for a given song, instead of a single annotation per sound file.
 }
 \examples{
 \dontrun{

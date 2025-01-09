@@ -17,7 +17,7 @@ data(selection_files)
 \description{
 List of 'Raven' and 'Syrinx' selection tables containing 
 \emph{Phaethornis longirostris} (Long-billed Hermit) songs from the 
-example sound files included in the \code{\link{warbleR}} package (times 1 to 5),
+example sound files included in the \href{https://cran.r-project.org/package=warbleR}{warbleR} package (items 1 to 5),
 a 'Raven' correlation matrix (item 6) and one selection from cane-brake wrens 
 (item 7; no sound file available).
 }

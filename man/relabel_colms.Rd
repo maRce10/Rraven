@@ -17,11 +17,11 @@ khz.to.hz = FALSE, hz.to.khz = FALSE, waveform = FALSE)
 Default is \code{NULL}. 'extra.cols.name' must also be provided.}
 
 \item{khz.to.hz}{Logical. Controls if frequency variables ('top.freq' and 'bottom.freq') should be converted from kHz 
-(the unit used by other bioacoustic analysis R packages like \code{\link{warbleR}}) to Hz (the unit used by Raven). 
+(the unit used by other bioacoustic analysis R packages like \href{https://cran.r-project.org/package=warbleR}{warbleR}) to Hz (the unit used by Raven). 
 Default is \code{FALSE}.}
 
 \item{hz.to.khz}{Logical. Controls if frequency variables ('top.freq' and 'bottom.freq') should be converted from Hz 
-(the unit used by other bioacoustic analysis R packages like Raven) to kHz (the unit used by \code{\link{warbleR}}). 
+(the unit used by other bioacoustic analysis R packages like Raven) to kHz (the unit used by \href{https://cran.r-project.org/package=warbleR}{warbleR}). 
 Default is \code{FALSE}. Ignored if 'kHz.to.hz' is \code{TRUE}.}
 
 \item{waveform}{Logical to control if 'waveform' related data should be included (this data is typically duplicated in 'spectrogram' data).  Default is \code{FALSE} (not to include it).}
@@ -30,10 +30,10 @@ Default is \code{FALSE}. Ignored if 'kHz.to.hz' is \code{TRUE}.}
 The function returns the input data frame with new column names for time and frequency 'coordinates' and sound files and selections.
 }
 \description{
-\code{ relabel_colms} relabels columns to match the selection table format (as in the R package \code{\link{warbleR}})
+\code{ relabel_colms} relabels columns to match the selection table format (as in the R package \href{https://cran.r-project.org/package=warbleR}{warbleR})
 }
 \details{
-This function relabels columns to match the selection table format to match then ones used by other bioacoustic analysis R packages like \code{\link{warbleR}}.
+This function relabels columns to match the selection table format to match then ones used by other bioacoustic analysis R packages like \href{https://cran.r-project.org/package=warbleR}{warbleR}.
 }
 \examples{
 

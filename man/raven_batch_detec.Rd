@@ -32,7 +32,7 @@ If \code{NULL} (default) then the 'Default' detector for the specific detector t
 If \code{NULL} (default) then the 'Default' window preset is used.}
 
 \item{relabel_colms}{Logical. If  \code{TRUE} (default) columns are labeled to 
-match the selection table format from the acoustic analysis package \code{\link{warbleR}}}
+match the selection table format from the acoustic analysis package \href{https://cran.r-project.org/package=warbleR}{warbleR}}
 
 \item{pb}{Logical argument to control progress bar. Default is \code{TRUE}.}
 

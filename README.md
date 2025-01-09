@@ -10,10 +10,6 @@ Rraven: connecting R and Raven sound analysis software
 and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Licence](https://img.shields.io/badge/https://img.shields.io/badge/licence-GPL--2-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![minimal R
-version](https://img.shields.io/badge/R%3E%3D-%3E=%203.2.1-6666ff.svg)](https://cran.r-project.org/)
-[![packageversion](https://img.shields.io/badge/Package%20version-1.0.14-orange.svg?style=flat-square)](commits/develop)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2023--01--24-yellowgreen.svg)](/commits/master)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/Rraven)](https://cran.r-project.org/package=Rraven)
 [![Total
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/Rraven)](https://cranlogs.r-pkg.org/badges/grand-total/Rraven)
@@ -25,10 +21,10 @@ The `Rraven` package is designed to facilitate the exchange of data
 between R and [Raven sound analysis
 software](https://www.ravensoundsoftware.com/) ([Cornell Lab of
 Ornithology](https://www.birds.cornell.edu/home)).
-[Raven](https://www.ravensoundsoftware.com/) provides very powerful tools for
-the analysis of (animal) sounds. R can simplify the automatization of
-complex routines of analyses. Furthermore, R packages as
-[warbleR](https://cran.r-project.org/package=warbleR),
+[Raven](https://www.ravensoundsoftware.com/) provides very powerful
+tools for the analysis of (animal) sounds. R can simplify the
+automatization of complex routines of analyses. Furthermore, R packages
+as [warbleR](https://cran.r-project.org/package=warbleR),
 [seewave](https://cran.r-project.org/package=seewave) and
 [monitoR](https://cran.r-project.org/package=monitoR) (among others)
 provide additional methods of analysis, working as a perfect complement
@@ -65,18 +61,18 @@ library(Rraven)
 
 The package vignette provides detailed examples for each function in
 `Rraven`, including both the R code as well as the additional steps in
-[Raven](https://www.ravensoundsoftware.com/) required to fully accomplished
-the analyses. You can pull it up as follows:
+[Raven](https://www.ravensoundsoftware.com/) required to fully
+accomplished the analyses. You can pull it up as follows:
 
 ``` r
 vignette("Rraven")
 ```
 
 The animations explaining additional steps in
-[Raven](https://www.ravensoundsoftware.com/) are shown in more detail on the
-[github](https://github.com/maRce10/Rraven) version of this vignette,
-which can be downloaded as follows (saves the file “Rraven.github.html”
-in your current working directory):
+[Raven](https://www.ravensoundsoftware.com/) are shown in more detail on
+the [github](https://github.com/maRce10/Rraven) version of this
+vignette, which can be downloaded as follows (saves the file
+“Rraven.github.html” in your current working directory):
 
 ``` r
 download.file(url = "https://raw.githubusercontent.com/maRce10/Rraven/master/gifs/Rraven.hitgub.html", 

@@ -21,7 +21,7 @@
 #' @param view.preset Character string specifying the name of the window preset to be used. Not require for 'Amplitude Detector' (see 'detector.type' argument).
 #' If \code{NULL} (default) then the 'Default' window preset is used. 
 #' @param relabel_colms Logical. If  \code{TRUE} (default) columns are labeled to 
-#' match the selection table format from the acoustic analysis package \code{\link{warbleR}}
+#' match the selection table format from the acoustic analysis package \href{https://cran.r-project.org/package=warbleR}{warbleR}
 #' @param pb Logical argument to control progress bar. Default is \code{TRUE}.
 #' @param parallel Numeric. Controls whether parallel computing is applied.
 #' It specifies the number of cores to be used. Default is 1 (i.e. no parallel computing).
