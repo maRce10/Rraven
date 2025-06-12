@@ -29,7 +29,7 @@
 #' @details The function runs 'Raven' sound analysis software (Cornell Lab of
 #' Ornithology), detector on  multiple sound files sequentially. 'Raven' Pro must be 
 #' installed. Note that batch detection in 'Raven' can also take 
-#' sound files in 'mp3', 'flac' and 'aif' format. 
+#' sound files in 'mp3', 'flac' and 'aif' format. THIS FUNCTION ONLY WORKS WITH RAVEN PRO 1.5 OR EARLIER VERSIONS.
 #' @seealso \code{\link{imp_raven}}; \code{\link{imp_syrinx}}; \code{\link{run_raven}}  
 #' @export
 #' @name raven_batch_detec
@@ -58,7 +58,6 @@
 #' }
 #' 
 #' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
-# last modification on jan-06-2020
 
 raven_batch_detec <- function(raven.path = NULL, sound.files, path = NULL, detector.type,
                               detector.preset = "Default", view.preset = "Default", relabel_colms = TRUE, pb = TRUE, parallel = 1)
