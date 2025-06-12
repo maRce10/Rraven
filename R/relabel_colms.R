@@ -80,7 +80,7 @@
   for(i in 1:length(rvn.nms))
     names(X)[names(X) == rvn.nms[i]] <- wblr.nms[i]
 
-  # change column names try 1
+  # change column names try 2
   rvn.nms <- c("Selection", "Begin.Time..s.", "End.Time..s.", "Low.Freq..Hz.", "High.Freq..Hz.")
   wblr.nms <- c("selec", "start", "end", "bottom.freq", "top.freq")
   
@@ -94,7 +94,7 @@
   
   
   #convert sound file column name
-  names(X)[grep("\\.File$", names(X))[1]] <- "sound.files"
+  names(X)[grep("\\.File$|File$", names(X))[1]] <- "sound.files"
   
   # convert to Hz
   if ("bottom.freq" %in% names(X) & khz.to.hz)
