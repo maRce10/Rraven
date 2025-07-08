@@ -49,7 +49,7 @@ A data frame with the selections produced during the detection. See \code{\link{
 The function runs 'Raven' sound analysis software (Cornell Lab of
 Ornithology), detector on  multiple sound files sequentially. 'Raven' Pro must be 
 installed. Note that batch detection in 'Raven' can also take 
-sound files in 'mp3', 'flac' and 'aif' format.
+sound files in 'mp3', 'flac' and 'aif' format. THIS FUNCTION ONLY WORKS WITH RAVEN PRO 1.5 OR EARLIER VERSIONS.
 }
 \examples{
 \dontrun{

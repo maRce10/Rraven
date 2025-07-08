@@ -49,7 +49,7 @@ Ornithology), opening many files simultaneously. 'Raven' will still run if no
 sound files are provided (i.e. \code{sound.files = NULL}). At the end of the
 analysis the data can be automatically imported back into R using the 'import'
 argument. 'Raven' Pro must be installed. Note that 'Raven' can also take sound files in 'mp3', 'flac' and
-'aif' format.
+'aif' format. THIS FUNCTION ONLY WORKS WITH RAVEN PRO 1.5 OR EARLIER VERSIONS.
 }
 \examples{
 \dontrun{

@@ -6,7 +6,7 @@ Authors@R: person("Marcelo", "Araya-Salas", role = c("aut", "cre"), email = "mar
 Maintainer: Marcelo Araya-Salas <marcelo.araya@ucr.ac.cr>
 Description: A tool to exchange data between R and 'Raven' sound analysis software (Cornell Lab of Ornithology). Functions work on data formats compatible with the R package 'warbleR'.
 License: GPL (>= 2)
-Imports: pbapply, warbleR (>= 1.1.32), utils, stats, seewave, tuneR, methods
+Imports: pbapply, warbleR (>= 1.1.34), utils, stats, seewave, tuneR, methods
 Depends: R (>= 3.2.1)
 LazyData: TRUE
 URL: https://github.com/maRce10/Rraven 

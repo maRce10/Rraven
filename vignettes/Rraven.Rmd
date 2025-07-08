@@ -1,9 +1,9 @@
 ---
-title: <center><font size="7"><b>Rraven&#58; Connecting R and Raven Sound Analysis Software</b></font></center>
+title: "Rraven: Connecting R and Raven Sound Analysis Software"
 pagetitle: Rraven, connecting R and Raven Sound Analysis Software
-author: <center><a href="https://marceloarayasalas.weebly.com/">Marcelo Araya-Salas, PhD</a> </center>
- &nbsp; 
-date:  <center>"`r Sys.Date()`"</center>
+author: 
+- <a href="https://marce10.github.io/">Marcelo Araya-Salas, PhD</a>
+date:  "`r Sys.Date()`"
 output:
   rmarkdown::html_document:
     self_contained: yes
@@ -13,12 +13,16 @@ output:
       collapsed: false
       smooth_scroll: true
 vignette: >
+   %\VignetteIndexEntry{Rraven: Connecting R and Raven Sound Analysis Software}
    %\usepackage[utf8]{inputenc}
    %\VignetteEncoding{UTF-8}
-   %\VignetteIndexEntry{Rraven: Connecting R and Raven Sound Analysis Software}
+   %\VignetteDepends{Rraven}
+   %\VignetteDepends{viridis}   
    %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
   chunk_output_type: console
+params:
+  EVAL: !r identical(Sys.getenv("NOT_CRAN"), "true")
 ---
 
 <style>
@@ -647,9 +651,15 @@ These type of tables can be opened as a multiple file display in [Raven](https:/
 
 ## Running Raven from R
 
+<div class="alert alert-warning">
+
+Functions to run Raven from R only work on Raven Pro 1.5 or earlier versions.
+
+</div>
+
 ### *run_raven*
 
-The function opens multiple sound files simultaneously in  [Raven](https://www.ravensoundsoftware.com/). When the analysis is finished (and the  [Raven](https://www.ravensoundsoftware.com/) window is closed) the data can be automatically imported back into R using the 'import' argument. Note that [Raven](https://www.ravensoundsoftware.com/), unlike R, can also handle files in 'mp3', 'flac' and 'aif' format . 
+The function opens multiple sound files simultaneously in [Raven](https://www.ravensoundsoftware.com/). When the analysis is finished (and the  [Raven](https://www.ravensoundsoftware.com/) window is closed) the data can be automatically imported back into R using the 'import' argument. Note that [Raven](https://www.ravensoundsoftware.com/), unlike R, can also handle files in 'mp3', 'flac' and 'aif' format . 
 
 
 ```{r, eval=FALSE, echo=T}
