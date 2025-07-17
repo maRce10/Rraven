@@ -1,3 +1,11 @@
+# Version 1.0.15
+
+## Changes and additions
+
+* Message in functions that run raven from R to let users know it is only works on Raven Pro 1.4 or earlier versions
+* Fix no relabeling of "Begin File" column in `imp_raven()`
+* ix bug in `imp_raven()` when no empty files found
+
 # Version 1.0.14
 
 ## Changes and additions
@@ -25,8 +33,8 @@
 
 ## Changes and additions
 
-* Fix bug on raven_batch_detec() when reading output Raven files
-* Added 'wave.object' argument to return a single wave object in 'exp_est()'
+* Fix bug on `raven_batch_detec()` when reading output Raven files
+* Added 'wave.object' argument to return a single wave object in `exp_est()`
 
 # Version 1.0.8
 
