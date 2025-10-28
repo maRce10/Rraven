@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://marce10.github.io/Rraven/404.html</loc>
+  </url>
+  <url>
+    <loc>https://marce10.github.io/Rraven/articles/Rraven.html</loc>
+  </url>
+  <url>
+    <loc>https://marce10.github.io/Rraven/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://marce10.github.io/Rraven/authors.html</loc>
+  </url>
+  <url>
     <loc>https://marce10.github.io/Rraven/index.html</loc>
+  </url>
+  <url>
+    <loc>https://marce10.github.io/Rraven/news/index.html</loc>
   </url>
   <url>
     <loc>https://marce10.github.io/Rraven/reference/exp_empty_sels.html</loc>
@@ -28,6 +43,9 @@
     <loc>https://marce10.github.io/Rraven/reference/imp_syrinx.html</loc>
   </url>
   <url>
+    <loc>https://marce10.github.io/Rraven/reference/index.html</loc>
+  </url>
+  <url>
     <loc>https://marce10.github.io/Rraven/reference/match_wav_case.html</loc>
   </url>
   <url>
@@ -44,8 +62,5 @@
   </url>
   <url>
     <loc>https://marce10.github.io/Rraven/reference/to_sound_selection.html</loc>
-  </url>
-  <url>
-    <loc>https://marce10.github.io/Rraven/articles/Rraven.html</loc>
   </url>
 </urlset>

@@ -1,3 +1,46 @@
+# website will be referenced on https://pkgs.rstudio.com/
+# Open a PR in https://github.com/rstudio/pkgs.rstudio.com
 url: https://marce10.github.io/Rraven
+
 template:
   bootstrap: 5
+
+reference:
+- title: Import annotations
+  desc: >
+    Functions to import Raven selection tables and other annotation formats
+  contents:
+  -  imp_corr_mat
+  -  imp_raven
+  -  imp_syrinx
+
+- title: Export annotations
+  desc: >
+    Export annotations from R to Raven selection table file format
+  contents:
+  -  exp_empty_sels
+  -  exp_est
+  -  exp_raven
+
+- title: Format and manipulate annotations
+  desc: >
+    Functions to format and manipulate annotation data frames
+  contents:
+  -  extract_ts
+  -  fix_path
+  -  match_wav_case
+  -  relabel_colms
+  -  to_sound_selection
+
+- title: Run Raven from R
+  desc: >
+    Functions to run Raven analyses from R (they only work with Raven Pro 1.5)
+  contents:
+  -  raven_batch_detec
+  - run_raven
+
+- title: Built in datasets
+  desc: >
+    Datasets included in Rraven
+  contents:
+  - selection_files

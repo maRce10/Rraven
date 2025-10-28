@@ -1,3 +1,10 @@
+# Version 1.0.16
+
+## Changes and additions
+
+* fix renaming of "Begin File" in `imp_raven()`
+* More details about selection tables on documentation
+
 # Version 1.0.15
 
 ## Changes and additions
