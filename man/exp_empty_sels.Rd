@@ -27,7 +27,7 @@ No objects are returned in the R environment.
 \details{
 The function saves a selection file in '.txt' format (that can be 
 directly opened in Raven) that will display all sound files in the provided
-directory (argument 'path'). Useful to simplify the making of selections from several sound files that need to be displayed simultaneously (e.g. several recordings from the same individual). The selection file is saved in the provided directory ('path').
+directory (argument 'path') by having a single  point annotation (i.e. annotation in which the start and end time are the same and bottom and top frequency are also the same) at the beginning of each sound file . Useful to simplify the making of selections from several sound files that need to be displayed simultaneously (e.g. several recordings from the same individual). The selection file is saved in the provided directory ('path').
 }
 \examples{
 

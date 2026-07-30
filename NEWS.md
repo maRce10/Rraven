@@ -1,3 +1,9 @@
+# Version 1.0.17
+
+## Changes and additions
+
+* `exp_raven()` now can export empty (nrow = 0) selection tables
+
 # Version 1.0.16
 
 ## Changes and additions

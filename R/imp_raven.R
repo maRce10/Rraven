@@ -164,17 +164,17 @@ imp_raven <-
     } else empty.files <- NULL
     
     ## check if basic Raven columns are found
-    sl.list <- lapply(sl.list, function(x)
-    {
-      if (sum(grepl(
-        pattern = "^view$|^channel$",
-        x = names(x),
-        ignore.case = TRUE
-      ))
-      >= 2)
-        return(x) else
-        return(NA)
-    })
+    # sl.list <- lapply(sl.list, function(x)
+    # {
+    #   if (sum(grepl(
+    #     pattern = "^view$|^channel$",
+    #     x = names(x),
+    #     ignore.case = TRUE
+    #   ))
+    #   >= 2)
+    #     return(x) else
+    #     return(NA)
+    # })
     
     # remove NAs
     error.files <-

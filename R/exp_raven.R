@@ -118,8 +118,8 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
     names(X)[names(X) == wblr.nms[i]] <- rvn.nms[i]
   
   # add View and channel column
-  X$View <- "Spectrogram 1"  
-  X$Channel <- 1  
+  X$View <- if(nrow(X) > 0) "Spectrogram 1" else vector()  
+  X$Channel <- if(nrow(X) > 0) 1 else vector()  
   
   mtch <- match(c( "Selection", "View", "Channel", "Begin Time (s)", "End Time (s)", "Low Freq (Hz)", "High Freq (Hz)"), names(X))
   
@@ -127,11 +127,11 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
   
   if (!is.null(sound.file.path))
   {
-    X$'Begin Path' <- file.path(normalizePath(sound.file.path), X$'Begin File')
+    X$'Begin Path' <- if(nrow(X) > 0) file.path(normalizePath(sound.file.path), X$'Begin File') else vector()
     
-    X$'File Offset (s)' <- X$'Begin Time (s)'
+    X$'File Offset (s)' <- if(nrow(X) > 0) X$'Begin Time (s)' else vector()
     
-    if (length(unique(X$'Begin File')) > 1 & single.file)
+    if (length(unique(X$'Begin File')) > 1 & single.file & nrow(X) > 0)
     {
       durs <- warbleR::duration_sound_files(path = sound.file.path, files = as.character(X$'Begin File'[!duplicated(X$'Begin File')]))
       durs$cumdur <- cumsum(durs$duration)
@@ -157,12 +157,14 @@ exp_raven <- function(X, path = NULL, file.name = NULL, khz.to.hz = TRUE, sound.
  if (!is.null(sound.file.path))
    if (!is.numeric(X$Selection) | any(duplicated(X$Selection)))
    {
-     X$old.selec <- X$Selection 
+     X$old.selec <- if(nrow(X) > 0) X$Selection else NULL
      X$Selection <- seq_len(nrow(X))
    }
  
-if (single.file | nrow(X) == 1)
-  row.list <- matrix(c(1, nrow(X)), nrow = 1) else 
+if (single.file | nrow(X) == 1){
+  seq_rows <- if(nrow(X) > 0) seq_len(nrow(X)) else 0
+  row.list <- matrix(c(min(seq_rows), nrow(X)), nrow = 1)
+  } else 
   {
     e <- which(!duplicated(X$`Begin File`))  
     e2 <- c(e[2:length(e)] - 1, nrow(X))
@@ -193,13 +195,14 @@ if (single.file | nrow(X) == 1)
     file.name2 <- paste0(file.name2, ".txt")
   
   W <- X[c(row.list[x, 1] : row.list[x, 2]), ]
-    
+  
     if(any(sapply(W, is.list)))
       for(i in which(sapply(W, is.list)))
         W[i] <- unlist(W[i])  
   
   # sort to put raven measurements in the first columns
   W <- W[ , c(which(names(W) %in% rvn_msr_nms), which(!names(W) %in% rvn_msr_nms))]
+  
   
   utils::write.table(x = W, sep = "\t", file = file.name2, row.names = FALSE, quote = FALSE)  
  })
