@@ -1,0 +1,87 @@
+# Fix the extension case of sound files
+
+`match_wav_case` fixes the extension case of sound files in a selection
+table.
+
+## Usage
+
+``` r
+match_wav_case(X, path = NULL, output = "data.frame", verbose = TRUE)
+```
+
+## Arguments
+
+- X:
+
+  Data frame containing columns for sound file (sound.files) and
+  selection (selec). See example data 'lbh_selec_table' in the
+  [warbleR](https://cran.r-project.org/package=warbleR)) package.
+
+- path:
+
+  A character string indicating the path of the directory in which to
+  look for sound files. If not provided (default) the function searches
+  into the current working directory.
+
+- output:
+
+  Character string. Controls whether a complete data frame
+  ('data.frame') or only the sound file names ("names") are returned.
+  Default is 'data.frame'.
+
+- verbose:
+
+  Logical to control if messages are printed (`TRUE`, default).
+
+## Value
+
+The same data as in the input data frame but with the case of the
+extension file names in the 'sound.files' column matching those of the
+sound files themselves.
+
+## Details
+
+The function returns the data from the input data frame with extension
+file names in the 'sound.files' column matching those of the sound files
+(in case there was any mismatch). The function needs the path to the
+sound files to compare extension names.
+
+## See also
+
+[`relabel_colms`](https://marce10.github.io/Rraven/reference/relabel_colms.md)
+
+## Author
+
+Marcelo Araya-Salas (<marcelo.araya@ucr.ac.cr>)
+
+## Examples
+
+``` r
+{
+library(warbleR)
+data(list = c("Phae.long1", "Phae.long2", "Phae.long3", "Phae.long4", 
+"lbh_selec_table"))
+
+tuneR::writeWave(Phae.long1, file.path(tempdir(), 
+"Phae.long1.wav"), extensible = FALSE) #save sound files 
+tuneR::writeWave(Phae.long2, file.path(tempdir(), 
+"Phae.long2.wav"), extensible = FALSE)
+tuneR::writeWave(Phae.long3, file.path(tempdir(), 
+"Phae.long3.wav"), extensible = FALSE)
+tuneR::writeWave(Phae.long4, file.path(tempdir(), 
+"Phae.long4.wav"), extensible = FALSE)
+
+# change one extension
+lbh_selec_table$sound.files <- as.character(lbh_selec_table$sound.files)
+lbh_selec_table$sound.files[1] <- gsub(".wav$", ".WAV", lbh_selec_table$sound.files[1]) 
+ 
+ # fixed extension an return data frame
+ match_wav_case(X = lbh_selec_table, path = tempdir())
+  
+ # fixed extension an return sound file names
+ match_wav_case(X = lbh_selec_table, output = "names", path = tempdir())
+ }   
+#>  [1] "Phae.long1.wav" "Phae.long1.wav" "Phae.long1.wav" "Phae.long2.wav"
+#>  [5] "Phae.long2.wav" "Phae.long3.wav" "Phae.long3.wav" "Phae.long3.wav"
+#>  [9] "Phae.long4.wav" "Phae.long4.wav" "Phae.long4.wav"
+```
